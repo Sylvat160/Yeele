@@ -1,3 +1,1 @@
-# Application de Gestion d'évènement
-by
-## Horinfo
+# Application de Gestion d'évènement <small>by Horinfo</small>
