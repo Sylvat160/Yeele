@@ -13,7 +13,7 @@ class Header extends Component
     {
         $this->links = array_map(function($link) {
             if($link['path'] === Request::fullUrl()) {
-                $link['active'] = ' link_active';
+                $link['active'] = true;
             }
 
             return $link;
