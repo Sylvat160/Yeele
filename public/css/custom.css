@@ -1,4 +1,17 @@
+.hero_block {
+    background: url(../images/backgrounds/hero_bg.png) no-repeat;
+    background-position: right;
+    background-size: contain;
+}
+
 .hero {
     box-shadow: 0 0 0 30px #f74343,
     0 0 0 50px #f05252;
+}
+
+@media (max-width: 767px) {
+    .hero_block {
+        background-position: center;
+        background-size: cover;
+    }
 }

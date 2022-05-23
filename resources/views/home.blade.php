@@ -8,7 +8,7 @@
             <p class="mt-8 mb-12 text-lg sm:text-xl lg:text-2xl">Notre plateforme vous propose un large choix de fonctionnalités pour répondre au mieux à vos besoins.</p>
             <a href="#" class="py-4 px-6 font-semibold text-white bg-red-500 rounded-xl">Démarrer une formule</a>
         </div>
-        <div class="my-10 col-span-12 col-start-1 md:col-start-7 md:col-span-6 order-first md:order-last h-fit flex justify-center items-center">
+        <div class="my-10 col-span-12 col-start-1 md:col-start-7 md:col-span-6 order-first md:order-last h-fit flex justify-center items-center hero_block">
             <img src="{{ asset('images/hero.jpg') }}" alt="Hero" class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12 rounded-full hero">
         </div>
     </x-container>
