@@ -882,9 +882,17 @@ input:checked + .toggle-bg {
 .col-start-1 {
     grid-column-start: 1;
 }
+.my-4 {
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
+}
+.my-10 {
+    margin-top: 2.5rem;
+    margin-bottom: 2.5rem;
 }
 .mt-12 {
     margin-top: 3rem;
@@ -942,6 +950,15 @@ input:checked + .toggle-bg {
 .h-4 {
     height: 1rem;
 }
+.h-64 {
+    height: 16rem;
+}
+.h-40 {
+    height: 10rem;
+}
+.h-52 {
+    height: 13rem;
+}
 .w-96 {
     width: 24rem;
 }
@@ -956,6 +973,21 @@ input:checked + .toggle-bg {
 }
 .w-4 {
     width: 1rem;
+}
+.w-80 {
+    width: 20rem;
+}
+.w-5 {
+    width: 1.25rem;
+}
+.w-3 {
+    width: 0.75rem;
+}
+.w-40 {
+    width: 10rem;
+}
+.w-52 {
+    width: 13rem;
 }
 .flex-1 {
     flex: 1 1 0%;
@@ -1170,11 +1202,26 @@ input:checked + .toggle-bg {
     font-size: 0.875rem;
     line-height: 1.25rem;
 }
+.text-6xl {
+    font-size: 3.75rem;
+    line-height: 1;
+}
+.text-4xl {
+    font-size: 2.25rem;
+    line-height: 2.5rem;
+}
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
 .font-semibold {
     font-weight: 600;
 }
 .font-medium {
     font-weight: 500;
+}
+.font-bold {
+    font-weight: 700;
 }
 .leading-6 {
     line-height: 1.5rem;
@@ -1373,9 +1420,26 @@ input:checked + .toggle-bg {
 }
 @media (min-width: 640px) {
 
+    .sm\:h-96 {
+        height: 24rem;
+    }
+
+    .sm\:w-96 {
+        width: 24rem;
+    }
+
+    .sm\:text-left {
+        text-align: left;
+    }
+
     .sm\:text-xl {
         font-size: 1.25rem;
         line-height: 1.75rem;
+    }
+
+    .sm\:text-6xl {
+        font-size: 3.75rem;
+        line-height: 1;
     }
 }
 @media (min-width: 768px) {
@@ -1395,8 +1459,41 @@ input:checked + .toggle-bg {
     .md\:block {
         display: block;
     }
+
+    .md\:h-80 {
+        height: 20rem;
+    }
+
+    .md\:w-80 {
+        width: 20rem;
+    }
+
+    .md\:text-5xl {
+        font-size: 3rem;
+        line-height: 1;
+    }
 }
 @media (min-width: 1024px) {
+
+    .lg\:ml-4 {
+        margin-left: 1rem;
+    }
+
+    .lg\:ml-8 {
+        margin-left: 2rem;
+    }
+
+    .lg\:ml-12 {
+        margin-left: 3rem;
+    }
+
+    .lg\:h-96 {
+        height: 24rem;
+    }
+
+    .lg\:w-96 {
+        width: 24rem;
+    }
 
     .lg\:text-6xl {
         font-size: 3.75rem;
