@@ -7,6 +7,7 @@
     <title>{{ env('APP_NAME', 'Yeele') }} | @yield('title')</title>
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
     
