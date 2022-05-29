@@ -3,6 +3,12 @@
     src: url(../fonts/Montserrat-Regular.ttf);
 }
 
+@font-face {
+    font-family: Karla;
+    src: url(../fonts/Karla-Regular.ttf);
+}
+
+
 * {font-family: Montserrat;}
 
 @tailwind base;

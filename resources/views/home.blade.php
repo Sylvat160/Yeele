@@ -12,4 +12,15 @@
             <img src="{{ asset('images/hero.jpg') }}" alt="Hero" class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12 rounded-full hero">
         </div>
     </x-container>
+    <main class="mt-12 py-12">
+        <h1 class="text-3xl text-center">Il nous ont fait confiance</h1>
+        <x-container class="mt-12 grid grid-flow-col grid-cols-11 gap-2">
+            <div class="col-span-3 partner">
+                <img src="{{ asset('images/logo_lion.png') }}" alt="Logo du club des lions">
+            </div>
+            <div class="col-span-3 partner">
+                <img src="{{ asset('images/logo_FTD.png') }}" alt="Logo de Fortandem">
+            </div>
+        </x-container>
+    </main>
 @endsection
