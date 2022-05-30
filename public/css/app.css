@@ -882,12 +882,6 @@ input:checked + .toggle-bg {
 .order-first {
     order: -9999;
 }
-.order-4 {
-    order: 4;
-}
-.order-5 {
-    order: 5;
-}
 .col-span-12 {
     grid-column: span 12 / span 12;
 }
@@ -976,6 +970,18 @@ input:checked + .toggle-bg {
 .w-4 {
     width: 1rem;
 }
+.w-10 {
+    width: 2.5rem;
+}
+.w-40 {
+    width: 10rem;
+}
+.w-96 {
+    width: 24rem;
+}
+.w-44 {
+    width: 11rem;
+}
 .flex-1 {
     flex: 1 1 0%;
 }
@@ -1028,6 +1034,9 @@ input:checked + .toggle-bg {
 .grid-cols-7 {
     grid-template-columns: repeat(7, minmax(0, 1fr));
 }
+.place-content-center {
+    place-content: center;
+}
 .items-start {
     align-items: flex-start;
 }
@@ -1048,6 +1057,9 @@ input:checked + .toggle-bg {
 }
 .justify-between {
     justify-content: space-between;
+}
+.justify-around {
+    justify-content: space-around;
 }
 .gap-2 {
     gap: 0.5rem;
@@ -1188,6 +1200,10 @@ input:checked + .toggle-bg {
     font-size: 1.125rem;
     line-height: 1.75rem;
 }
+.text-3xl {
+    font-size: 1.875rem;
+    line-height: 2.25rem;
+}
 .text-base {
     font-size: 1rem;
     line-height: 1.5rem;
@@ -1195,10 +1211,6 @@ input:checked + .toggle-bg {
 .text-sm {
     font-size: 0.875rem;
     line-height: 1.25rem;
-}
-.text-3xl {
-    font-size: 1.875rem;
-    line-height: 2.25rem;
 }
 .font-semibold {
     font-weight: 600;
@@ -1411,6 +1423,14 @@ input:checked + .toggle-bg {
         width: 24rem;
     }
 
+    .sm\:w-5 {
+        width: 1.25rem;
+    }
+
+    .sm\:w-60 {
+        width: 15rem;
+    }
+
     .sm\:text-left {
         text-align: left;
     }
@@ -1439,6 +1459,16 @@ input:checked + .toggle-bg {
         grid-column-start: 7;
     }
 
+    .md\:mx-5 {
+        margin-left: 1.25rem;
+        margin-right: 1.25rem;
+    }
+
+    .md\:mx-20 {
+        margin-left: 5rem;
+        margin-right: 5rem;
+    }
+
     .md\:block {
         display: block;
     }
@@ -1449,6 +1479,18 @@ input:checked + .toggle-bg {
 
     .md\:w-80 {
         width: 20rem;
+    }
+
+    .md\:w-96 {
+        width: 24rem;
+    }
+
+    .md\:w-auto {
+        width: auto;
+    }
+
+    .md\:justify-center {
+        justify-content: center;
     }
 
     .md\:text-5xl {

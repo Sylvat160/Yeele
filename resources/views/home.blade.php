@@ -14,12 +14,12 @@
     </x-container>
     <main class="mt-12 py-12">
         <h1 class="text-3xl text-center">Il nous ont fait confiance</h1>
-        <x-container class="mt-12 grid grid-flow-col grid-cols-11 gap-2">
+        <x-container class="mt-12 flex justify-around md:justify-center items-center">
             <div class="col-span-3 partner">
-                <img src="{{ asset('images/logo_lion.png') }}" alt="Logo du club des lions">
+                <img src="{{ asset('images/logo_lion.png') }}" class="w-40 sm:w-60 md:w-auto md:mx-5" alt="Logo du club des lions">
             </div>
             <div class="col-span-3 partner">
-                <img src="{{ asset('images/logo_FTD.png') }}" alt="Logo de Fortandem">
+                <img src="{{ asset('images/logo_FTD.png') }}" class="w-40 sm:w-60 md:w-96 md:mx-20" alt="Logo de Fortandem">
             </div>
         </x-container>
     </main>
