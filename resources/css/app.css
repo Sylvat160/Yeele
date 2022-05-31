@@ -15,6 +15,10 @@
 
 * {font-family: Montserrat;}
 
+@media (max-width: 500px) {
+    html {width: 100vw;}
+}
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
