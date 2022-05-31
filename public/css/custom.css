@@ -9,6 +9,8 @@
     0 0 0 50px #f05252;
 }
 
+.montserrat_bold {font-family: MontserratBold;}
+
 .partner img {
     filter: grayscale(1);
 }

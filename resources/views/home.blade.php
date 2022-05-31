@@ -12,15 +12,20 @@
             <img src="{{ asset('images/hero.jpg') }}" alt="Hero" class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12 rounded-full hero">
         </div>
     </x-container>
-    <main class="mt-12 py-12">
-        <h1 class="text-3xl text-center">Il nous ont fait confiance</h1>
-        <x-container class="mt-12 flex justify-around md:justify-center items-center">
-            <div class="col-span-3 partner">
-                <img src="{{ asset('images/logo_lion.png') }}" class="w-40 sm:w-60 md:w-auto md:mx-5" alt="Logo du club des lions">
-            </div>
-            <div class="col-span-3 partner">
-                <img src="{{ asset('images/logo_FTD.png') }}" class="w-40 sm:w-60 md:w-96 md:mx-20" alt="Logo de Fortandem">
-            </div>
-        </x-container>
+    <main class="mt-4 md:mt-12 py-6">
+        <div class="my-12 w-11/12 md:w-2/3 m-auto">
+            <h1 class="text-5xl text-center montserrat_bold">Nous avons enrégistré plus de <span class="text-red-500 montserrat_bold">5000</span> inscriptions évènementielles.</h1>
+        </div>
+        <div class="mt-6 py-4 bg-gray-200">
+            <x-container class="flex justify-around md:justify-center items-center">
+                <div class="col-span-3 partner">
+                    <img src="{{ asset('images/brands/logo_lion.png') }}" class="w-40 sm:w-60 md:w-auto md:mx-5" alt="Logo du club des lions">
+                </div>
+                <div class="col-span-3 partner">
+                    <img src="{{ asset('images/brands/logo_FTD.png') }}" class="w-40 sm:w-60 md:w-96 md:mx-20" alt="Logo de Fortandem">
+                </div>
+            </x-container>
+        </div>
+        
     </main>
 @endsection
