@@ -7,7 +7,7 @@
                  href="{{ $link['path'] }}" 
                  class="px-4 font-semibold{{ isset($link['active']) ? ' text-red-500' : null }}">{{ $name }}</a>
             @endforeach
-            <a href="#" class="py-3 px-5 font-semibold text-white bg-red-500 rounded-xl">Se connecter</a>
+            <a href="#" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
         </nav>
     </div>
 </div>
