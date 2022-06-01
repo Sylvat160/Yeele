@@ -11,7 +11,7 @@ class StaticPagesController extends Controller
     }
 
     public function features() {
-        return "I'm the features page.";
+        return view('website.features');
     }
 
     public function prices() {
