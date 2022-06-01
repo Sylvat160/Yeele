@@ -11,7 +11,7 @@
                     class="text-red-500 montserrat_bold">intuitif</span>.</h1>
             <p class="mt-8 mb-8 text-lg sm:text-xl lg:text-2xl">Notre plateforme vous propose un large choix de
                 fonctionnalités pour répondre au mieux à vos besoins.</p>
-            <a href="#" class="py-4 px-6 montserrat_bold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Démarrer une formule</a>
+            <a href="{{ route('prices') }}" class="py-4 px-6 montserrat_bold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Démarrer une formule</a>
         </div>
         <div
             class="my-10 col-span-12 col-start-1 md:col-start-7 md:col-span-6 order-first md:order-last h-fit flex justify-center items-center hero_block">

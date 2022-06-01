@@ -19,6 +19,6 @@ class StaticPagesController extends Controller
     }
 
     public function contact() {
-        return "I'm the contact page.";
+        return view('website.contact');
     }
 }

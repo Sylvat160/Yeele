@@ -6,7 +6,7 @@
 @section('content')
     <main class="py-12">
         <div class="flex justify-center">
-            <h1 class="mt-6 text-4xl md:text-left sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Des formules <span
+            <h1 class="mt-6 text-4xl md:text-left sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Des formules adaptées <span
                 class="text-red-500 montserrat_bold">vos besoins</span>.</h1>
         </div>
         <x-container class="mt-12">
@@ -17,7 +17,7 @@
 
 
                 <div class="p-4 max-w-sm mx-auto rounded-lg border-2 border-green-500 hover:shadow-md sm:p-8">
-                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule standard</h5>
+                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule Standard</h5>
                     <div class="w-fit flex items-baseline text-gray-900 mx-auto">
                         <span class="text-5xl font-extrabold tracking-tight">Free</span>
                     </div>
@@ -95,8 +95,7 @@
                         </li>
                     </ul>
                     <button type="button"
-                        class="text-white transition-colors bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose
-                        plan</button>
+                        class="text-white transition-colors bg-green-500 hover:bg-green-600 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Démarrer avec ce formule</button>
                 </div>
 
 
@@ -104,7 +103,7 @@
 
 
                 <div class="p-4 max-w-sm mx-auto rounded-lg border-2 border-gray-500 hover:shadow-md sm:p-8">
-                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule silver</h5>
+                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule Silver</h5>
                     <div class="w-fit flex items-baseline text-gray-900 mx-auto">
                         <span class="text-5xl font-extrabold tracking-tight">25.000</span>
                         <span class="text-3xl font-extrabold tracking-tight">FCFA</span>
@@ -183,8 +182,7 @@
                         </li>
                     </ul>
                     <button type="button"
-                        class="text-white transition-colors bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose
-                        plan</button>
+                        class="text-white transition-colors bg-gray-500 hover:bg-gray-600 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Démarrer avec ce formule</button>
                 </div>
 
 
@@ -192,7 +190,7 @@
 
 
                 <div class="p-4 max-w-sm mx-auto rounded-lg border-2 border-yellow-400 hover:shadow-md sm:p-8">
-                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule silver</h5>
+                    <h5 class="mb-4 text-xl text-center text-gray-900 font-semibold">Formule Gold</h5>
                     <div class="w-fit flex items-baseline text-gray-900 mx-auto">
                         <span class="text-5xl font-extrabold tracking-tight">50.000</span>
                         <span class="text-3xl font-extrabold tracking-tight">FCFA</span>
@@ -271,15 +269,14 @@
                         </li>
                     </ul>
                     <button type="button"
-                        class="text-white transition-colors bg-yellow-400 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Choose
-                        plan</button>
+                        class="text-white transition-colors bg-yellow-400 hover:bg-yellow-400 focus:ring-4 focus:outline-none focus:ring-blue-200 dark:focus:ring-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 inline-flex justify-center w-full text-center">Démarrer avec ce formule</button>
                 </div>
                 
             </div>
         </x-container>
         <div class="my-12 w-full md:w-3/4 m-auto">
             <div class="w-11/12 bg-red-300 border-2 border-red-400 md:w-3/4 rounded-xl m-auto p-6">
-                <h1 class="text-4xl text-center montserrat_bold">Votre évènement nécessite t-il d'autre fonctionnalités additionnelles? </h1>
+                <h1 class="text-3xl text-center montserrat_bold">Votre évènement nécessite t-il d'autre fonctionnalités additionnelles? </h1>
                 <div class="mt-6 py-6 text-center">
                     <a href="{{ route('contact') }}" class="py-4 px-8 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Contactez-nous</a>
                 </div>

@@ -5,7 +5,7 @@
             @foreach ($links as $name => $link)
                 <a
                  href="{{ $link['path'] }}" 
-                 class="px-4 font-semibold{{ isset($link['active']) ? ' text-red-500' : null }}">{{ $name }}</a>
+                 class="px-4 transition-colors font-semibold{{ isset($link['active']) ? ' text-red-500' : null }} hover:text-red-500">{{ $name }}</a>
             @endforeach
             <a href="#" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
         </nav>
@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class="w-screen h-screen bg-black/50 absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right hidden" id="mobile_menu">
+<div class="w-full h-screen bg-black/50 absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right hidden" id="mobile_menu">
     <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
       <div class="px-5 pt-4 flex items-center justify-between">
         <div>
@@ -41,7 +41,7 @@
         @foreach ($links as $name => $link)
                 <a
                  href="{{ $link['path'] }}" 
-                 class="px-4 py-2 block font-semibold{{ isset($link['active']) ? ' text-red-500' : null }}">{{ $name }}</a>
+                 class="px-4 py-2 block transition-colors font-semibold{{ isset($link['active']) ? ' text-red-500' : null }} hover:text-red-500">{{ $name }}</a>
             @endforeach
             <a href="#" class="py-3 px-5 block font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
     </div>
