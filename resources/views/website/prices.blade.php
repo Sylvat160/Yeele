@@ -277,5 +277,13 @@
                 
             </div>
         </x-container>
+        <div class="my-12 w-full md:w-3/4 m-auto">
+            <div class="w-11/12 bg-red-300 border-2 border-red-400 md:w-3/4 rounded-xl m-auto p-6">
+                <h1 class="text-4xl text-center montserrat_bold">Votre évènement nécessite t-il d'autre fonctionnalités additionnelles? </h1>
+                <div class="mt-6 py-6 text-center">
+                    <a href="{{ route('contact') }}" class="py-4 px-8 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Contactez-nous</a>
+                </div>
+            </div>
+        </div>
     </main>
 @endsection
