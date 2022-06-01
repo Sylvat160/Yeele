@@ -34,7 +34,7 @@
         </div>
         <x-container class="my-12">
             <div class="w-11/12 py-12 m-auto">
-                <h1 class="text-4xl text-center sm:text-5xl montserrat_bold">Des fonctionnalités adaptés pour vous faciliter
+                <h1 class="text-3xl text-center sm:text-5xl montserrat_bold">Des fonctionnalités adaptés pour vous faciliter
                     les inscriptions lors de vos <span class="text-green-500 montserrat_bold">énèvenements</span>.</h1>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2">
@@ -92,7 +92,7 @@
             </div>
         </x-container>
         <div class="my-12 py-12 md:w-3/4 m-auto">
-            <h1 class="text-4xl sm:text-5xl text-center montserrat_bold">Nous avons enrégistré plus de <span
+            <h1 class="text-3xl sm:text-5xl text-center montserrat_bold">Nous avons enrégistré plus de <span
                     class="text-red-500 montserrat_bold">5000</span> inscriptions évènementielles.</h1>
         </div>
         <div class="py-12 bg-slate-100">

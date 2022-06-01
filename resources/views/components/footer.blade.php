@@ -62,11 +62,11 @@
                             <span>+226 70 26 95 43</span>
                         </a>
                     </li>
-                    <li>
+                    {{-- <li>
                         <a href="mailto:horinfo@horinfo.com" class="hover:underline text-sm sm:text-base">
                             <span>horinfo@horinfo.com</span>
                         </a>
-                    </li>
+                    </li> --}}
                 </ul>
             </div>
         </div>

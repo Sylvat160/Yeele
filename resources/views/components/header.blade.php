@@ -21,7 +21,7 @@
     </div>
 </div>
 
-<div class="w-full h-full bg-black/50 absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right hidden" id="mobile_menu">
+<div class="w-screen h-screen bg-black/50 absolute z-10 top-0 inset-x-0 p-2 transition transform origin-top-right hidden" id="mobile_menu">
     <div class="rounded-lg shadow-md bg-white ring-1 ring-black ring-opacity-5 overflow-hidden">
       <div class="px-5 pt-4 flex items-center justify-between">
         <div>

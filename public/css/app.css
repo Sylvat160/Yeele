@@ -1204,6 +1204,9 @@ input:checked + .toggle-bg {
 .w-auto {
     width: auto;
 }
+.w-screen {
+    width: 100vw;
+}
 .max-w-xs {
     max-width: 20rem;
 }
