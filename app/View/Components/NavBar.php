@@ -5,7 +5,7 @@ namespace App\View\Components;
 use Illuminate\Support\Facades\Request;
 use Illuminate\View\Component;
 
-class Header extends Component
+class NavBar extends Component
 {
     public $links;
     
@@ -40,6 +40,6 @@ class Header extends Component
      */
     public function render()
     {
-        return view('components.header');
+        return view('components.navbar');
     }
 }
