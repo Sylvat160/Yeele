@@ -9,6 +9,16 @@
 
 __webpack_require__(/*! flowbite */ "./node_modules/flowbite/dist/flowbite.js");
 
+var show_menu_btn = document.getElementById('show_menu_btn');
+var close_menu_btn = document.getElementById('close_menu_btn');
+var mobile_menu = document.getElementById('mobile_menu');
+show_menu_btn.addEventListener('click', function (_) {
+  mobile_menu.classList.remove('hidden');
+});
+close_menu_btn.addEventListener('click', function (_) {
+  mobile_menu.classList.add('hidden');
+});
+
 /***/ }),
 
 /***/ "./node_modules/flowbite/dist/flowbite.js":
