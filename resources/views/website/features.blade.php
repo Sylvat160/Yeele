@@ -45,11 +45,11 @@
             <x-container class="mt-12 grid gap-6 md:grid-cols-3 grid-cols-1">
                 <div>
                     <img src="{{ asset('images/icons/dashboard.svg') }}" alt="Tableau de bord" class="w-20 h-20 mx-auto">
-                    <h1 class="mt-4 text-xl font-semibold text-center">Un espace administrateur facile d'utilisation</h1>
+                    <h1 class="mt-4 text-xl font-semibold text-center">Un espace administrateur facile d'utilisation.</h1>
                 </div>
                 <div>
                     <img src="{{ asset('images/icons/statistics.svg') }}" alt="Tableau de bord" class="w-20 h-20 mx-auto">
-                    <h1 class="mt-4 text-xl font-semibold text-center">Un système de suivi en temps réels</h1>
+                    <h1 class="mt-4 text-xl font-semibold text-center">Un système de suivi en temps réels.</h1>
                 </div>
                 <div>
                     <img src="{{ asset('images/icons/security.svg') }}" alt="Tableau de bord" class="w-20 h-20 mx-auto">

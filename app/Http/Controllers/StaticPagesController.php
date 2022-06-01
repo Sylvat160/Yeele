@@ -15,7 +15,7 @@ class StaticPagesController extends Controller
     }
 
     public function prices() {
-        return "I'm the prices page.";
+        return view('website.prices');
     }
 
     public function contact() {
