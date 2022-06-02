@@ -1104,6 +1104,9 @@ input:checked + .toggle-bg {
 .mb-1 {
     margin-bottom: 0.25rem;
 }
+.ml-1 {
+    margin-left: 0.25rem;
+}
 .block {
     display: block;
 }
@@ -1673,6 +1676,9 @@ input:checked + .toggle-bg {
 .text-blue-600 {
     --tw-text-opacity: 1;
     color: rgb(28 100 242 / var(--tw-text-opacity));
+}
+.text-transparent {
+    color: transparent;
 }
 .line-through {
     -webkit-text-decoration-line: line-through;

@@ -6,7 +6,7 @@
 @section('content')
     <x-container class="mt-12 grid grid-flow-col grid-cols-12 gap-2">
         <div class="my-10 col-span-12 col-start-1 md:col-span-6 text-center sm:text-left">
-            <h1 class="text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Un outil de gestion d'évènement <span
+            <h1 class="text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">Un outil de gestion d'évènement <span
                     class="text-red-500 montserrat_bold">simple</span>, <span class="text-red-500 montserrat_bold">rapide</span> et <span
                     class="text-red-500 montserrat_bold">intuitif</span>.</h1>
             <p class="mt-8 mb-8 text-lg sm:text-xl lg:text-2xl">Notre plateforme vous propose un large choix de
@@ -115,4 +115,12 @@
         </div>
     </main>
     
+@endsection
+
+@section('additionnalScript')
+    <script src="https://unpkg.com/scrollreveal"></script>
+    <script>
+        ScrollReveal().reveal('.big_title')
+        ScrollReveal().reveal('.hero_block')
+    </script>
 @endsection

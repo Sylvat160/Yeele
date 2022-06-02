@@ -114,6 +114,7 @@
                     <div class="w-fit flex items-baseline text-gray-900 mx-auto">
                         <span class="text-5xl font-extrabold tracking-tight">25.000</span>
                         <span class="text-3xl font-extrabold tracking-tight">FCFA</span>
+                        <span class="ml-1 text-xl font-normal text-gray-500">/mois</span>
                     </div>
                 
                     <ul role="list" class="my-7 space-y-5">
@@ -201,6 +202,7 @@
                     <div class="w-fit flex items-baseline text-gray-900 mx-auto">
                         <span class="text-5xl font-extrabold tracking-tight">50.000</span>
                         <span class="text-3xl font-extrabold tracking-tight">FCFA</span>
+                        <span class="ml-1 text-xl font-normal text-gray-500">/mois</span>
                     </div>
                 
                     <ul role="list" class="my-7 space-y-5">

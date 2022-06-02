@@ -10,6 +10,9 @@
 }
 
 .montserrat_bold {font-family: MontserratBold;}
+.big_title {
+    visibility: hidden;
+}
 
 .partner img {
     filter: grayscale(1);
