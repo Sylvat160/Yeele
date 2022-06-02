@@ -4,7 +4,7 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Footer extends Component
+class WebsiteFooter extends Component
 {
     /**
      * Create a new component instance.
@@ -23,6 +23,6 @@ class Footer extends Component
      */
     public function render()
     {
-        return view('components.footer');
+        return view('components.website-footer');
     }
 }

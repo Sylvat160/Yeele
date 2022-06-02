@@ -4,17 +4,21 @@ namespace App\View\Components;
 
 use Illuminate\View\Component;
 
-class Container extends Component
+class WebsiteFeature extends Component
 {
-    public string $classes;
     /**
      * Create a new component instance.
      *
      * @return void
      */
-    public function __construct(string $class = "")
+
+    public $title;
+    public $text;
+
+    public function __construct(string $title, string $text)
     {
-        $this->classes = $class;
+        $this->title = $title;
+        $this->text = $text;
     }
 
     /**
@@ -24,6 +28,6 @@ class Container extends Component
      */
     public function render()
     {
-        return view('components.container');
+        return view('components.website-feature');
     }
 }

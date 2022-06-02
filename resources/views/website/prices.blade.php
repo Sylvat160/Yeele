@@ -5,7 +5,7 @@
 
 @section('content')
     <main class="py-12">
-        <x-container class="grid grid-flow-col grid-cols-12 gap-2">
+        <x-website-container class="grid grid-flow-col grid-cols-12 gap-2">
             <div class="col-span-12 col-start-1 md:col-span-6 flex justify-center items-center sm:text-left">
                 <h1 class="text-4xl text-center md:text-left sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Des formules raisonnables et adaptées <span
                     class="text-red-500 montserrat_bold">vos besoins</span>.</h1>
@@ -15,8 +15,8 @@
                 <img src="{{ asset('images/illustrations/man_deciding.svg') }}" alt="Vue d'ensemble de fonctionnalité"
                     class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12">
             </div>
-        </x-container>
-        <x-container class="mt-12">
+        </x-website-container>
+        <x-website-container class="mt-12">
             <div class="grid gap-6 grid-cols-1 md:grid-cols-3">
 
 
@@ -282,7 +282,7 @@
                 </div>
                 
             </div>
-        </x-container>
+        </x-website-container>
         <div class="my-12 w-full md:w-3/4 m-auto">
             <div class="w-11/12 bg-red-300 border-2 border-red-400 md:w-3/4 rounded-xl m-auto p-6">
                 <h1 class="text-3xl text-center montserrat_bold">Votre évènement nécessite t-il d'autre fonctionnalités additionnelles? </h1>

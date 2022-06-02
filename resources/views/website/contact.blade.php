@@ -5,7 +5,7 @@
 
 @section('content')
     <main class="my-12">
-        <x-container class="grid gap-6 md:gap-12 grid-cols-1 md:grid-cols-2">
+        <x-website-container class="grid gap-6 md:gap-12 grid-cols-1 md:grid-cols-2">
             <div>
                 <h1 class="text-4xl text-center md:text-left sm:text-5xl montserrat_bold">Contactez-nous!</h1>
                 <h5 class="mt-4 text-2xl text-center md:text-left sm:text-2xl lg:text-3xl font-semibold">
@@ -60,6 +60,6 @@
                     </form>
                 </div>
             </div>
-        </x-container>
+        </x-website-container>
     </main>
 @endsection

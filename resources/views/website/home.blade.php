@@ -3,25 +3,45 @@
     Accueil
 @endsection
 
+@section('additionnalStyle')
+    <style>
+        .hero_block {
+            background: url(../images/backgrounds/hero_bg.png) no-repeat;
+            background-position: right;
+            background-size: contain;
+        }
+
+        @media (max-width: 767px) {
+            .hero_block {
+                background: none;
+            }
+        }
+
+    </style>
+@endsection
+
 @section('content')
-    <x-container class="mt-12 grid grid-flow-col grid-cols-12 gap-2">
+    <x-website-container class="mt-12 grid grid-flow-col grid-cols-12 gap-2">
         <div class="my-10 col-span-12 col-start-1 md:col-span-6 text-center sm:text-left">
-            <h1 class="text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">Un outil de gestion d'évènement <span
-                    class="text-red-500 montserrat_bold">simple</span>, <span class="text-red-500 montserrat_bold">rapide</span> et <span
+            <h1 class="text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">Un outil de gestion
+                d'évènement <span class="text-red-500 montserrat_bold">simple</span>, <span
+                    class="text-red-500 montserrat_bold">rapide</span> et <span
                     class="text-red-500 montserrat_bold">intuitif</span>.</h1>
             <p class="mt-8 mb-8 text-lg sm:text-xl lg:text-2xl">Notre plateforme vous propose un large choix de
                 fonctionnalités pour répondre au mieux à vos besoins.</p>
-            <a href="{{ route('prices') }}" class="py-4 px-6 montserrat_bold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Démarrer une formule</a>
+            <a href="{{ route('prices') }}"
+                class="py-4 px-6 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Démarrer
+                une formule</a>
         </div>
         <div
             class="my-10 col-span-12 col-start-1 md:col-start-7 md:col-span-6 order-first md:order-last h-fit flex justify-center items-center hero_block">
             <img src="{{ asset('images/hero.jpg') }}" alt="Hero"
                 class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12 rounded-full hero">
         </div>
-    </x-container>
+    </x-website-container>
     <main class="mt-4 md:mt-12 py-6">
         <div class="mt-6 py-4 bg-gray-100">
-            <x-container class="flex justify-around md:justify-center items-center">
+            <x-website-container class="flex justify-around md:justify-center items-center">
                 <div class="col-span-3 partner">
                     <img src="{{ asset('images/brands/logo_lion.png') }}" class="w-40 sm:w-60 md:w-auto md:mx-5"
                         alt="Logo du club des lions">
@@ -30,12 +50,13 @@
                     <img src="{{ asset('images/brands/logo_FTD.png') }}" class="w-40 sm:w-60 md:w-96 md:mx-20"
                         alt="Logo de Fortandem">
                 </div>
-            </x-container>
+            </x-website-container>
         </div>
-        <x-container class="my-12">
+        <x-website-container class="my-12">
             <div class="w-11/12 py-12 m-auto">
                 <h1 class="text-3xl text-center sm:text-5xl montserrat_bold">Gérer facilement
-                    les inscriptions de vos différents <span class="text-green-500 montserrat_bold">énèvenements</span>.</h1>
+                    les inscriptions de vos différents <span class="text-green-500 montserrat_bold">énèvenements</span>.
+                </h1>
             </div>
             <div class="grid grid-cols-1 lg:grid-cols-2">
                 <div class="mt-6 grid gap-6 sm:grid-cols-2">
@@ -90,29 +111,32 @@
                         class="w-4/5">
                 </div>
             </div>
-        </x-container>
+        </x-website-container>
         <div class="my-12 py-12 md:w-3/4 m-auto">
             <h1 class="text-3xl sm:text-5xl text-center montserrat_bold">Nous avons enrégistré plus de <span
                     class="text-red-500 montserrat_bold">5000</span> inscriptions évènementielles.</h1>
         </div>
         <div class="py-12 bg-slate-100">
             <div class="w-full md:w-3/4 m-auto">
-                <h1 class="text-3xl sm:text-4xl text-center font-semibold">Quelques avis sur <span class="text-red-500 montserrat_bold"><span class="text-green-500 montserrat_bold">Y</span>eele</span></h1>
+                <h1 class="text-3xl sm:text-4xl text-center font-semibold">Quelques avis sur <span
+                        class="text-red-500 montserrat_bold"><span
+                            class="text-green-500 montserrat_bold">Y</span>eele</span></h1>
             </div>
-            <x-container class="mt-12 px-4 lg:px-0 grid gap-6 grid-cols-1 lg:grid-cols-3">
-                <x-testimony />
-                <x-testimony />
-                <x-testimony />
-            </x-container>
+            <x-website-container class="mt-12 px-4 lg:px-0 grid gap-6 grid-cols-1 lg:grid-cols-3">
+                <x-website-testimony />
+                <x-website-testimony />
+                <x-website-testimony />
+            </x-website-container>
         </div>
         <div class="my-12 w-full md:w-3/4 m-auto">
             <div class="w-11/12 bg-red-300 border-2 border-red-400 md:w-3/4 rounded-xl m-auto p-6">
-                <h1 class="text-4xl text-center montserrat_bold">Avez-vous des questions ou vous avez juste bésoins d'aide?</h1>
+                <h1 class="text-4xl text-center montserrat_bold">Avez-vous des questions ou vous avez juste bésoins d'aide?
+                </h1>
                 <div class="mt-6 py-6 text-center">
-                    <a href="{{ route('contact') }}" class="py-4 px-8 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Contactez-nous</a>
+                    <a href="{{ route('contact') }}"
+                        class="py-4 px-8 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Contactez-nous</a>
                 </div>
             </div>
         </div>
     </main>
-    
 @endsection
