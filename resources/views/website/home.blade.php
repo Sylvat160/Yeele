@@ -116,11 +116,3 @@
     </main>
     
 @endsection
-
-@section('additionnalScript')
-    <script src="https://unpkg.com/scrollreveal"></script>
-    <script>
-        ScrollReveal().reveal('.big_title')
-        ScrollReveal().reveal('.hero_block')
-    </script>
-@endsection

@@ -23,6 +23,6 @@ class Testimony extends Component
      */
     public function render()
     {
-        return view('components.website.testimony');
+        return view('components.testimony');
     }
 }
