@@ -5,10 +5,17 @@
 
 @section('content')
     <main class="py-12">
-        <div class="flex justify-center">
-            <h1 class="mt-6 text-4xl md:text-left sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Des formules adaptées <span
-                class="text-red-500 montserrat_bold">vos besoins</span>.</h1>
-        </div>
+        <x-container class="grid grid-flow-col grid-cols-12 gap-2">
+            <div class="col-span-12 col-start-1 md:col-span-6 flex justify-center items-center sm:text-left">
+                <h1 class="text-4xl text-center md:text-left sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold">Des formules raisonnables et adaptées <span
+                    class="text-red-500 montserrat_bold">vos besoins</span>.</h1>
+            </div>
+            <div
+                class="col-span-12 col-start-1 md:col-start-7 md:col-span-6 order-first md:order-last h-fit flex justify-center items-center">
+                <img src="{{ asset('images/illustrations/man_deciding.svg') }}" alt="Vue d'ensemble de fonctionnalité"
+                    class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12">
+            </div>
+        </x-container>
         <x-container class="mt-12">
             <div class="grid gap-6 grid-cols-1 md:grid-cols-3">
 
