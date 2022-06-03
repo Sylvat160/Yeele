@@ -7,3 +7,5 @@ Route::get('/', [StaticPagesController::class, 'home'])->name('home');
 Route::get('fonctionnalites', [StaticPagesController::class, 'features'])->name('features');
 Route::get('tarifs', [StaticPagesController::class, 'prices'])->name('prices');
 Route::get('contact', [StaticPagesController::class, 'contact'])->name('contact');
+
+Route::get('login', [StaticPagesController::class, 'login'])->name('app.login');

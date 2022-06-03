@@ -21,4 +21,8 @@ class StaticPagesController extends Controller
     public function contact() {
         return view('website.contact');
     }
+
+    public function login() {
+        return view('app.login');
+    }
 }

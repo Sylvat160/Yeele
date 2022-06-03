@@ -1,4 +1,4 @@
-@extends('layouts.main')
+@extends('layouts.website-main')
 @section('title')
     Accueil
 @endsection
