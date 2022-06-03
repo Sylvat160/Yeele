@@ -11,16 +11,16 @@
                 <h2 class="mb-6 text-sm text-red-500 font-semibold uppercase">Liens</h2>
                 <ul class="text-gray-600">
                     <li class="mb-4">
-                        <a href="{{ route('home') }}" class="hover:underline">Accueil</a>
+                        <a href="{{ route('website.home') }}" class="hover:underline">Accueil</a>
                     </li>
                     <li class="mb-4">
-                        <a href="{{ route('features') }}" class="hover:underline">Fonctionnalités</a>
+                        <a href="{{ route('website.features') }}" class="hover:underline">Fonctionnalités</a>
                     </li>
                     <li class="mb-4">
-                        <a href="{{ route('prices') }}" class="hover:underline">Tarifs</a>
+                        <a href="{{ route('website.prices') }}" class="hover:underline">Tarifs</a>
                     </li>
                     <li>
-                        <a href="{{ route('contact') }}" class="hover:underline">Contact</a>
+                        <a href="{{ route('website.contact') }}" class="hover:underline">Contact</a>
                     </li>
                 </ul>
             </div>

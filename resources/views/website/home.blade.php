@@ -29,7 +29,7 @@
                     class="text-red-500 montserrat_bold">intuitif</span>.</h1>
             <p class="mt-8 mb-8 text-lg sm:text-xl lg:text-2xl">Notre plateforme vous propose un large choix de
                 fonctionnalités pour répondre au mieux à vos besoins.</p>
-            <a href="{{ route('prices') }}"
+            <a href="{{ route('website.prices') }}"
                 class="py-4 px-6 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Démarrer
                 une formule</a>
         </div>
@@ -133,7 +133,7 @@
                 <h1 class="text-4xl text-center montserrat_bold">Avez-vous des questions ou vous avez juste bésoins d'aide?
                 </h1>
                 <div class="mt-6 py-6 text-center">
-                    <a href="{{ route('contact') }}"
+                    <a href="{{ route('website.contact') }}"
                         class="py-4 px-8 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Contactez-nous</a>
                 </div>
             </div>

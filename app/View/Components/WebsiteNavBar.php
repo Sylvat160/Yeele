@@ -19,16 +19,16 @@ class WebsiteNavBar extends Component
             return $link;
         }, [
             'Accueil' => [
-                'path' => route('home'),
+                'path' => route('website.home'),
             ],
             'Fonctionnalités' => [
-                'path' => route('features'),
+                'path' => route('website.features'),
             ],
             'Tarifs' => [
-                'path' => route('prices'),
+                'path' => route('website.prices'),
             ],
             'Contact' => [
-                'path' => route('contact'),
+                'path' => route('website.contact'),
             ],
         ]);
     }

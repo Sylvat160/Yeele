@@ -38,7 +38,7 @@
                         <button type="submit" class="py-3 px-6 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Envoyer</button>
                     </div>
                     <div class="mt-4 text-center">
-                        <a href="{{ route('home') }}" class="text-red-500 hover:text-red-600 font-semibold block">Repartir à l'accueil</a>
+                        <a href="{{ route('website.home') }}" class="text-red-500 hover:text-red-600 font-semibold block">Repartir à l'accueil</a>
                     </div>
                 </form>
             </div>
