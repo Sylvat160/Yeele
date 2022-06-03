@@ -11,3 +11,7 @@ Route::get('contact', [StaticPagesController::class, 'contact'])->name('website.
 Route::get('connexion', [StaticPagesController::class, 'login'])->name('app.login');
 Route::get('inscription', [StaticPagesController::class, 'register'])->name('app.register');
 Route::get('changer_mot_de_passe', [StaticPagesController::class, 'reset'])->name('app.reset');
+
+Route::get('/app', function() {
+    return view('app.home');
+});

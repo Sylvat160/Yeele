@@ -1040,6 +1040,9 @@ input:checked + .toggle-bg {
 .col-start-1 {
     grid-column-start: 1;
 }
+.float-right {
+    float: right;
+}
 .m-auto {
     margin: auto;
 }
@@ -1133,6 +1136,12 @@ input:checked + .toggle-bg {
 }
 .mb-0 {
     margin-bottom: 0px;
+}
+.ml-auto {
+    margin-left: auto;
+}
+.mr-1 {
+    margin-right: 0.25rem;
 }
 .block {
     display: block;
@@ -1439,6 +1448,9 @@ input:checked + .toggle-bg {
 }
 .border-b {
     border-bottom-width: 1px;
+}
+.border-none {
+    border-style: none;
 }
 .border-gray-200 {
     --tw-border-opacity: 1;
