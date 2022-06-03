@@ -8,4 +8,6 @@ Route::get('fonctionnalites', [StaticPagesController::class, 'features'])->name(
 Route::get('tarifs', [StaticPagesController::class, 'prices'])->name('prices');
 Route::get('contact', [StaticPagesController::class, 'contact'])->name('contact');
 
-Route::get('login', [StaticPagesController::class, 'login'])->name('app.login');
+Route::get('connexion', [StaticPagesController::class, 'login'])->name('app.login');
+Route::get('inscription', [StaticPagesController::class, 'register'])->name('app.register');
+Route::get('changer_mot_de_passe', [StaticPagesController::class, 'reset'])->name('app.reset');

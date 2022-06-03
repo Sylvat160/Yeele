@@ -25,4 +25,12 @@ class StaticPagesController extends Controller
     public function login() {
         return view('app.login');
     }
+
+    public function register() {
+        return view('app.register');
+    }
+
+    public function reset() {
+        return view('app.reset');
+    }
 }

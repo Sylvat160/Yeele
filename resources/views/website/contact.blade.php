@@ -56,6 +56,9 @@
                                     class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                                     placeholder="Votre message ..." rows="7" required></textarea>
                             </div>
+                            <div class="col-span-2 mt-4 text-center">
+                                <button type="submit" class="py-3 px-12 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Envoyer</button>
+                            </div>
                         </div>
                     </form>
                 </div>

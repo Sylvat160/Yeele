@@ -1043,6 +1043,9 @@ input:checked + .toggle-bg {
 .m-auto {
     margin: auto;
 }
+.m-8 {
+    margin: 2rem;
+}
 .mx-auto {
     margin-left: auto;
     margin-right: auto;
@@ -1066,6 +1069,10 @@ input:checked + .toggle-bg {
 .my-4 {
     margin-top: 1rem;
     margin-bottom: 1rem;
+}
+.my-8 {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
 }
 .mb-2 {
     margin-bottom: 0.5rem;
@@ -1597,6 +1604,10 @@ input:checked + .toggle-bg {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
 }
+.px-12 {
+    padding-left: 3rem;
+    padding-right: 3rem;
+}
 .pt-4 {
     padding-top: 1rem;
 }
@@ -1608,6 +1619,9 @@ input:checked + .toggle-bg {
 }
 .pl-10 {
     padding-left: 2.5rem;
+}
+.pb-4 {
+    padding-bottom: 1rem;
 }
 .text-center {
     text-align: center;

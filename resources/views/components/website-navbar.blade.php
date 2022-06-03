@@ -7,11 +7,11 @@
                  href="{{ $link['path'] }}" 
                  class="px-4 transition-colors font-semibold{{ isset($link['active']) ? ' text-red-500' : null }} hover:text-red-500">{{ $name }}</a>
             @endforeach
-            <a href="#" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
+            <a href="{{ route('app.login') }}" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
         </nav>
         <div class="flex items-center md:hidden">
             <button type="button" class="bg-red-100 rounded-md p-2 inline-flex items-center justify-center text-red-500 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-expanded="false" id="show_menu_btn">
-              <span class="sr-only">Open main menu</span>
+              <span class="sr-only">Ouvrir le menu</span>
               <!-- Heroicon name: outline/menu -->
               <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
                 <path stroke-linecap="round" stroke-linejoin="round" d="M4 6h16M4 12h16M4 18h16" />
@@ -29,7 +29,7 @@
         </div>
         <div class="-mr-2">
           <button type="button" class="bg-red-100 rounded-md p-2 inline-flex items-center justify-center text-red-500 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" id="close_menu_btn">
-            <span class="sr-only">Close main menu</span>
+            <span class="sr-only">Fermer le menu</span>
             <!-- Heroicon name: outline/x -->
             <svg class="h-6 w-6" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" aria-hidden="true">
               <path stroke-linecap="round" stroke-linejoin="round" d="M6 18L18 6M6 6l12 12" />
@@ -43,7 +43,7 @@
                  href="{{ $link['path'] }}" 
                  class="px-4 py-2 block transition-colors font-semibold{{ isset($link['active']) ? ' text-red-500' : null }} hover:text-red-500">{{ $name }}</a>
             @endforeach
-            <a href="#" class="py-3 px-5 block font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
+            <a href="{{ route('app.login') }}" class="py-3 px-5 block font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
     </div>
   </div>
 </div>
