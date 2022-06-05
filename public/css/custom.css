@@ -3,5 +3,19 @@
     src: url(../fonts/Karla-Regular.ttf);
 }
 
+@font-face {
+    font-family: Montserrat;
+    src: url(../fonts/Montserrat-Regular.ttf);
+}
 
 * {font-family: Karla;}
+
+.formule {
+    width: 100%;
+    height: 40px;
+    font-family: Montserrat;
+}
+
+.formule p {
+    font-size: 21px;
+}

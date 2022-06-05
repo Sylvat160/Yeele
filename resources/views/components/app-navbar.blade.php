@@ -17,7 +17,7 @@
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
         <li class="nav-item dropdown">
-            <a class="nav-link mr-2" data-toggle="dropdown" href="#">
+            <a class="nav-link mr-2 bg-light border rounded-pill" data-toggle="dropdown" href="#">
               <i class="far fa-user"></i>
               <span>John Doe</span>
             </a>

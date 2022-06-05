@@ -1,9 +1,12 @@
 <!-- Main Sidebar Container -->
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
-    <a href="#" class="brand-link text-center">
+    <a href="#" class="brand-link text-center border-0">
       <img src="{{ asset('logo.png') }}" alt="Yeele" width="100" height="40">
     </a>
+    <div class="pt-2 d-flex justify-content-center align-items-center formule bg-green">
+      <h5>Formule free</h5>
+    </div>
 
     <!-- Sidebar -->
     <div class="sidebar">
