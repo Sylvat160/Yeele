@@ -23,14 +23,18 @@ class StaticPagesController extends Controller
     }
 
     public function login() {
-        return view('app.login');
+        return view('app.auth.login');
     }
 
     public function register() {
-        return view('app.register');
+        return view('app.auth.register');
+    }
+
+    public function verify() {
+        return view('app.auth.verify-email');
     }
 
     public function reset() {
-        return view('app.reset');
+        return view('app.auth.reset');
     }
 }

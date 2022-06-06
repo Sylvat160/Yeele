@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
@@ -43,5 +44,14 @@ class AuthController extends Controller
         $user = User::create($data);
 
         event(new Registered($user));
+    }
+
+    public function email_verification(EmailVerificationRequest $request) {
+        $request->fulfill();
+        return redirect()->route('app.home');
+    }
+
+    public function home() {
+        return view('app.home');
     }
 }
