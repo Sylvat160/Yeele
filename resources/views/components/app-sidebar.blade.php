@@ -20,6 +20,36 @@
               <p>Tableau de bord</p>
               </a>
           </li>
+          <li class="nav-item">
+            <a href="{{ route('event.create') }}" class="nav-link" data-path="app">
+              <i class="nav-icon fas fa-plus"></i>
+              <p>Créer un évènement</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="{{ route('event.index') }}" class="nav-link" data-path="app">
+              <i class="nav-icon fas fa-calendar"></i>
+              <p>Tous les évènements</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-path="app">
+              <i class="nav-icon fas fa-briefcase"></i>
+              <p>Mes commandes</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-path="app">
+              <i class="nav-icon fas fa-square-plus"></i>
+              <p>Commande future</p>
+              </a>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link" data-path="app">
+              <i class="nav-icon fas fa-credit-card"></i>
+              <p>Effectuer un paiement</p>
+              </a>
+          </li>
           
         </ul>
       </nav>

@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Support\Str;
 
 class User extends Authenticatable
 {
@@ -18,10 +19,23 @@ class User extends Authenticatable
      * @var array<int, string>
      */
     protected $fillable = [
-        'name',
+        'uid',
+        'role_id',
+        'country_id',
+        'firstname',
+        'lastname',
+        'gender',
         'email',
+        'phone',
+        'organization',
+        'is_authorized',
+        'email_verified_at',
         'password',
     ];
+
+    protected $primaryKey = "uid";
+    protected $keyType = "string";
+    protected $incrementing = false;
 
     /**
      * The attributes that should be hidden for serialization.
@@ -41,4 +55,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
+
+    protected static function boot()
+    {
+        parent::boot();
+
+        static::creating(function($user) {
+            if(!$user->uid) $user->uid = Str::uuid();
+        });
+    }
+
+    public function role() {
+        return $this->belongsTo(Role::class, 'role_id');
+    }
+
+    public function country() {
+        return $this->belongsTo(Country::class, 'country_id');
+    }
+
+    
 }
