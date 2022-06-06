@@ -32,9 +32,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'password',
     ];
 
+    public $incrementing = false;
     protected $primaryKey = "uid";
     protected $keyType = "string";
-    protected $incrementing = false;
 
     /**
      * The attributes that should be hidden for serialization.

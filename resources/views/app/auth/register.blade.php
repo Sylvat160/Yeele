@@ -28,7 +28,7 @@
                             <label for="lastname" class="block mb-2 text-sm font-semibold text-gray-900">Nom: </label>
                             <input type="text" name="lastname" id="lastname"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                placeholder="ex: Traoré, Diallo" required>
+                                placeholder="ex: Traoré, Diallo" @if($value = old('lastname')) value="{{ $value }}" @endif required>
                                 @error('lastname')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
@@ -37,7 +37,7 @@
                             <label for="firstname" class="block mb-2 text-sm font-semibold text-gray-900">Prénom: </label>
                             <input type="text" name="firstname" id="firstname"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                placeholder="ex: Samuel, Issouf" required>
+                                placeholder="ex: Samuel, Issouf" @if($value = old('firstname')) value="{{ $value }}" @endif required>
                                 @error('firstname')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
@@ -46,7 +46,7 @@
                             <label for="email" class="block mb-2 text-sm font-semibold text-gray-900">Adresse e-mail: </label>
                             <input type="email" name="email" id="email"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                placeholder="ex: exemple@gmail.com" required>
+                                placeholder="ex: exemple@gmail.com" @if($value = old('email')) value="{{ $value }}" @endif required>
                                 @error('email')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
@@ -64,7 +64,7 @@
                             <label for="phone" class="block mb-2 text-sm font-semibold text-gray-900">Numéro de téléphone: </label>
                             <input type="text" name="phone" id="phone"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                placeholder="ex: (+226) XX XX XX XX" required>
+                                placeholder="ex: (+226) XX XX XX XX" @if($value = old('phone')) value="{{ $value }}" @endif required>
                                 @error('phone')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
@@ -73,7 +73,7 @@
                             <label for="organization" class="block mb-2 text-sm font-semibold text-gray-900">Organisme: </label>
                             <input type="text" name="organization" id="organization"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                placeholder="Nom de votre organisme" required>
+                                placeholder="Nom de votre organisme" @if($value = old('organization')) value="{{ $value }}" @endif required>
                                 @error('organization')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
