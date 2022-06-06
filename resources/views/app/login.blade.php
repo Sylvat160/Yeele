@@ -52,9 +52,9 @@
                 </form>
             </div>
             <div class="pb-4 text-center">
-                <a href="{{ route('app.reset') }}" class="text-red-500 hover:text-red-600 font-semibold block">Mot de passe oublié?</a>
+                <a href="{{ route('reset') }}" class="text-red-500 hover:text-red-600 font-semibold block">Mot de passe oublié?</a>
                 <span>ou</span>
-                <a href="{{ route('app.register') }}" class="text-red-500 hover:text-red-600 font-semibold block">S'inscrire</a>
+                <a href="{{ route('register') }}" class="text-red-500 hover:text-red-600 font-semibold block">S'inscrire</a>
             </div>
         </div>
     </div>

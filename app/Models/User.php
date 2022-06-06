@@ -9,7 +9,7 @@ use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 
-class User extends Authenticatable
+class User extends Authenticatable implements MustVerifyEmail
 {
     use HasApiTokens, HasFactory, Notifiable;
 
@@ -21,7 +21,6 @@ class User extends Authenticatable
     protected $fillable = [
         'uid',
         'role_id',
-        'country_id',
         'firstname',
         'lastname',
         'gender',
@@ -69,9 +68,4 @@ class User extends Authenticatable
         return $this->belongsTo(Role::class, 'role_id');
     }
 
-    public function country() {
-        return $this->belongsTo(Country::class, 'country_id');
-    }
-
-    
 }

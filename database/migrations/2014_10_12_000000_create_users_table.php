@@ -16,7 +16,6 @@ class CreateUsersTable extends Migration
         Schema::create('users', function (Blueprint $table) {
             $table->uuid('uid')->unique();
             $table->foreignId('role_id')->references('id')->on('roles')->onDelete('CASCADE');
-            $table->foreignId('country_id')->references('id')->on('countries')->onDelete('CASCADE');
             $table->string('firstname');
             $table->string('lastname');
             $table->enum('gender', ['Masculin', 'Féminin'])->nullable();
