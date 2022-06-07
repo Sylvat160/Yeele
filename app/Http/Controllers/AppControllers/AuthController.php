@@ -11,6 +11,7 @@ use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 
 class AuthController extends Controller
@@ -92,13 +93,21 @@ class AuthController extends Controller
             return redirect()->back()->withErrors($validator);
         }
 
+        Password::sendResetLink($request->email);
+        return redirect()->route('reset_mail_sent');
+
     }
 
     public function reset_mail_sent() {
         return view('app.auth.reset-mail-sent');
     }
 
-    public function new_password() {
+    public function new_password($token) {
+        if(!$token) abort(403);
+        return view('app.auth.new_password', ['token' => $token]);
+    }
+
+    public function update_password(Request $request) {
         
     }
 

@@ -1,11 +1,9 @@
 <?php
 
+use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
 use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\StaticPagesController;
-use App\Mail\AppMails\TestMail;
-use Illuminate\Support\Facades\Mail;
-use Illuminate\Support\Facades\Route;
 
 //WEBSITE
 
@@ -21,12 +19,9 @@ Route::post('connexion', [AuthController::class, 'login'])->name('app.login');
 Route::get('inscription/{plan?}', [StaticPagesController::class, 'register'])->name('register');
 Route::get('changer_mot_de_passe', [StaticPagesController::class, 'reset'])->name('reset');
 Route::get('mail_de_modification_envoyé', [AuthController::class, 'reset_mail_sent'])->name('reset_mail_sent');
-Route::get('nouveau_mot_de_passe?token={token}', [AuthController::class, 'new_password'])->name('new_password');
+Route::get('nouveau_mot_de_passe/{token}', [AuthController::class, 'new_password'])->name('password.reset');
+Route::post('modifier_mot_de_passe', [AuthController::class, 'update_password'])->name('password.update');
 Route::post('inscription', [AuthController::class, 'register'])->name('app.register');
-
-Route::get('mailtest', function() {
-    Mail::to('aboubakarycisse410@gmail.com')->send(new TestMail);
-});
 
 //VERIFICATION
 
@@ -38,7 +33,7 @@ Route::middleware('auth')->group(function() {
     Route::post('logout', [AuthController::class, 'logout'])->name('app.logout');
 });
 
-//SIGNED AND AUTHORIZED USERS ROUTES
+//SIGNED AND AUTHORIZED CLIENTS ROUTES
 
 Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function() {
     Route::get('/', [AuthController::class, 'home'])->name('app.home');
