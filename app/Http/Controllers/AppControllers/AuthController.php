@@ -94,6 +94,10 @@ class AuthController extends Controller
 
     }
 
+    public function reset_mail_sent() {
+        return view('app.auth.reset-mail-sent');
+    }
+
     public function new_password() {
         
     }
