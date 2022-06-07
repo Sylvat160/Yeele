@@ -26,10 +26,13 @@
                   <i class="ion-edit"></i>
                   <span>Modifier ses informations</span>
               </a>
-              <a href="#" class="dropdown-item">
-                  <i class="ion-log-out"></i>
-                  <span>Se déconnecter</span>
-              </a>
+              <form action="{{ route('app.logout') }}" method="POST">
+                  @csrf
+                <button type="submit" class="dropdown-item">
+                    <i class="ion-log-out"></i>
+                    <span>Se déconnecter</span>
+                </button>
+              </form>
           </li>
       </ul>
 </nav>

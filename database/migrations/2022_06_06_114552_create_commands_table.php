@@ -17,10 +17,10 @@ class CreateCommandsTable extends Migration
             $table->id();
             $table->foreignUuid('user_uid')->references('uid')->on('users')->onDelete('CASCADE');
             $table->foreignId('plan_id')->nullable()->references('id')->on('plans')->nullOnDelete();
-            $table->integer('duration');
-            $table->date('start_date');
-            $table->date('end_date');
-            $table->string('payment_method');
+            $table->integer('duration')->nullable();
+            $table->date('start_date')->nullable();
+            $table->date('end_date')->nullable();
+            $table->string('payment_method')->nullable();
 
             $table->timestamps();
         });
