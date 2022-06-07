@@ -23,6 +23,13 @@
             <div class="my-4 px-4">
                 <form class="space-y-6" action="{{ route('app.register') }}" method="POST">
                     @csrf
+
+                    @if ($selectedPlan)
+                        <input type="hidden" name="selected_plan" value="{{ $selectedPlan->id }}" required>
+                    @else
+                        <input type="hidden" name="selected_plan" value="1" required>
+                    @endif
+
                     <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
                         <div class="col-span-2 md:col-auto">
                             <label for="lastname" class="block mb-2 text-sm font-semibold text-gray-900">Nom: </label>

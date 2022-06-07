@@ -8,5 +8,5 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
-    protected $fillable = ['choice_id', 'status'];
+    protected $fillable = ['command_id', 'status'];
 }

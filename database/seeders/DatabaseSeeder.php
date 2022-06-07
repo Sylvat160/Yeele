@@ -16,5 +16,18 @@ class DatabaseSeeder extends Seeder
         foreach (["Admin", "Client"] as $role) {
             \App\Models\Role::create(['name' => $role]);
         }
+        foreach (
+            [
+                "Free" => 0, 
+                "Silver" => 15000, 
+                "Gold" => 50000
+                ]
+            as $name => $price
+             ) {
+                \App\Models\Plan::create([
+                    'name' => $name,
+                    'price' => $price
+                ]);
+        }
     }
 }

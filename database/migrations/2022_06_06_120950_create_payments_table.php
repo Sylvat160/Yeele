@@ -15,7 +15,7 @@ class CreatePaymentsTable extends Migration
     {
         Schema::create('payments', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('choice_id')->references('id')->on('choices')->onDelete('CASCADE');
+            $table->foreignId('command_id')->references('id')->on('commands')->onDelete('CASCADE');
             $table->boolean('status')->default(false);
             $table->timestamps();
         });

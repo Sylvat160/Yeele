@@ -15,7 +15,7 @@ Route::get('contact', [StaticPagesController::class, 'contact'])->name('website.
 //AUTHENTICATION
 
 Route::get('connexion', [StaticPagesController::class, 'login'])->name('login');
-Route::get('inscription', [StaticPagesController::class, 'register'])->name('register');
+Route::get('inscription/{plan?}', [StaticPagesController::class, 'register'])->name('register');
 Route::get('changer_mot_de_passe', [StaticPagesController::class, 'reset'])->name('reset');
 Route::post('register', [AuthController::class, 'register'])->name('app.register');
 

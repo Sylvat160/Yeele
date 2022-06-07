@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
@@ -26,8 +27,10 @@ class StaticPagesController extends Controller
         return view('app.auth.login');
     }
 
-    public function register() {
-        return view('app.auth.register');
+    public function register($plan = null) {
+        if($plan) $selectedPlan = Plan::where('name', $plan)->first() || null;
+        else $selectedPlan = null;
+        return view('app.auth.register', compact('selectedPlan'));
     }
 
     public function verify() {
