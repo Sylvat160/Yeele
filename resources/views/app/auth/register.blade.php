@@ -124,6 +124,9 @@
                             <a href="{{ route('login') }}" class="text-red-500 hover:text-red-600 font-semibold block">Déja inscrit?</a>
                         </div>
                     </div>
+                    <div class="mt-4 pt-2  border-t">
+                        <p class="text-sm text-center text-gray-500">&copy; Copyright - Horinfo - Tous les drois réservés.</p>
+                    </div>
                 </form>
             </div>
         </div>

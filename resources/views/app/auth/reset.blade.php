@@ -22,6 +22,7 @@
             </div>
             <div class="my-4">
                 <form action="#" method="POST">
+                    @csrf
                     <div class="px-4 mb-4">
                         <label for="email" class="block mb-2 text-lg font-semibold text-gray-900">Entrez votre adresse e-mail:
                         </label>

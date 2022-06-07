@@ -77,13 +77,34 @@ class AuthController extends Controller
         return view('app.auth.verification_email_resent');
     }
 
-    public function home() {
-        return view('app.home');
+    public function reset_request(Request $request) {
+        $validator = Validator::make(
+            $request->email,
+            ['email' => 'required|email|exists:users,email'],
+            [
+                'required' => "Ce champ ne doit pas être vide.",
+                'email' => "Ce champ doit conténir une adresse e-mail.",
+                'exists' => "Il n'existe aucun utilisateur avec ce e-mail."
+            ]
+            );
+
+        if($validator->failed()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+    }
+
+    public function new_password() {
+        
     }
 
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->regenerate();
         return redirect()->route('login');
+    }
+
+    public function home() {
+        return view('app.home');
     }
 }

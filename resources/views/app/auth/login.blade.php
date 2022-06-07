@@ -84,6 +84,9 @@
                 <span>ou</span>
                 <a href="{{ route('register') }}" class="text-red-500 hover:text-red-600 font-semibold block">S'inscrire</a>
             </div>
+            <div class="mt-4 py-2  border-t">
+                <p class="text-sm text-center text-gray-500">&copy; Copyright - Horinfo - Tous les drois réservés.</p>
+            </div>
         </div>
     </div>
 
