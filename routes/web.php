@@ -18,6 +18,7 @@ Route::get('connexion', [StaticPagesController::class, 'login'])->name('login');
 Route::post('connexion', [AuthController::class, 'login'])->name('app.login');
 Route::get('inscription/{plan?}', [StaticPagesController::class, 'register'])->name('register');
 Route::get('changer_mot_de_passe', [StaticPagesController::class, 'reset'])->name('reset');
+Route::post('changer_mot_de_passe', [AuthController::class, 'reset_request'])->name('reset_request');
 Route::get('mail_de_modification_envoyé', [AuthController::class, 'reset_mail_sent'])->name('reset_mail_sent');
 Route::get('nouveau_mot_de_passe/{token}', [AuthController::class, 'new_password'])->name('password.reset');
 Route::post('modifier_mot_de_passe', [AuthController::class, 'update_password'])->name('password.update');

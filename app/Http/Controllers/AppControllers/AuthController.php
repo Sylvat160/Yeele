@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\AppControllers;
 
+use App\Events\PasswordResetEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\Command;
@@ -13,6 +14,7 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class AuthController extends Controller
 {
@@ -29,7 +31,7 @@ class AuthController extends Controller
             ]
             );
 
-            if($validator->failed()) {
+            if($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
             }
      
@@ -79,23 +81,11 @@ class AuthController extends Controller
     }
 
     public function reset_request(Request $request) {
-        $validator = Validator::make(
-            $request->email,
-            ['email' => 'required|email|exists:users,email'],
-            [
-                'required' => "Ce champ ne doit pas être vide.",
-                'email' => "Ce champ doit conténir une adresse e-mail.",
-                'exists' => "Il n'existe aucun utilisateur avec ce e-mail."
-            ]
-            );
+        $status = Password::sendResetLink($request->only('email'));
 
-        if($validator->failed()) {
-            return redirect()->back()->withErrors($validator);
-        }
-
-        Password::sendResetLink($request->email);
-        return redirect()->route('reset_mail_sent');
-
+        return $status === Password::RESET_LINK_SENT
+                ? redirect()->route('reset_mail_sent')
+                : back()->withErrors(['email' => __($status)]);
     }
 
     public function reset_mail_sent() {
@@ -108,7 +98,43 @@ class AuthController extends Controller
     }
 
     public function update_password(Request $request) {
-        
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'token' => 'required',
+                'email' => 'required|email|exists:users,email',
+                'password' => 'required|min:8',
+                'confirm_password' => 'required|same:password'
+            ],
+            [
+                'required' => "Ce champ est obligatoire.",
+                'email' => "Ce champ doit conténir une adresse e-mail.",
+                'same' => "Les mots de passe doivent être les mêmes.",
+                'min' => "Le mot de passe entré est trop court.",
+                "exists" => "Il existe aucun utilisateur avec cette adresse mail."
+            ]
+        );
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+        $status = Password::reset(
+            $request->only('email', 'password', 'confirm_password', 'token'),
+            function($user, $password) {
+                $user->forceFill([
+                    'password' => Hash::make($password)
+                ])->setRememberToken(Str::random(60));
+     
+                $user->save();
+     
+                event(new PasswordResetEvent($user));
+            }
+        );
+
+        return $status === Password::PASSWORD_RESET
+                ? redirect()->route('login')->with('status', __($status))
+                : back()->withErrors(['token' => [__($status)]]);
+
     }
 
     public function logout(Request $request) {

@@ -2,12 +2,15 @@
 
 namespace App\Models;
 
+use App\Mail\AppMails\ResetPasswordMail;
 use App\Notifications\ResetPasswordNotification;
 use Carbon\Carbon;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Mail;
+use Illuminate\Support\Facades\Notification;
 use Laravel\Sanctum\HasApiTokens;
 use Illuminate\Support\Str;
 
@@ -67,8 +70,8 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function sendPasswordResetNotification($token) {
-        $link = route('new_password', $token);
-        $this->notify(new ResetPasswordNotification($link));
+        $link = route('password.reset', $token);
+        Mail::to($this->email)->send(new ResetPasswordMail($link, $this));
     }
 
     public function role() {

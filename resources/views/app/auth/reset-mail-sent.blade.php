@@ -13,7 +13,7 @@
 <body>
 
     <div class="w-full min-h-screen py-4 sm:py-0 bg-gray-100 flex justify-center items-center">
-        <div class="bg-white w-11/12 rounded-lg border border-gray-200 shadow-sm" style="max-width: 750px;">
+        <div class="bg-white w-11/12 rounded-lg border border-gray-200 shadow-sm" style="max-width: 500px;">
             <div class="py-2">
                 <img src="{{ asset('images/illustrations/mail_sent.svg') }}" alt="E-mail envoyé" class="w-48 mx-auto">
             </div>

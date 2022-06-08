@@ -19,7 +19,7 @@
             </div>
             <div class="my-4">
                 <h1 class="text-xl text-center font-medium">Nouveau mot de passe</h1>
-                @if ($message = Session::get('error'))
+                @error('token')
                 <div class="p-4">
                     <div id="alert-2" class="flex p-4 bg-red-100 rounded-lg dark:bg-red-200" role="alert">
                         <svg class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
@@ -32,11 +32,10 @@
                         </button>
                       </div>
                 </div>
-                {{Session::forget('error')}}
-                @endif
+                @enderror
             </div>
             <div class="my-4">
-                <form action="#" method="POST">
+                <form action="{{ route('password.update') }}" method="POST">
                     @csrf
 
                     <input type="hidden" name="token" value="{{ $token }}" required>
@@ -50,11 +49,11 @@
                             <input type="email" id="email" name="email"
                                 class="bg-gray-50 transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5"
                                 placeholder="Ex: exemple@gmail.com" required>
-                                @error('email')
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                                @enderror
+                            </div>
+                            @error('email')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            @enderror
                         </div>
-                    </div>
                     <div class="px-4 mb-4">
                         <label for="password" class="block mb-2 text-lg font-semibold text-gray-900">Mot de passe:
                         </label>
@@ -65,13 +64,13 @@
                             <input type="password" id="password" name="password"
                                 class="bg-gray-50 transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5"
                                 placeholder="Entrez votre nouveau mot de passe" required>
-                                @error('password')
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                                @enderror
-                        </div>
+                            </div>
+                            @error('password')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div class="px-4 mb-4">
-                        <label for="password" class="block mb-2 text-lg font-semibold text-gray-900">Conirmez le mot de passe:
+                        <label for="confirm_password" class="block mb-2 text-lg font-semibold text-gray-900">Conirmez le mot de passe:
                         </label>
                         <div class="relative">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -80,10 +79,10 @@
                             <input type="password" id="confirm_password" name="confirm_password"
                                 class="bg-gray-50 transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5"
                                 placeholder="Entrez votre nouveau mot de passe" required>
-                                @error('confirm_password')
-                                <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                                @enderror
-                        </div>
+                            </div>
+                            @error('confirm_password')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div class="mt-8 text-center">
                         <button type="submit" class="py-3 px-6 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Modifier</button>

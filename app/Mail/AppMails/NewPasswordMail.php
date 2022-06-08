@@ -8,11 +8,10 @@ use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Mail\Mailable;
 use Illuminate\Queue\SerializesModels;
 
-class ResetPasswordMail extends Mailable
+class NewPasswordMail extends Mailable
 {
     use Queueable, SerializesModels;
 
-    public $link;
     public $user;
 
     /**
@@ -20,11 +19,9 @@ class ResetPasswordMail extends Mailable
      *
      * @return void
      */
-
-    public function __construct(string $link, User $notifiable)
+    public function __construct(User $user)
     {
-        $this->link = $link;
-        $this->user = $notifiable;
+        $this->user = $user;
     }
 
     /**
@@ -34,14 +31,9 @@ class ResetPasswordMail extends Mailable
      */
     public function build()
     {
-        return $this
-        ->subject('Réinitialisation de mot de passe')
-        ->view(
-            'app.mails.reset-password-mail',
-            [
-                'link' => $this->link,
-                'user' => $this->user
-                ]
+        return $this->view(
+            'app.mails.new-password-mail',
+            ['user' => $this->user]
         );
     }
 }

@@ -21,7 +21,7 @@
                 <h1 class="text-xl text-center font-medium">Changer de mot de passe</h1>
             </div>
             <div class="my-4">
-                <form action="#" method="POST">
+                <form action="{{ route('reset_request') }}" method="POST">
                     @csrf
                     <div class="px-4 mb-4">
                         <label for="email" class="block mb-2 text-lg font-semibold text-gray-900">Entrez votre adresse e-mail:
@@ -33,7 +33,10 @@
                             <input type="email" id="email" name="email"
                                 class="bg-gray-50 transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-red-500 focus:border-red-500 block w-full pl-10 p-2.5"
                                 placeholder="Ex: exemple@gmail.com" required>
-                        </div>
+                            </div>
+                            @error('email')
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            @enderror
                     </div>
                     <div class="mt-8 text-center">
                         <button type="submit" class="py-3 px-6 font-semibold text-white bg-red-500 transition-all hover:bg-red-600 rounded-xl">Envoyer</button>
