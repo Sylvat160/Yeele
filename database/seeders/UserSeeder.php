@@ -8,8 +8,6 @@ use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
 
-use function PHPSTORM_META\map;
-
 class UserSeeder extends Seeder
 {
     /**
