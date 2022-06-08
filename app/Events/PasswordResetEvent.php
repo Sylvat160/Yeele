@@ -24,7 +24,6 @@ class PasswordResetEvent
      */
     public function __construct(User $user)
     {
-        dd($user);
         $this->notifiable = $user;
     }
 

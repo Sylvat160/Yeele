@@ -19,7 +19,7 @@
         <li class="nav-item dropdown">
             <a class="nav-link mr-2 bg-light border rounded-pill" data-toggle="dropdown" href="#">
               <i class="far fa-user"></i>
-              <span>John Doe</span>
+              <span>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="border: .1px solid #f8f8f8 !important;">
               <a href="#" class="dropdown-item">
