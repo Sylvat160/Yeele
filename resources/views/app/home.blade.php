@@ -9,7 +9,7 @@
       <!-- small box -->
       <div class="small-box bg-info">
         <div class="inner">
-          <h3>15</h3>
+          <h3>{{ Auth::user()->events->count() }}</h3>
 
           <p>Evènements</p>
         </div>

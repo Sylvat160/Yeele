@@ -13,6 +13,7 @@ class Event extends Model
     protected $fillable = [
         'uid',
         'category_uid',
+        'user_uid',
         'name',
         'description',
         'chosen_form',
@@ -30,6 +31,7 @@ class Event extends Model
 
     protected $hidden = [
         'uid',
+        'user_uid',
         'category_uid',
         'country_id'
     ];

@@ -89,4 +89,8 @@ class User extends Authenticatable implements MustVerifyEmail
                         ->where('end_date', '>', Carbon::now())
                         ->first();
     }
+
+    public function events() {
+        return $this->hasMany(Event::class);
+    }
 }

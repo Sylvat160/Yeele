@@ -38,10 +38,11 @@ class AuthController extends Controller
             $credentials = $request->all(['email', 'password']);
             $remember_me = (bool) $request->remember;
 
-            if(Auth::attempt($credentials, $remember_me)) {
-                $request->session()->regenerate();
-                return redirect()->route('app.home');
+            if(!Auth::attempt($credentials, $remember_me)) {
+                return redirect()->back()->with('error', "E-mail ou mot de passe incorrect!");
             }
+            $request->session()->regenerate();
+            return redirect()->route('app.home');
 
     }
 

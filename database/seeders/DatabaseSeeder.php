@@ -29,5 +29,13 @@ class DatabaseSeeder extends Seeder
                     'price' => $price
                 ]);
         }
+
+        foreach (["Congrès", "Formation"] as $category) {
+            \App\Models\Category::create(['name' => $category]);
+        }
+
+        $this->call([
+            UserSeeder::class
+        ]);
     }
 }

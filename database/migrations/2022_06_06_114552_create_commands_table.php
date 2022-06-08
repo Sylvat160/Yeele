@@ -20,7 +20,14 @@ class CreateCommandsTable extends Migration
             $table->integer('duration')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->string('payment_method')->nullable();
+            $table->enum(
+                'payment_method', 
+                [
+                    "Mobile money",
+                    "Virement bancaire",
+                    "Sur place"
+                ]
+                )->nullable();
 
             $table->timestamps();
         });

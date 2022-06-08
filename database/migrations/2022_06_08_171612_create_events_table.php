@@ -15,7 +15,8 @@ class CreateEventsTable extends Migration
     {
         Schema::create('events', function (Blueprint $table) {
             $table->uuid('uid');
-            $table->foreignUuid('category_uid')->nullable()->references('uid')->on('categories')->nullOnDelete();
+            $table->foreignUuid('user_uid')->references('uid')->on('users')->cascadeOnDelete();
+            $table->foreignId('category_id')->nullable()->references('id')->on('categories')->nullOnDelete();
             $table->string('name');
             $table->longText('description');
             $table->boolean('chosen_form')->default(false);
