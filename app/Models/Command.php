@@ -24,4 +24,8 @@ class Command extends Model
     public function plan() {
         return $this->belongsTo(Plan::class, 'plan_id');
     }
+
+    public function payment() {
+        return $this->hasOne(Payment::class, 'command_id');
+    }
 }

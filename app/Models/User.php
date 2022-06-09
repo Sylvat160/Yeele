@@ -83,11 +83,17 @@ class User extends Authenticatable implements MustVerifyEmail
         return $this->hasMany(Command::class);
     }
 
-    public function currentCommand() {
-        return Command::where('user_id', auth()->user()->uid)
+    public function getCustomAttribute() {
+        $currentCommand = Command::where('user_uid', auth()->user()->uid)
                         ->where('start_date', '<', Carbon::now())
                         ->where('end_date', '>', Carbon::now())
                         ->first();
+
+        $customs = [
+            'currentCommand' => $currentCommand
+        ];
+
+        return $customs;
     }
 
     public function events() {

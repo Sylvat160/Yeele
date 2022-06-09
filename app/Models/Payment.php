@@ -9,4 +9,8 @@ class Payment extends Model
 {
     use HasFactory;
     protected $fillable = ['command_id', 'status'];
+    
+    public function command() {
+        return $this->belongsTo(Command::class, 'command_id');
+    }
 }
