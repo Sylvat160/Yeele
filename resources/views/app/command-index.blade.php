@@ -19,7 +19,7 @@
                         aria-describedby="example1_info">
                         <thead>
                             <tr>
-                                <th class="sorting sorting_asc" tabindex="0" aria-controls="Plan" rowspan="1"
+                                <th class="sorting" tabindex="0" aria-controls="Plan" rowspan="1"
                                     colspan="1" aria-sort="Plan"
                                     aria-label="Plan: activate to sort column descending">Formule
                                 </th>
@@ -31,7 +31,8 @@
                                     aria-label="Payment_method: activate to sort column ascending">Mode de paiement</th>
                                 <th class="sorting" tabindex="0" aria-controls="Status" rowspan="1" colspan="1"
                                     aria-label="Status: activate to sort column ascending">Statut</th>
-                                <th>Date de début</th>
+                                <th class="sorting sorting_asc" tabindex="0" aria-controls="Start_date" rowspan="1" colspan="1"
+                                aria-label="Start_date: activate to sort column ascending">Date de début</th>
                                 <th>Date de fin</th>
                                 <th>Date de souscription</th>
                                 <th>Suppression</th>
