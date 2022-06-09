@@ -17,8 +17,7 @@ class DatabaseSeeder extends Seeder
             \App\Models\Role::create(['name' => $role]);
         }
         foreach (
-            [
-                "Free" => 0, 
+            [   
                 "Silver" => 15000, 
                 "Gold" => 50000
                 ]

@@ -14,6 +14,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Command;
+use DateTime;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -56,10 +57,12 @@ class AuthController extends Controller
             );
         $user = User::create($data);
 
-        Command::create([
-            'user_uid' => $user->uid,
-            'plan_id' => (int) $request->selected_plan
-        ]);
+            if($request->selected_plan) {
+                Command::create([
+                    'user_uid' => $user->uid,
+                    'plan_id' => (int) $request->selected_plan
+                ]);
+            }
 
         event(new Registered($user));
         Auth::login($user);

@@ -1,6 +1,4 @@
-@if(Auth::user()->custom['currentCommand'])
-
-  @if(!Auth::user()->custom['currentCommand']->payment_method_id && Auth::user()->custom['currentCommand']->plan_id !== 1)
+@if(Auth::user()->custom['currentCommand'] && !Auth::user()->custom['currentCommand']->payment_method_id)
   <div class="mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: #ebbd35;">
     <div>
       <i class="fa-solid fa-circle-exclamation"></i>
@@ -14,18 +12,3 @@
     </div>
   </div>
   @endif
-
-@else
-  <div class="mb-4 p-3 d-flex flex-column flex-md-row justify-content-between align-items-center rounded" style="background-color: #ebbd35;">
-    <div>
-      <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">Vous n'avez aucune commande à jour!</span>
-    </div>
-    <div>
-      <a href="{{ route('command.create') }}" style="color: #000 !important;">
-        <span>Ajouter une commande</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-@endif

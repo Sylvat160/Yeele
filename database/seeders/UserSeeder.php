@@ -31,13 +31,17 @@ class UserSeeder extends Seeder
             'password' => Hash::make('aboubakary')
         ]);
 
+        $command_start_date_time = new Carbon();
+        $command_end_date_time = new Carbon();
+        $command_end_date_time->addMonths(4);
+
         Command::create([
             'uid' => Str::uuid(),
             'user_uid' => $user->uid,
             'plan_id' => 1,
             'duration' => 4,
-            'start_date' => Carbon::now(),
-            'end_date' => Carbon::create(2022, 8)
+            'start_date_time' => $command_start_date_time,
+            'end_date_time' => $command_end_date_time
         ]);
     }
 }

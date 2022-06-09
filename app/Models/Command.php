@@ -14,8 +14,8 @@ class Command extends Model
         'user_uid', 
         'plan_id', 
         'duration',
-        'start_date',
-        'end_date',
+        'start_date_time',
+        'end_date_time',
         'payment_method_id'
     ];
 

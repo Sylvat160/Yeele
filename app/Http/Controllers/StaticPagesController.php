@@ -28,7 +28,7 @@ class StaticPagesController extends Controller
     }
 
     public function register($plan = null) {
-        $selectedPlan = Plan::where('name', $plan)->first() ?? null;
+        $selectedPlan = Plan::where('name', $plan)->first();
         return view('app.auth.register', compact('selectedPlan'));
     }
 

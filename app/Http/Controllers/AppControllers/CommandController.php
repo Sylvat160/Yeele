@@ -7,7 +7,6 @@ use App\Models\Command;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
 use Carbon\Carbon;
-use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Support\Str;
@@ -46,26 +45,25 @@ class CommandController extends Controller
     {
         $validator = $this->validated($request);
         if($validator->fails()) return redirect()->back()->withErrors($validator);
-        $currentCommand = auth()->user()->custom['currentCommand'];
+        $lastCommand = auth()->user()->commands->last();
         
-        if($currentCommand) {
-            $startDate = new Carbon($currentCommand->end_date);
-            $startDate->addDay();
-            $endDate = new Carbon($startDate);
+        if($lastCommand) {
+            $startDate_time = new Carbon($lastCommand->end_date_time);
+            $startDate_time->addDay();
+            $endDate_time = new Carbon($startDate_time);
         } else {
-            $startDate = new Carbon();
-            $endDate = new Carbon($startDate);
+            $startDate_time = new Carbon();
+            $endDate_time = new Carbon($startDate_time);
         }
-        $endDate->addMonths($request->duration);
-        
-        Command::create([
+        $endDate_time->addMonths($request->duration);
+        $command = Command::create([
             'user_uid' => auth()->user()->uid,
             'uid' => Str::uuid(),
             'plan_id' => $request->plan,
             'duration' => $request->duration,
             'payment_method_id' => $request->payment_method,
-            'start_date' => $startDate,
-            'end_date' => $endDate
+            'start_date_time' => $startDate_time,
+            'end_date_time' => $endDate_time
         ]);
 
         return redirect()->route('app.home')->with('success', "Votre commande a été prise en compte.");
@@ -111,16 +109,16 @@ class CommandController extends Controller
         }
 
         $command = Command::where('uid', $uid)->first();
-        $startDate = new Carbon($command->start_date);
-        $endDate = new Carbon($startDate);
-        $endDate->addMonths($request->duration);
+        $startDate_time = new Carbon($command->start_date);
+        $endDate_time = new Carbon($startDate_time);
+        $endDate_time->addMonths($request->duration);
         
         $command->update([
                 'plan_id' => $request->plan,
                 'duration' => $request->duration,
                 'payment_method_id' => $request->payment_method,
-                'start_date' => $startDate,
-                'end_date' => $endDate
+                'start_date_time' => $startDate_time,
+                'end_date_time' => $endDate_time
                 ]);
         return redirect()->route('app.home')->with('success', "Votre commande est à jour!");
     }

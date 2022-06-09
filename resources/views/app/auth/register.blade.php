@@ -26,8 +26,6 @@
 
                     @if ($selectedPlan)
                         <input type="hidden" name="selected_plan" value="{{ $selectedPlan->id }}" required>
-                    @else
-                        <input type="hidden" name="selected_plan" value="1" required>
                     @endif
 
                     <div class="grid gap-4 grid-cols-1 md:grid-cols-2">

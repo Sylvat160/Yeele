@@ -33,7 +33,6 @@ class RegisterRequest extends FormRequest
             'gender' => 'string|required',
             'password' => 'min:8|required',
             'confirm_password' => 'same:password|required',
-            'selected_plan' => 'required',
         ];
     }
 

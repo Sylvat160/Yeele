@@ -1,4 +1,4 @@
-@if (Auth::user()->custom['currentCommand'] && Auth::user()->custom['currentCommand']->plan->id !== 1)
+@if (Auth::user()->custom['currentCommand'])
     @switch(Auth::user()->custom['currentCommand']->plan->id)
         @case(3)
             <div class="pt-2 d-flex justify-content-center align-items-center formule bg-warning">

@@ -24,7 +24,7 @@
     
   <div class="mb-4 p-3 rounded" style="background-color: #ebbd35;">
       <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">La commande que vous vous apprêter à faire ne prendra effet qu'à terme de votre commande actuelle à moins que vous la supprimez!</span>
+      <span class="font-weight-bold">La commande que vous vous apprêter à faire ne prendra effet qu'à terme de votre dernier commande à moins que vous la supprimez!</span>
   </div>
 
   @endif
@@ -93,15 +93,10 @@
 
           </div>
   
-          @if(Auth::user()->custom['currentCommand'] && !Auth::user()->custom['currentCommand']->payment_method_id && Auth::user()->custom['currentCommand']->plan_id !== 1)
-          <div class="card-footer text-center">
-            <button type="submit" class="btn btn-primary" disabled>Valider la commande</button>
-          </div>
-          @else
           <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary">Valider la commande</button>
           </div>
-          @endif
+          
         </form>
       </div>
       <!-- /.card -->
@@ -125,17 +120,6 @@
 
     $('#plan').on('change', function() {
       const price = Number(this.options[this.selectedIndex].dataset.price)
-      if(price === 0) {
-        if($('#payment_method_container').hasClass('d-block')) {
-          $('#payment_method_container').removeClass('d-block')
-          $('#payment_method_container').addClass('d-none')
-        } else $('#payment_method_container').addClass('d-none')
-      } else {
-        if($('#payment_method_container').hasClass('d-none')) {
-          $('#payment_method_container').removeClass('d-none')
-          $('#payment_method_container').add('d-block') 
-        }
-      }
       plan_state.setValue(price)
     })
     $('#duration').on('change', function() {

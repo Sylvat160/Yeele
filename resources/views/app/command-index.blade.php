@@ -31,6 +31,8 @@
                                     aria-label="Payment_method: activate to sort column ascending">Mode de paiement</th>
                                 <th class="sorting" tabindex="0" aria-controls="Status" rowspan="1" colspan="1"
                                     aria-label="Status: activate to sort column ascending">Statut</th>
+                                <th>Date de début</th>
+                                <th>Date de fin</th>
                                 <th>Date de souscription</th>
                                 <th>Suppression</th>
                             </tr>
@@ -39,7 +41,7 @@
                             @foreach (Auth::user()->commands as $command)
                                 <tr class="odd">
                                     <td>{{ $command->plan->name }}</td>
-                                    <td>{{ $command->duration }}</td>
+                                    <td>{{ $command->duration . ' mois' }}</td>
                                     <td>{{ $command->plan->price . ' FCFA' }}</td>
                                     <td>{{ !is_null($command->payment_method) ?$command->payment_method->name : 'Aucun' }}</td>
                                     <td>
@@ -57,13 +59,18 @@
                                         @endif
                                     </td>
                                     <td>
-                                        {{$command->created_at->format('d/m/Y')}}
+                                        {{date_format(new DateTime($command->start_date_time), 'd/m/Y à H:i')}}
+                                    </td>
+                                    <td>
+                                        {{date_format(new DateTime($command->end_date_time), 'd/m/Y à H:i')}}
+                                    </td>
+                                    <td>
+                                        {{$command->created_at->format('d/m/Y à H:i')}}
                                     </td>
                                     <td>
                                         <button type="button" class="btn btn-block btn-danger" data-toggle="modal"
                                                 data-target="#modal_destroy_{{ $command->uuid }}"
                                                 style="width: fit-content;">
-                                                <i class="fa-solid fa-trash-can"></i>
                                                 Supprimer
                                             </button>
                                     </td>

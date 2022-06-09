@@ -56,7 +56,7 @@
               <input type="text" id="total_amount" class="form-control" value="0 FCFA" disabled>
             </div>
 
-            <div class="form-group @if($command->plan_id === 1) d-none @endif" id="payment_method_container">
+            <div class="form-group" id="payment_method_container">
               <label for="payment_method">
                 <span>Mode de paiement</span>
                 <span class="text-danger">*</span>
@@ -88,7 +88,7 @@
 @section('additional_script')
   <script>
     const state = {
-      value: 0,
+      value: Number({{$plan->price}}),
       setValue(newValue) {
         this.value = newValue
         window.dispatchEvent(new Event('command'))
@@ -101,17 +101,6 @@
 
     $('#plan').on('change', function() {
       const price = Number(this.options[this.selectedIndex].dataset.price)
-      if(price === 0) {
-        if($('#payment_method_container').hasClass('d-block')) {
-          $('#payment_method_container').removeClass('d-block')
-          $('#payment_method_container').addClass('d-none')
-        } else $('#payment_method_container').addClass('d-none')
-      } else {
-        if($('#payment_method_container').hasClass('d-none')) {
-          $('#payment_method_container').removeClass('d-none')
-          $('#payment_method_container').add('d-block') 
-        }
-    }
       plan_state.setValue(price)
     })
     $('#duration').on('change', function() {
