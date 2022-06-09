@@ -7,6 +7,7 @@ use App\Models\User;
 use Carbon\Carbon;
 use Illuminate\Database\Seeder;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Str;
 
 class UserSeeder extends Seeder
 {
@@ -31,6 +32,7 @@ class UserSeeder extends Seeder
         ]);
 
         Command::create([
+            'uid' => Str::uuid(),
             'user_uid' => $user->uid,
             'plan_id' => 1,
             'duration' => 4,

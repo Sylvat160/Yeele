@@ -15,19 +15,13 @@ class CreateCommandsTable extends Migration
     {
         Schema::create('commands', function (Blueprint $table) {
             $table->id();
+            $table->uuid('uid');
             $table->foreignUuid('user_uid')->references('uid')->on('users')->onDelete('CASCADE');
             $table->foreignId('plan_id')->nullable()->references('id')->on('plans')->nullOnDelete();
             $table->integer('duration')->nullable();
             $table->date('start_date')->nullable();
             $table->date('end_date')->nullable();
-            $table->enum(
-                'payment_method', 
-                [
-                    "Mobile money",
-                    "Virement bancaire",
-                    "Sur place"
-                ]
-                )->nullable();
+            $table->foreignId('payment_method_id')->nullable()->references('id')->on('payment_methods')->nullOnDelete();
 
             $table->timestamps();
         });

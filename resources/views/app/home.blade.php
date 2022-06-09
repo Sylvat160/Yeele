@@ -4,20 +4,14 @@
 
 @section('main')
 
-@if(!Auth::user()->custom['currentCommand']->payment_method && Auth::user()->custom['currentCommand']->plan_id !== 1)
-  <div class="mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: #ebbd35;">
-    <div>
-      <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">Votre commande n'est pas encore à bout. Veuillez poursuivre!</span>
-    </div>
-    <div>
-      <a href="#" style="color: #000 !important;">
-        <span>Poursuivre</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-@endif
+@include('extras.command_status')
+
+{{-- SUCCESS MESSAGE --}}
+
+@if($message = Session::get('success'))
+    <x-app-alert type="success" message="{{ $message }}" />
+    {{Session::forget('success')}}
+  @endif
 
 <div class="row">
     <div class="col-md-4 col-12">

@@ -4,17 +4,19 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class Command extends Model
 {
     use HasFactory;
     protected $fillable = [
+        'command_uid',
         'user_uid', 
         'plan_id', 
         'duration',
         'start_date',
         'end_date',
-        'payment_method'
+        'payment_method_id'
     ];
 
     public function user() {
@@ -25,7 +27,11 @@ class Command extends Model
         return $this->belongsTo(Plan::class, 'plan_id');
     }
 
+    public function payment_method() {
+        return $this->belongsTo(PaymentMethod::class);
+    }
+
     public function payment() {
-        return $this->hasOne(Payment::class, 'command_id');
+        return $this->hasOne(Payment::class, 'command_uid');
     }
 }

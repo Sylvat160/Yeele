@@ -21,8 +21,8 @@ class CreateEventsTable extends Migration
             $table->longText('description');
             $table->boolean('chosen_form')->default(false);
             $table->date('start_date');
-            $table->date('end_date');
-            $table->date('signup_end_date');
+            $table->dateTime('end_date_time');
+            $table->dateTime('signup_end_date_time');
             $table->string('image');
             $table->string('location');
             $table->string('map_html');

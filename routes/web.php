@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
+use App\Http\Controllers\AppControllers\CommandController;
 use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\StaticPagesController;
 
@@ -39,4 +40,5 @@ Route::middleware('auth')->group(function() {
 Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function() {
     Route::get('/', [AuthController::class, 'home'])->name('app.home');
     Route::resource('event', EventController::class);
+    Route::resource('command', CommandController::class);
 });

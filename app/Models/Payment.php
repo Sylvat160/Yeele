@@ -8,9 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class Payment extends Model
 {
     use HasFactory;
-    protected $fillable = ['command_id', 'status'];
-    
+    protected $fillable = ['command_uid', 'status'];
+
     public function command() {
-        return $this->belongsTo(Command::class, 'command_id');
+        return $this->belongsTo(Command::class, 'command_uid');
     }
 }
