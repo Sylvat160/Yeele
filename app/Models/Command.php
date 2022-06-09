@@ -10,7 +10,7 @@ class Command extends Model
 {
     use HasFactory;
     protected $fillable = [
-        'command_uid',
+        'uid',
         'user_uid', 
         'plan_id', 
         'duration',
@@ -32,6 +32,6 @@ class Command extends Model
     }
 
     public function payment() {
-        return $this->hasOne(Payment::class, 'command_uid');
+        return $this->hasOne(Payment::class, 'command_id');
     }
 }

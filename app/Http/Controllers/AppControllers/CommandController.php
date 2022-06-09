@@ -7,8 +7,10 @@ use App\Models\Command;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
 use Carbon\Carbon;
+use DateTime;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Str;
 
 class CommandController extends Controller
 {
@@ -19,7 +21,7 @@ class CommandController extends Controller
      */
     public function index()
     {
-        //
+        return view('app.command-index');
     }
 
     /**
@@ -58,6 +60,7 @@ class CommandController extends Controller
         
         Command::create([
             'user_uid' => auth()->user()->uid,
+            'uid' => Str::uuid(),
             'plan_id' => $request->plan,
             'duration' => $request->duration,
             'payment_method_id' => $request->payment_method,

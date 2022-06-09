@@ -32,7 +32,7 @@
               </a>
           </li>
           <li class="nav-item">
-            <a href="#" class="nav-link" data-path="app/command">
+            <a href="{{ route('command.index') }}" class="nav-link" data-path="app/command">
               <i class="nav-icon fas fa-briefcase"></i>
               <p>Mes commandes</p>
               </a>
