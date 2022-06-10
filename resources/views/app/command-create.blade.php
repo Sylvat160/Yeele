@@ -24,7 +24,7 @@
     
   <div class="mb-4 p-3 rounded" style="background-color: #ebbd35;">
       <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">La commande que vous vous apprêter à faire ne prendra effet qu'à terme de votre dernier commande à moins que vous la supprimez!</span>
+      <span class="font-weight-bold">La commande que vous vous apprêter à faire ne prendra effet qu'à terme de votre dernière commande!</span>
   </div>
 
   @endif

@@ -131,7 +131,9 @@ class CommandController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $command = Command::where('uid', $id)->first();
+        Command::destroy($command->id);
+        return redirect()->back()->with('success', "Votre commande a été supprimée avec succès!");
     }
 
     protected function validated(Request $request) {

@@ -7,11 +7,8 @@
 @include('extras.command_status')
 
 {{-- SUCCESS MESSAGE --}}
-
-@if($message = Session::get('success'))
-    <x-app-alert type="success" message="{{ $message }}" />
-    {{Session::forget('success')}}
-  @endif
+  @include('extras.success_message')
+{{-- END SUCCESS MESSAGE --}}
 
 <div class="row">
     <div class="col-md-4 col-12">

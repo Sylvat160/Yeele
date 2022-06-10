@@ -3,6 +3,11 @@
 @section('bigTitle') Mes commandes @endsection
 
 @section('main')
+   
+    {{-- SUCCESS MESSAGE --}}
+    @include('extras.success_message')
+    {{-- END SUCCESS MESSAGE --}}
+
 <div class="card">
     <div class="card-header">
         <h3 class="card-title mt-1">Liste de mes commandes</h3>
@@ -10,6 +15,7 @@
             <a href="{{ route('command.create') }}" class="btn btn-primary">Ajouter une commande</a>
         </div>
     </div>
+
     <!-- /.card-header -->
     <div class="card-body">
         <div id="data_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -69,11 +75,7 @@
                                         {{$command->created_at->format('d/m/Y à H:i')}}
                                     </td>
                                     <td>
-                                        <button type="button" class="btn btn-block btn-danger" data-toggle="modal"
-                                                data-target="#modal_destroy_{{ $command->uuid }}"
-                                                style="width: fit-content;">
-                                                Supprimer
-                                            </button>
+                                        <button type="button" class="btn btn-block btn-danger destroy_btn" data-created_at="{{$command->created_at->format('d/m/Y à H:i')}}" data-route="{{ route('command.destroy', $command->uid) }}">Supprimer</button>
                                     </td>
                                 </tr>
                             @endforeach
@@ -86,6 +88,35 @@
     </div>
     <!-- /.card-body -->
 </div>
+
+<div class="modal fade" id="modal_destroy" aria-hidden="true" style="display: none;">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h4 class="modal-title">Suppression de commande</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">×</span>
+          </button>
+        </div>
+        <form action="" method="post" id="destroy_modal_form">
+        <div class="modal-body">
+          @csrf
+          @method('DELETE')
+          <div class="text-danger">
+            <h1>Attention!</h1>
+            <p>Vous êtes sur le point de supprimer <strong id="destroy_command_name"></strong>. Cette action est irréversible. Êtes vous sûr de vouloir continuer?</p>
+          </div>
+        </div>
+        <div class="modal-footer justify-content-between">
+          <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+          <button type="submit" class="btn btn-danger modal_form_submit_btn">Oui</button>
+        </div>
+      </div>
+    </form>
+      <!-- /.modal-content -->
+    </div>
+    <!-- /.modal-dialog -->
+  </div>
 @endsection
 @section('additional_script')
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -135,5 +166,17 @@
     $(function() {
         bsCustomFileInput.init();
     });
+
+    const destroy_btns = $('.destroy_btn')
+    destroy_btns.each(function() {
+        $(this).on('click', function() {
+            const created_at = this.dataset.created_at
+            const route = this.dataset.route
+            $('#destroy_modal_form').attr('action', route)
+            $('#destroy_command_name').html(created_at)
+            $('#modal_destroy').modal()
+        })
+    })
+
 </script>
 @endsection
