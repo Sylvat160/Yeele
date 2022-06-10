@@ -7,7 +7,11 @@
                  href="{{ $link['path'] }}" 
                  class="px-4 transition-colors font-semibold{{ isset($link['active']) ? ' text-red-500' : null }} hover:text-red-500">{{ $name }}</a>
             @endforeach
+            @if (Auth::user())
+            <a href="{{ route('app.home') }}" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Tableau de bord</a>
+            @else
             <a href="{{ route('login') }}" class="py-3 px-5 font-semibold text-white bg-red-500 transition-all hover:bg-red-600  rounded-xl">Se connecter</a>
+            @endif
         </nav>
         <div class="flex items-center md:hidden">
             <button type="button" class="bg-red-100 rounded-md p-2 inline-flex items-center justify-center text-red-500 hover:text-gray-500 hover:bg-gray-100 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-red-500" aria-expanded="false" id="show_menu_btn">
