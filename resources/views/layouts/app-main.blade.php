@@ -10,6 +10,7 @@
     <link rel="stylesheet"
         href="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ asset('app_assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/jqvmap/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
@@ -60,7 +61,6 @@
     <script src="{{ asset('app_assets/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/moment/moment.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/daterangepicker/daterangepicker.js') }}"></script>
-    <script src="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('app_assets/dist/js/adminlte.js') }}"></script>

@@ -23,10 +23,11 @@ class Event extends Model
         'image',
         'location',
         'map_html',
-        'country_id',
+        'country',
         'city',
         'bg_color',
-        'text_color'
+        'text_color',
+        'counter_active'
     ];
 
     protected $hidden = [

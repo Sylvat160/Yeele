@@ -1,6 +1,6 @@
 @if (Auth::user()->custom['currentCommand'])
     @switch(Auth::user()->custom['currentCommand']->plan->id)
-        @case(3)
+        @case(2)
             <div class="pt-2 d-flex justify-content-center align-items-center formule bg-warning">
                 <h6>Formule actuelle: <span class="font-weight-bold">Gold</span></h6>
             </div>

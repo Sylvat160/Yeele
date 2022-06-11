@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Event;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Http;
 
 class EventController extends Controller
 {
@@ -26,6 +27,9 @@ class EventController extends Controller
      */
     public function create()
     {
+        // $response = Http::get(env('COUNTRY_NOW_SPACE_API'));
+        // $data = $response->json()['data'];
+        // $countries = array_map(fn($country) => $country['country'], $data);
         $categories = Category::all();
         return view('app.event-create', compact('categories'));
     }

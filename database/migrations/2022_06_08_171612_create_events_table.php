@@ -26,8 +26,9 @@ class CreateEventsTable extends Migration
             $table->string('image');
             $table->string('location');
             $table->string('map_html');
-            $table->foreignId('country_id')->nullable()->references('id')->on('countries')->nullOnDelete();
+            $table->string('country');
             $table->string('city');
+            $table->boolean('counter_active');
             $table->string('bg_color');
             $table->string('text_color');
             $table->timestamps();

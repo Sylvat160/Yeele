@@ -31,3 +31,12 @@ button[disabled] {
     background-color: #f05252 !important;
     border-color: #f05252 !important;
 }
+
+.color_picker {
+    width: 230px;
+    height: 38px;
+}
+
+.color_picker input {opacity: 0;}
+
+#msStatus i {cursor: pointer;}
