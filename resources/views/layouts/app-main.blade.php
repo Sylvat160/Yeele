@@ -67,7 +67,7 @@
         @yield('additional_script')
 
         <script>
-            const currentPage = document.querySelector(`a[data-path^="{{ Request::path() }}"]`)
+            const currentPage = document.querySelector(`a[data-path="{{ Request::path() }}"]`)
             if(currentPage) currentPage.classList.add('active')
         </script>
 </body>

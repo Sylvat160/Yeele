@@ -11,18 +11,17 @@
         <div class="col-md-7">
             <!-- general form elements -->
             <div class="card">
-                <form action="{{ route('event.store') }}" method="POST">
+                <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
                     @csrf
                     <div class="card-body">
                         <div class="mb-4 mx-auto"
-                            style="width: fit-content; height: fit-content; color: rgb(202, 202, 202);"
-                            id="msStatus">
+                            style="width: fit-content; height: fit-content; color: rgb(202, 202, 202);" id="msStatus">
                             <i class="fa-solid fa-circle mx-1"></i>
                             <i class="fa-solid fa-circle mx-1"></i>
                             <i class="fa-solid fa-circle mx-1"></i>
                             <i class="fa-solid fa-circle mx-1"></i>
                         </div>
-                        <div class="d-flex align-items-center" id="steps_container" style="overflow-x: hidden;">
+                        <div class="d-flex align-items-center" id="steps_container">
 
                             {{-- SECOND FIELDSET --}}
 
@@ -32,8 +31,15 @@
                                         <span>Titre de l'évènement</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <input type="text" id="name" name="name"
-                                        placeholder="Entrez le titre de votre évènement" class="form-control" required>
+                                    <input
+                                     type="text" 
+                                     id="name" 
+                                     name="name"
+                                    placeholder="Entrez le titre de votre évènement" class="form-control" 
+                                    @if ($value = old('name'))
+                                        value="{{ $value }}"
+                                    @endif
+                                    required>
                                     @error('name')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -43,14 +49,25 @@
                                         <span>Catégorie de l'évènement</span>
                                         <span class="text-danger">*</span>
                                     </label>
-                                    <select class="form-control" name="category" id="category" required>
-                                        <option class="d-none" value="" selected>Choisissez la catégorie de votre
+                                    <select
+                                     class="form-control" 
+                                     name="category_id" 
+                                     id="category" 
+                                     required>
+                                        <option
+                                         class="d-none" 
+                                         value="">Choisissez la catégorie de votre
                                             évènement</option>
                                         @foreach ($categories as $category)
-                                            <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                            <option
+                                             value="{{ $category->id }}"
+                                             @if (old('category_id') === $category->id)
+                                                selected
+                                            @endif
+                                             >{{ $category->name }}</option>
                                         @endforeach
                                     </select>
-                                    @error('category')
+                                    @error('category_id')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
                                 </div>
@@ -64,7 +81,7 @@
                                         <span>Vous pouvez entrer du texte simple ou du code HTML.</span>
                                     </div>
                                     <textarea name="description" id="description" class="form-control" rows="5"
-                                        placeholder="Saisissez la description de votre évènement ici" required></textarea>
+                                        placeholder="Saisissez la description de votre évènement ici" required>@if ($value = old('description')) $value @endif</textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -89,6 +106,9 @@
                                         <input type="text" id="start_date_time" name="start_date_time"
                                             class="form-control datetimepicker-input" data-target="#start_date_time"
                                             data-toggle="datetimepicker"
+                                            @if ($value = old('start_date_time'))
+                                                value="{{ $value }}"
+                                            @endif
                                             placeholder="Sélectionner la date et l'heure de début">
                                         <div class="input-group-append" data-target="#start_date_time"
                                             data-toggle="datetimepicker">
@@ -107,6 +127,10 @@
                                     <div class="input-group date" id="end_date_time" data-target-input="nearest">
                                         <input type="text" id="end_date_time" name="end_date_time"
                                             class="form-control datetimepicker-input" data-target="#end_date_time"
+                                            data-toggle="datetimepicker"
+                                            @if ($value = old('end_date_time'))
+                                                value="{{ $value }}"
+                                            @endif
                                             data-toggle="end_date_time" placeholder="Sélectionner la date et l'heure de fin"
                                             required>
                                         <div class="input-group-append" data-target="#end_date_time"
@@ -126,7 +150,10 @@
                                     <div class="input-group date" id="signup_end_date_time" data-target-input="nearest">
                                         <input type="text" id="signup_end_date_time" name="signup_end_date_time"
                                             class="form-control datetimepicker-input" data-target="#signup_end_date_time"
-                                            data-toggle="signup_end_date_time"
+                                            data-toggle="datetimepicker"
+                                            @if ($value = old('signup_end_date_time'))
+                                                value="{{ $value }}"
+                                            @endif
                                             placeholder="Sélectionner la date et l'heure de clôture des inscription"
                                             required>
                                         <div class="input-group-append" data-target="#signup_end_date_time"
@@ -159,7 +186,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <select class="form-control" name="country" id="country" required>
-                                        <option class="d-none" value="" selected>Choisissez le pays</option>
+                                        <option class="d-none" value="">Choisissez le pays</option>
                                     </select>
                                     @error('country')
                                         <span class="text-danger">{{ $message }}</span>
@@ -173,7 +200,7 @@
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <input type="text" name="city" id="city" class="form-control"
-                                                placeholder="Entrez la ville" required>
+                                                placeholder="Entrez la ville" @if($value = old('city')) value="{{ $value }}" @endif required>
                                             @error('city')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -186,7 +213,7 @@
                                                 <span class="text-danger">*</span>
                                             </label>
                                             <input type="text" name="location" id="location" class="form-control"
-                                                placeholder="Entrez le lieu de déroulement" required>
+                                                placeholder="Entrez le lieu de déroulement" @if($value = old('location')) value="{{ $value }}" @endif required>
                                             @error('location')
                                                 <span class="text-danger">{{ $message }}</span>
                                             @enderror
@@ -199,7 +226,7 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <textarea name="map_html" id="map_html" cols="30" class="form-control" rows="3"
-                                        placeholder="Entrez ici le code HTML copié du lieu de déroulement de votre évènement" required></textarea>
+                                        placeholder="Entrez ici le code HTML copié du lieu de déroulement de votre évènement" required>@if($value = old('map_html')) $value @endif</textarea>
                                     @error('map_html')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -225,8 +252,8 @@
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="custom-file">
-                                        <input type="file" class="custom-file-input" name="image" id="image" accept=".png, .jpg, .jpeg"
-                                            required>
+                                        <input type="file" class="custom-file-input" name="image" id="image"
+                                            accept=".png, .jpg, .jpeg" required>
                                         <label class="custom-file-label" for="customFile">Choisissez votre visuel</label>
                                     </div>
                                     @error('image')
@@ -258,8 +285,8 @@
                                         <label for="chosen_form">Type de formulaire</label>
                                         <select name="chosen_form" id="chosen_form" class="form-control" required>
                                             <option value="">Choisissez le formulaire à utilisé</option>
-                                            <option value="0">Formulaire simplifié</option>
-                                            <option value="1">Formulaire dynamique</option>
+                                            <option value="0" @if($value = old('chosen_form') === 0) selected @endif>Formulaire simplifié</option>
+                                            <option value="1" @if($value = old('chosen_form') === 1) selected @endif>Formulaire dynamique</option>
                                         </select>
                                         @error('chosen_form')
                                             <span class="text-danger">{{ $message }}</span>

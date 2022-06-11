@@ -20,17 +20,17 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->boolean('chosen_form')->default(false);
-            $table->date('start_date');
+            $table->date('start_date_time');
             $table->dateTime('end_date_time');
             $table->dateTime('signup_end_date_time');
             $table->string('image');
             $table->string('location');
-            $table->string('map_html');
+            $table->longText('map_html');
             $table->string('country');
             $table->string('city');
-            $table->boolean('counter_active');
-            $table->string('bg_color');
-            $table->string('text_color');
+            $table->boolean('counter_active')->default(true);
+            $table->string('bg_color')->nullable();
+            $table->string('text_color')->nullable();
             $table->timestamps();
         });
     }

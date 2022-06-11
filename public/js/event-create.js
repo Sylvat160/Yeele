@@ -46,6 +46,10 @@ $(function () {
         sideBySide: true,
         format: "DD/MM/YYYY HH:mm",
     });
+    $("#signup_end_date_time").datetimepicker({
+        sideBySide: true,
+        format: "DD/MM/YYYY HH:mm",
+    });
 });
 
 $('input[type="color"]').each(function() {

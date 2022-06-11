@@ -17,7 +17,7 @@
     </div>
 
     <!-- /.card-header -->
-    <div class="card-body">
+    <div class="card-body" style="overflow-x: scroll;">
         <div id="data_wrapper" class="dataTables_wrapper dt-bootstrap4">
             <div class="row mt-1">
                 <div class="col-sm-12">
@@ -133,11 +133,10 @@
 <script>
     $(function() {
         $("#usersData").DataTable({
-            "responsive": true,
+            "responsive": false,
             "lengthChange": false,
             "autoWidth": false,
             "paging": true,
-            "lengthMenu": [10, 25, 50, 75, 100, 150, 200, 250, 300, 350, 400, 450, 500],
             "buttons": ["excel", "pdf"],
             "language": {
                 "searchPlaceholder": "Rechercher ...",
