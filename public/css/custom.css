@@ -40,3 +40,5 @@ button[disabled] {
 .color_picker input {opacity: 0;}
 
 #msStatus i {cursor: pointer;}
+
+li {list-style: none;}

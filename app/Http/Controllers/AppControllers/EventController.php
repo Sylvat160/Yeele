@@ -8,6 +8,7 @@ use App\Http\Requests\EventRequest;
 use Carbon\Carbon;
 use App\Models\Category;
 use App\Models\Event;
+use App\Models\Type;
 
 class EventController extends Controller
 {
@@ -28,11 +29,9 @@ class EventController extends Controller
      */
     public function create()
     {
-        // $response = Http::get(env('COUNTRY_NOW_SPACE_API'));
-        // $data = $response->json()['data'];
-        // $countries = array_map(fn($country) => $country['country'], $data);
         $categories = Category::all();
-        return view('app.event-create', compact('categories'));
+        $types = Type::all();
+        return view('app.event-create', compact('categories', 'types'));
     }
 
     /**
@@ -75,12 +74,13 @@ class EventController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  string  $uid
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($uid)
     {
-        //
+        $event = Event::find($uid);
+        return view('app.event-show', compact('event'));
     }
 
     /**

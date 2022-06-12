@@ -294,6 +294,21 @@
                                     </div>
                                 @endif
                                 <div class="form-group">
+                                    <label for="type">
+                                        <span>Déroulement</span>
+                                        <span class="text-danger">*</span>
+                                    </label>
+                                    <select name="type_id" id="type" class="form-control" required>
+                                        <option value="" class="d-none">Choisissez le mode de participation</option>
+                                        @foreach ($types as $type)
+                                            <option value="{{ $type->id }}" @if(old('type_id') === $type->id) selected @endif>{{ $type->name }}</option>
+                                        @endforeach
+                                    </select>
+                                    @error('type_id')
+                                        {{$message}}
+                                    @enderror
+                                </div>
+                                <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="counter_active"
                                             id="counter_active" value="1">

@@ -27,6 +27,7 @@ class EventRequest extends FormRequest
             'name' => 'required',
             'category_id' => 'required|integer|exists:categories,id',
             'description' => 'required',
+            'type_id' => 'required',
             'start_date_time' => 'required',
             'end_date_time' => 'required',
             'signup_end_date_time' =>'required',

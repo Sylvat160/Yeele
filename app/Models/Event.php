@@ -22,6 +22,7 @@ class Event extends Model
         'signup_end_date_time',
         'image',
         'location',
+        'type_id',
         'map_html',
         'country',
         'city',
@@ -50,11 +51,11 @@ class Event extends Model
         });
     }
 
-    public function country() {
-        $this->belongsTo(Country::class, 'country_id');
-    }
-
     public function category() {
         $this->belongsTo(Category::class, 'category_uid');
+    }
+
+    public function type() {
+        return $this->belongsTo(Type::class);
     }
 }

@@ -17,6 +17,7 @@ class CreateEventsTable extends Migration
             $table->uuid('uid');
             $table->foreignUuid('user_uid')->references('uid')->on('users')->cascadeOnDelete();
             $table->foreignId('category_id')->nullable()->references('id')->on('categories')->nullOnDelete();
+            $table->foreignId('type_id')->default(1)->nullable()->references('id')->on('types')->nullOnDelete();
             $table->string('name');
             $table->longText('description');
             $table->boolean('chosen_form')->default(false);
