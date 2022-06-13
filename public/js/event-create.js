@@ -37,21 +37,6 @@ window.addEventListener("countriesFilled", function () {
     }
 });
 
-$(function () {
-    $("#start_date_time").datetimepicker({
-        sideBySide: true,
-        format: "DD/MM/YYYY HH:mm",
-    });
-    $("#end_date_time").datetimepicker({
-        sideBySide: true,
-        format: "DD/MM/YYYY HH:mm",
-    });
-    $("#signup_end_date_time").datetimepicker({
-        sideBySide: true,
-        format: "DD/MM/YYYY HH:mm",
-    });
-});
-
 $('input[type="color"]').each(function() {
   $(this).on('input', function() {
     this.parentElement.setAttribute('style', `background-color: ${this.value}`)

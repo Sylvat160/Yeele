@@ -92,7 +92,9 @@ class EventController extends Controller
     public function edit($id)
     {
         $event = Event::find($id);
-        return view('app.event-edit', compact('event'));
+        $categories = Category::all();
+        $types = Type::all();
+        return view('app.event-edit', compact('event', 'categories', 'types'));
     }
 
     /**

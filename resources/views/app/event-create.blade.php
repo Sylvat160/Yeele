@@ -248,7 +248,7 @@
                             <fieldset class="w-100 d-none">
                                 <div class="form-group">
                                     <label for="image">
-                                        <span>Visuel de l'évènement</span>
+                                        <span>Visuel de l'évènement(Format 400 x 600)</span>
                                         <span class="text-danger">*</span>
                                     </label>
                                     <div class="custom-file">
@@ -338,5 +338,21 @@
     <script src="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
     </script>
     <script src="{{ asset('app_assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+    <script> 
+        $(function () {
+            $("#start_date_time").datetimepicker({
+                sideBySide: true,
+                format: "DD/MM/YYYY HH:mm",
+            });
+            $("#end_date_time").datetimepicker({
+                sideBySide: true,
+                format: "DD/MM/YYYY HH:mm",
+            });
+            $("#signup_end_date_time").datetimepicker({
+                sideBySide: true,
+                format: "DD/MM/YYYY HH:mm",
+            });
+        });
+    </script>
     <script src="{{ asset('js/event-create.js') }}"></script>
 @endsection

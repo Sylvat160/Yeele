@@ -8,7 +8,7 @@
 
 @section('main')
     <div class="row @if(Auth::user()->events->count() < 2) justify-content-center @endif">
-        @foreach (Auth::user()->events->sortDesc() as $event)
+        @forelse(Auth::user()->events->sortDesc() as $event)
             <div class="col-12 col-md-6 gap-2">
                 <div class="card">
                     <div class="card-header">
@@ -22,7 +22,7 @@
                             </button>
                             <ul class="dropdown-menu p-2" aria-labelledby="event_menu" style="width: 210px !important;">
                                 <li>
-                                    <a href="#" class="text-dark">
+                                    <a href="{{ route('event.edit', $event->uid) }}" class="text-dark">
                                         <i class="fa-solid fa-pen-to-square"></i>
                                         <span>Modifier l'évènement</span>
                                     </a>
@@ -88,6 +88,20 @@
                     </div>
                 </div>
             </div>
-        @endforeach
+        @empty
+            <div class="col-12 col-md-6">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <img src="{{ asset('images/illustrations/empty.svg') }}" width="200" alt="Aucun évènement enregistré">
+                    </div>
+                    <div class="card-footer bg-white">
+                        <h5 class="text-center">Vous n'avez aucun évènement enrégistré.</h5>
+                        <div class="mt-4 text-center">
+                            <a href="{{ route('event.create') }}" class="btn btn-primary">Créer un évènement</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        @endforelse
     </div>
 @endsection
