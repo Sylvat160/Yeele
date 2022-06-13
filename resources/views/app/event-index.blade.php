@@ -32,7 +32,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="#" class="text-dark destroy_btn" data-event_name="{{ $event->name }}" data-toggle="modal" data-target="#modal_destroy" data-route="{{ route('event.destroy', $event->uid) }}">
+                                    <a href="#" class="text-dark destroy_btn" data-event_name="{{ $event->name }}" data-route="{{ route('event.destroy', $event->uid) }}">
                                         <i class="fa-solid fa-trash-can"></i>
                                         <span>Supprimer l'évènement</span>
                                     </a>

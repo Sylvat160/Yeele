@@ -52,10 +52,14 @@ class Event extends Model
     }
 
     public function category() {
-        $this->belongsTo(Category::class, 'category_uid');
+        return $this->belongsTo(Category::class, 'category_uid');
     }
 
     public function type() {
         return $this->belongsTo(Type::class);
+    }
+
+    public function eventPrices() {
+        return $this->hasMany(EventPrice::class);
     }
 }

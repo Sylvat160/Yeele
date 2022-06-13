@@ -2,6 +2,7 @@
 @section('title')
     {{$event->name}}
 @endsection
+@section('bigTitle') {{$event->name}} @endsection
 
 @section('main')
 

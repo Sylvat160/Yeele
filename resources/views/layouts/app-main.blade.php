@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -28,7 +28,7 @@
 
         <x-app-navbar />
 
-        <x-app-sidebar />
+        <x-app-sidebar showeventmenu="{{ isset($event_menu) }}" event="{{ $event->uid }}" />
 
         <div class="content-wrapper">
             <div class="content-header">
@@ -69,6 +69,14 @@
         <script>
             const currentPage = document.querySelector(`a[data-path="{{ Request::path() }}"]`)
             if(currentPage) currentPage.classList.add('active')
+
+            $(function() {
+                const path = window.location.pathname.split('/').pop()
+                current_event_page = $(`a[data-event_menu_path="${path}"]`)
+                if (current_event_page) {
+                    current_event_page.addClass('active')
+                }
+            })
         </script>
 </body>
 

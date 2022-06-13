@@ -80,8 +80,9 @@ class EventController extends Controller
      */
     public function show($uid)
     {
+        $event_menu = true;
         $event = Event::find($uid);
-        return view('app.event-show', compact('event'));
+        return view('app.event-show', compact('event', 'event_menu'));
     }
 
     /**

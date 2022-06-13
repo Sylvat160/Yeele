@@ -43,13 +43,7 @@
               <p>Nouvelle Commande</p>
               </a>
           </li>
-          {{-- <li class="nav-item">
-            <a href="#" class="nav-link" data-path="app">
-              <i class="nav-icon fas fa-credit-card"></i>
-              <p>Effectuer un paiement</p>
-              </a>
-          </li> --}}
-          
+           @includeWhen($show_event_menu, 'extras.event_menu')
         </ul>
       </nav>
       <!-- /.sidebar-menu -->
