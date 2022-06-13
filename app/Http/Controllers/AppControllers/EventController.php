@@ -64,6 +64,7 @@ class EventController extends Controller
         $data['start_date_time'] = $this->format($data['start_date_time']);
         $data['end_date_time'] = $this->format($data['end_date_time']);
         $data['signup_end_date_time'] = $this->format($data['signup_end_date_time']);
+   
 
         $newEvent = Event::create($data);
         
@@ -86,12 +87,12 @@ class EventController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  int  $id
+     * @param  string $uid
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit($uid)
     {
-        $event = Event::find($id);
+        $event = Event::find($uid);
         $categories = Category::all();
         $types = Type::all();
         return view('app.event-edit', compact('event', 'categories', 'types'));
@@ -101,23 +102,26 @@ class EventController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
+     * @param  string $uid
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, $uid)
     {
-        //
+        $event = Event::find($uid);
+        $event->update($request->except('_token', '_method'));
+        return redirect()->route('event.show', $event->uid)->with('success', "Votre évènement a été modifié avec succès!");
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  string $uid
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy($uid)
     {
-        //
+        Event::destroy($uid);
+        return redirect()->back()->with('success', "La suppression de l'évènement a été un succès!");
     }
 
     /**

@@ -4,6 +4,9 @@
 @endsection
 
 @section('main')
+
+    @include('extras.success_message')
+
     <div class="row">
         <div class="col-md-6 col-12">
             <!-- small box -->

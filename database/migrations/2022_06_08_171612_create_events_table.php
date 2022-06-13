@@ -21,7 +21,7 @@ class CreateEventsTable extends Migration
             $table->string('name');
             $table->longText('description');
             $table->boolean('chosen_form')->default(false);
-            $table->date('start_date_time');
+            $table->dateTime('start_date_time');
             $table->dateTime('end_date_time');
             $table->dateTime('signup_end_date_time');
             $table->string('image');
@@ -30,8 +30,8 @@ class CreateEventsTable extends Migration
             $table->string('country');
             $table->string('city');
             $table->boolean('counter_active')->default(true);
-            $table->string('bg_color')->nullable();
-            $table->string('text_color')->nullable();
+            $table->string('bg_color')->default('#000000')->nullable();
+            $table->string('text_color')->default('#000000')->nullable();
             $table->timestamps();
         });
     }

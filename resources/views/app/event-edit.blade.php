@@ -11,7 +11,8 @@
         <div class="col-md-7">
             <!-- general form elements -->
             <div class="card">
-                <form action="{{ route('event.store') }}" method="POST" enctype="multipart/form-data">
+                <form action="{{ route('event.update', $event->uid) }}" method="POST" enctype="multipart/form-data">
+                    @method('PUT')
                     @csrf
                     <div class="card-body">
                         <div class="mb-4 mx-auto"
@@ -209,7 +210,7 @@
                                     </label>
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="image" id="image"
-                                            accept=".png, .jpg, .jpeg" required>
+                                            accept=".png, .jpg, .jpeg">
                                         <label class="custom-file-label" for="customFile">Choisissez votre visuel</label>
                                     </div>
                                     @error('image')
@@ -219,19 +220,19 @@
                                 <div class="row">
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="bg_color">Couleur de fond du formulaire</label><br>
+                                            <label for="bg_color">Re-sélectionner la couleur de fond du formulaire (Autre que noir)</label><br>
                                             <label for="bg_color" class="color_picker border rounded"
-                                                style="background-color: @if($event->bg_color) $event->bg_color @else #eee @endif">
-                                                <input type="color" name="bg_color" id="bg_color" value="{{ $event->bg_color }}">
+                                                style="background-color: #eee;">
+                                                <input type="color" name="bg_color" id="bg_color">
                                             </label>
                                         </div>
                                     </div>
                                     <div class="col-12 col-md-6">
                                         <div class="form-group">
-                                            <label for="text_color">Couleur des textes du formulaire</label><br>
+                                            <label for="text_color">Re-sélectionner la couleur des textes du formulaire</label><br>
                                             <label for="text_color" class="color_picker border rounded"
-                                                style="background-color: @if($event->text_color) $event->text_color @else #000 @endif">
-                                                <input type="color" name="text_color" id="text_color" value="{{ $event->text_color }}">
+                                                style="background-color: #000;">
+                                                <input type="color" name="text_color" id="text_color">
                                             </label>
                                         </div>
                                     </div>
@@ -257,7 +258,7 @@
                                     <select name="type_id" id="type" class="form-control" required>
                                         <option value="" class="d-none">Choisissez le mode de participation</option>
                                         @foreach ($types as $type)
-                                            <option value="{{ $type->id }}" @if($event->type === $type->id) selected @endif>{{ $type->name }}</option>
+                                            <option value="{{ $type->id }}" @if($event->type_id === $type->id) selected @endif>{{ $type->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('type_id')
@@ -267,8 +268,8 @@
                                 <div class="form-group">
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="counter_active"
-                                            id="counter_active" value="1">
-                                        <label class="form-check-label" for="counter_active" @if($event->counter_active) checked @endif>Afficher le compteur des
+                                            id="counter_active" value="1" @if($event->counter_active) checked @endif>
+                                        <label class="form-check-label" for="counter_active">Afficher le compteur des
                                             inscriptions</label>
                                     </div>
                                 </div>
@@ -283,7 +284,6 @@
                         </div>
                     </div>
             </div>
-
             </form>
         </div>
         <!-- /.card -->
