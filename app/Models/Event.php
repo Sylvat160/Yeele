@@ -62,4 +62,8 @@ class Event extends Model
     public function eventPrices() {
         return $this->hasMany(EventPrice::class);
     }
+
+    public function event_payment_methods() {
+        return $this->hasMany(EventPaymentMethod::class);
+    }
 }

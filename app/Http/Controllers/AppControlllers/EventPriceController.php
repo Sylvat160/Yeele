@@ -4,7 +4,9 @@ namespace App\Http\Controllers\AppControlllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Event;
+use App\Models\EventPrice;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class EventPriceController extends Controller
 {
@@ -18,18 +20,7 @@ class EventPriceController extends Controller
     {
         $event_menu = true;
         $event = Event::find($event_uid);
-        return view('app.event-price-index', compact('event_menu', 'event'));
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     * @param string $event_uid
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create($event_uid)
-    {
-        //
+        return view('app.event-prices', compact('event_menu', 'event'));
     }
 
     /**
@@ -40,31 +31,25 @@ class EventPriceController extends Controller
      */
     public function store(Request $request)
     {
-        //
-    }
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'label' => 'required',
+                'value' => 'required|integer',
+                'event_uid' => 'required'
+            ],
+            [
+                'required' => "Ce champ est obligatoire.",
+                'integer' => "Ce champ doit conténir un nombre."
+            ]
+            );
 
-    /**
-     * Display the specified resource.
-     *
-     * @param int $uid
-     * @param string $event_uid
-     * @return \Illuminate\Http\Response
-     */
-    public function show($uid, $event_uid)
-    {
-        //
-    }
+            if($validator->fails()) {
+                return redirect()->back()->with('add_price_error', true)->withErrors($validator);
+            }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  string $uid
-     * @param string $event_uid
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($uid, $event_uid)
-    {
-        //
+            EventPrice::create($request->except('_token'));
+            return redirect()->back()->with('success', "Le tarif a été ajouté!");
     }
 
     /**
@@ -76,7 +61,9 @@ class EventPriceController extends Controller
      */
     public function update(Request $request, $uid)
     {
-        //
+        $eventPrice = EventPrice::find($uid);
+        $eventPrice->update($request->except('_token'));
+        return redirect()->back()->with('success', "Le tarif a été modifié.");
     }
 
     /**
@@ -87,6 +74,7 @@ class EventPriceController extends Controller
      */
     public function destroy($uid)
     {
-        //
+        EventPrice::destroy($uid);
+        return redirect()->back()->with('success', "Le tarif a été supprimé.");
     }
 }

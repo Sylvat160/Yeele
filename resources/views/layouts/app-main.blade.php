@@ -28,7 +28,7 @@
 
         <x-app-navbar />
 
-        <x-app-sidebar showeventmenu="{{ isset($event_menu) }}" event="{{ $event->uid }}" />
+        <x-app-sidebar showeventmenu="{{ isset($event_menu) }}" event="{{ isset($event) ? $event->uid : null }}" />
 
         <div class="content-wrapper">
             <div class="content-header">
