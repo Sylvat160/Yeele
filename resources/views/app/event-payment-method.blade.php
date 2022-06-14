@@ -13,7 +13,7 @@
         <div class="card-header">
             <h3 class="card-title">Liste des tarifs</h3>
             <div class="card-tools">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un tarif</button>
+                <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un mode de paiement</button>
             </div>
         </div>
         <div class="card-body table-responsive p-0">

@@ -15,6 +15,7 @@ class CreateEventPaymentMethodsTable extends Migration
     {
         Schema::create('event_payment_methods', function (Blueprint $table) {
             $table->uuid('uid');
+            $table->string('name');
             $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
             $table->timestamps();
         });

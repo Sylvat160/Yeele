@@ -14,7 +14,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route('event_payment_method.index', $event_uid) }}" class="nav-link" data-event_menu_path="event_payment_method">
         <i class="fa-solid fa-credit-card"></i>
         <span>Modes de paiement</span>
     </a>

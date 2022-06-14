@@ -5,7 +5,7 @@ use App\Http\Controllers\AppControllers\AuthController;
 use App\Http\Controllers\AppControllers\CommandController;
 use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\AppControllers\EventPaymentMethodController;
-use App\Http\Controllers\AppControlllers\EventPriceController;
+use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\StaticPagesController;
 
 //WEBSITE
