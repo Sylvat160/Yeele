@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -10,7 +11,8 @@
     <link rel="stylesheet"
         href="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('app_assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+    <link rel="stylesheet"
+        href="{{ asset('app_assets/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/jqvmap/jqvmap.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/dist/css/adminlte.min.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
@@ -23,18 +25,21 @@
     <div class="wrapper">
 
         <div class="preloader flex-column justify-content-center align-items-center">
-            <img class="animation__shake" src="{{asset("logo.png")}}" alt="Yeele" height="40" width="100">
+            <img class="animation__shake" src="{{ asset('logo.png') }}" alt="Yeele" height="40" width="100">
         </div>
 
         <x-app-navbar />
 
-        <x-app-sidebar showeventmenu="{{ isset($event_menu) }}" event="{{ isset($event) ? $event->uid : null }}" />
+        <x-app-sidebar
+         showeventmenu="{{ isset($event_menu) }}" 
+         event="{{ isset($event) ? $event->uid : null }}"
+        dynamicform="{{ isset($event) ? $event->chosen_form : false }}" />
 
         <div class="content-wrapper">
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                      <h1 class="m-0">@yield('bigTitle')</h1>
+                        <h1 class="m-0">@yield('bigTitle')</h1>
                     </div>
                 </div>
             </div>
@@ -48,7 +53,7 @@
         </div>
     </div>
 
-        <x-app-footer />
+    <x-app-footer />
 
     <script src="{{ asset('app_assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
@@ -64,20 +69,20 @@
     <script src="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
     <script src="{{ asset('app_assets/dist/js/adminlte.js') }}"></script>
-        @yield('additional_script')
+    @yield('additional_script')
 
-        <script>
-            const currentPage = document.querySelector(`a[data-path="{{ Request::path() }}"]`)
-            if(currentPage) currentPage.classList.add('active')
+    <script>
+        const currentPage = document.querySelector(`a[data-path="{{ Request::path() }}"]`)
+        if (currentPage) currentPage.classList.add('active')
 
-            $(function() {
-                const path = window.location.pathname.split('/').pop()
-                current_event_page = $(`a[data-event_menu_path="${path}"]`)
-                if (current_event_page) {
-                    current_event_page.addClass('active')
-                }
-            })
-        </script>
+        $(function() {
+            const path = window.location.pathname.split('/').pop()
+            current_event_page = $(`a[data-event_menu_path="${path}"]`)
+            if (current_event_page) {
+                current_event_page.addClass('active')
+            }
+        })
+    </script>
 </body>
 
 </html>

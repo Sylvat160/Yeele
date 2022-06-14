@@ -9,52 +9,56 @@
 @section('main')
     @include('extras.success_message')
 
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Liste des tarifs</h3>
-            <div class="card-tools">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un mode de paiement</button>
+    <div class="row justify-content-center">
+        <div class="col-12 col-md-10">
+            <div class="card">
+                <div class="card-header">
+                    <h3 class="card-title">Liste des tarifs</h3>
+                    <div class="card-tools">
+                        <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un mode de paiement</button>
+                    </div>
+                </div>
+                <div class="card-body table-responsive p-0">
+                    <table class="table table-hover text-nowrap">
+                        <thead>
+                            <tr>
+                                <th>Libellé</th>
+                                <th>Modification</th>
+                                <th>Suppression</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @forelse($event->event_payment_methods as $method)
+                                <tr>
+                                    <td>{{ $method->name }}</td>
+                                    <td>
+                                        <button class="btn btn-info btn_edit"
+                                            data-route="{{ route('event_payment_method.update', $method->uid) }}"
+                                            data-payment_method="{{ $method->name }}">
+                                            <i class="fa-solid fa-pen-to-square"></i>
+                                            <span>Modifier</span>
+                                        </button>
+                                    </td>
+                                    <td>
+                                        <button class="btn btn-danger btn_destroy"
+                                            data-route="{{ route('event_payment_method.destroy', $method->uid) }}"
+                                            data-payment_method="{{ $method->name }}">
+                                            <i class="fa-solid fa-trash-can"></i>
+                                            <span>Supprimer</span>
+                                        </button>
+                                    </td>
+                                </tr>
+                            @empty
+                                <tr>
+                                    <td colspan="4" class="text-center">
+                                        Vous n'avez aucun mode de paiement disponible pour cet évènement.
+                                    </td>
+                                </tr>
+                            @endforelse
+                        </tbody>
+                    </table>
+                </div>
             </div>
-        </div>
-        <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
-                <thead>
-                    <tr>
-                        <th>Libellé</th>
-                        <th>Modification</th>
-                        <th>Suppression</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($event->event_payment_methods as $method)
-                        <tr>
-                            <td>{{ $method->name }}</td>
-                            <td>
-                                <button class="btn btn-info btn_edit"
-                                    data-route="{{ route('event_payment_method.update', $method->uid) }}"
-                                    data-payment_method="{{ $method->name }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <span>Modifier</span>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger btn_destroy"
-                                    data-route="{{ route('event_payment_method.destroy', $method->uid) }}"
-                                    data-payment_method="{{ $method->name }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>Supprimer</span>
-                                </button>
-                            </td>
-                        </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">
-                                Vous n'avez aucun mode de paiement disponible pour cet évènement.
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
         </div>
     </div>
 

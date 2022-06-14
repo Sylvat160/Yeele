@@ -2,13 +2,13 @@
 
 namespace App\View\Components;
 
-use App\Models\Event;
 use Illuminate\View\Component;
 
 class AppSidebar extends Component
 {
     public $show_event_menu;
     public $event_uid;
+    public $hasDynamicForm;
     /**
      * 
      * @param bool $showeventmenu;
@@ -18,9 +18,10 @@ class AppSidebar extends Component
      *
      * @return void
      */
-    public function __construct(bool $showeventmenu, string $event)
+    public function __construct(bool $showeventmenu, string $event, $dynamicform)
     {
         $this->show_event_menu = $showeventmenu;
+        $this->hasDynamicForm = (bool) $dynamicform;
         if (isset($event)) {
             $this->event_uid = $event;
         }
