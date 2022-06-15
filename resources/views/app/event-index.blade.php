@@ -37,6 +37,12 @@
                                         <span>Supprimer l'évènement</span>
                                     </a>
                                 </li>
+                                <li>
+                                    <a href="{{ route('form', $event->uid) }}" target="_blank" class="text-dark">
+                                        <i class="fa-solid fa-eye"></i>
+                                        <span>Aperçu du formulaire</span>
+                                    </a>
+                                </li>
                             </ul>
                         </div>
                     </div>

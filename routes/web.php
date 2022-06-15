@@ -7,6 +7,7 @@ use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\AppControllers\EventPaymentMethodController;
 use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\FieldController;
+use App\Http\Controllers\FormController;
 use App\Http\Controllers\StaticPagesController;
 
 //WEBSITE
@@ -43,7 +44,7 @@ Route::middleware('auth')->group(function() {
 Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function() {
     Route::get('/', [AuthController::class, 'home'])->name('app.home');
     Route::resource('event', EventController::class);
-    Route::resource('command', CommandController::class);
+    Route::resource('command', CommandController::class)->except('show', 'destroy');
     Route::get('current_event/{event_uid}/event_price', [EventPriceController::class, 'index'])->name('event_price.index');
     Route::resource('event_price', EventPriceController::class)->except(['index', 'create', 'show', 'edit']);
     Route::get('current_event/{event_uid}/event_payment_method', [EventPaymentMethodController::class, 'index'])->name('event_payment_method.index');
@@ -51,3 +52,7 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::get('current_event/{event_uid}/field', [FieldController::class, 'index'])->name('field.index');
     Route::resource('field', FieldController::class)->except(['index', 'create', 'show', 'edit']);
 });
+
+//PARTICIPANT REGISTRATION ROUTES
+
+Route::get('/formulaire/{event_uid}', [FormController::class, 'index'])->name('form');

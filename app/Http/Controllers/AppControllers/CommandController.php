@@ -123,19 +123,6 @@ class CommandController extends Controller
         return redirect()->route('app.home')->with('success', "Votre commande est à jour!");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        $command = Command::where('uid', $id)->first();
-        Command::destroy($command->id);
-        return redirect()->back()->with('success', "Votre commande a été supprimée avec succès!");
-    }
-
     protected function validated(Request $request) {
         if((int) $request->plan === 1) {
             $validator = Validator::make(

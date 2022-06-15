@@ -41,7 +41,6 @@
                                 aria-label="Start_date: activate to sort column ascending">Date de début</th>
                                 <th>Date de fin</th>
                                 <th>Date de souscription</th>
-                                <th>Suppression</th>
                             </tr>
                         </thead>
                         <tbody>
@@ -74,9 +73,6 @@
                                     <td>
                                         {{$command->created_at->format('d/m/Y à H:i')}}
                                     </td>
-                                    <td>
-                                        <button type="button" class="btn btn-block btn-danger destroy_btn" data-created_at="{{$command->created_at->format('d/m/Y à H:i')}}" data-route="{{ route('command.destroy', $command->uid) }}">Supprimer</button>
-                                    </td>
                                 </tr>
                             @endforeach
                         </tbody>
@@ -89,34 +85,6 @@
     <!-- /.card-body -->
 </div>
 
-<div class="modal fade" id="modal_destroy" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <h4 class="modal-title">Suppression de commande</h4>
-          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-            <span aria-hidden="true">×</span>
-          </button>
-        </div>
-        <form action="" method="post" id="destroy_modal_form">
-        <div class="modal-body">
-          @csrf
-          @method('DELETE')
-          <div class="text-danger">
-            <h1>Attention!</h1>
-            <p>Vous êtes sur le point de supprimer <strong id="destroy_command_name"></strong>. Cette action est irréversible. Êtes vous sûr de vouloir continuer?</p>
-          </div>
-        </div>
-        <div class="modal-footer justify-content-between">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-          <button type="submit" class="btn btn-danger modal_form_submit_btn">Oui</button>
-        </div>
-      </div>
-    </form>
-      <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-  </div>
 @endsection
 @section('additional_script')
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
