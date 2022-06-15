@@ -1,9 +1,9 @@
 @extends('layouts.app-main')
 @section('title')
-    Mode de paiement à l'évènement "{{ $event->name }}"
+    {{ $event->name }}/Mode de paiement à l'évènement
 @endsection
 @section('bigTitle')
-    Mode de paiement à "{{ $event->name }}"
+    {{ $event->name }}/Mode de paiement à l'évènement
 @endsection
 
 @section('main')

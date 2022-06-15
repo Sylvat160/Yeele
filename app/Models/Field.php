@@ -32,4 +32,8 @@ class Field extends Model
     public function event() {
         return $this->belongsTo(Event::class, 'event_uid');
     }
+
+    public function defaultValues() {
+        return $this->hasMany(FieldDefaultValue::class);
+    }
 }

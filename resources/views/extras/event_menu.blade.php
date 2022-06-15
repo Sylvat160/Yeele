@@ -28,7 +28,7 @@
     </li>
 @else
     <li class="nav-item">
-        <a href="#" class="nav-link" data-event_menu_path="fields">
+        <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
             <i class="fa-solid fa-pen"></i>
             <span>Champs libres</span>
         </a>
