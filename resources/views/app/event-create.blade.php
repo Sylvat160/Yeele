@@ -7,6 +7,7 @@ Nouvel évènement
 @endsection
 
 @section('main')
+    @include('extras.danger_message')
     <div class="row justify-content-center">
         <div class="col-md-7">
             <!-- general form elements -->
@@ -61,7 +62,7 @@ Nouvel évènement
                                         @foreach ($categories as $category)
                                             <option
                                              value="{{ $category->id }}"
-                                             @if (old('category_id') === $category->id)
+                                             @if (old('category_id') == $category->id)
                                                 selected
                                             @endif
                                              >{{ $category->name }}</option>
@@ -81,7 +82,7 @@ Nouvel évènement
                                         <span>Vous pouvez entrer du texte simple ou du code HTML.</span>
                                     </div>
                                     <textarea name="description" id="description" class="form-control" rows="5"
-                                        placeholder="Saisissez la description de votre évènement ici" required>@if ($value = old('description')) $value @endif</textarea>
+                                        placeholder="Saisissez la description de votre évènement ici" required>@if (old('description')) {{old('description')}} @endif</textarea>
                                     @error('description')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -226,7 +227,7 @@ Nouvel évènement
                                         <span class="text-danger">*</span>
                                     </label>
                                     <textarea name="map_html" id="map_html" cols="30" class="form-control" rows="3"
-                                        placeholder="Entrez ici le code HTML copié du lieu de déroulement de votre évènement" required>@if($value = old('map_html')) $value @endif</textarea>
+                                        placeholder="Entrez ici le code HTML copié du lieu de déroulement de votre évènement" required>@if($value = old('map_html')) {{old('map_html')}} @endif</textarea>
                                     @error('map_html')
                                         <span class="text-danger">{{ $message }}</span>
                                     @enderror
@@ -284,7 +285,7 @@ Nouvel évènement
                                     <div class="form-group">
                                         <label for="chosen_form">Type de formulaire</label>
                                         <select name="chosen_form" id="chosen_form" class="form-control" required>
-                                            <option value="">Choisissez le formulaire à utilisé</option>
+                                            <option value="" class="d-none">Choisissez le formulaire à utilisé</option>
                                             <option value="0" @if($value = old('chosen_form') === 0) selected @endif>Formulaire simplifié</option>
                                             <option value="1" @if($value = old('chosen_form') === 1) selected @endif>Formulaire dynamique</option>
                                         </select>
@@ -301,7 +302,7 @@ Nouvel évènement
                                     <select name="type_id" id="type" class="form-control" required>
                                         <option value="" class="d-none">Choisissez le mode de participation</option>
                                         @foreach ($types as $type)
-                                            <option value="{{ $type->id }}" @if(old('type_id') === $type->id) selected @endif>{{ $type->name }}</option>
+                                            <option value="{{ $type->id }}" @if(old('type_id') == $type->id) selected @endif>{{ $type->name }}</option>
                                         @endforeach
                                     </select>
                                     @error('type_id')
@@ -312,7 +313,7 @@ Nouvel évènement
                                     <div class="form-check">
                                         <input class="form-check-input" type="checkbox" name="counter_active"
                                             id="counter_active" value="1">
-                                        <label class="form-check-label" for="counter_active">Afficher le compteur des
+                                        <label class="form-check-label" for="counter_active" checked>Afficher le compteur des
                                             inscriptions</label>
                                     </div>
                                 </div>

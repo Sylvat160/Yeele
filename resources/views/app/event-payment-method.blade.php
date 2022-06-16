@@ -82,8 +82,12 @@
                                 <span>Libellé du mode de paiement</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="name" id="label" class="form-control" placeholder="Ex: Orange money, Sur place"
-                                @if ($value = old('name')) value="{{ $value }}" @endif required>
+                            <select name="name" id="label" class="form-control" required>
+                                <option value="" class="d-none">Sélectionner une méthode de paiement</option>
+                                @foreach ($payment_methods as $method)
+                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
+                                @endforeach
+                            </select>
                             @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -121,9 +125,12 @@
                                 <span>Libellé du mode de paiement</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="name" id="edit_label" class="form-control"
-                                placeholder="Ex: Orange money, simple" required>
-                            @error('label')
+                            <select name="name" id="label" class="form-control" required>
+                                @foreach ($payment_methods as $method)
+                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
+                                @endforeach
+                            </select>
+                            @error('name')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
                         </div>
@@ -182,7 +189,7 @@
                 const label = this.dataset.payment_method
                 const route = this.dataset.route
 
-                $('#edit_label').attr('value', label)
+                $(`option[value="${label}"]`).attr('selected', "true")
                 $('#edit_modal_form').attr('action', route)
                 $('#modal_edit').modal()
             })

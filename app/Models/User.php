@@ -85,6 +85,7 @@ class User extends Authenticatable implements MustVerifyEmail
         $currentCommand = Command::where('user_uid', auth()->user()->uid)
                         ->where('start_date_time', '<=', Carbon::now())
                         ->where('end_date_time', '>=', Carbon::now())
+                        ->where('active', true)
                         ->first();
 
         $customs = [

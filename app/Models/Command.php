@@ -20,6 +20,14 @@ class Command extends Model
         'payment_method_id'
     ];
 
+    protected static function boot()
+    {
+        parent::boot();
+        static::creating(function($command) {
+            if(!$command->uid) $command->uid = Str::uuid();
+        });
+    }
+
     public function user() {
         return $this->belongsTo(User::class, 'user_uid');
     }

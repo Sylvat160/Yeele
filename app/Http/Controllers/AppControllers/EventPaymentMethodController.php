@@ -5,6 +5,7 @@ namespace App\Http\Controllers\AppControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\EventPaymentMethod;
+use App\Models\PaymentMethod;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -20,7 +21,8 @@ class EventPaymentMethodController extends Controller
     {
         $event_menu = true;
         $event = Event::find($event_uid);
-        return view('app.event-payment-method', compact('event_menu', 'event'));
+        $payment_methods = PaymentMethod::all();
+        return view('app.event-payment-method', compact('event_menu', 'event', 'payment_methods'));
     }
 
 

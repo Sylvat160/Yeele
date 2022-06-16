@@ -30,7 +30,8 @@ class CommandController extends Controller
     public function create()
     {
         $payment_methods = PaymentMethod::all();
-        return view('app.command-create', compact('payment_methods'));
+        $plans = Plan::all();
+        return view('app.command-create', compact('payment_methods', 'plans'));
     }
 
     /**
@@ -41,7 +42,56 @@ class CommandController extends Controller
      */
     public function store(Request $request)
     {
-        
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'plan_id' => 'required',
+                'duration' => 'required|integer',
+                'payment_method_id' => 'required'
+            ],
+            [
+                'required' => "Ce champ est obligatoire.",
+                'integer' => "Ce champ doit conténir un entier."
+            ]
+            );
+
+            if($validator->fails()) {
+                return redirect()->back()->withErrors($validator);
+            }
+
+        switch ((int) $request->plan_id) {
+            case 2:
+                $currentCommand = auth()->user()->custom['currentCommand'];
+                if(isset($currentCommand) && $currentCommand->plan_id === 2) {
+                    if($this->new_command($request->except('_token'))) {
+                        return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajouté.");
+                    }
+                } else {
+                    $startDateTime = new Carbon();
+                    $endDateTime = new Carbon($startDateTime);
+                    $endDateTime->addMonths($request->duration);
+
+                    $data = array_merge(
+                        $request->except('_token'),
+                        [
+                            'user_uid' => auth()->user()->uid,
+                            'active' => true,
+                            'start_date_time' => $startDateTime,
+                            'end_date_time' => $endDateTime
+                        ]
+                    );
+
+                    $currentCommand->update(['active' => false]);
+                    Command::create($data);
+                    return redirect()->route('app.home')->with('success', "Vous venez de passer à la formule Gold.");
+                }
+            
+            default:
+                if($this->new_command($request->except('_token'))) {
+                    return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajouté.");
+                }
+                break;
+        }
     }
 
     /**
@@ -97,7 +147,7 @@ class CommandController extends Controller
         $endDateTime = new Carbon($startDateTime);
         $endDateTime->addMonths($request->duration);
         $data = array_merge(
-            $request->except('_token', '_method', 'duration'), 
+            $request->except('_token', '_method'), 
             [
                 'active' => true,
                 'start_date_time' => $startDateTime,
@@ -109,14 +159,30 @@ class CommandController extends Controller
         return redirect()->route('app.home')->with('success', "Votre commande a été mise à jour.");
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    protected function new_command(array $comingData) {
+        $lastCommand = auth()->user()->commands->last();
+        
+        if($lastCommand) {
+            $startDateTime = new Carbon($lastCommand->end_date_time);
+            $endDateTime = new Carbon($startDateTime);
+            $endDateTime->addMonths($comingData['duration']);
+        } else {
+            $startDateTime = new Carbon();
+            $endDateTime = new Carbon($startDateTime);
+            $endDateTime->addMonths($comingData['duration']);
+        }
+
+        $data = array_merge(
+            $comingData,
+            [
+                'user_uid' => auth()->user()->uid,
+                'active' => true,
+                'start_date_time' => $startDateTime,
+                'end_date_time' => $endDateTime
+            ]
+        );
+
+        $command = Command::create($data);
+        return $command ?? false;
     }
 }

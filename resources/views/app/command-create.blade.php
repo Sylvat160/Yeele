@@ -4,30 +4,20 @@
 
 @section('main')
 
-@if (!is_null(Auth::user()->custom['currentCommand']))
-  @if(Auth::user()->custom['currentCommand'] && !Auth::user()->custom['currentCommand']->payment_method_id && Auth::user()->custom['currentCommand']->plan_id !== 1)
+@include('extras.command_status')
 
-  <div class="mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: #ebbd35;">
-    <div>
-      <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">Votre commande n'est pas encore à bout. Veuillez poursuivre!</span>
-    </div>
-    <div>
-      <a href="{{ route('command.edit', "command_en_cours") }}" style="color: #000 !important;">
-        <span>Poursuivre</span>
-        <i class="fa-solid fa-arrow-right"></i>
-      </a>
-    </div>
-  </div>
-
-  @elseif (Auth::user()->custom['currentCommand'])
-    
+@if (isset(Auth::user()->custom['currentCommand']) && Auth::user()->custom['currentCommand']->payment_method_id) 
   <div class="mb-4 p-3 rounded" style="background-color: #ebbd35;">
-      <i class="fa-solid fa-circle-exclamation"></i>
-      <span class="font-weight-bold">La commande que vous vous apprêter à faire ne prendra effet qu'à terme de votre dernière commande!</span>
+      <div>
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span class="font-weight-bold">Si vous commander une formule Gold, elle remplacera automatiquement votre commande actuelle.</span>
+      </div>
+      <div>
+        <i class="fa-solid fa-circle-exclamation"></i>
+        <span class="font-weight-bold">Si vous commander une formule Gold, elle remplacera automatiquement votre commande actuelle.</span>
+      </div>
+      </div>
   </div>
-
-  @endif
 @endif
 
   <div class="row justify-content-center">
@@ -43,13 +33,13 @@
                 <span>Votre formule</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="plan" id="plan" class="form-control" required>
+              <select name="plan_id" id="plan" class="form-control" required>
                 <option class="d-none" selected>Choisissez votre formule</option>
                 @foreach ($plans as $plan)
                   <option value="{{ $plan->id }}" data-price="{{ $plan->price }}">{{ $plan->name }} ({{ $plan->price . ' FCFA' }})</option>
                 @endforeach
               </select>
-              @error('plan')
+              @error('plan_id')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
@@ -80,13 +70,13 @@
                 <span>Mode de paiement</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="payment_method" id="payment_method" class="form-control">
+              <select name="payment_method_id" id="payment_method" class="form-control">
                 <option class="d-none" value="" selected>Choisissez votre mode de paiement</option>
                 @foreach ($payment_methods as $method)
                   <option value="{{ $method->id }}">{{ $method->name }}</option>
                 @endforeach
               </select>
-              @error('payment_method')
+              @error('payment_method_id')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
