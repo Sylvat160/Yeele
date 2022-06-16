@@ -50,7 +50,7 @@
                         <h4 class="font-weight-bold text-center">{{ $event->name }}</h4>
                         <div class="d-md-flex justify-content-between">
                             <div class="d-flex justify-content-center">
-                                <img src="{{ asset("storage/$event->image") }}" width="200" height="350"
+                                <img src="{{ asset("storage/$event->image") }}" width="200" height="330"
                                     alt="{{ $event->name }}">
                             </div>
                             <div class="d-md-flex flex-md-column justify-content-between p-md-3">

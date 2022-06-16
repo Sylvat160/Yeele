@@ -18,7 +18,7 @@
                 <span>Votre formule</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="plan" id="plan" class="form-control" required>
+              <select name="plan_id" id="plan" class="form-control" required>
                 <option class="d-none" selected>Choisissez votre formule</option>
                 @foreach ($plans as $plan)
                   <option
@@ -30,7 +30,7 @@
                    >{{ $plan->name }} ({{ $plan->price . ' FCFA' }})</option>
                 @endforeach
               </select>
-              @error('plan')
+              @error('plan_id')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
@@ -61,13 +61,13 @@
                 <span>Mode de paiement</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="payment_method" id="payment_method" class="form-control" required>
+              <select name="payment_method_id" id="payment_method" class="form-control" required>
                 <option class="d-none" selected>Choisissez votre mode de paiement</option>
                 @foreach ($payment_methods as $method)
                   <option value="{{ $method->id }}">{{ $method->name }}</option>
                 @endforeach
               </select>
-              @error('payment_method')
+              @error('payment_method_id')
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>

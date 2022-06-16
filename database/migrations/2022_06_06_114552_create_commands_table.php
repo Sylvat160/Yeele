@@ -17,6 +17,7 @@ class CreateCommandsTable extends Migration
             $table->id();
             $table->uuid('uid');
             $table->foreignUuid('user_uid')->references('uid')->on('users')->onDelete('CASCADE');
+            $table->boolean('active')->default(true);
             $table->foreignId('plan_id')->nullable()->references('id')->on('plans')->nullOnDelete();
             $table->integer('duration')->nullable();
             $table->datetime('start_date_time')->nullable();

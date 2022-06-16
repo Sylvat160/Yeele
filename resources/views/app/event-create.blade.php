@@ -1,9 +1,9 @@
 @extends('layouts.app-main')
 @section('title')
-    Nouveau évènement
+Nouvel évènement
 @endsection
 @section('bigTitle')
-    Nouveau évènement
+Nouvel évènement
 @endsection
 
 @section('main')

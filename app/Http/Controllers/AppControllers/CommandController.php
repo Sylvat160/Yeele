@@ -9,7 +9,6 @@ use App\Models\Plan;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
-use Illuminate\Support\Str;
 
 class CommandController extends Controller
 {
@@ -30,9 +29,8 @@ class CommandController extends Controller
      */
     public function create()
     {
-        $plans = Plan::all();
         $payment_methods = PaymentMethod::all();
-        return view('app.command-create', compact('plans', 'payment_methods'));
+        return view('app.command-create', compact('payment_methods'));
     }
 
     /**
@@ -43,30 +41,7 @@ class CommandController extends Controller
      */
     public function store(Request $request)
     {
-        $validator = $this->validated($request);
-        if($validator->fails()) return redirect()->back()->withErrors($validator);
-        $lastCommand = auth()->user()->commands->last();
         
-        if($lastCommand) {
-            $startDate_time = new Carbon($lastCommand->end_date_time);
-            $startDate_time->addDay();
-            $endDate_time = new Carbon($startDate_time);
-        } else {
-            $startDate_time = new Carbon();
-            $endDate_time = new Carbon($startDate_time);
-        }
-        $endDate_time->addMonths($request->duration);
-        $command = Command::create([
-            'user_uid' => auth()->user()->uid,
-            'uid' => Str::uuid(),
-            'plan_id' => $request->plan,
-            'duration' => $request->duration,
-            'payment_method_id' => $request->payment_method,
-            'start_date_time' => $startDate_time,
-            'end_date_time' => $endDate_time
-        ]);
-
-        return redirect()->route('app.home')->with('success', "Votre commande a été prise en compte.");
     }
 
     /**
@@ -77,18 +52,18 @@ class CommandController extends Controller
      */
     public function show($id)
     {
-        
+        //
     }
 
     /**
      * Show the form for editing the specified resource.
      *
-     * @param string $command_uid
+     * @param  string  $uid
      * @return \Illuminate\Http\Response
      */
-    public function edit($command_uid)
+    public function edit($uid)
     {
-        $command = Command::where('uid', $command_uid)->first();
+        $command = Command::where('uid', $uid)->first();
         $plans = Plan::all();
         $payment_methods = PaymentMethod::all();
         return view('app.command-edit', compact('command', 'plans', 'payment_methods'));
@@ -98,59 +73,50 @@ class CommandController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  string  $uid
+     * @param string $uid
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $uid)
     {
-        $validator = $this->validated($request);
-        if($validator->failed()) {
-            return redirect()->back()->withErrors($validator);
-        }
-
         $command = Command::where('uid', $uid)->first();
-        $startDate_time = new Carbon($command->start_date);
-        $endDate_time = new Carbon($startDate_time);
-        $endDate_time->addMonths($request->duration);
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'plan_id' => 'required',
+                'duration' => 'required|integer',
+                'payment_method_id' => 'required'
+            ],
+            [
+                'required' => "Ce champ est obligatoire.",
+                'integer' => "Ce champ doit conténir un entier."
+            ]
+            );
+
+        if($validator->fails()) return redirect()->back()->withErrors($validator);
+        $startDateTime = new Carbon();
+        $endDateTime = new Carbon($startDateTime);
+        $endDateTime->addMonths($request->duration);
+        $data = array_merge(
+            $request->except('_token', '_method', 'duration'), 
+            [
+                'active' => true,
+                'start_date_time' => $startDateTime,
+                'end_date_time' => $endDateTime
+            ]
+        );
         
-        $command->update([
-                'plan_id' => $request->plan,
-                'duration' => $request->duration,
-                'payment_method_id' => $request->payment_method,
-                'start_date_time' => $startDate_time,
-                'end_date_time' => $endDate_time
-                ]);
-        return redirect()->route('app.home')->with('success', "Votre commande est à jour!");
+        $command->update($data);
+        return redirect()->route('app.home')->with('success', "Votre commande a été mise à jour.");
     }
 
-    protected function validated(Request $request) {
-        if((int) $request->plan === 1) {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'plan' => 'required',
-                    'duration' => 'required|integer',
-                ],
-                [
-                    'required' => "Ce champ est obligatoire",
-                    'integer' => "Ce champ ne doit avoir pour valeur qu'un nombre."
-                ]
-                );
-        } else {
-            $validator = Validator::make(
-                $request->all(),
-                [
-                    'plan' => 'required',
-                    'duration' => 'required|integer',
-                    'payment_method' => 'required'
-                ],
-                [
-                    'required' => "Ce champ est obligatoire",
-                    'integer' => "Ce champ ne doit avoir pour valeur qu'un nombre."
-                ]
-                );
-        }
-
-        return $validator;
+    /**
+     * Remove the specified resource from storage.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function destroy($id)
+    {
+        //
     }
 }

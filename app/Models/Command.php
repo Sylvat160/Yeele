@@ -11,6 +11,7 @@ class Command extends Model
     use HasFactory;
     protected $fillable = [
         'uid',
+        'active',
         'user_uid', 
         'plan_id', 
         'duration',
