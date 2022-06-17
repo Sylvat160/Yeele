@@ -52,7 +52,16 @@ class FieldController extends Controller
             ['required' => "Ce champ est obligatoire."]
         );
 
-        
+        if($validator->fails()) {
+            return redirect()->back()->with('error', true)->withErrors($validator);
+        }
+
+        $comingData = $request->except('_token');
+        $data = array_filter($comingData, function($input) {
+            return isset($input);
+        });
+
+        Field::create($data);
 
         return redirect()->back()->with('success', "Un champ libre a été ajouté.");
     }

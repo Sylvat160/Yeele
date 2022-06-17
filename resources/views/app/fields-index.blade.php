@@ -37,8 +37,9 @@
                         <td>{{ $event->field->label }}</td>
                         <td>{{ $event->field->name }}</td>
                         <td>{{ $event->field->value1 }}</td>
-                        <td>{{ $event->field->value1 }}</td>
-                        <td>{{ $event->field->value1 }}</td>
+                        <td>{{ $event->field->value2 }}</td>
+                        <td>{{ $event->field->value3 }}</td>
+                        <td>{{ $event->field->value4 }}</td>
                         <td>
                             <button class="btn btn-danger btn_destroy"
                                 data-route="{{ route('field.destroy', $event->field->uid) }}"
@@ -77,7 +78,7 @@
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" name="label" id="label" class="form-control" placeholder="Ex: Age, nombre de place, ..."
-                            @if ($value = old('label')) value="{{ $value }}" @endif required>
+                            @if($value = old('label')) value="{{ $value }}" @endif required>
                         @error('label')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -87,7 +88,7 @@
                             <span>Nom du champ libre</span>
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="name" id="name" class="form-control" placeholder="Entrez le nom du champ" required>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Entrez le nom du champ" @if($value = old('name')) value="{{ $value }}" @endif required>
                         @error('name')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -97,7 +98,7 @@
                             <span>Valeur 1</span>
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="value1" id="value1" class="form-control" placeholder="Entrez la valeur 1" required>
+                        <input type="text" name="value1" id="value1" class="form-control" placeholder="Entrez la valeur 1" @if($value = old('value1')) value="{{ $value }}" @endif required>
                         @error('value1')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
@@ -106,19 +107,19 @@
                         <label for="value2">
                             <span>Valeur 2</span>
                         </label>
-                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2">
+                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2" @if($value = old('value2')) value="{{ $value }}" @endif>
                     </div>
                     <div class="form-group">
                         <label for="value3">
                             <span>Valeur 3</span>
                         </label>
-                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3">
+                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3" @if($value = old('value3')) value="{{ $value }}" @endif>
                     </div>
                     <div class="form-group">
                         <label for="value4">
                             <span>Valeur 4</span>
                         </label>
-                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4">
+                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4" @if($value = old('value4')) value="{{ $value }}" @endif>
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">
@@ -168,7 +169,7 @@
 @endsection
 @section('additional_script')
 <script>
-    @if (Session::get('add_price_error'))
+    @if (Session::get('error'))
         $('#modal_add').modal()
     @endif
 
