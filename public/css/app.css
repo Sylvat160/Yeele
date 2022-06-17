@@ -1283,9 +1283,6 @@ input:checked + .toggle-bg {
 .w-1\/2 {
     width: 50%;
 }
-.w-1 {
-    width: 0.25rem;
-}
 .max-w-sm {
     max-width: 24rem;
 }
@@ -1539,6 +1536,18 @@ input:checked + .toggle-bg {
     --tw-bg-opacity: 1;
     background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
+.bg-green-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(132 225 188 / var(--tw-bg-opacity));
+}
+.bg-yellow-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(250 202 21 / var(--tw-bg-opacity));
+}
+.bg-red-300 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(248 180 180 / var(--tw-bg-opacity));
+}
 .bg-gray-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity));
@@ -1550,10 +1559,6 @@ input:checked + .toggle-bg {
 .bg-gray-100 {
     --tw-bg-opacity: 1;
     background-color: rgb(243 244 246 / var(--tw-bg-opacity));
-}
-.bg-red-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(248 180 180 / var(--tw-bg-opacity));
 }
 .bg-green-500 {
     --tw-bg-opacity: 1;
@@ -1577,38 +1582,6 @@ input:checked + .toggle-bg {
 }
 .bg-white\/50 {
     background-color: rgb(255 255 255 / 0.5);
-}
-.bg-green-500\/50 {
-    background-color: rgb(14 159 110 / 0.5);
-}
-.bg-red-500\/50 {
-    background-color: rgb(240 82 82 / 0.5);
-}
-.bg-yellow-500\/50 {
-    background-color: rgb(194 120 3 / 0.5);
-}
-.bg-orange-500\/50 {
-    background-color: rgb(255 90 31 / 0.5);
-}
-.bg-yellow-500 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(194 120 3 / var(--tw-bg-opacity));
-}
-.bg-yellow-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(99 49 18 / var(--tw-bg-opacity));
-}
-.bg-orange-900 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(119 29 29 / var(--tw-bg-opacity));
-}
-.bg-yellow-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(250 202 21 / var(--tw-bg-opacity));
-}
-.bg-green-300 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(132 225 188 / var(--tw-bg-opacity));
 }
 .bg-opacity-50 {
     --tw-bg-opacity: 0.5;
@@ -1673,6 +1646,10 @@ input:checked + .toggle-bg {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+}
 .py-2\.5 {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
@@ -1692,10 +1669,6 @@ input:checked + .toggle-bg {
 .px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-}
-.px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
 }
 .py-8 {
     padding-top: 2rem;
@@ -1839,6 +1812,10 @@ input:checked + .toggle-bg {
 .text-blue-600 {
     --tw-text-opacity: 1;
     color: rgb(28 100 242 / var(--tw-text-opacity));
+}
+.text-red-300 {
+    --tw-text-opacity: 1;
+    color: rgb(248 180 180 / var(--tw-text-opacity));
 }
 .line-through {
     -webkit-text-decoration-line: line-through;

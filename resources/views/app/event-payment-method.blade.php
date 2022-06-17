@@ -1,4 +1,5 @@
 @extends('layouts.app-main')
+
 @section('title')
     {{ $event->name }}/Mode de paiement à l'évènement
 @endsection
@@ -85,7 +86,7 @@
                             <select name="name" id="label" class="form-control" required>
                                 <option value="" class="d-none">Sélectionner une méthode de paiement</option>
                                 @foreach ($payment_methods as $method)
-                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
+                                <option value="{{ $method->name }}">{{ $method->name }}</option>
                                 @endforeach
                             </select>
                             @error('name')
