@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yeele | Formulaire d'inscription</title>
+    <title>Yeele | Fiche d'inscription</title>
     <link rel="shortcut icon" href="{{ asset('logo.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
@@ -136,12 +136,12 @@
                         <h3 class="text-xl font-semibold text-center">{{ $event->location }}</h3>
                     </div>
                     <div class="w-11/12 mx-auto" style="overflow-x: hidden;">
-                        <?= $event->map_html ?>
+                        <?= $event->map_html; ?>
                     </div>
                 </div>
             </div>
             <div class="my-4">
-                <a href="" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto" style="width: fit-content;">
+                <a href="{{ route('form', $event->uid) }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto" style="width: fit-content;">
                     Je m'inscris
                 </a>
             </div>

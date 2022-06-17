@@ -16,9 +16,12 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->uuid('uid');
             $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
-            $table->enum('type', ['text', 'number', 'select']);
             $table->string('label');
-            $table->string('placeholder');
+            $table->string('name');
+            $table->string('value1');
+            $table->string('value2')->nullable();
+            $table->string('value3')->nullable();
+            $table->string('value4')->nullable();
             $table->timestamps();
         });
     }

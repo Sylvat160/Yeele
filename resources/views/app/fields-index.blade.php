@@ -12,55 +12,47 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Liste des champs libres</h3>
+        @if(!$field)
         <div class="card-tools">
-            <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un champ</button>
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un champ libre</button>
         </div>
+        @endif
     </div>
     <div class="card-body table-responsive p-0">
         <table class="table table-hover text-nowrap">
             <thead>
                 <tr>
                     <th>Libellé</th>
-                    <th>Type</th>
-                    <th>Espace réservé</th>
-                    <th>Valeur(s)</th>
+                    <th>Nom</th>
+                    <th>Valeur 1</th>
+                    <th>Valeur 2</th>
+                    <th>Valeur 3</th>
+                    <th>Valeur 4</th>
                     <th>Suppression</th>
                 </tr>
             </thead>
             <tbody>
-                @forelse($event->fields as $field)
-                    <tr>
-                        <td>{{ $field->label }}</td>
-                        <td>{{ $field->type }}</td>
-                        <td>{{ $field->placeholder }}</td>
-                        <td>
-                            @forelse ($field->defaultValues as $key => $defaultValue)
-                                <span>{{ $defaultValue->value }}</span>
-                                @if($key + 1 < count($field->defaultValues)) , @endif
-                            @empty
-                                Aucune valeur par défaut
-                            @endforelse
-                        </td>
-                        <td>
-                            <button class="btn btn-danger btn_destroy"
-                                data-route="{{ route('field.destroy', $field->uid) }}"
-                                data-field_label="{{ $field->label }}">
-                                <i class="fa-solid fa-trash-can"></i>
-                                <span>Supprimer</span>
-                            </button>
-                        </td>
-                    </tr>
-                @empty
-                    <tr>
-                        <td colspan="6" class="text-center">
-                            Vous n'avez aucun tarif disponible pour cet évènement.
-                        </td>
-                    </tr>
-                @endforelse
+                <tr>
+                    <td>{{ $table->label }}</td>
+                    <td>{{ $field->name }}</td>
+                    <td>{{ $field->value1 }}</td>
+                    <td>{{ $field->value1 }}</td>
+                    <td>{{ $field->value1 }}</td>
+                    <td>
+                        <button class="btn btn-danger btn_destroy"
+                            data-route="{{ route('field.destroy', $field->uid) }}"
+                            data-field_label="{{ $field->name }}">
+                            <i class="fa-solid fa-trash-can"></i>
+                            <span>Supprimer</span>
+                        </button>
+                    </td>
+                </tr>
             </tbody>
         </table>
     </div>
 </div>
+
+@if($field)
 
 {{-- ADD --}}
 
@@ -89,31 +81,37 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="placeholder">
-                            <span>Espace réservé</span>
+                        <label for="name">
+                            <span>Nom du champ libre</span>
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="placeholder" id="placeholder" class="form-control" placeholder="Ex: Entrez votre age" required>
+                        <input type="text" name="name" id="name" class="form-control" placeholder="Entrez le nom du champ" required>
                     </div>
                     <div class="form-group">
-                        <label for="type">
-                            <span>Type du champ libre</span>
+                        <label for="value1">
+                            <span>Valeur 1</span>
                             <span class="text-danger">*</span>
                         </label>
-                        <select name="type" id="type" class="form-control" required>
-                            <option value="" class="d-none">Sélectionner le type du champ</option>
-                            @foreach (
-                            [
-                                'text' => "Champ de type texte",
-                                'number' => "Champ de type nombre",
-                                'select' => "Champ de sélection"
-                            ] as $key => $value
-                            )
-                                <option value="{{ $key }}">{{ $value }}</option>
-                            @endforeach
-                        </select>
+                        <input type="text" name="value1" id="value1" class="form-control" placeholder="Entrez la valeur 1" required>
                     </div>
-                    
+                    <div class="form-group">
+                        <label for="value2">
+                            <span>Valeur 2</span>
+                        </label>
+                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="value3">
+                            <span>Valeur 3</span>
+                        </label>
+                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="value4">
+                            <span>Valeur 4</span>
+                        </label>
+                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4" required>
+                    </div>
                 </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
@@ -125,6 +123,8 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
+
+@endif
 
 {{-- DELETE --}}
 

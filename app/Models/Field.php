@@ -8,12 +8,17 @@ use Illuminate\Support\Str;
 
 class Field extends Model
 {
+
     use HasFactory;
+
     protected $fillable = [
         "event_uid",
         "label",
-        "type",
-        "placeholder"
+        "name",
+        "value1",
+        "value2",
+        "value3",
+        "value4",
     ];
 
     public $incrementing = false;
@@ -31,9 +36,5 @@ class Field extends Model
 
     public function event() {
         return $this->belongsTo(Event::class, 'event_uid');
-    }
-
-    public function defaultValues() {
-        return $this->hasMany(FieldDefaultValue::class);
     }
 }

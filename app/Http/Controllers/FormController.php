@@ -19,6 +19,6 @@ class FormController extends Controller
 
     public function create($event_uid) {
         $event = Event::find($event_uid);
-        return view('forms.simple_show', compact('event'));
+        return view('forms.simple_form', compact('event'));
     }
 }
