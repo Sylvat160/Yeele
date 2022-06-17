@@ -237,19 +237,6 @@
                                         </div>
                                     </div>
                                 </div>
-                                @if (Auth::user()->custom['currentCommand'] && Auth::user()->custom['currentCommand']->plan->id === 2)
-                                    <div class="form-group">
-                                        <label for="chosen_form">Type de formulaire</label>
-                                        <select name="chosen_form" id="chosen_form" class="form-control" required>
-                                            <option value="">Choisissez le formulaire à utilisé</option>
-                                            <option value="0" @if($event->chosen_form === 0) selected @endif>Formulaire simplifié</option>
-                                            <option value="1" @if($event->chosen_form === 1) selected @endif>Formulaire dynamique</option>
-                                        </select>
-                                        @error('chosen_form')
-                                            <span class="text-danger">{{ $message }}</span>
-                                        @enderror
-                                    </div>
-                                @endif
                                 <div class="form-group">
                                     <label for="type">
                                         <span>Déroulement</span>
@@ -294,27 +281,5 @@
     <script src="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
     </script>
     <script src="{{ asset('app_assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-    {{-- <script> 
-        $(function () {
-            $("#start_date_time").datetimepicker({
-                sideBySide: true,
-                defaultDate: "11/1/2013",
-                    disabledDates: [
-                        moment("12/25/2013"),
-                        new Date(2013, 11 - 1, 21),
-                        "11/22/2013 00:53"
-                    ],
-                format: "DD/MM/YYYY HH:mm",
-            });
-            $("#end_date_time").datetimepicker({
-                sideBySide: true,
-                format: "DD/MM/YYYY HH:mm",
-            });
-            $("#signup_end_date_time").datetimepicker({
-                sideBySide: true,
-                format: "DD/MM/YYYY HH:mm",
-            });
-        });
-    </script> --}}
     <script src="{{ asset('js/event-create.js') }}"></script>
 @endsection

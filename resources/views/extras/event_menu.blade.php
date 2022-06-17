@@ -14,7 +14,8 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('event_payment_method.index', $event_uid) }}" class="nav-link" data-event_menu_path="event_payment_method">
+    <a href="{{ route('event_payment_method.index', $event_uid) }}" class="nav-link"
+        data-event_menu_path="event_payment_method">
         <i class="fa-solid fa-credit-card"></i>
         <span>Modes de paiement</span>
     </a>
@@ -26,14 +27,13 @@
             <span>Formulaire</span>
         </a>
     </li>
-@else
-    <li class="nav-item">
-        <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
-            <i class="fa-solid fa-pen"></i>
-            <span>Champs libres</span>
-        </a>
-    </li>
 @endif
+<li class="nav-item">
+    <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
+        <i class="fa-solid fa-pen"></i>
+        <span>Champs libre</span>
+    </a>
+</li>
 <li class="nav-item">
     <a href="#" class="nav-link">
         <i class="fa-solid fa-envelope"></i>

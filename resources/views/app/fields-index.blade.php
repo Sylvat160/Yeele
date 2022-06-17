@@ -12,7 +12,7 @@
 <div class="card">
     <div class="card-header">
         <h3 class="card-title">Liste des champs libres</h3>
-        @if(!$field)
+        @if(!$event->field)
         <div class="card-tools">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un champ libre</button>
         </div>
@@ -32,27 +32,29 @@
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>{{ $table->label }}</td>
-                    <td>{{ $field->name }}</td>
-                    <td>{{ $field->value1 }}</td>
-                    <td>{{ $field->value1 }}</td>
-                    <td>{{ $field->value1 }}</td>
-                    <td>
-                        <button class="btn btn-danger btn_destroy"
-                            data-route="{{ route('field.destroy', $field->uid) }}"
-                            data-field_label="{{ $field->name }}">
-                            <i class="fa-solid fa-trash-can"></i>
-                            <span>Supprimer</span>
-                        </button>
-                    </td>
-                </tr>
+                @if($event->field)
+                    <tr>
+                        <td>{{ $event->field->label }}</td>
+                        <td>{{ $event->field->name }}</td>
+                        <td>{{ $event->field->value1 }}</td>
+                        <td>{{ $event->field->value1 }}</td>
+                        <td>{{ $event->field->value1 }}</td>
+                        <td>
+                            <button class="btn btn-danger btn_destroy"
+                                data-route="{{ route('field.destroy', $event->field->uid) }}"
+                                data-field_label="{{ $event->field->name }}">
+                                <i class="fa-solid fa-trash-can"></i>
+                                <span>Supprimer</span>
+                            </button>
+                        </td>
+                    </tr>
+                @endif
             </tbody>
         </table>
     </div>
 </div>
 
-@if($field)
+@if(!$event->field)
 
 {{-- ADD --}}
 
@@ -86,6 +88,9 @@
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" name="name" id="name" class="form-control" placeholder="Entrez le nom du champ" required>
+                        @error('name')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="value1">
@@ -93,24 +98,27 @@
                             <span class="text-danger">*</span>
                         </label>
                         <input type="text" name="value1" id="value1" class="form-control" placeholder="Entrez la valeur 1" required>
+                        @error('value1')
+                            <span class="text-danger">{{ $message }}</span>
+                        @enderror
                     </div>
                     <div class="form-group">
                         <label for="value2">
                             <span>Valeur 2</span>
                         </label>
-                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2" required>
+                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2">
                     </div>
                     <div class="form-group">
                         <label for="value3">
                             <span>Valeur 3</span>
                         </label>
-                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3" required>
+                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3">
                     </div>
                     <div class="form-group">
                         <label for="value4">
                             <span>Valeur 4</span>
                         </label>
-                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4" required>
+                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4">
                     </div>
                 </div>
                 <div class="modal-footer justify-content-between">

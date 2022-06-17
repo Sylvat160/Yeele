@@ -46,31 +46,13 @@ class FieldController extends Controller
             $request->all(),
             [
                 'label' => 'required',
-                'type' => 'required'
+                'name' => 'required',
+                'value1' => 'required'
             ],
             ['required' => "Ce champ est obligatoire."]
         );
 
-        if($validator->fails()) {
-            return redirect()->back()->withErrors($validator);
-        }
-
-        $field = Field::create($request->except('_token', 'value'));
-
-        if(stristr($request->value, '[')) {
-            $values = json_decode($request->value, true);
-            foreach ($values as $value) {
-                FieldDefaultValue::create([
-                    'field_uid' => $field->uid,
-                    'value' => $value
-                ]);
-            }
-        } else if($request->value != null) {
-            FieldDefaultValue::create([
-                'field_uid' => $field->uid,
-                    'value' => $request->value
-            ]);
-        }
+        
 
         return redirect()->back()->with('success', "Un champ libre a été ajouté.");
     }
