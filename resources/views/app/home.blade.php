@@ -45,12 +45,12 @@
       <!-- small box -->
       <div class="small-box bg-danger">
         <div class="inner">
-          <h3>65</h3>
+          <h3>{{ Auth::user()->commands->count() }}</h3>
 
-          <p>Clicks des liens</p>
+          <p>Total de vos commandes</p>
         </div>
         <div class="icon">
-          <i class="ion ion-pie-graph"></i>
+          <i class="fas fa-briefcase"></i>
         </div>
         <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
       </div>

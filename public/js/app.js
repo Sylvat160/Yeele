@@ -13,19 +13,41 @@ var show_menu_btn = document.getElementById('show_menu_btn');
 var close_menu_btn = document.getElementById('close_menu_btn');
 var mobile_menu = document.getElementById('mobile_menu');
 var copyBtn = document.querySelector('#copy_btn');
+var timer_container = document.getElementById('timer_container');
 
 var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
 
-if (copyBtn) new clipboardJS(copyBtn);
+function checkIfExistAndApplyListener(element, event, callback) {
+  if (element) element.addEventListener(event, callback);
+}
+
 checkIfExistAndApplyListener(show_menu_btn, 'click', function (_) {
   mobile_menu.classList.remove('hidden');
 });
 checkIfExistAndApplyListener(close_menu_btn, 'click', function (_) {
   mobile_menu.classList.add('hidden');
 });
+if (copyBtn) new clipboardJS(copyBtn);
 
-function checkIfExistAndApplyListener(element, event, callback) {
-  if (element) element.addEventListener(event, callback);
+if (timer_container) {
+  var datetimePlaceholder = document.getElementById('datetime_placeholder');
+  var startDateTime = new Date(timer_container.dataset.start_datetime);
+  setInterval(function () {
+    var dateTime;
+    var now = new Date().getTime();
+    var timestamp = startDateTime - now;
+    if (timestamp === 0) clearInterval();
+    var days = Math.floor(timestamp / (1000 * 60 * 60 * 24));
+    var hours = Math.floor(timestamp % (1000 * 60 * 60 * 24) / (1000 * 60 * 60));
+    var minutes = Math.floor(timestamp % (1000 * 60 * 60) / (1000 * 60));
+    var seconds = Math.floor(timestamp % (1000 * 60) / 1000);
+    if (days === 0 && hours === 0) dateTime = "".concat(minutes, " minutes : ").concat(seconds, " s\xE9condes");else if (days === 0 && hours !== 0) {
+      dateTime = "".concat(hours, " heure(s) : ").concat(minutes, " minute(s) : ").concat(seconds, " s\xE9conde(s)");
+    } else {
+      dateTime = "".concat(days, " jour(s) ").concat(hours, " heure(s) : ").concat(minutes, " minute(s) : ").concat(seconds, " s\xE9conde(s)");
+    }
+    datetimePlaceholder.innerText = dateTime;
+  });
 }
 
 /***/ }),

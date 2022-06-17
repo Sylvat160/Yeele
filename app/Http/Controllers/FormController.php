@@ -14,6 +14,11 @@ class FormController extends Controller
 
     public function index($event_uid) {
         $event = Event::find($event_uid);
-        return view('forms.simple', compact('event'));
+        return view('forms.simple_show', compact('event'));
+    }
+
+    public function create($event_uid) {
+        $event = Event::find($event_uid);
+        return view('forms.simple_show', compact('event'));
     }
 }

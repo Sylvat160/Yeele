@@ -70,4 +70,8 @@ class Event extends Model
     public function fields() {
         return $this->hasMany(Field::class);
     }
+
+    public function participants() {
+        return $this->hasMany(Participant::class);
+    }
 }

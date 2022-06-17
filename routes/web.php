@@ -55,4 +55,5 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
 
 //PARTICIPANT REGISTRATION ROUTES
 
-Route::get('/formulaire/{event_uid}', [FormController::class, 'index'])->name('form');
+Route::get('fiche_inscription/{event_uid}', [FormController::class, 'index'])->name('show_event_form');
+Route::get('formulaire/{event_uid}', [FormController::class, 'create'])->name('form');

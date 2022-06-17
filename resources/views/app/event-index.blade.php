@@ -24,7 +24,7 @@
                                 aria-haspopup="true" aria-expanded="true" style="height: 40px;">
                                 <i class="fa-solid fa-ellipsis-vertical"></i>
                             </button>
-                            <ul class="dropdown-menu p-2" aria-labelledby="event_menu" style="width: 210px !important;">
+                            <ul class="dropdown-menu dropdown-menu-right p-2" aria-labelledby="event_menu" style="width: 210px !important;">
                                 <li>
                                     <a href="{{ route('event.edit', $event->uid) }}" class="text-dark">
                                         <i class="fa-solid fa-pen-to-square"></i>
@@ -38,7 +38,7 @@
                                     </a>
                                 </li>
                                 <li>
-                                    <a href="{{ route('form', $event->uid) }}" target="_blank" class="text-dark">
+                                    <a href="{{ route('show_event_form', $event->uid) }}" target="_blank" class="text-dark">
                                         <i class="fa-solid fa-eye"></i>
                                         <span>Aperçu du formulaire</span>
                                     </a>
