@@ -140,11 +140,13 @@
                     </div>
                 </div>
             </div>
+            @if(now() < $event->signup_date_time)
             <div class="my-4">
                 <a href="{{ route('form', $event->uid) }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto" style="width: fit-content;">
                     Je m'inscris
                 </a>
             </div>
+            @endif
         </div>
     </div>
 

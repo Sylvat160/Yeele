@@ -30,10 +30,12 @@
                     </label>
                     <input type="text" name="lastname" id="lastname"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: Traoré, Diallo" @if($value = old('lastname')) value="{{ $value }}" @endif required>
-                        @error('lastname')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
+                        placeholder="ex: Traoré, Diallo"
+                        @if ($value = old('lastname')) value="{{ $value }}" @endif required>
+                    @error('lastname')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="firstname" class="block mb-2 text-sm font-semibold text-gray-900">
@@ -42,22 +44,26 @@
                     </label>
                     <input type="text" name="firstname" id="firstname"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: Samuel, Issouf" @if($value = old('firstname')) value="{{ $value }}" @endif required>
-                        @error('firstname')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
+                        placeholder="ex: Samuel, Issouf"
+                        @if ($value = old('firstname')) value="{{ $value }}" @endif required>
+                    @error('firstname')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="email" class="block mb-2 text-sm font-semibold text-gray-900">
                         <span>Adresse e-mail</span>
-                        <span class="text-red-600">*</span> 
+                        <span class="text-red-600">*</span>
                     </label>
                     <input type="email" name="email" id="email"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: exemple@gmail.com" @if($value = old('email')) value="{{ $value }}" @endif required>
-                        @error('email')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
+                        placeholder="ex: exemple@gmail.com"
+                        @if ($value = old('email')) value="{{ $value }}" @endif required>
+                    @error('email')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</p>
+                    @enderror
                 </div>
                 <div class="mb-3">
                     <label for="civility" class="block mb-2 text-sm font-semibold text-gray-900">
@@ -73,7 +79,8 @@
                         <option value="Mademoiselle">Mademoiselle</option>
                     </select>
                     @error('civility')
-                    <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</p>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -83,12 +90,14 @@
                     </label>
                     <input type="number" name="phone" id="phone"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: (+226) XXXXXXXX" @if($value = old('phone')) value="{{ $value }}" @endif required>
-                        @error('phone')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
-                        @enderror
+                        placeholder="ex: (+226) XXXXXXXX"
+                        @if ($value = old('phone')) value="{{ $value }}" @endif required>
+                    @error('phone')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</p>
+                    @enderror
                 </div>
-                @if($event->eventPrices->count())
+                @if ($event->eventPrices->count())
                     <div class="mb-3">
                         <label for="price" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Tarif</span>
@@ -99,11 +108,13 @@
                             required>
                             <option class="hidden">Selectionner un tarif</option>
                             @foreach ($event->eventPrices as $price)
-                                <option value="{{ $price->value }}">{{ $price->label }} ({{ $price->value }} FCFA)</option>
+                                <option value="{{ $price->value }}">{{ $price->label }} ({{ $price->value }}
+                                    FCFA)</option>
                             @endforeach
                         </select>
                         @error('price')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                    class="font-medium">{{ $message }}</p>
                         @enderror
                     </div>
                     <div class="mb-3">
@@ -120,9 +131,20 @@
                             @endforeach
                         </select>
                         @error('price')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
+                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                    class="font-medium">{{ $message }}</p>
                         @enderror
                     </div>
+                    @if (now() < $event->signup_date_time)
+                        <div class="my-4">
+                            <button
+                                type="submit"
+                                class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
+                                style="width: fit-content;">
+                                Je m'inscris
+                        </button>
+                        </div>
+                    @endif
                 @endif
             </div>
         </div>
