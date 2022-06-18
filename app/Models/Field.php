@@ -14,10 +14,7 @@ class Field extends Model
     protected $fillable = [
         "event_uid",
         "name",
-        "value1",
-        "value2",
-        "value3",
-        "value4",
+        "value"
     ];
 
     public $incrementing = false;

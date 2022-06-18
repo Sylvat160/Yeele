@@ -46,7 +46,7 @@ class FieldController extends Controller
             $request->all(),
             [
                 'name' => 'required',
-                'value1' => 'required'
+                'value' => 'required'
             ],
             ['required' => "Ce champ est obligatoire."]
         );
@@ -55,14 +55,9 @@ class FieldController extends Controller
             return redirect()->back()->with('error', true)->withErrors($validator);
         }
 
-        $comingData = $request->except('_token');
-        $data = array_filter($comingData, function($input) {
-            return isset($input);
-        });
+        Field::create($request->except('_token'));
 
-        Field::create($data);
-
-        return redirect()->back()->with('success', "Un champ libre a été ajouté.");
+        return redirect()->back()->with('success', "Une valeur du champ libre a été ajoutée.");
     }
 
     /**
@@ -74,6 +69,6 @@ class FieldController extends Controller
     public function destroy($uid)
     {
         Field::destroy($uid);
-        return redirect()->back()->with('success', "Un champ libre a été supprimé.");
+        return redirect()->back()->with('success', "Une valeur du champ libre a été supprimée.");
     }
 }

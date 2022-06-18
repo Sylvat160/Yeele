@@ -57,3 +57,5 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
 
 Route::get('fiche_inscription/{event_uid}', [FormController::class, 'index'])->name('show_event_form');
 Route::get('formulaire/{event_uid}', [FormController::class, 'create'])->name('form');
+Route::post('soumettre', [FormController::class, 'register'])->name('submit_form');
+Route::get('inscription_de_participant_reussi', [FormController::class, 'registering_end'])->name('registering_end');

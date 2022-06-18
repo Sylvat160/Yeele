@@ -15,6 +15,16 @@ class CreateParticipantsTable extends Migration
     {
         Schema::create('participants', function (Blueprint $table) {
             $table->id();
+            $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
+            $table->string('firstname');
+            $table->string('lastname');
+            $table->string('email');
+            $table->integer('phone');
+            $table->string('civility');
+            $table->integer('price')->nullable();
+            $table->string('payment_method')->nullable();
+            $table->foreignUuid('field_uid')->nullable()->on('fields')->nullOnDelete();
+            $table->longText('additional_data')->nullable();
             $table->timestamps();
         });
     }

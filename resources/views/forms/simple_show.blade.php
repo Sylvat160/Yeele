@@ -25,14 +25,19 @@
                     alt="{{ $event->name }}" class="mx-auto">
             </div>
             <div class="border-b">
+                @if ($event->participants->count())
                 <div class="w-full py-4 text-center">
-                    <h1 class="text-xl text-center font-semibold">Il n'existe aucun participant inscrit pour l'instant.
+                    <h1 class="text-xl text-center font-semibold">
+                        <span>{{ $event->participants->count() }}</span>
+                        <span> participant(s) inscrits.</span>
                     </h1>
                 </div>
-                {{-- @if ($event->participants->count() === 0)
                 @else
-
-                @endif --}}
+                    <div class="w-full py-4 text-center">
+                        <h1 class="text-xl text-center font-semibold">Il n'existe aucun participant inscrit pour l'instant.
+                        </h1>
+                    </div>
+                @endif
             </div>
             <div class="border-b">
                 <div class="py-4">

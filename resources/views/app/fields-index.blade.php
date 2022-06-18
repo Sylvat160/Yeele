@@ -21,10 +21,7 @@
             <thead>
                 <tr>
                     <th>Nom</th>
-                    <th>Valeur 1</th>
-                    <th>Valeur 2</th>
-                    <th>Valeur 3</th>
-                    <th>Valeur 4</th>
+                    <th>Valeur</th>
                     <th>Suppression</th>
                 </tr>
             </thead>
@@ -32,24 +29,51 @@
                 @forelse ($event->fields as $field)
                     <tr>
                         <td>{{ $field->name }}</td>
-                        <td>{{ $field->value1 }}</td>
-                        <td>{{ $field->value2 }}</td>
-                        <td>{{ $field->value3 }}</td>
-                        <td>{{ $field->value4 }}</td>
+                        <td>{{ $field->value }}</td>
                         <td>
                             <button class="btn btn-danger btn_destroy"
-                                data-route="{{ route('field.destroy', $field->uid) }}"
-                                data-field_label="{{ $field->name }}">
+                                data-route="{{ route('field.destroy', $field->uid) }}">
                                 <i class="fa-solid fa-trash-can"></i>
                                 <span>Supprimer</span>
                             </button>
                         </td>
                     </tr>
                 @empty
-                    
+                    <tr>
+                        <td colspan="3">Vous n'avez aucune valeur pour le champ libre</td>
+                    </tr>
                 @endforelse
             </tbody>
         </table>
+    </div>
+    <div class="modal fade" id="modal_destroy" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Suppression d'une valeur du champ libre</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="" method="post" id="destroy_modal_form">
+                    <div class="modal-body">
+                        @csrf
+                        @method('DELETE')
+                        <div class="text-danger">
+                            <h1>Attention!</h1>
+                            <p>Vous êtes sur le point de supprimer une des valeurs du champ libre. Cette action
+                                est irréversible. Êtes vous sûr de vouloir continuer?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                        <button type="submit" class="btn btn-danger modal_form_submit_btn">Oui</button>
+                    </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
     </div>
 </div>
 
@@ -79,34 +103,15 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label for="value1">
-                            <span>Valeur 1</span>
+                        <label for="value">
+                            <span>Valeur</span>
                             <span class="text-danger">*</span>
                         </label>
-                        <input type="text" name="value1" id="value1" class="form-control" placeholder="Entrez la valeur 1" @if($value = old('value1')) value="{{ $value }}" @endif required>
-                        @error('value1')
+                        <input type="text" name="value" id="value" class="form-control" placeholder="Entrez une valeur" @if($value = old('value')) value="{{ $value }}" @endif required>
+                        @error('value')
                             <span class="text-danger">{{ $message }}</span>
                         @enderror
                     </div>
-                    <div class="form-group">
-                        <label for="value2">
-                            <span>Valeur 2</span>
-                        </label>
-                        <input type="text" name="value2" id="value2" class="form-control" placeholder="Entrez la valeur 2" @if($value = old('value2')) value="{{ $value }}" @endif>
-                    </div>
-                    <div class="form-group">
-                        <label for="value3">
-                            <span>Valeur 3</span>
-                        </label>
-                        <input type="text" name="value3" id="value3" class="form-control" placeholder="Entrez la valeur 3" @if($value = old('value3')) value="{{ $value }}" @endif>
-                    </div>
-                    <div class="form-group">
-                        <label for="value4">
-                            <span>Valeur 4</span>
-                        </label>
-                        <input type="text" name="value4" id="value4" class="form-control" placeholder="Entrez la valeur 4" @if($value = old('value4')) value="{{ $value }}" @endif>
-                    </div>
-                </div>
                 <div class="modal-footer justify-content-between">
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fermer</button>
                     <button type="submit" class="btn btn-danger modal_form_submit_btn">Ajouter</button>
@@ -118,37 +123,8 @@
     <!-- /.modal-dialog -->
 </div>
 
-{{-- DELETE --}}
 
-<div class="modal fade" id="modal_destroy" aria-hidden="true" style="display: none;">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h4 class="modal-title">Suppression du champ libre</h4>
-                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">×</span>
-                </button>
-            </div>
-            <form action="" method="post" id="destroy_modal_form">
-                <div class="modal-body">
-                    @csrf
-                    @method('DELETE')
-                    <div class="text-danger">
-                        <h1>Attention!</h1>
-                        <p>Vous êtes sur le point de supprimer le champ libre "<strong id="destroy_field_label"></strong>". Cette action
-                            est irréversible. Êtes vous sûr de vouloir continuer?</p>
-                    </div>
-                </div>
-                <div class="modal-footer justify-content-between">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
-                    <button type="submit" class="btn btn-danger modal_form_submit_btn">Oui</button>
-                </div>
-        </div>
-        </form>
-        <!-- /.modal-content -->
-    </div>
-    <!-- /.modal-dialog -->
-</div>
+{{-- DELETE --}}
 @endsection
 @section('additional_script')
 <script>
@@ -159,10 +135,8 @@
     $('.btn_destroy').each(function() {
         $(this).on('click', function() {
             $('#destroy_modal_form').attr('action', this.dataset.route)
-            $('#destroy_field_label').html(this.dataset.field_label)
             $('#modal_destroy').modal()
         })
     })
 </script>
-<script src="{{ asset('js/field.js') }}"></script>
 @endsection

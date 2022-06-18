@@ -17,10 +17,7 @@ class CreateFieldsTable extends Migration
             $table->uuid('uid');
             $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
             $table->string('name');
-            $table->string('value1');
-            $table->string('value2')->nullable();
-            $table->string('value3')->nullable();
-            $table->string('value4')->nullable();
+            $table->string('value');
             $table->timestamps();
         });
     }

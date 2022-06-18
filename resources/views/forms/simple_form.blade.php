@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -22,7 +22,9 @@
             <div class="p-4 border-b text-center font-semibold">
                 <h1>INSCRIPTION</h1>
             </div>
-            <div class="px-4 py-8">
+            <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST">
+                @csrf
+                <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <div class="mb-3">
                     <label for="lastname" class="block mb-2 text-sm font-semibold text-gray-900">
                         <span>Nom</span>
@@ -66,6 +68,20 @@
                     @enderror
                 </div>
                 <div class="mb-3">
+                    <label for="phone" class="block mb-2 text-sm font-semibold text-gray-900">
+                        <span>Téléphone</span>
+                        <span class="text-red-600">*</span>
+                    </label>
+                    <input type="number" name="phone" id="phone"
+                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                        placeholder="ex: (+226) XXXXXXXX"
+                        @if ($value = old('phone')) value="{{ $value }}" @endif required>
+                    @error('phone')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="civility" class="block mb-2 text-sm font-semibold text-gray-900">
                         <span>Civilité</span>
                         <span class="text-red-600">*</span>
@@ -83,27 +99,14 @@
                                 class="font-medium">{{ $message }}</p>
                     @enderror
                 </div>
-                <div class="mb-3">
-                    <label for="phone" class="block mb-2 text-sm font-semibold text-gray-900">
-                        <span>Téléphone</span>
-                        <span class="text-red-600">*</span>
-                    </label>
-                    <input type="number" name="phone" id="phone"
-                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: (+226) XXXXXXXX"
-                        @if ($value = old('phone')) value="{{ $value }}" @endif required>
-                    @error('phone')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                class="font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
-                @if ($event->eventPrices->count())
+
+                @if($event->eventPrices->count())
                     <div class="mb-3">
                         <label for="price" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Tarif</span>
                             <span class="text-red-600">*</span>
                         </label>
-                        <select name="civility" id="civility"
+                        <select name="price" id="price"
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                             required>
                             <option class="hidden">Selectionner un tarif</option>
@@ -112,17 +115,13 @@
                                     FCFA)</option>
                             @endforeach
                         </select>
-                        @error('price')
-                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                    class="font-medium">{{ $message }}</p>
-                        @enderror
                     </div>
                     <div class="mb-3">
-                        <label for="paymentMethod" class="block mb-2 text-sm font-semibold text-gray-900">
+                        <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Mode de paiement</span>
                             <span class="text-red-600">*</span>
                         </label>
-                        <select name="paymentMethod" id="paymentMethod"
+                        <select name="payment_method" id="payment_method"
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                             required>
                             <option class="hidden">Selectionner un mode de paiement</option>
@@ -130,23 +129,37 @@
                                 <option value="{{ $method->name }}">{{ $method->name }}</option>
                             @endforeach
                         </select>
-                        @error('price')
-                            <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                    class="font-medium">{{ $message }}</p>
-                        @enderror
                     </div>
-                    @if (now() < $event->signup_date_time)
-                        <div class="my-4">
-                            <button
-                                type="submit"
-                                class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
-                                style="width: fit-content;">
-                                Je m'inscris
-                        </button>
-                        </div>
-                    @endif
                 @endif
-            </div>
+
+                @if($event->fields->count())
+                    <div>
+                        <label for="field_uid" class="block mb-2 text-sm font-semibold text-gray-900">
+                            <span>Chosissez dans la liste</span>
+                            <span class="text-red-600">*</span>
+                        </label>
+                        <select name="field_uid" id="field_uid"
+                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                            required>
+                            <option class="hidden">Choisissez une valeur du champ libre</option>
+                            @foreach ($event->fields as $field)
+                                <option value="{{ $field->uid }}">{{ $field->name }} : {{ $field->value }}
+                                </option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
+
+                @if (now() < new DateTime($event->signup_date_time))
+                    <div class="mt-8">
+                        <button type="submit"
+                            class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
+                            style="width: fit-content;">
+                            Soumettre
+                        </button>
+                    </div>
+                @endif
+            </form>
         </div>
     </div>
 
