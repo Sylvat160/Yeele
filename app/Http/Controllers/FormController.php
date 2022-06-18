@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\ParticipantRegisteringMailJob;
 use App\Models\Event;
 use App\Models\Participant;
 use Illuminate\Http\Request;
@@ -31,25 +32,35 @@ class FormController extends Controller
                 'event_uid' => 'required',
                 'firstname' => 'required',
                 'lastname' => 'required',
-                'email' => 'required|email|unique:participants,email',
-                'phone' => 'required|unique:participants,phone',
+                'email' => 'required',
+                'phone' => 'required',
                 'civility' => 'required',
             ],
             [
                 'required' => "Ce champ est obligatoire.",
                 'email' => "Vous devez renseigner une adresse mail.",
-                'email.unique' => "Il existe déjà un participant inscrit avec ce email.",
-                'phone.unique' => "Il existe déjà un participant inscrit avec ce numéro de téléphone.",
             ]
             );
 
+            $participantWithEmailExist = Participant::where('event_uid', $request)
+                                        ->where('email', $request->email)
+                                        ->first();
+            $participantWithPhoneExist = Participant::where('event_uid', $request)
+                                        ->where('phone', $request->phone)
+                                        ->first();
+
             if($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
+            } else if($participantWithEmailExist) {
+                return redirect()->back()->with('error', "il existe dejà un participant inscrit l'email entré.");
+            } else if($participantWithPhoneExist) {
+                return redirect()->back()->with('error', "il existe dejà un participant inscrit le numéro de téléphone entré.");
             }
         
             $participant = Participant::create($request->except('_token'));
-            
-            return redirect()->route('registering_end');
+            $event = Event::find($participant->event_uid);
+            dispatch(new ParticipantRegisteringMailJob($participant));
+            return redirect()->route('registering_end')->with('event', $event->name);
     }
 
     public function registering_end() {

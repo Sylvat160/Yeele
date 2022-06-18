@@ -24,4 +24,8 @@ class Participant extends Model
     public function events() {
         return $this->belongsTo(Event::class);
     }
+
+    public function field() {
+        return $this->belongsTo(Field::class);
+    }
 }

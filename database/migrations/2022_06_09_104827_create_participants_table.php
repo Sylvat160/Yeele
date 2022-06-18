@@ -19,7 +19,7 @@ class CreateParticipantsTable extends Migration
             $table->string('firstname');
             $table->string('lastname');
             $table->string('email');
-            $table->integer('phone');
+            $table->bigInteger('phone');
             $table->string('civility');
             $table->integer('price')->nullable();
             $table->string('payment_method')->nullable();

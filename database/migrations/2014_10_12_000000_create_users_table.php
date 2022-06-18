@@ -20,7 +20,7 @@ class CreateUsersTable extends Migration
             $table->string('lastname');
             $table->enum('gender', ['Masculin', 'Féminin'])->nullable();
             $table->string('email')->unique();
-            $table->integer('phone')->unique();
+            $table->bigInteger('phone')->unique();
             $table->string('organization')->nullable();
             $table->boolean('is_authorized')->default(false);
             $table->timestamp('email_verified_at')->nullable();

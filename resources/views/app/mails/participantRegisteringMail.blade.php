@@ -7,22 +7,17 @@
     <title>Mail d'inscription du participant</title>
 </head>
 <body>
-    <table>
-        <thead>
-            <th>Nom</th>
-            <th>Prénom</th>
-            <th>Email</th>
-            <th>Téléphone</th>
-            <th>Civilité</th>
+    <table style="border: .5px solid #ddd;">
+        <thead style="background: #eee;">
+            <th colspan="2">Vos information d'inscription</th>
         </thead>
         <tbody>
-            <tr>
-                <td>{{ $participant->lastname }}</td>
-                <td>{{ $participant->firstname }}</td>
-                <td>{{ $participant->email }}</td>
-                <td>{{ $participant->phone }}</td>
-                <td>{{ $participant->civility }}</td>
-            </tr>
+            @foreach ($participant as $key => $value)
+                <tr>
+                    <td>{{ $key }}</td>
+                    <td>{{ $value }}</td>
+                </tr>
+            @endforeach
         </tbody>
     </table>
 </body>
