@@ -1536,6 +1536,10 @@ input:checked + .toggle-bg {
     --tw-bg-opacity: 1;
     background-color: rgb(241 245 249 / var(--tw-bg-opacity));
 }
+.bg-gray-50 {
+    --tw-bg-opacity: 1;
+    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
+}
 .bg-green-300 {
     --tw-bg-opacity: 1;
     background-color: rgb(132 225 188 / var(--tw-bg-opacity));
@@ -1551,10 +1555,6 @@ input:checked + .toggle-bg {
 .bg-gray-900 {
     --tw-bg-opacity: 1;
     background-color: rgb(17 24 39 / var(--tw-bg-opacity));
-}
-.bg-gray-50 {
-    --tw-bg-opacity: 1;
-    background-color: rgb(249 250 251 / var(--tw-bg-opacity));
 }
 .bg-gray-100 {
     --tw-bg-opacity: 1;
@@ -1646,13 +1646,17 @@ input:checked + .toggle-bg {
     padding-top: 1rem;
     padding-bottom: 1rem;
 }
-.px-10 {
-    padding-left: 2.5rem;
-    padding-right: 2.5rem;
+.py-8 {
+    padding-top: 2rem;
+    padding-bottom: 2rem;
 }
 .py-2\.5 {
     padding-top: 0.625rem;
     padding-bottom: 0.625rem;
+}
+.px-10 {
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
 }
 .px-3 {
     padding-left: 0.75rem;
@@ -1669,10 +1673,6 @@ input:checked + .toggle-bg {
 .px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
-}
-.py-8 {
-    padding-top: 2rem;
-    padding-bottom: 2rem;
 }
 .pt-4 {
     padding-top: 1rem;
@@ -1785,6 +1785,10 @@ input:checked + .toggle-bg {
     --tw-text-opacity: 1;
     color: rgb(15 23 42 / var(--tw-text-opacity));
 }
+.text-red-600 {
+    --tw-text-opacity: 1;
+    color: rgb(224 36 36 / var(--tw-text-opacity));
+}
 .text-green-500 {
     --tw-text-opacity: 1;
     color: rgb(14 159 110 / var(--tw-text-opacity));
@@ -1805,17 +1809,9 @@ input:checked + .toggle-bg {
     --tw-text-opacity: 1;
     color: rgb(4 108 78 / var(--tw-text-opacity));
 }
-.text-red-600 {
-    --tw-text-opacity: 1;
-    color: rgb(224 36 36 / var(--tw-text-opacity));
-}
 .text-blue-600 {
     --tw-text-opacity: 1;
     color: rgb(28 100 242 / var(--tw-text-opacity));
-}
-.text-red-300 {
-    --tw-text-opacity: 1;
-    color: rgb(248 180 180 / var(--tw-text-opacity));
 }
 .line-through {
     -webkit-text-decoration-line: line-through;
@@ -2092,6 +2088,10 @@ input:checked + .toggle-bg {
     --tw-text-opacity: 1;
     color: rgb(203 213 225 / var(--tw-text-opacity));
 }
+.dark .dark\:text-red-500 {
+    --tw-text-opacity: 1;
+    color: rgb(240 82 82 / var(--tw-text-opacity));
+}
 .dark .dark\:text-gray-300 {
     --tw-text-opacity: 1;
     color: rgb(209 213 219 / var(--tw-text-opacity));
@@ -2103,10 +2103,6 @@ input:checked + .toggle-bg {
 .dark .dark\:text-red-600 {
     --tw-text-opacity: 1;
     color: rgb(224 36 36 / var(--tw-text-opacity));
-}
-.dark .dark\:text-red-500 {
-    --tw-text-opacity: 1;
-    color: rgb(240 82 82 / var(--tw-text-opacity));
 }
 .dark .dark\:text-white {
     --tw-text-opacity: 1;

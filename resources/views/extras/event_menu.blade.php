@@ -31,7 +31,7 @@
 <li class="nav-item">
     <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
         <i class="fa-solid fa-pen"></i>
-        <span>Champs libre</span>
+        <span>Champ libre</span>
     </a>
 </li>
 <li class="nav-item">

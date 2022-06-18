@@ -16,7 +16,6 @@ class CreateFieldsTable extends Migration
         Schema::create('fields', function (Blueprint $table) {
             $table->uuid('uid');
             $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
-            $table->string('label');
             $table->string('name');
             $table->string('value1');
             $table->string('value2')->nullable();

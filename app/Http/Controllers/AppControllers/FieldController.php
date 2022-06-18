@@ -45,7 +45,6 @@ class FieldController extends Controller
         $validator = Validator::make(
             $request->all(),
             [
-                'label' => 'required',
                 'name' => 'required',
                 'value1' => 'required'
             ],

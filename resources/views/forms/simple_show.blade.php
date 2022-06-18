@@ -26,7 +26,7 @@
             </div>
             <div class="border-b">
                 <div class="w-full py-4 text-center">
-                    <h1 class="text-xl text-center font-semibold">Vous n'avez aucun particpant inscrit pour l'instant.
+                    <h1 class="text-xl text-center font-semibold">Il n'existe aucun participant inscrit pour l'instant.
                     </h1>
                 </div>
                 {{-- @if ($event->participants->count() === 0)
@@ -47,13 +47,13 @@
                     <h1 class="text-2xl font-semibold text-center">DATES</h1>
                 </div>
                 <div class="py-2 mx-auto" style="width: fit-content;">
-                    @if (now() < $event->start_date_time)
+                    @if (now() < new DateTime($event->start_date_time))
                         <div class="px-10 py-3 bg-green-300 text-center rounded" style="color: #000 !important"
                             id="timer_container" data-start_datetime="{{ $event->start_date_time }}">
                             <span>L'évènement débute dans: </span>
                             <p class="font-semibold" id="datetime_placeholder"></p>
                         </div>
-                    @elseif(now() > $event->start_date_time && now() < $event->end_date_time)
+                    @elseif(now() > new DateTime($event->start_date_time) && now() < new DateTime($event->end_date_time))
                         <div class="px-10 py-3 bg-yellow-300 rounded" style="color: #000 !important">
                             L'évènement est en cours!
                         </div>
@@ -140,7 +140,7 @@
                     </div>
                 </div>
             </div>
-            @if(now() < $event->signup_date_time)
+            @if(now() < new DateTime($event->signup_date_time))
             <div class="my-4">
                 <a href="{{ route('form', $event->uid) }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto" style="width: fit-content;">
                     Je m'inscris

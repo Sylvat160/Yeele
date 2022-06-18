@@ -13,7 +13,6 @@ class Field extends Model
 
     protected $fillable = [
         "event_uid",
-        "label",
         "name",
         "value1",
         "value2",

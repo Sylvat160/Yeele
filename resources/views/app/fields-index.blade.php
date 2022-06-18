@@ -1,9 +1,9 @@
 @extends('layouts.app-main')
 @section('title')
-    {{ $event->name }}/Champs libres
+    {{ $event->name }}/Champs libre
 @endsection
 @section('bigTitle')
-    {{ $event->name }}/Champs libres
+    {{ $event->name }}/Champs libre
 @endsection
 
 @section('main')
@@ -11,18 +11,15 @@
 
 <div class="card">
     <div class="card-header">
-        <h3 class="card-title">Liste des champs libres</h3>
-        @if(!$event->field)
+        <h3 class="card-title">Liste des valeurs</h3>
         <div class="card-tools">
             <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un champ libre</button>
         </div>
-        @endif
     </div>
     <div class="card-body table-responsive p-0">
         <table class="table table-hover text-nowrap">
             <thead>
                 <tr>
-                    <th>Libellé</th>
                     <th>Nom</th>
                     <th>Valeur 1</th>
                     <th>Valeur 2</th>
@@ -32,30 +29,29 @@
                 </tr>
             </thead>
             <tbody>
-                @if($event->field)
+                @forelse ($event->fields as $field)
                     <tr>
-                        <td>{{ $event->field->label }}</td>
-                        <td>{{ $event->field->name }}</td>
-                        <td>{{ $event->field->value1 }}</td>
-                        <td>{{ $event->field->value2 }}</td>
-                        <td>{{ $event->field->value3 }}</td>
-                        <td>{{ $event->field->value4 }}</td>
+                        <td>{{ $field->name }}</td>
+                        <td>{{ $field->value1 }}</td>
+                        <td>{{ $field->value2 }}</td>
+                        <td>{{ $field->value3 }}</td>
+                        <td>{{ $field->value4 }}</td>
                         <td>
                             <button class="btn btn-danger btn_destroy"
-                                data-route="{{ route('field.destroy', $event->field->uid) }}"
-                                data-field_label="{{ $event->field->name }}">
+                                data-route="{{ route('field.destroy', $field->uid) }}"
+                                data-field_label="{{ $field->name }}">
                                 <i class="fa-solid fa-trash-can"></i>
                                 <span>Supprimer</span>
                             </button>
                         </td>
                     </tr>
-                @endif
+                @empty
+                    
+                @endforelse
             </tbody>
         </table>
     </div>
 </div>
-
-@if(!$event->field)
 
 {{-- ADD --}}
 
@@ -72,17 +68,6 @@
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <div class="modal-body" id="add_modal_form_body">
-                    <div class="form-group">
-                        <label for="label">
-                            <span>Libellé du champ</span>
-                            <span class="text-danger">*</span>
-                        </label>
-                        <input type="text" name="label" id="label" class="form-control" placeholder="Ex: Age, nombre de place, ..."
-                            @if($value = old('label')) value="{{ $value }}" @endif required>
-                        @error('label')
-                            <span class="text-danger">{{ $message }}</span>
-                        @enderror
-                    </div>
                     <div class="form-group">
                         <label for="name">
                             <span>Nom du champ libre</span>
@@ -132,8 +117,6 @@
     </div>
     <!-- /.modal-dialog -->
 </div>
-
-@endif
 
 {{-- DELETE --}}
 

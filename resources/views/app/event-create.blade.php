@@ -283,7 +283,10 @@ Nouvel évènement
                                 </div>
                                 @if (Auth::user()->custom['currentCommand'] && Auth::user()->custom['currentCommand']->plan->id === 2)
                                     <div class="form-group">
-                                        <label for="chosen_form">Type de formulaire</label>
+                                        <label for="chosen_form">
+                                            <span>Type de formulaire</span>
+                                            <span class="text-danger">*</span>
+                                        </label>
                                         <select name="chosen_form" id="chosen_form" class="form-control" required>
                                             <option value="" class="d-none">Choisissez le formulaire à utilisé</option>
                                             <option value="0" @if($value = old('chosen_form') === 0) selected @endif>Formulaire simplifié</option>
