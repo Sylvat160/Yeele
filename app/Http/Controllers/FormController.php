@@ -17,6 +17,7 @@ class FormController extends Controller
 
     public function index($event_uid) {
         $event = Event::find($event_uid);
+        $event->update(['clicks' => (int) $event->clicks + 1]);
         return view('forms.simple_show', compact('event'));
     }
 

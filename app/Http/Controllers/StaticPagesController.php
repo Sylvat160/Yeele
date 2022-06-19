@@ -19,10 +19,6 @@ class StaticPagesController extends Controller
         return view('website.prices');
     }
 
-    public function contact() {
-        return view('website.contact');
-    }
-
     public function login() {
         return view('app.auth.login');
     }

@@ -7,6 +7,7 @@ use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\AppControllers\EventPaymentMethodController;
 use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\FieldController;
+use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StaticPagesController;
 
@@ -15,7 +16,7 @@ use App\Http\Controllers\StaticPagesController;
 Route::get('/', [StaticPagesController::class, 'home'])->name('website.home');
 Route::get('fonctionnalites', [StaticPagesController::class, 'features'])->name('website.features');
 Route::get('tarifs', [StaticPagesController::class, 'prices'])->name('website.prices');
-Route::get('contact', [StaticPagesController::class, 'contact'])->name('website.contact');
+Route::get('contact', [ContactController::class, 'index'])->name('website.contact');
 
 //AUTHENTICATION
 
