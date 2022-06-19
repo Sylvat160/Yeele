@@ -17,6 +17,7 @@ Route::get('/', [StaticPagesController::class, 'home'])->name('website.home');
 Route::get('fonctionnalites', [StaticPagesController::class, 'features'])->name('website.features');
 Route::get('tarifs', [StaticPagesController::class, 'prices'])->name('website.prices');
 Route::get('contact', [ContactController::class, 'index'])->name('website.contact');
+Route::post('send', [ContactController::class, 'send'])->name('website.contact.send');
 
 //AUTHENTICATION
 

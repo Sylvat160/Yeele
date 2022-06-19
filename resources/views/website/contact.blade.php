@@ -18,7 +18,8 @@
             </div>
             <div class="px-4 md:px-0">
                 <div class="p-4 rounded-lg border border-gray-200 shadow-md sm:p-6">
-                    <form class="space-y-6" action="#">
+                    <form class="space-y-6" action="{{ route('website.contact.send') }}" method="POST">
+                        @csrf
                         <div class="grid gap-4 grid-cols-1 md:grid-cols-2">
                             <div class="col-span-2 md:col-auto">
                                 <label for="lastname" class="block mb-2 text-sm font-semibold text-gray-900">Nom: </label>
