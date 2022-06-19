@@ -22,7 +22,7 @@
         <div class="icon">
           <i class="fas fa-calendar"></i>
         </div>
-        <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ route('event.index') }}" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->
@@ -30,14 +30,14 @@
       <!-- small box -->
       <div class="small-box bg-warning">
         <div class="inner">
-          <h3>1457</h3>
+          <h3>{{ Auth::user()->custom['allParticipants'] }}</h3>
 
           <p>Inscriptions</p>
         </div>
         <div class="icon">
           <i class="ion ion-person-add"></i>
         </div>
-        <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
+        <div class="small-box-footer" style="height: 30px;"></div>
       </div>
     </div>
     <!-- ./col -->
@@ -52,7 +52,7 @@
         <div class="icon">
           <i class="fas fa-briefcase"></i>
         </div>
-        <a href="#" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
+        <a href="{{ route('command.index') }}" class="small-box-footer">Voir plus <i class="fas fa-arrow-circle-right"></i></a>
       </div>
     </div>
     <!-- ./col -->

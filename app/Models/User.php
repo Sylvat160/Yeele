@@ -82,17 +82,19 @@ class User extends Authenticatable implements MustVerifyEmail
     }
 
     public function getCustomAttribute() {
-        $currentCommand = Command::where('user_uid', auth()->user()->uid)
+        $currentCommand = $this->commands
                         ->where('start_date_time', '<=', Carbon::now())
                         ->where('end_date_time', '>=', Carbon::now())
                         ->where('active', true)
                         ->first();
 
-        $customs = [
-            'currentCommand' => $currentCommand
-        ];
+        $allParticipants = 0;
 
-        return $customs;
+        foreach ($this->events as $event) {
+            $allParticipants += $event->participants->count();
+        }
+
+        return compact('currentCommand', 'allParticipants');
     }
 
     public function events() {

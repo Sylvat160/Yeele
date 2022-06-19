@@ -13,7 +13,7 @@
             <!-- small box -->
             <div class="small-box bg-warning">
               <div class="inner">
-                <h3>1457</h3>
+                <h3>{{ $event->participants->count()  }}</h3>
       
                 <p>Inscriptions</p>
               </div>

@@ -28,7 +28,8 @@ class Event extends Model
         'city',
         'bg_color',
         'text_color',
-        'counter_active'
+        'counter_active',
+        'clicks'
     ];
 
     protected $hidden = [
