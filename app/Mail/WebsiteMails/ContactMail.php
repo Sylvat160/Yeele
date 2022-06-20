@@ -16,7 +16,7 @@ class ContactMail extends Mailable
      *
      * @return void
      */
-    public function __construct()
+    public function __construct(private array $data)
     {
         //
     }
@@ -28,6 +28,6 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('view.name');
+        return $this->view('website.mail.contactMail', ['data' => $this->data]);
     }
 }

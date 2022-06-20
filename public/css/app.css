@@ -1227,6 +1227,9 @@ input:checked + .toggle-bg {
 .h-11 {
     height: 2.75rem;
 }
+.h-80 {
+    height: 20rem;
+}
 .min-h-screen {
     min-height: 100vh;
 }
@@ -1288,6 +1291,12 @@ input:checked + .toggle-bg {
 }
 .w-1\/2 {
     width: 50%;
+}
+.w-28 {
+    width: 7rem;
+}
+.w-80 {
+    width: 20rem;
 }
 .max-w-sm {
     max-width: 24rem;
@@ -1620,6 +1629,9 @@ input:checked + .toggle-bg {
 .p-2\.5 {
     padding: 0.625rem;
 }
+.p-5 {
+    padding: 1.25rem;
+}
 .px-2 {
     padding-left: 0.5rem;
     padding-right: 0.5rem;
@@ -1679,6 +1691,10 @@ input:checked + .toggle-bg {
 .px-8 {
     padding-left: 2rem;
     padding-right: 2rem;
+}
+.py-1 {
+    padding-top: 0.25rem;
+    padding-bottom: 0.25rem;
 }
 .pt-4 {
     padding-top: 1rem;
@@ -1746,6 +1762,9 @@ input:checked + .toggle-bg {
 }
 .uppercase {
     text-transform: uppercase;
+}
+.italic {
+    font-style: italic;
 }
 .leading-tight {
     line-height: 1.25;
@@ -2288,6 +2307,12 @@ input:checked + .toggle-bg {
     }
     .md\:w-3\/4 {
         width: 75%;
+    }
+    .md\:w-9 {
+        width: 2.25rem;
+    }
+    .md\:w-8 {
+        width: 2rem;
     }
     .md\:grid-cols-4 {
         grid-template-columns: repeat(4, minmax(0, 1fr));
