@@ -2,7 +2,7 @@
     <h6>Menu de l'évènement</h6>
 </div>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route('event_participants.list', $event_uid) }}" class="nav-link" data-event_menu_path="participants">
         <i class="fa-solid fa-users"></i>
         <span>Liste des inscrits</span>
     </a>

@@ -7,6 +7,7 @@ use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\AppControllers\EventPaymentMethodController;
 use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\FieldController;
+use App\Http\Controllers\AppControllers\ParticipantController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StaticPagesController;
@@ -53,6 +54,7 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::resource('event_payment_method', EventPaymentMethodController::class)->except(['index', 'create', 'show', 'edit']);
     Route::get('current_event/{event_uid}/field', [FieldController::class, 'index'])->name('field.index');
     Route::resource('field', FieldController::class)->except(['index', 'create', 'show', 'edit']);
+    Route::get('current_event/{even_uid}/participants', [ParticipantController::class, 'index'])->name('event_participants.list');
 });
 
 //PARTICIPANT REGISTRATION ROUTES
