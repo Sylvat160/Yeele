@@ -22,9 +22,15 @@
 </li>
 @if ($hasDynamicForm && Auth::user()->custom['currentCommand']->plan_id === 2)
     <li class="nav-item">
+        <a href="{{ route('event.new_form', $event_uid) }}" class="nav-link d-flex align-items-center" data-event_menu_path="creation_formulaire">
+            <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
+            <span>Créer un formulaire</span>
+        </a>
+    </li>
+    <li class="nav-item">
         <a href="#" class="nav-link d-flex align-items-center" data-event_menu_path="fields">
             <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
-            <span>Formulaire</span>
+            <span>Modifier le formulaire</span>
         </a>
     </li>
 @endif

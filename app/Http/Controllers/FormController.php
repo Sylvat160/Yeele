@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Jobs\ParticipantRegisteringMailJob;
 use App\Models\Event;
+use App\Models\Form;
 use App\Models\Participant;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
@@ -18,7 +19,7 @@ class FormController extends Controller
     public function index($event_uid) {
         $event = Event::find($event_uid);
         $event->update(['clicks' => (int) $event->clicks + 1]);
-        return view('forms.simple_show', compact('event'));
+        return view('forms.show_event', compact('event'));
     }
 
     public function create($event_uid) {
@@ -66,5 +67,20 @@ class FormController extends Controller
 
     public function registering_end() {
         return view('forms.registering_end');
+    }
+
+    public function formbuilder_editor($event_uid) {
+        $event_menu = true;
+        $event = Event::find($event_uid);
+        if($event->form) {
+            return redirect()->back()->with('warning', "Il existe déjà un formulaire lié à cet évènement.");
+        }
+        return view('forms.formbuilder', compact('event', 'event_menu'));
+    }
+
+    public function build_form(Request $request) {
+        Form::create($request->all());
+
+        return json_encode(['event_uid' => $request->event_uid]);
     }
 }
