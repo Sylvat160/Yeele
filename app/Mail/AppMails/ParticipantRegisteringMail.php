@@ -1,6 +1,6 @@
 <?php
 
-namespace App\Mail;
+namespace App\Mail\AppMails;
 
 use App\Models\Participant;
 use Illuminate\Bus\Queueable;

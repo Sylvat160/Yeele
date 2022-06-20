@@ -21,8 +21,8 @@ class Participant extends Model
         'additional_data'
     ];
 
-    public function events() {
-        return $this->belongsTo(Event::class);
+    public function event() {
+        return $this->belongsTo(Event::class, 'event_uid');
     }
 
     public function field() {

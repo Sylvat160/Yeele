@@ -16,10 +16,6 @@ class Form extends Model
     protected $primaryKey = "uid";
     protected $keyType = "string";
 
-    public function event() {
-        return $this->belongsTo(Event::class);
-    }
-
     protected static function boot()
     {
 
@@ -28,5 +24,9 @@ class Form extends Model
         static::creating(function($form) {
             if(!$form->uid) $form->uid = Str::uuid();
         });
+    }
+
+    public function event() {
+        return $this->belongsTo(Event::class, 'event_uid');
     }
 }

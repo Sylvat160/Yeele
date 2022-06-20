@@ -50,6 +50,11 @@
                                             aria-label="Valeur du champ libre: activate to sort column ascending">Valeur du
                                             champ libre</th>
                                     @endif
+                                    @foreach ($additional_fields as $field)
+                                        <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
+                                        colspan="1"
+                                        aria-label="{{ $field }}: activate to sort column ascending">{{ $field }}</th>
+                                    @endforeach
                                 </tr>
                             </thead>
                             <tbody>
@@ -67,6 +72,16 @@
                                         @if ($event->fields->count())
                                             <td>{{ $participant->field->name . ':' . $participant->field->value }}</td>
                                         @endif
+
+                                        @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
+                                        @if (stristr($value, 'data:'))
+                                        <td>
+                                          <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                        </td>
+                                      @else
+                                        <td>{{$value}}</td>
+                                      @endif
+                                        @endforeach
                                     </tr>
                                 @endforeach
                             </tbody>

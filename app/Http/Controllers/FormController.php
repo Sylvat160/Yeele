@@ -24,7 +24,7 @@ class FormController extends Controller
 
     public function create($event_uid) {
         $event = Event::find($event_uid);
-        return view('forms.simple_form', compact('event'));
+        return view('forms.registration_form', compact('event'));
     }
 
     public function register(Request $request) {
@@ -44,13 +44,12 @@ class FormController extends Controller
             ]
             );
 
-            $participantWithEmailExist = Participant::where('event_uid', $request)
+            $participantWithEmailExist = Participant::where('event_uid', $request->event_uid)
                                         ->where('email', $request->email)
                                         ->first();
-            $participantWithPhoneExist = Participant::where('event_uid', $request)
+            $participantWithPhoneExist = Participant::where('event_uid', $request->event_uid)
                                         ->where('phone', $request->phone)
                                         ->first();
-
             if($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
             } else if($participantWithEmailExist) {
@@ -58,8 +57,37 @@ class FormController extends Controller
             } else if($participantWithPhoneExist) {
                 return redirect()->back()->with('error', "il existe dejà un participant inscrit le numéro de téléphone entré.");
             }
-        
-            $participant = Participant::create($request->except('_token'));
+
+            $data = $request->all(['event_uid', 'lastname', 'firstname', 'email', 'phone', 'civility', 'price', 'payment_method', 'field_uid']);
+            $filteredAdditionalData = array_filter($request->except('_token'), function($field) use ($data) {
+                if(!in_array($field, $data)) return $field;
+            });
+
+            $additionalFileInputs = [];
+            $additionalOtherInputs = [];
+            foreach ($filteredAdditionalData as $key => $value) {
+                if($file = $request->file($key)) {
+                 $filename = time();
+                 $extension = $file->getClientOriginalExtension();
+                 $fullname = "$filename.$extension";
+                 $pathname = $file->move('participants_files', $fullname)->getPathname();
+                 $data = file_get_contents($pathname);
+                 $fileType = "image/";
+                 if(!in_array($extension, ['png', 'jpeg', 'jpg', 'svg'])) {
+                   $fileType = "application/";
+                 }
+                 $base64 = 'data:' . $fileType . $extension . ';base64,' . base64_encode($data);
+                 $additionalFileInputs[$key] = $base64;
+                } else {
+                  $additionalOtherInputs[$key] = $value;
+                }
+              }
+
+            $additionalData = array_merge($additionalFileInputs, $additionalOtherInputs);
+
+            $data['additional_data'] = json_encode($additionalData);
+            
+            $participant = Participant::create($data);
             $event = Event::find($participant->event_uid);
             dispatch(new ParticipantRegisteringMailJob($participant));
             return redirect()->route('registering_end')->with('event', $event->name);

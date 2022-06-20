@@ -178,6 +178,7 @@
         </div>
     </div>
 
+    <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="https://formbuilder.online/assets/js/form-render.min.js"></script>

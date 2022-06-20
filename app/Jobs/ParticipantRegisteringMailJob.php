@@ -2,7 +2,7 @@
 
 namespace App\Jobs;
 
-use App\Mail\ParticipantRegisteringMail;
+use App\Mail\AppMails\ParticipantRegisteringMail;
 use App\Models\Participant;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
