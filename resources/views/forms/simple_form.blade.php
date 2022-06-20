@@ -161,6 +161,10 @@
                     </div>
                 @endif
 
+                @if ($event->form)
+                    <div id="additional_fields_container" data-fields="{{ $event->form->data }}"></div>
+                @endif
+
                 @if (now() < new DateTime($event->signup_date_time))
                     <div class="mt-8">
                         <button type="submit"
@@ -174,6 +178,10 @@
         </div>
     </div>
 
+    <script src="{{ asset('app_assets/plugins/jquery/jquery.min.js') }}"></script>
+    <script src="{{ asset('app_assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
+    <script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
+    <script src="{{ asset('js/show_formbuilder_field.js') }}"></script>
 </body>
 
 </html>
