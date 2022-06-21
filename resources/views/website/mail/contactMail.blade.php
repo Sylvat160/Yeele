@@ -13,7 +13,8 @@
     <h2>Bonjour,</h2>
     <p><strong>{{ $data['firstname'] . ' ' . $data['lastname'] }}</strong> vient d'envoyé un message:</p>
     <h3>Sujet: {{ $data['subject'] }}</h3>
-    <p style="font-style: italic;">{{ $data['message'] }}</p>
+    <p style="font-style: italic;">¨{{ $data['message'] }}¨</p>
     <p>Son adresse mail: <a href="{{ $data['email'] }}">{{ $data['email'] }}</a></p>
+    <p>Son organisme: {{ $data['organization'] }}</p>
 </body>
 </html>

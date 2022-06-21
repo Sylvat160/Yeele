@@ -43,7 +43,7 @@
         <div class="mt-6 py-4 bg-gray-100">
             <x-website-container class="flex justify-around md:justify-center items-center">
                 <div class="col-span-3 partner">
-                    <img src="{{ asset('images/brands/fanion.jpg') }}" class="w-32 h-40 sm:w-40 sm:h-52 md:mx-5"
+                    <img src="{{ asset('images/brands/fanion.png') }}" class="w-32 h-40 sm:w-40 sm:h-52 md:mx-5"
                         alt="Logo du club des lions">
                 </div>
                 <div class="col-span-3 partner">

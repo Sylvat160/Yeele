@@ -97,10 +97,14 @@
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
                             </div>
-                            <div class="col-span-2">
+                            <div class="col-span-2 md:col-auto">
                                 @captcha
-                                <input type="text" id="captcha" class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5" name="captcha" autocomplete="off" required>
-                                @error('message')
+                            </div>
+                            <div class="col-span-2 md:col-auto">
+                                <label for="captcha" class="block mb-2 text-sm font-semibold text-gray-900">Captcha:
+                                </label>
+                                <input type="text" id="captcha" class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5" name="captcha" autocomplete="off" placeholder="Entrez le captcha" required>
+                                @error('captcha')
                                 <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}</p>
                                 @enderror
                             </div>

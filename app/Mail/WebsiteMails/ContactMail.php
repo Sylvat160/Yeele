@@ -28,6 +28,8 @@ class ContactMail extends Mailable
      */
     public function build()
     {
-        return $this->view('website.mail.contactMail', ['data' => $this->data]);
+        return $this
+        ->from('yeele@horinfo.com')
+        ->view('website.mail.contactMail', ['data' => $this->data]);
     }
 }
