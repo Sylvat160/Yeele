@@ -34,6 +34,6 @@ class ContactController extends Controller
         }
 
         Mail::to('yeele@horinfo.com')->send(new ContactMail($request->except('_token', 'captcha')));
-
+        return redirect()->back()->with('success', "Votre message a été envoyé. Nous vous reviendrons dans peu.");
     }
 }
