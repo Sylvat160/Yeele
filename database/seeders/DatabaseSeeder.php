@@ -29,12 +29,11 @@ class DatabaseSeeder extends Seeder
                 ]);
         }
 
-        foreach (["Congrès", "Formation"] as $category) {
+        foreach (["Congrès", "Session de formation", "Salon professionnel", "Forum", "Conférence", "Mariage", "Anniversaire", "Spectacle"] as $category) {
             \App\Models\Category::create(['name' => $category]);
         }
 
         $this->call([
-            UserSeeder::class,
             PaymentMethodSeeder::class,
             TypeSeeder::class,
         ]);
