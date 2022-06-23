@@ -35,6 +35,12 @@
     </li>
 @endif
 <li class="nav-item">
+    <a href="{{ route('show_event_form', $event_uid) }}" target="_blank" class="nav-link">
+        <i class="fa-solid fa-eye"></i>
+        <span>Aperçu du formulaire</span>
+    </a>
+</li>
+<li class="nav-item">
     <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
         <i class="fa-solid fa-pen"></i>
         <span>Champ libre</span>

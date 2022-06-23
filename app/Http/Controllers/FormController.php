@@ -111,4 +111,17 @@ class FormController extends Controller
 
         return json_encode(['event_uid' => $request->event_uid]);
     }
+
+    public function edit_form($event_uid) {
+        $event = Event::find($event_uid);
+        if(!isset($event->form)) return redirect()->back()->with('error', "Vous n'avez aucun champ additionnel au formulaire créé.");
+        return view('forms.formbuilder-edit', ['form' => $event->form]);
+    }
+
+    public function update_form(Request $request) {
+        $form = Form::find($request->form_uid);
+        $form->update($request->all());
+
+        return json_encode(["event_uid" => $form->event_uid]);
+    }
 }

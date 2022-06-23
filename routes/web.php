@@ -58,8 +58,13 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::get('current_event/{even_uid}/participants', [ParticipantController::class, 'index'])->name('event_participants.list');
     Route::get('current_event/{event_uid}/creation_formulaire', [FormController::class, 'formbuilder_editor'])->name('event.new_form');
     Route::post('build_formbuilder', [FormController::class, 'build_form']);
+    Route::post('edit_formbuilder', [FormController::class, 'update_form']);
+    Route::get('current_event/{event_uid}/modification_formulaire', [FormController::class, 'edit_form'])->name('event.edit_form');
     Route::get('form_built/{event_uid}', function($event_uid) {
         return redirect()->route('event.show', $event_uid)->with('success', "Le formulaire a été créé.");
+    });
+    Route::get('form_edit/{event_uid}', function($event_uid) {
+        return redirect()->route('event.show', $event_uid)->with('success', "Le formulaire a été modifié.");
     });
 });
 
