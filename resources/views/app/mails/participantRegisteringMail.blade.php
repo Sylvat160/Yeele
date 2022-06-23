@@ -104,7 +104,7 @@
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
-<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 30px solid #F3F2F3;"><span> </span></td>
+<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 30px solid #F3F2F3;"><span>â</span></td>
 </tr>
 </table>
 </div>
@@ -130,7 +130,7 @@
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;">
-<div align="center" style="line-height:10px"><img alt="I'm an image" src="images/logo.png" style="display: block; height: auto; border: 0; width: 148px; max-width: 100%;" title="I'm an image" width="148"/></div>
+<div align="center" style="line-height:10px"><img alt="I'm an image" src="{{ $message->embed(asset('logo.png')) }}" style="display: block; height: auto; border: 0; width: 148px; max-width: 100%;" title="I'm an image" width="148"/></div>
 </td>
 </tr>
 </table>
@@ -150,7 +150,7 @@
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 0px; padding-bottom: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-<div class="spacer_block" style="height:1px;line-height:1px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:1px;line-height:1px;font-size:1px;">â</div>
 </td>
 </tr>
 </tbody>
@@ -163,18 +163,18 @@
 <tbody>
 <tr>
 <td>
-<table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; background-image: url('{{ asset('logo.png') }}'); background-position: center top; background-repeat: no-repeat; color: #000000; width: 640px; padding-bottom: 10px;" width="640">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 640px;" width="640">
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-bottom: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-<div class="spacer_block" style="height:60px;line-height:60px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:60px;line-height:60px;font-size:1px;">â</div>
 <table border="0" cellpadding="0" cellspacing="0" class="divider_block mobile_hide" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="padding-top:50px;">
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
-<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span>â</span></td>
 </tr>
 </table>
 </div>
@@ -186,7 +186,7 @@
 <td>
 <div style="font-family: 'Karla', sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 12px; font-family: 'Karla', sans-serif; mso-line-height-alt: 14.399999999999999px; color: #762222; line-height: 1.2;">
-<p style="margin: 0; font-size: 16px; text-align: center;"><span style="color:#000000;font-size:24px;"><strong>Bonjour Monsieur Nombré</strong></span></p>
+<p style="margin: 0; font-size: 16px; text-align: center;"><span style="color:#000000;font-size:24px;"><strong>Bonjour {{ "$participant->civility $participant->firstname $participant->lastname" }}!</strong></span></p>
 </div>
 </div>
 </td>
@@ -197,7 +197,7 @@
 <td style="padding-bottom:15px;padding-left:38px;padding-right:38px;padding-top:20px;">
 <div style="font-family: 'Karla', sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 12px; font-family: 'Karla', sans-serif; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2;">
-<p style="margin: 0; font-size: 14px; text-align: center;"><span style="font-size:28px;">Votre inscription en tant que gestionnaire à la plateforme YEELE a bien</span><br/><span style="font-size:30px;">été validée.</span></p>
+<p style="margin: 0; font-size: 14px; text-align: center;"><span style="font-size:28px;">Votre inscription à l'évènement {{ $participant->event->name }}</span></p>
 </div>
 </div>
 </td>
@@ -259,8 +259,32 @@
             @endforeach
         </tbody>
     </table>
-<p style="margin: 0; mso-line-height-alt: 18px;"> </p>
 </div>
+</div>
+</td>
+</tr>
+</table>
+<table border="0" cellpadding="0" cellspacing="0" class="button_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
+<tr>
+<td style="text-align:center;">
+<div align="center">
+</div>
+<div style="width: 75%; margin: 10px auto; font-family: 'Karla', sans-serif">
+    <p style="font-size: 16px; text-align: center;">Avez vous des questions ? Faites-nous savoir afin que nous vous
+        assistons. Nous vous accompagnons gratuitement pour une prise en
+        main de la plateforme YEELE.</p>
+        <p style="font-size: 16px; text-align: center;">En rappel, <span style="font-weight: bold;">YEELE est une plateforme de gestion d'évènement
+            propulsée par </span> <a href="https://www.horinfo.com/">HORINFO Burkina</a></p>
+            <p style="font-size: 16px; text-align: center;">
+                <span>Pour plus d'info, </span>
+            </p>
+            <p style="font-size: 16px; text-align: center;">
+                <span style="font-weight: bold;">WhatsApp: </span>
+                <a href="https://wa.me/message/WNOTNFPLUAQKN1">+226 61 60 15 15</a>
+                <br>
+                <span style="font-weight: bold;">E-mail: </span>
+                <a href="mailto:infos@yeele-event.com">infos@yeele-event.com</a>
+            </p>
 </div>
 </td>
 </tr>
@@ -273,6 +297,7 @@
 </tr>
 </tbody>
 </table>
+
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tbody>
 <tr>
@@ -281,7 +306,7 @@
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-top: 0px; padding-bottom: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
-<div class="spacer_block" style="height:1px;line-height:1px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:1px;line-height:1px;font-size:1px;">â</div>
 </td>
 </tr>
 </tbody>
@@ -301,7 +326,7 @@
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;padding-top:33px;">
-<div style="line-height:10px"><img alt="I'm an image" src="images/logo.png" style="display: block; height: auto; border: 0; width: 74px; max-width: 100%;" title="I'm an image" width="74"/></div>
+<div style="line-height:10px"><img alt="I'm an image" src="{{ $message->embed(asset('logo.png')) }}" style="display: block; height: auto; border: 0; width: 74px; max-width: 100%;" title="I'm an image" width="74"/></div>
 </td>
 </tr>
 </table>
@@ -316,14 +341,14 @@
 </table>
 </td>
 <td class="column column-3" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-left: 48px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="33.333333333333336%">
-<div class="spacer_block" style="height:5px;line-height:5px;font-size:1px;"> </div>
+<div class="spacer_block" style="height:5px;line-height:5px;font-size:1px;">â</div>
 <table border="0" cellpadding="0" cellspacing="0" class="divider_block mobile_hide" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="padding-left:10px;padding-right:10px;padding-top:30px;">
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
-<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span>â</span></td>
 </tr>
 </table>
 </div>
@@ -363,7 +388,7 @@
 <div align="center">
 <table border="0" cellpadding="0" cellspacing="0" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
-<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span> </span></td>
+<td class="divider_inner" style="font-size: 1px; line-height: 1px; border-top: 0px solid #BBBBBB;"><span>â</span></td>
 </tr>
 </table>
 </div>

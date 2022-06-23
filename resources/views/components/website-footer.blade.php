@@ -4,7 +4,7 @@
             <a href="https://flowbite.com" class="flex items-center">
                 <img src="{{asset('logo.png ')}}" class="mr-3 h-8" alt="FlowBite Logo">
             </a>
-            <p class="mt-4 text-gray-500">Un produit de Horinfo.</p>
+            <p class="mt-4 text-gray-500">Un produit de <a href="https://www.horinfo.com/" class="text-green-600">Horinfo</a>.</p>
         </div>
         <div class="grid grid-cols-2 gap-8 md:gap-4 md:grid-cols-4 lg:gap-6">
             <div>
@@ -62,11 +62,6 @@
                             <span>+226 70 26 95 43</span>
                         </a>
                     </li>
-                    {{-- <li>
-                        <a href="mailto:horinfo@horinfo.com" class="hover:underline text-sm sm:text-base">
-                            <span>horinfo@horinfo.com</span>
-                        </a>
-                    </li> --}}
                 </ul>
             </div>
         </div>

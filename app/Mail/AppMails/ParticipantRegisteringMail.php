@@ -31,7 +31,10 @@ class ParticipantRegisteringMail extends Mailable
      */
     public function build()
     {
-        return $this->view(
+        $eventName = $this->participant->event->name;
+        return $this
+        ->subject("Confirmation de votre inscription à l'évènement $eventName")
+        ->view(
             'app.mails.participantRegisteringMail',
             [
                 'participant' => $this->participant

@@ -43,7 +43,7 @@ class AuthServiceProvider extends ServiceProvider
                     'app.mails.verification-mail', 
                     [
                         'user' => $notifiable,
-                        'link' => $url,
+                        'url' => $url,
                     ]
                 );
         });

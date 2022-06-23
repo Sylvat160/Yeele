@@ -130,7 +130,7 @@
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;">
-<div align="center" style="line-height:10px"><img alt="I'm an image" src="{{ asset('logo.png') }}" style="display: block; height: auto; border: 0; width: 148px; max-width: 100%;" title="I'm an image" width="148"/></div>
+<div align="center" style="line-height:10px"><img alt="I'm an image" src="{{ $message->embed(asset('logo.png')) }}" style="display: block; height: auto; border: 0; width: 148px; max-width: 100%;" title="I'm an image" width="148"/></div>
 </td>
 </tr>
 </table>
@@ -163,7 +163,7 @@
 <tbody>
 <tr>
 <td>
-    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; background-image: url('{{ asset('images/backgrounds/bg-shade.jpg') }}'); background-position: center top; background-repeat: repeat; color: #000000; width: 640px;" width="640">
+    <table align="center" border="0" cellpadding="0" cellspacing="0" class="row-content stack" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; background-color: #ffffff; color: #000000; width: 640px;" width="640">
 <tbody>
 <tr>
 <td class="column column-1" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt; font-weight: 400; text-align: left; vertical-align: top; padding-bottom: 0px; border-top: 0px; border-right: 0px; border-bottom: 0px; border-left: 0px;" width="100%">
@@ -197,7 +197,7 @@
 <td style="padding-bottom:15px;padding-left:38px;padding-right:38px;padding-top:20px;">
 <div style="font-family: 'Karla', sans-serif">
 <div class="txtTinyMce-wrapper" style="font-size: 12px; font-family: 'Karla', sans-serif; mso-line-height-alt: 14.399999999999999px; color: #555555; line-height: 1.2;">
-<p style="margin: 0; font-size: 14px; text-align: center;"><span style="font-size:28px;">Votre inscription en tant que gestionnaire à la plateforme YEELE a bien</span><br/><span style="font-size:30px;">été un succès.</span></p>
+<p style="margin: 0; font-size: 14px; text-align: center;"><span style="font-size:28px;">Votre inscription en tant que gestionnaire à la plateforme YEELE a </span><br/><span style="font-size:30px;">été un succès.</span></p>
 </div>
 </div>
 </td>
@@ -220,8 +220,25 @@
 <td style="text-align:center;">
 <div align="center">
 <!--[if mso]><v:roundrect xmlns:v="urn:schemas-microsoft-com:vml" xmlns:w="urn:schemas-microsoft-com:office:word" style="height:60px;width:216px;v-text-anchor:middle;" arcsize="100%" stroke="false" fillcolor="#004afd"><w:anchorlock/><v:textbox inset="0px,0px,0px,4px"><center style="color:#ffffff; font-family:Arial, sans-serif; font-size:16px"><![endif]-->
-    <div style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#f05252;border-radius:60px;width:auto;border-top:1px solid #f05252;font-weight:undefined;border-right:1px solid #f05252;border-bottom:1px solid #f05252;border-left:1px solid #f05252;padding-top:12px;padding-bottom:16px;font-family: 'Karla', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><a href="{{ $link }}" style="text-decoration: none; color: #fff"><span style="padding-left:32px;padding-right:32px;font-size:16px;display:inline-block;letter-spacing:normal;"><span style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>Cliquer ici</strong></span></span></a></div>
+    <div style="text-decoration:none;display:inline-block;color:#ffffff;background-color:#f05252;border-radius:60px;width:auto;border-top:1px solid #f05252;font-weight:undefined;border-right:1px solid #f05252;border-bottom:1px solid #f05252;border-left:1px solid #f05252;padding-top:12px;padding-bottom:16px;font-family: 'Karla', sans-serif;text-align:center;mso-border-alt:none;word-break:keep-all;"><a href="{{ $url }}" style="text-decoration: none; color: #fff"><span style="padding-left:32px;padding-right:32px;font-size:16px;display:inline-block;letter-spacing:normal;"><span style="font-size: 16px; margin: 0; line-height: 2; word-break: break-word; mso-line-height-alt: 32px;"><strong>Cliquer ici</strong></span></span></a></div>
 <!--[if mso]></center></v:textbox></v:roundrect><![endif]-->
+</div>
+<div style="width: 75%; margin: 10px auto; font-family: 'Karla', sans-serif">
+    <p style="font-size: 16px; text-align: center;">Avez vous des questions ? Faites-nous savoir afin que nous vous
+        assistons. Nous vous accompagnons gratuitement pour une prise en
+        main de la plateforme YEELE.</p>
+        <p style="font-size: 16px; text-align: center;">En rappel, <span style="font-weight: bold;">YEELE est une plateforme de gestion d'évènement
+            propulsée par </span> <a href="https://www.horinfo.com/">HORINFO Burkina</a></p>
+            <p style="font-size: 16px; text-align: center;">
+                <span>Pour plus d'info</span>
+            </p>
+            <p style="font-size: 16px; text-align: center;">
+                <span style="font-weight: bold;">WhatsApp: </span>
+                <a href="https://wa.me/message/WNOTNFPLUAQKN1">+226 61 60 15 15</a>
+                <br>
+                <span style="font-weight: bold;">E-mail: </span>
+                <a href="mailto:infos@yeele-event.com">infos@yeele-event.com</a>
+            </p>
 </div>
 </td>
 </tr>
@@ -234,6 +251,7 @@
 </tr>
 </tbody>
 </table>
+
 <table align="center" border="0" cellpadding="0" cellspacing="0" class="row row-5" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tbody>
 <tr>
@@ -262,7 +280,7 @@
 <table border="0" cellpadding="0" cellspacing="0" class="image_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
 <tr>
 <td style="width:100%;padding-right:0px;padding-left:0px;padding-top:33px;">
-<div style="line-height:10px"><img alt="I'm an image" src="{{ asset('logo.png') }}" style="display: block; height: auto; border: 0; width: 74px; max-width: 100%;" title="I'm an image" width="74"/></div>
+<div style="line-height:10px"><img alt="I'm an image" src="{{ $message->embed(asset('logo.png')) }}" style="display: block; height: auto; border: 0; width: 74px; max-width: 100%;" title="I'm an image" width="74"/></div>
 </td>
 </tr>
 </table>
