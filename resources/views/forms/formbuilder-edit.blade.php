@@ -1,6 +1,6 @@
 @extends('layouts.app-main')
-@section('title') {{ $event->name }}/Creation du formulaire @endsection
-@section('bigTitle') {{ $event->name }}/Creation du formulaire @endsection
+@section('title') {{ $form->event->name }}/Creation du formulaire @endsection
+@section('bigTitle') {{ $form->event->name }}/Creation du formulaire @endsection
 
 @section('main')
 @include('extras.success_message')
@@ -16,7 +16,7 @@
 <div class="card">
     <input type="hidden" name="form_uid" value="{{ $form->uid }}" required>
     <div class="card-body">
-        <div id="formbuilder_container"></div>
+        <div id="formbuilder_container" data-fields="{{ json_decode($form->data) }}"></div>
     </div>
 </div>
 

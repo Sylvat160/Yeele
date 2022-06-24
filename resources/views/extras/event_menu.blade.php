@@ -1,6 +1,3 @@
-<div class="pt-2 mb-2 d-flex justify-content-center align-items-center formule bg-info rounded">
-    <h6>Menu de l'évènement</h6>
-</div>
 <li class="nav-item">
     <a href="{{ route('event_participants.list', $event_uid) }}" class="nav-link" data-event_menu_path="participants">
         <i class="fa-solid fa-users"></i>
@@ -28,7 +25,7 @@
         </a>
     </li>
     <li class="nav-item">
-        <a href="#" class="nav-link d-flex align-items-center" data-event_menu_path="fields">
+        <a href="{{ route('event.edit_form', $event_uid) }}" class="nav-link d-flex align-items-center" data-event_menu_path="modification_formulaire">
             <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
             <span>Modifier le formulaire</span>
         </a>

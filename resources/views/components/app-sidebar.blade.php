@@ -37,12 +37,6 @@
               <p>Mes commandes</p>
               </a>
           </li>
-          <li class="nav-item">
-            <a href="{{ route('command.create') }}" class="nav-link" data-path="app/command/create">
-              <i class="nav-icon fas fa-square-plus"></i>
-              <p>Nouvelle Commande</p>
-              </a>
-          </li>
            @includeWhen($show_event_menu, 'extras.event_menu')
         </ul>
       </nav>

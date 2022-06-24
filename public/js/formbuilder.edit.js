@@ -1,6 +1,10 @@
-const formBuilder = $(document.getElementById("formbuilder_container")).formBuilder({
-    disableFields: ["hidden"],
 
+const formBuilder = document.getElementById("formbuilder_container")
+const data = JSON.parse(formBuilder.dataset.fields)
+
+$(formBuilder).formBuilder({
+    defaultFields: data,
+    disableFields: ["hidden"],
     disabledSubtypes: {
         text: ["email"],
     },
