@@ -9,6 +9,7 @@
 
 @section('main')
     @include('extras.success_message')
+    @include('extras.warning_message')
 
     <div class="row justify-content-center">
         <div class="col-12 col-md-10">

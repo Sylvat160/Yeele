@@ -12,7 +12,7 @@ $(formBuilder).formBuilder({
     i18n: {
         override: {
             "en-US": {
-                NATIVE_NAME: "français",
+                NATIVE_NAME: "Français",
                 ENGLISH_NAME: "French",
 
                 addOption: "Ajouter une Option",
@@ -166,7 +166,6 @@ $(formBuilder).formBuilder({
                     location.href = `${location.origin}/app/form_edit/${data.event_uid}`;
                 })
             }
-            
         });
     },
 });

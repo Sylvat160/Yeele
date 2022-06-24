@@ -41,6 +41,24 @@
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <div class="mb-3">
+                    <label for="civility" class="block mb-2 text-sm font-semibold text-gray-900">
+                        <span>Civilité</span>
+                        <span class="text-red-600">*</span>
+                    </label>
+                    <select name="civility" id="civility"
+                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                        required>
+                        <option class="hidden" selected>Selectionner votre civilité</option>
+                        <option value="Masculin">Monsieur</option>
+                        <option value="Feminin">Madame</option>
+                        <option value="Mademoiselle">Mademoiselle</option>
+                    </select>
+                    @error('civility')
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}</p>
+                    @enderror
+                </div>
+                <div class="mb-3">
                     <label for="lastname" class="block mb-2 text-sm font-semibold text-gray-900">
                         <span>Nom</span>
                         <span class="text-red-600">*</span>
@@ -88,24 +106,6 @@
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                         placeholder="ex: (+226) XXXXXXXX" required>
                     @error('phone')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                class="font-medium">{{ $message }}</p>
-                    @enderror
-                </div>
-                <div class="mb-3">
-                    <label for="civility" class="block mb-2 text-sm font-semibold text-gray-900">
-                        <span>Civilité</span>
-                        <span class="text-red-600">*</span>
-                    </label>
-                    <select name="civility" id="civility"
-                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        required>
-                        <option class="hidden" selected>Selectionner votre civilité</option>
-                        <option value="Masculin">Monsieur</option>
-                        <option value="Feminin">Madame</option>
-                        <option value="Mademoiselle">Mademoiselle</option>
-                    </select>
-                    @error('civility')
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
                                 class="font-medium">{{ $message }}</p>
                     @enderror
