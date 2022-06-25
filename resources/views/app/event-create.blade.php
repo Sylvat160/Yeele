@@ -255,7 +255,7 @@ Nouvel évènement
                                     <div class="custom-file">
                                         <input type="file" class="custom-file-input" name="image" id="image"
                                             accept=".png, .jpg, .jpeg" required>
-                                        <label class="custom-file-label" for="customFile">Choisissez votre visuel</label>
+                                        <label class="custom-file-label" for="image" id="image_label">Choisissez votre visuel</label>
                                     </div>
                                     @error('image')
                                         <span class="text-danger">{{ $message }}</span>

@@ -43,6 +43,12 @@ $('input[type="color"]').each(function() {
   })
 })
 
+
+$('#image').on('change', function() {
+  const image = this.files[0]
+  $('#image_label').html(image.name)
+})
+
 //Multi step form
 
 const msFormState = new State(0)
