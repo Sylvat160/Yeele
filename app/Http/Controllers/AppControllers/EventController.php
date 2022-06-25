@@ -51,7 +51,9 @@ class EventController extends Controller
             [
                 'user_uid' => auth()->user()->uid,
                 'counter_active' => $request->counter_active ?? false,
-                'chosen_form' => $request->chosen_form ?? false
+                'chosen_form' => $request->chosen_form ?? false,
+                'bg_color' => $request->bg_color,
+                'text_color' => $request->text_color
             ],
         );
 
