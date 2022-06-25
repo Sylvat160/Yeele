@@ -66,7 +66,6 @@ class EventController extends Controller
         $data['start_date_time'] = $this->format($data['start_date_time']);
         $data['end_date_time'] = $this->format($data['end_date_time']);
         $data['signup_end_date_time'] = $this->format($data['signup_end_date_time']);
-        
 
         $newEvent = Event::create($data);
         

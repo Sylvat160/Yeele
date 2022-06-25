@@ -24,21 +24,23 @@
                 <img src="{{ asset("storage/$event->image") }}" width="400" height="600"
                     alt="{{ $event->name }}" class="mx-auto">
             </div>
-            <div class="border-b">
-                @if ($event->participants->count())
-                <div class="w-full py-4 text-center">
-                    <h1 class="text-xl text-center font-semibold">
-                        <span>{{ $event->participants->count() }}</span>
-                        <span> participant(s) inscrits.</span>
-                    </h1>
-                </div>
-                @else
+            @if($event->counter_active)
+                <div class="border-b">
+                    @if ($event->participants->count())
                     <div class="w-full py-4 text-center">
-                        <h1 class="text-xl text-center font-semibold">Il n'existe aucun participant inscrit pour l'instant.
+                        <h1 class="text-xl text-center font-semibold">
+                            <span>{{ $event->participants->count() }}</span>
+                            <span> participant(s) inscrits.</span>
                         </h1>
                     </div>
-                @endif
-            </div>
+                    @else
+                        <div class="w-full py-4 text-center">
+                            <h1 class="text-xl text-center font-semibold">Il n'existe aucun participant inscrit pour l'instant.
+                            </h1>
+                        </div>
+                    @endif
+                </div>
+            @endif
             <div class="border-b">
                 <div class="py-4">
                     <h1 class="text-2xl font-semibold text-center">DESCRIPTIONS</h1>
