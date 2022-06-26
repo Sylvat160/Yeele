@@ -32,15 +32,15 @@
         <x-app-navbar />
 
         <x-app-sidebar
-         showeventmenu="{{ isset($event_menu) }}" 
-         event="{{ isset($event) ? $event->uid : null }}"
-        dynamicform="{{ isset($event) ? $event->chosen_form : false }}" />
+            showeventmenu="{{ isset($event_menu) }}" 
+            event="{{ isset($event) ? $event->uid : null }}"
+            dynamicform="{{ isset($event) ? $event->chosen_form : false }}" />
 
         <div class="content-wrapper">
             <div class="content-header">
                 <div class="container-fluid">
                     <div class="row mb-2">
-                        <h1 class="m-0">@yield('bigTitle')</h1>
+                        <h1 class="m-0 text-center h3">@yield('bigTitle')</h1>
                     </div>
                 </div>
             </div>
