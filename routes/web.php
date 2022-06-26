@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AppControllers\AuthController;
+use App\Http\Controllers\AppControllers\BulkMailController;
 use App\Http\Controllers\AppControllers\CommandController;
 use App\Http\Controllers\AppControllers\EventController;
 use App\Http\Controllers\AppControllers\EventPaymentMethodController;
@@ -66,6 +67,8 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::get('form_edit/{event_uid}', function($event_uid) {
         return redirect()->route('event.show', $event_uid)->with('success', "Le formulaire a été modifié.");
     });
+
+    Route::get('/current_event/{event_uid}/bulkmailing', [BulkMailController::class, 'index'])->name('app.bulkmailing_index');
 });
 
 //PARTICIPANT REGISTRATION ROUTES
