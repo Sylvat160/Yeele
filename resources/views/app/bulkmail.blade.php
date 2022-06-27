@@ -19,7 +19,7 @@
                         <div class="mailbox-controls">
                             <!-- Check all button -->
                             <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i
-                                    class="far fa-check-square"></i>
+                                    class="far fa-square"></i>
                             </button>
                             <div class="float-right">
                                 1-50
@@ -38,13 +38,20 @@
                     </div>
                     <div class="table-responsive mailbox-messages">
                         <table class="table table-hover table-striped">
+                            <thead>
+                                <th>Case</th>
+                                <th>Nom</th>
+                                <th>Prénom</th>
+                                <th>Email</th>
+                                <th>Téléphone</th>
+                            </thead>
                             <tbody>
                                 @forelse ($event->participants as $participant)
                                     <tr>
                                         <td>
                                             <div class="icheck-primary">
                                                 <input type="checkbox" value="{{ $participant->email }}"
-                                                    id="{{ $participant->email }}">
+                                                    id="{{ $participant->email }}" class="checkbox">
                                                 <label for="{{ $participant->email }}"></label>
                                             </div>
                                         </td>
@@ -114,5 +121,19 @@
     $(function () {
     $('#compose-textarea').summernote()
   })
+  //Enable check and uncheck all functionality
+  $('.checkbox-toggle').click(function () {
+        var clicks = $(this).data('clicks')
+        if (clicks) {
+          //Uncheck all checkboxes
+          $('.checkbox').prop('checked', false)
+          $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+        } else {
+          //Check all checkboxes
+          $('.checkbox').prop('checked', true)
+          $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+        }
+        $(this).data('clicks', !clicks)
+      })
 </script>
 @endsection
