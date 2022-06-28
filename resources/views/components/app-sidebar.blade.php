@@ -11,7 +11,7 @@
     <div class="sidebar">
 
       <!-- Sidebar Menu -->
-      <nav class="mt-2" style="min-height: 100vh !important;">
+      <nav class="mt-2" style="min-height: 95vh !important;">
         <ul class="nav nav-pills nav-sidebar flex-column" data-widget="treeview" role="menu" data-accordion="false">
           <li class="nav-item">
             <a href="{{ route('app.home') }}" class="nav-link" data-path="app">
@@ -37,6 +37,7 @@
               <p>Mes commandes</p>
               </a>
           </li>
+          
            @includeWhen($show_event_menu, 'extras.event_menu')
         </ul>
       </nav>
