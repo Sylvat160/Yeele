@@ -1,17 +1,29 @@
 //STATE
 
+/**
+ * State class for managing states.
+ */
 class State {
     #value = null;
     constructor(initValue) {
         if (initValue != null) this.#value = initValue;
     }
+    /**
+     * Get the state value.
+     * @returns any
+     */
     getValue() {
         return this.#value;
     }
 
-    setValue(newValue, dispatchedEvent = null) {
+    /**
+     * Set the state value and dispatch event if eventName given.
+     * @param {any} newValue 
+     * @param {String} eventName 
+     */
+    setValue(newValue, eventName = null) {
         this.#value = newValue;
-        if (dispatchedEvent) window.dispatchEvent(new Event(dispatchedEvent));
+        if (dispatchedEvent) window.dispatchEvent(new Event(eventName));
     }
 }
 
