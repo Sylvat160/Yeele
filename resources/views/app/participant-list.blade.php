@@ -73,15 +73,17 @@
                                             <td>{{ $participant->field->name . ':' . $participant->field->value }}</td>
                                         @endif
 
-                                        @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
-                                        @if (stristr($value, 'data:'))
-                                        <td>
-                                          <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
-                                        </td>
-                                      @else
-                                        <td>{{$value}}</td>
-                                      @endif
-                                        @endforeach
+                                        @isset($participant->additional_data)
+                                            @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
+                                                @if (stristr($value, 'data:'))
+                                                    <td>
+                                                        <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                    </td>
+                                                @else
+                                                    <td>{{$value}}</td>
+                                                @endif
+                                            @endforeach
+                                        @endisset
                                     </tr>
                                 @endforeach
                             </tbody>
