@@ -31,7 +31,7 @@ window.addEventListener("countriesFilled", function () {
     for (let country of data) {
         const option = document.createElement("option");
         option.setAttribute("value", country);
-        option.innerHTML = country;
+        option.innerText = country;
         $("#country")[0].appendChild(option);
     }
 });
