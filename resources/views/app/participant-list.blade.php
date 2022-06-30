@@ -72,18 +72,23 @@
                                         @if ($event->fields->count())
                                             <td>{{ $participant->field->name . ':' . $participant->field->value }}</td>
                                         @endif
-
-                                        @isset($participant->additional_data)
-                                            @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
-                                                @if (stristr($value, 'data:'))
-                                                    <td>
-                                                        <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
-                                                    </td>
-                                                @else
-                                                    <td>{{$value}}</td>
-                                                @endif
-                                            @endforeach
-                                        @endisset
+                                        @if (count($additional_fields) != 0)
+                                            @if (count(json_decode($participant->additional_data, true)) !== 0)
+                                                @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
+                                                    @if (stristr($value, 'data:'))
+                                                        <td>
+                                                            <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                        </td>
+                                                    @else
+                                                        <td>{{$value}}</td>
+                                                    @endif
+                                                @endforeach
+                                            @else
+                                                @for ($fieldIndex = 0; $fieldIndex < count($additional_fields); $fieldIndex++)
+                                                    <td>Aucun</td>
+                                                @endfor
+                                            @endif
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

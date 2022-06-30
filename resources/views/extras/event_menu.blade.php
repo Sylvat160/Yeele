@@ -37,23 +37,17 @@
         @if ($hasDynamicForm && Auth::user()->custom['currentCommand']->plan_id === 2)
             <li class="nav-item">
                 <a href="{{ route('event.new_form', $event_uid) }}" class="nav-link d-flex align-items-center" data-event_menu_path="creation_formulaire">
-                    <img src="{{ URL::to('/') . '/public/images/icons/form.svg' }}" width="23" alt="Formulaire">
+                    <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
                     <span>Créer un formulaire</span>
                 </a>
             </li>
             <li class="nav-item">
                 <a href="{{ route('event.edit_form', $event_uid) }}" class="nav-link d-flex align-items-center" data-event_menu_path="modification_formulaire">
-                    <img src="{{ URL::to('/') . '/public/images/icons/form.svg' }}" width="23" alt="Formulaire">
+                    <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
                     <span>Modifier le formulaire</span>
                 </a>
             </li>
         @endif
-        <li class="nav-item">
-            <a href="{{ route('show_event_form', $event_uid) }}" target="_blank" class="nav-link">
-                <i class="fa-solid fa-eye"></i>
-                <span>Aperçu du formulaire</span>
-            </a>
-        </li>
         <li class="nav-item">
             <a href="{{ route('field.index', $event_uid) }}" class="nav-link" data-event_menu_path="field">
                 <i class="fa-solid fa-pen"></i>
@@ -64,7 +58,13 @@
     </ul>
 </li>
 <li class="nav-item">
-    <a href="#" class="nav-link">
+    <a href="{{ route('show_event_form', $event_uid) }}" target="_blank" class="nav-link">
+        <i class="fa-solid fa-eye"></i>
+        <span>Aperçu du formulaire</span>
+    </a>
+</li>
+<li class="nav-item">
+    <a href="{{ route('app.bulkmailing_index', $event_uid) }}" class="nav-link">
         <i class="fa-solid fa-envelope"></i>
         <span>Envoi de mail</span>
     </a>
