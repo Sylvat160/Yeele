@@ -19,11 +19,10 @@ class State {
 
 const countriesState = new State([]);
 
-fetch("https://countriesnow.space/api/v0.1/countries").then((response) => {
+fetch(`${window.location.origin}/countries.json`).then((response) => {
     response.json().then((responseData) => {
-        const { data } = responseData;
-        const countries = data.map((countryData) => countryData.country);
-        countriesState.setValue(countries, "countriesFilled");
+        const data = Object.values(responseData)
+        countriesState.setValue(data, "countriesFilled")
     });
 });
 
