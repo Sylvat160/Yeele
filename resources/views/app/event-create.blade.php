@@ -358,5 +358,5 @@ Nouvel évènement
             });
         });
     </script>
-    <script src="{{ asset('js/event-create.js') }}"></script>
+    <script src="{{ asset('js/event-create.js') }}" type="module"></script>
 @endsection

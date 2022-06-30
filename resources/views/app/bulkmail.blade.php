@@ -71,40 +71,43 @@
         </div>
         <!-- /.card-body -->
     </div>
-    <div class="card card-primary card-outline">
-        <div class="card-header">
-            <h3 class="card-title">Ecriver votre mail</h3>
-        </div>
-        <!-- /.card-header -->
-        <div class="card-body">
-            <div class="form-group">
-                <input class="form-control" placeholder="Sujet" required>
+    <form action="#">
+        <input type="hidden" name="checkedemails" id="checkedemails" required>
+        <div class="card card-primary card-outline">
+            <div class="card-header">
+                <h3 class="card-title">Ecriver votre mail</h3>
             </div>
-            <div class="form-group">
-                <textarea id="compose-textarea" class="form-control" style="height: 250px"></textarea>
-            </div>
-            <div class="row">
-                <div class="col-12 col-lg-4">
-                    <div class="form-group">
-                        <div class="btn btn-default btn-file">
-                            <i class="fas fa-paperclip"></i>
-                            <span>Certificat de participation</span>
-                            <input type="file" name="certificate">
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="form-group">
+                    <input class="form-control" placeholder="Sujet" required>
+                </div>
+                <div class="form-group">
+                    <textarea id="compose-textarea" class="form-control" style="height: 250px"></textarea>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-4">
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fas fa-paperclip"></i>
+                                <span>Certificat de participation</span>
+                                <input type="file" name="certificate">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="form-group">
+                            <div class="btn btn-default btn-file">
+                                <i class="fas fa-paperclip"></i>
+                                <span>Badge de participation</span>
+                                <input type="file" name="badge">
+                            </div>
                         </div>
                     </div>
                 </div>
-                <div class="col-12 col-lg-4">
-                    <div class="form-group">
-                        <div class="btn btn-default btn-file">
-                            <i class="fas fa-paperclip"></i>
-                            <span>Badge de participation</span>
-                            <input type="file" name="badge">
-                        </div>
-                    </div>
-                </div>
             </div>
-        </div>
-        <!-- /.card-body -->
+            <!-- /.card-body -->
+    </form>
         <div class="card-footer">
             <div class="float-right">
                 <button type="submit" class="btn btn-primary"><i class="far fa-envelope"></i> Envoyer</button>
@@ -125,54 +128,5 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
-    <script>
-        $(function() {
-            $("#usersData").DataTable({
-                "responsive": false,
-                "lengthChange": false,
-                "autoWidth": false,
-                "paging": true,
-                "buttons": [],
-                "language": {
-                    "searchPlaceholder": "Rechercher ...",
-                    "lengthMenu": "Afficher _MENU_ enregistrements par page",
-                    "zeroRecords": "Aucune participant trouvé",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "",
-                    "infoFiltered": "(Filtré à partir de la liste _MAX_.)",
-                    "lengthMenu": "Montrer _MENU_ enrégistrement(s).",
-                    "loadingRecords": "Chargement...",
-                    "processing": "En cours...",
-                    "search": "_INPUT_",
-                    "placeholder": "Rechercher",
-                    "info": "_TOTAL_ enrégistrement(s)",
-                    "infoEmpty": "0 enregistrement",
-                    "zeroRecords": "Aucune participant trouvé",
-                    "paginate": {
-                        "first": "Premier",
-                        "last": "Dernier",
-                        "next": "Suivant",
-                        "previous": "Précédent"
-                    },
-                }
-            }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
-        });
-        $(function() {
-            $('#compose-textarea').summernote()
-        })
-        //Enable check and uncheck all functionality
-        $('.checkbox-toggle').click(function() {
-            var clicks = $(this).data('clicks')
-            if (clicks) {
-                //Uncheck all checkboxes
-                $('.checkbox').prop('checked', false)
-                $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-            } else {
-                //Check all checkboxes
-                $('.checkbox').prop('checked', true)
-                $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-            }
-            $(this).data('clicks', !clicks)
-        })
-    </script>
+    <script src="{{ asset('js/bulkmail.js') }}" type="module"></script>
 @endsection

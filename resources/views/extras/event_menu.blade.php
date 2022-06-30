@@ -64,7 +64,7 @@
     </a>
 </li>
 <li class="nav-item">
-    <a href="{{ route('app.bulkmailing_index', $event_uid) }}" class="nav-link">
+    <a href="{{ route('app.bulkmailing_index', $event_uid) }}" class="nav-link" data-event_menu_path="bulkmailing">
         <i class="fa-solid fa-envelope"></i>
         <span>Envoi de mail</span>
     </a>
