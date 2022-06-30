@@ -19,7 +19,7 @@
         <!-- /.card-header -->
         <div class="card-body" style="overflow-x: scroll;">
             <div class="mailbox-controls">
-                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square"></i>
+                <button type="button" class="btn btn-default btn-sm checkbox-toggle"><i class="far fa-square" id="checkAll"></i>
                 </button>
                 <span>Cocher tout</span>
               </div>

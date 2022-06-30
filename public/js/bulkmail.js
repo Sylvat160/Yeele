@@ -35,16 +35,18 @@ $(function() {
     $('#compose-textarea').summernote()
 })
 //Enable check and uncheck all functionality
-$('.checkbox-toggle').click(function() {
-    var clicks = $(this).data('clicks')
+$('#checkAll').click(function() {
+    const clicks = $(this).data('clicks')
     if (clicks) {
         //Uncheck all checkboxes
         $('.checkbox').prop('checked', false)
         $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
+        window.dispatchEvent(new Event("allCheckoutsUnchecked"))
     } else {
         //Check all checkboxes
         $('.checkbox').prop('checked', true)
         $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
+        window.dispatchEvent(new Event("allCheckoutsChecked"))
     }
     $(this).data('clicks', !clicks)
 })
@@ -54,7 +56,7 @@ $('.checkbox-toggle').click(function() {
 const checkedEmailState = new State([])
 
 window.addEventListener('checkedMailChanged', handleCheckoutsChange)
-
+window.addEventListener("allCheckoutsChecked")
 
 function handleCheckoutsChange() {
     const value = checkedEmailState.getValue()
