@@ -2,12 +2,14 @@
 
 namespace App\Jobs;
 
+use App\Mail\AppMails\BulkMail;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldBeUnique;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Bus\Dispatchable;
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Mail;
 
 class BulkmailJob implements ShouldQueue
 {
@@ -34,6 +36,13 @@ class BulkmailJob implements ShouldQueue
      */
     public function handle()
     {
-        //
+        foreach ($this->participants as $email) {
+            Mail::send(new BulkMail(
+                $email,
+                $this->imagesPaths,
+                $this->subject,
+                $this->body
+            ));
+        }
     }
 }
