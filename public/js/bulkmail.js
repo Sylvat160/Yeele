@@ -41,12 +41,12 @@ $('#checkAll').click(function() {
         //Uncheck all checkboxes
         $('.checkbox').prop('checked', false)
         $('.checkbox-toggle .far.fa-check-square').removeClass('fa-check-square').addClass('fa-square')
-        window.dispatchEvent(new Event("allCheckoutsUnchecked"))
+        window.dispatchEvent(new Event("allCheckboxesUnchecked"))
     } else {
         //Check all checkboxes
         $('.checkbox').prop('checked', true)
         $('.checkbox-toggle .far.fa-square').removeClass('fa-square').addClass('fa-check-square')
-        window.dispatchEvent(new Event("allCheckoutsChecked"))
+        window.dispatchEvent(new Event("allCheckboxesChecked"))
     }
     $(this).data('clicks', !clicks)
 })
@@ -56,7 +56,16 @@ $('#checkAll').click(function() {
 const checkedEmailState = new State([])
 
 window.addEventListener('checkedMailChanged', handleCheckoutsChange)
-window.addEventListener("allCheckoutsChecked")
+window.addEventListener("allCheckboxesChecked", function() {
+    const data = jQuery.map($('.checkbox'), function(checkbox) {
+        return checkbox.value
+    })
+    checkedEmailState.setValue(data, "checkedMailChanged")
+})
+
+window.addEventListener('allCheckboxesUnchecked', function() {
+    checkedEmailState.setValue([], "checkedMailChanged")
+})
 
 function handleCheckoutsChange() {
     const value = checkedEmailState.getValue()

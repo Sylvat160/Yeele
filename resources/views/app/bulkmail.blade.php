@@ -72,7 +72,7 @@
         <!-- /.card-body -->
     </div>
     <form action="#">
-        <input type="hidden" name="checkedemails" id="checkedemails" required>
+        <input type="hidden" name="checkedemails" id="checkedemails" value="[]" required>
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title">Ecriver votre mail</h3>
