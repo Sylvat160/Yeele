@@ -7,9 +7,8 @@
 @endsection
 
 @section('main')
-    {{-- SUCCESS MESSAGE --}}
     @include('extras.success_message')
-    {{-- END SUCCESS MESSAGE --}}
+    @include('extras.danger_message')
 <style>
     #uploadedFileContainer .konvajs-content {margin: auto !important}
 </style>
@@ -17,7 +16,6 @@
         <div class="card-header">
             <h3 class="card-title mt-1">Liste des inscrits</h3>
         </div>
-
         <!-- /.card-header -->
         <div class="card-body" style="overflow-x: scroll;">
             <div class="mailbox-controls">
@@ -65,7 +63,6 @@
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -73,8 +70,9 @@
         </div>
         <!-- /.card-body -->
     </div>
-    <form action="#">
-        <input type="hidden" name="checkedemails" id="checkedemails" value="[]" required>
+    <form action="{{ route('bulkmail.send') }}" method="POST" enctype="multipart/form-data">
+        @csrf
+        <input type="hidden" name="participants" id="checkedemails" value="[]" required>
         <div class="card card-primary card-outline">
             <div class="card-header">
                 <h3 class="card-title">Ecriver votre mail</h3>
@@ -82,11 +80,25 @@
             <!-- /.card-header -->
             <div class="card-body">
                 <div class="form-group">
-                    <input class="form-control" placeholder="Sujet" required>
+                    <label for="subject">
+                        <span>Sujet: </span>
+                        <span class="text-danger">*</span>
+                    </label>
+                    <input type="text" name="subject" id="subject" class="form-control" placeholder="Entrez le sujet" required>
+                    @error('subject')
+                        <span>{{ $message }}</span>
+                    @enderror
                 </div>
                 <div class="form-group">
-                    <textarea id="compose-textarea" class="form-control" style="height: 250px"></textarea>
+                    <label for="compose-textarea">Champ de saisie: </label>
+                    <textarea name="body" id="compose-textarea" class="form-control" style="height: 250px"></textarea>
                 </div>
+                <div class="alert alert-dismissible mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: rgb(136, 183, 255);">
+                    <div>
+                      <i class="fa-solid fa-circle-exclamation"></i>
+                      <span class="font-weight-bold">Le nom complet du participant sera horizontalement et verticalement aligné sur le certificat et/ou le badge.</span>
+                    </div>
+                  </div>
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="form-group">
@@ -96,6 +108,9 @@
                                 <input type="file" id="certificate" name="certificate">
                             </div>
                             <p id="certificateName"></p>
+                            @error('certificate')
+                                {{$message}}
+                            @enderror
                         </div>
                     </div>
                     <div class="col-12 col-lg-6">
@@ -106,6 +121,9 @@
                                 <input type="file" id="badge" name="badge">
                             </div>
                             <p id="badgeName"></p>
+                            @error('badge')
+                                {{$message}}
+                            @enderror
                         </div>
                     </div>
                 </div>
