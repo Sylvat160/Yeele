@@ -23,7 +23,7 @@ class BulkMail extends Mailable
     public function __construct(
         string $email,
         public array $imagesPaths,
-        public string $subject,
+        public string $subj,
         public string $body
     )
     {
@@ -37,8 +37,9 @@ class BulkMail extends Mailable
      */
     public function build()
     {
+        $fullname = $this->participant->firstname . " " . $this->participant->lastname;
         $this
-        ->subject($this->subject)
+        ->subject($this->subj)
         ->view('app.mails.bulkmail', [
             'body' => $this->body
         ]);
@@ -46,7 +47,7 @@ class BulkMail extends Mailable
         foreach ($this->imagesPaths as $key => $value) {
             $img = Image::make(public_path($value));
             $img->text(
-                $this->participant->firstname,
+                $fullname,
                 $img->width() / 2,
                 $img->height() / 2 + 10, function($font) use($key) {
                     $font->file(public_path('fonts/karla-Regular.ttf'));

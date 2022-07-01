@@ -37,7 +37,7 @@ class BulkmailJob implements ShouldQueue
     public function handle()
     {
         foreach ($this->participants as $email) {
-            Mail::send(new BulkMail(
+            Mail::to($email)->send(new BulkMail(
                 $email,
                 $this->imagesPaths,
                 $this->subject,

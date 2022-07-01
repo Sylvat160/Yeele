@@ -166,6 +166,7 @@ return [
          * Package Service Providers...
          */
         Igoshev\Captcha\Providers\CaptchaServiceProvider::class,
+        Intervention\Image\ImageServiceProvider::class,
         /*
          * Application Service Providers...
          */
