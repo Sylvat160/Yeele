@@ -13,4 +13,8 @@ class BulkMailController extends Controller
         $event = Event::find($event_uid);
         return view('app.bulkmail', compact('event', 'event_menu'));
     }
+
+    public function send(Request $request) {
+        
+    }
 }

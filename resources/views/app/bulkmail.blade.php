@@ -10,7 +10,9 @@
     {{-- SUCCESS MESSAGE --}}
     @include('extras.success_message')
     {{-- END SUCCESS MESSAGE --}}
-
+<style>
+    #uploadedFileContainer .konvajs-content {margin: auto !important}
+</style>
     <div class="card">
         <div class="card-header">
             <h3 class="card-title mt-1">Liste des inscrits</h3>
@@ -86,22 +88,24 @@
                     <textarea id="compose-textarea" class="form-control" style="height: 250px"></textarea>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                                 <i class="fas fa-paperclip"></i>
                                 <span>Certificat de participation</span>
-                                <input type="file" name="certificate">
+                                <input type="file" id="certificate" name="certificate">
                             </div>
+                            <p id="certificateName"></p>
                         </div>
                     </div>
-                    <div class="col-12 col-lg-4">
+                    <div class="col-12 col-lg-6">
                         <div class="form-group">
                             <div class="btn btn-default btn-file">
                                 <i class="fas fa-paperclip"></i>
                                 <span>Badge de participation</span>
-                                <input type="file" name="badge">
+                                <input type="file" id="badge" name="badge">
                             </div>
+                            <p id="badgeName"></p>
                         </div>
                     </div>
                 </div>
@@ -128,5 +132,6 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.js') }}"></script>
+    <script src="https://unpkg.com/konva@8/konva.min.js"></script>
     <script src="{{ asset('js/bulkmail.js') }}" type="module"></script>
 @endsection
