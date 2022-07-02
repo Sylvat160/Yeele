@@ -22,7 +22,7 @@
               <span>{{ Auth::user()->firstname . ' ' . Auth::user()->lastname }}</span>
             </a>
             <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right" style="border: .1px solid #f8f8f8 !important;">
-              <a href="#" class="dropdown-item">
+              <a href="{{ route('app.edit-user-info-page') }}" class="dropdown-item">
                   <i class="ion-edit"></i>
                   <span>Modifier ses informations</span>
               </a>

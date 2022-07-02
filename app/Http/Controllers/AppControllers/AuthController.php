@@ -141,6 +141,14 @@ class AuthController extends Controller
 
     }
 
+    public function showEditPage() {
+        return view('app.edit-user-info');
+    }
+
+    public function editData(Request $request) {
+
+    }
+
     public function logout(Request $request) {
         Auth::logout();
         $request->session()->regenerate();

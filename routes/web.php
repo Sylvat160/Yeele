@@ -48,6 +48,8 @@ Route::middleware('auth')->group(function() {
 
 Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function() {
     Route::get('/', [AuthController::class, 'home'])->name('app.home');
+    Route::get('modification-info', [AuthController::class, 'showEditPage'])->name('app.edit-user-info-page');
+    Route::get('update-info', [AuthController::class, 'editData'])->name('app.edit-info');
     Route::resource('event', EventController::class);
     Route::resource('command', CommandController::class)->except('show', 'destroy');
     Route::get('current_event/{event_uid}/event_price', [EventPriceController::class, 'index'])->name('event_price.index');
