@@ -46,7 +46,7 @@
                     <h1 class="text-2xl font-semibold text-center">DESCRIPTIONS</h1>
                 </div>
                 <div class="py-4 text-center">
-                    <?= $event->description ?>
+                    <div><?= $event->description ?></div>
                 </div>
             </div>
             <div class="border-b">
