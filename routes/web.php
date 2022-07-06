@@ -20,7 +20,9 @@ Route::get('fonctionnalites', [StaticPagesController::class, 'features'])->name(
 Route::get('tarifs', [StaticPagesController::class, 'prices'])->name('website.prices');
 Route::get('contact', [ContactController::class, 'index'])->name('website.contact');
 Route::post('send', [ContactController::class, 'send'])->name('website.contact.send');
-Route::get('/reload-captcha', [ContactController::class, 'reloadCaptcha']);
+Route::get('reload-captcha', [ContactController::class, 'reloadCaptcha']);
+Route::get('politique_de_confidentialite', [StaticPagesController::class, 'policy'])->name('website.policy');
+Route::get('termes_et_conditions_d_utilisation', [StaticPagesController::class, 'terms'])->name('website.terms');
 
 //AUTHENTICATION
 

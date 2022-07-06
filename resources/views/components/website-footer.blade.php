@@ -42,10 +42,10 @@
                 <h2 class="mb-6 text-sm text-red-500 font-semibold uppercase">Informations légales</h2>
                 <ul class="text-gray-600">
                     <li class="mb-4">
-                        <a href="#" class="hover:underline">Politique de confidentialité</a>
+                        <a href="{{ route('website.policy') }}" class="hover:underline">Politique de confidentialité</a>
                     </li>
                     <li>
-                        <a href="#" class="hover:underline">Termes et Conditions d'utlisation</a>
+                        <a href="{{ route('website.terms') }}" class="hover:underline">Termes et Conditions d'utlisation</a>
                     </li>
                 </ul>
             </div>

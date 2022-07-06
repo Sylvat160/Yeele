@@ -18,6 +18,14 @@ class StaticPagesController extends Controller
     public function prices() {
         return view('website.prices');
     }
+    
+    public function policy() {
+        return view('website.policy');
+    }
+    
+    public function terms() {
+        return view('website.terms');
+    }
 
     public function login() {
         return view('app.auth.login');
