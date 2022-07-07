@@ -34,37 +34,67 @@ class FormController extends Controller
                 'event_uid' => 'required',
                 'firstname' => 'required',
                 'lastname' => 'required',
-                'email' => 'required',
-                'phone' => 'required',
+                'email' => 'required|unique:participants,email',
+                'phone' => 'required|unique:participants,phone',
                 'civility' => 'required',
             ],
             [
                 'required' => "Ce champ est obligatoire.",
                 'email' => "Vous devez renseigner une adresse mail.",
+                'email.unique' => "Il existe déjà un participant avec cette adresse email.",
+                'phone.unique' => "Il existe déjà un participant avec cet numéro de téléphone."
             ]
             );
 
-            $participantWithEmailExist = Participant::where('event_uid', $request->event_uid)
-                                        ->where('email', $request->email)
-                                        ->first();
-            $participantWithPhoneExist = Participant::where('event_uid', $request->event_uid)
-                                        ->where('phone', $request->phone)
-                                        ->first();
+            $event = Event::find($request->event_uid);
+            $currentCommand = $event->user->custom['currentCommand'];
+
             if($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
-            } else if($participantWithEmailExist) {
-                return redirect()->back()->with('error', "il existe dejà un participant inscrit l'email entré.");
-            } else if($participantWithPhoneExist) {
-                return redirect()->back()->with('error', "il existe dejà un participant inscrit le numéro de téléphone entré.");
+            } else if(isset($currentCommand)) {
+                $planISilver = $currentCommand->plan_id === 1;
+                if($planISilver && $event->participants->count() >= 20) {
+                    return 
+                    redirect()
+                    ->back()
+                    ->with('error', "Le nombre total d'inscriptions (soit 20) est atteint. Veuillez contacter le gestionnaire de l'évènement.");
+                }
+            } else if($event->participants->count() >= 4) {
+                return 
+                redirect()
+                ->back()
+                ->with('error', "Le nombre total d'inscriptions est atteint. Veuillez contacter le gestionnaire de l'évènement.");
             }
 
-            $data = $request->all(['event_uid', 'lastname', 'firstname', 'email', 'phone', 'civility', 'price', 'payment_method', 'field_uid']);
+            $data = $request->all([
+                'event_uid', 
+                'lastname', 
+                'firstname', 
+                'email', 
+                'phone', 
+                'civility', 
+                'price', 
+                'payment_method', 
+                'field_uid']);
+
+            /*
+            * Filter dynamics fields data from the request
+            */
+
             $filteredAdditionalData = array_filter($request->except('_token'), function($field) use ($data) {
                 if(!in_array($field, $data)) return $field;
             });
 
+            /*
+            * Init the process of separating different kind of data
+            * Loop over filtered data
+            * And get base64 from file inputs data
+            * Fill created arrays
+            */
+
             $additionalFileInputs = [];
             $additionalOtherInputs = [];
+
             foreach ($filteredAdditionalData as $key => $value) {
                 if($file = $request->file($key)) {
                  $filename = time();
@@ -82,6 +112,12 @@ class FormController extends Controller
                   $additionalOtherInputs[$key] = $value;
                 }
               }
+
+            /*
+            * Merge all the dynamics fields processed data
+            * Get its JSON format processed data
+            * And create participant
+            */
 
             $additionalData = array_merge($additionalFileInputs, $additionalOtherInputs);
 

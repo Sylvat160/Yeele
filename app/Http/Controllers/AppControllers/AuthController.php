@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Password;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Auth\Events\Registered;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 use App\Events\PasswordResetEvent;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\RegisterRequest;
 use App\Models\User;
 use App\Models\Command;
+use DateTime;
 use Illuminate\Http\Request;
 
 class AuthController extends Controller
@@ -67,9 +69,9 @@ class AuthController extends Controller
         return redirect()->route('verification.verify');
     }
 
-    public function email_verification($hash) {
-        $user = User::find($hash);
-        dd($user);
+    public function email_verification(EmailVerificationRequest $request) {
+        $request->fulfill();
+
         return redirect()->route('app.home');
     }
 
