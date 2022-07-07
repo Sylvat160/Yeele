@@ -12,7 +12,10 @@ use Illuminate\Support\Facades\Validator;
 class FormController extends Controller
 {
     /**
+     * Show the event
+     * 
      * @param string $event_uid
+     * 
      * @return \Illuminate\Contracts\View\View
      */
 
@@ -21,12 +24,26 @@ class FormController extends Controller
         $event->update(['clicks' => (int) $event->clicks + 1]);
         return view('forms.show_event', compact('event'));
     }
-
+        
+    /**
+     * Show the participant registering form
+     *
+     * @param string event_uid
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function create($event_uid) {
         $event = Event::find($event_uid);
         return view('forms.registration_form', compact('event'));
     }
-
+    
+    /**
+     * Register a participant
+     *
+     * @param Request request
+     *
+     * @return void
+     */
     public function register(Request $request) {
         $validator = Validator::make(
             $request->all(),
@@ -128,11 +145,23 @@ class FormController extends Controller
             dispatch(new ParticipantRegisteringMailJob($participant));
             return redirect()->route('registering_end')->with('event', $event->name);
     }
-
+    
+    /**
+     * Page to whice participant is redirected after registering.
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function registering_end() {
         return view('forms.registering_end');
     }
-
+    
+    /**
+     * Show the dynamic creating form.
+     *
+     * @param string event_uid
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function formbuilder_editor($event_uid) {
         $event_menu = true;
         $event = Event::find($event_uid);
@@ -141,19 +170,40 @@ class FormController extends Controller
         }
         return view('forms.formbuilder', compact('event', 'event_menu'));
     }
-
+    
+    /**
+     * Create dynamic field.
+     *
+     * @param Request request
+     *
+     * @return void
+     */
     public function build_form(Request $request) {
         Form::create($request->all());
 
         return json_encode(['event_uid' => $request->event_uid]);
     }
-
+    
+    /**
+     * Show the dynamic fields edit form.
+     *
+     * @param string event_uid
+     *
+     * @return \Illuminate\Contracts\View\View
+     */
     public function edit_form($event_uid) {
         $event = Event::find($event_uid);
         if(!isset($event->form)) return redirect()->back()->with('error', "Vous n'avez aucun champ additionnel au formulaire créé.");
         return view('forms.formbuilder-edit', ['form' => $event->form]);
     }
-
+    
+    /**
+     * Update the dynamic fields.
+     *
+     * @param Request request
+     *
+     * @return void
+     */
     public function update_form(Request $request) {
         $form = Form::find($request->form_uid);
         $form->update($request->all());
