@@ -36,14 +36,14 @@ class AuthServiceProvider extends ServiceProvider
             return $user->role->name === "Client";
         });
 
-        VerifyEmail::toMailUsing(function ($notifiable, $url) {
+        VerifyEmail::toMailUsing(function ($notifiable) {
             return (new MailMessage)
                 ->subject('Inscription réussi')
                 ->view(
                     'app.mails.verification-mail', 
                     [
                         'user' => $notifiable,
-                        'url' => $url,
+                        'url' => route('verification.verify_email', $notifiable->uid),
                     ]
                 );
         });
