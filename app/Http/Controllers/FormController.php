@@ -192,9 +192,11 @@ class FormController extends Controller
      * @return \Illuminate\Contracts\View\View
      */
     public function edit_form($event_uid) {
+        $event_menu = true;
         $event = Event::find($event_uid);
+        $form = $event->form;
         if(!isset($event->form)) return redirect()->back()->with('error', "Vous n'avez aucun champ additionnel au formulaire créé.");
-        return view('forms.formbuilder-edit', ['form' => $event->form]);
+        return view('forms.formbuilder-edit', compact('form', 'event_menu', 'event'));
     }
     
     /**
