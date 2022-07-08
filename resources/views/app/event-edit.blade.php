@@ -265,7 +265,7 @@
                                         <i class="fa-solid fa-arrow-left"></i>
                                         <span>Précédent</span>
                                     </button>
-                                    <input type="submit" class="btn btn-primary px-2" value="Valider l'ajout">
+                                    <input type="submit" class="btn btn-primary px-2" value="Valider la modification">
                                 </div>
                             </fieldset>
                         </div>

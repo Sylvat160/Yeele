@@ -51,8 +51,8 @@ class FormController extends Controller
                 'event_uid' => 'required',
                 'firstname' => 'required',
                 'lastname' => 'required',
-                'email' => 'required|unique:participants,email',
-                'phone' => 'required|unique:participants,phone',
+                'email' => 'required',
+                'phone' => 'required',
                 'civility' => 'required',
             ],
             [
@@ -62,6 +62,19 @@ class FormController extends Controller
                 'phone.unique' => "Il existe déjà un participant avec cet numéro de téléphone."
             ]
             );
+
+            $participantWithEmailExist = Participant::where('event_uid', $request->event_uid)
+                                        ->where('email', $request->email)
+                                        ->first();
+            $participantWithPhoneExist = Participant::where('event_uid', $request->event_uid)
+                                        ->where('phone', $request->phone)
+                                        ->first();
+
+            if($participantWithEmailExist) {
+                return redirect()->back()->with('error', "il existe dejà un participant inscrit l'email entré.");
+            } else if($participantWithPhoneExist) {
+                return redirect()->back()->with('error', "il existe dejà un participant inscrit le numéro de téléphone entré.");
+            }                            
 
             $event = Event::find($request->event_uid);
             $currentCommand = $event->user->custom['currentCommand'];

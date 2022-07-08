@@ -110,7 +110,9 @@ class EventController extends Controller
     public function update(Request $request, $uid)
     {
         $event = Event::find($uid);
-        $event->update($request->except('_token', '_method'));
+        $data = $request->except('_token', '_method'); 
+        if(!isset($request->counter_active)) $data['counter_active'] = 0;
+        $event->update($data);
         return redirect()->route('event.show', $event->uid)->with('success', "Votre évènement a été modifié avec succès!");
     }
 
