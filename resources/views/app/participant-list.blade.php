@@ -52,9 +52,11 @@
                                     @endif
                                     @foreach ($additional_fields as $field)
                                         <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
-                                        colspan="1"
-                                        aria-label="{{ $field }}: activate to sort column ascending">{{ $field }}</th>
+                                            colspan="1"
+                                            aria-label="{{ $field }}: activate to sort column ascending">
+                                            {{ $field }}</th>
                                     @endforeach
+                                    <td>Options</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -77,10 +79,11 @@
                                                 @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
                                                     @if (stristr($value, 'data:'))
                                                         <td>
-                                                            <a href="{{$value}}" download="{{ "file." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                            <a href="{{ $value }}"
+                                                                download="{{ 'file.' . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
                                                         </td>
                                                     @else
-                                                        <td>{{$value}}</td>
+                                                        <td>{{ $value }}</td>
                                                     @endif
                                                 @endforeach
                                             @else
@@ -89,10 +92,15 @@
                                                 @endfor
                                             @endif
                                         @endif
+                                        <td>
+                                            <button class="btn btn-info" class="editParticipantBtn">
+                                                <i class="fas fa-pen"></i>
+                                                <span>Editer</span>
+                                            </button>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
-
                         </table>
                     </div>
                 </div>
@@ -100,10 +108,67 @@
         </div>
         <!-- /.card-body -->
     </div>
+
+    <div class="modal fade" id="editParticipant" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Editer un participant</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="#">
+                    <div class="modal-body">
+                        <div class="form-group">
+                            <label for="lastname">
+                                <span>Nom</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Entrez le nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="firstname">
+                                <span>Prénom</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Entrez le nom" required>
+                        </div>
+                        <div class="form-group">
+                            <label for="civility">
+                                <span>Civilité</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <select name="civility" id="civility" class="form-control" required>
+                                @foreach (['Monsieur', 'Madame', 'Mademoiselle'] as $civility)
+                                    <option value="{{ $civility }}">{{ $civility }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <label for="phone">
+                                <span>Téléphone</span>
+                                <span class="text-danger">*</span>
+                            </label>
+                            <input type="number" name="phone" id="phone" class="form-control" required>
+                        </div>
+                        @if ($event->form)
+                            <div id="additional_fields_container" data-fields="{{ $event->form->data }}"></div>
+                        @endif
+                    </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-danger modal_form_submit_btn">Ajouter</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 @endsection
 @section('additional_script')
-    <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
-    <script src="{{ asset('app_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
+<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+    <script src="{{ asset('js/participants-list.js') }}"></script>
+<script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
+<script src="{{ asset('app_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-responsive/js/responsive.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/dataTables.buttons.min.js') }}"></script>
@@ -112,37 +177,5 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script>
-        $(function() {
-            $("#usersData").DataTable({
-                "responsive": false,
-                "lengthChange": false,
-                "autoWidth": false,
-                "paging": true,
-                "buttons": ["excel", "pdf", "csv"],
-                "language": {
-                    "searchPlaceholder": "Rechercher ...",
-                    "lengthMenu": "Afficher _MENU_ enregistrements par page",
-                    "zeroRecords": "Aucune participant trouvé",
-                    "info": "Showing page _PAGE_ of _PAGES_",
-                    "infoEmpty": "",
-                    "infoFiltered": "(Filtré à partir de la liste _MAX_.)",
-                    "lengthMenu": "Montrer _MENU_ enrégistrement(s).",
-                    "loadingRecords": "Chargement...",
-                    "processing": "En cours...",
-                    "search": "_INPUT_",
-                    "placeholder": "Rechercher",
-                    "info": "_TOTAL_ enrégistrement(s)",
-                    "infoEmpty": "0 enregistrement",
-                    "zeroRecords": "Aucune participant trouvé",
-                    "paginate": {
-                        "first": "Premier",
-                        "last": "Dernier",
-                        "next": "Suivant",
-                        "previous": "Précédent"
-                    },
-                }
-            }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
-        });
-    </script>
+    
 @endsection

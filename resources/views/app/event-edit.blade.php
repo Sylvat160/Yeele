@@ -281,5 +281,5 @@
     <script src="{{ asset('app_assets/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}">
     </script>
     <script src="{{ asset('app_assets/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
-    <script src="{{ asset('js/event-create.js') }}"></script>
+    <script src="{{ asset('js/event-create.js') }}" type="module"></script>
 @endsection

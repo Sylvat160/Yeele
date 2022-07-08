@@ -18,11 +18,11 @@
         <div class="bg-slate-100 w-11/12 rounded-lg border border-gray-200 shadow-sm mx-auto"
             style="max-width: 550px; @if ($event->bg_color !== '#000000') background: {{ $event->bg_color }} @endif; color: {{ $event->text_color }};">
             <div class="p-4 text-center font-semibold">
-                <h1>PRÉSENTATION DE L'ÉVÈNEMENT</h1>
+                <h1 class="uppercase">évènement de {{ $event->user->organization }}</h1>
             </div>
             <div class="px-4 border-b">
                 <img src="{{ asset("storage/$event->image") }}" width="400" height="600"
-                    alt="{{ $event->name }}" class="mx-auto">
+                    alt="{{ $event->name }}" loading="lazy" class="mx-auto">
             </div>
             @if($event->counter_active)
                 <div class="border-b">
@@ -102,10 +102,11 @@
                         </svg>
                         <span class="font-semibold ml-2">Date et heure de fin des inscriptions : </span>
                         <span
-                            class="ml-2">{{ date_format(new DateTime($event->signup_date_time), 'd/m/Y à H:i') }}</span>
+                            class="ml-2">{{ date_format(new DateTime($event->signup_end_date_time), 'd/m/Y à H:i') }}</span>
                     </div>
                 </div>
             </div>
+            @auth()
             <div class="border-b">
                 <div class="py-4">
                     <h1 class="text-xl text-center font-semibold">Lien d'inscription</h1>
@@ -134,6 +135,7 @@
                     </div>
                 </div>
             </div>
+            @endauth()
             <div class="border-b">
                 <div class="py-4">
                     <h1 class="text-2xl font-semibold text-center">LOCALISATION</h1>

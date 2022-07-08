@@ -30,12 +30,10 @@ $(function() {
     }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
 });
 
-jQuery(function() {
-    const container = document.getElementById("additional_fields_container");
-    const form = JSON.parse(container.dataset.fields);
-    const formRenderOpts = {
-        dataType: "json",
-        formData: form,
-    };
-    $(container).formRender(formRenderOpts);
-})
+const container = document.getElementById("additional_fields_container");
+const form = JSON.parse(container.dataset.fields);
+const formRenderOpts = {
+    dataType: "json",
+    formData: form,
+};
+$(container).formRender(formRenderOpts);

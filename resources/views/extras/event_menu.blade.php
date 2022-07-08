@@ -54,6 +54,12 @@
                 <span>Champ libre</span>
             </a>
         </li>
+        <li class="nav-item">
+            <a href="{{ route('event.edit', $event_uid) }}" class="nav-link" data-event_menu_path="field">
+                <i class="fa-solid fa-edit"></i>
+                <span>Modifier l'évènement</span>
+            </a>
+        </li>
 
     </ul>
 </li>
