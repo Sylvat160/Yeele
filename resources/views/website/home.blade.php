@@ -114,7 +114,7 @@
         </x-website-container>
         <div class="my-12 py-12 md:w-3/4 m-auto">
             <h1 class="text-3xl sm:text-5xl text-center montserrat_bold">Nous avons enrégistré plus de <span
-                    class="text-red-500 montserrat_bold">5000</span> inscriptions évènementielles.</h1>
+                    class="text-red-500 montserrat_bold">1000</span> inscriptions évènementielles.</h1>
         </div>
         {{-- <div class="py-12 bg-slate-100">
             <div class="w-full md:w-3/4 m-auto">

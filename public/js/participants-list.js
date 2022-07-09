@@ -36,4 +36,7 @@ const formRenderOpts = {
     dataType: "json",
     formData: form,
 };
-$(container).formRender(formRenderOpts);
+
+console.log($(container).formRender());
+
+// $(container).formRender(formRenderOpts);

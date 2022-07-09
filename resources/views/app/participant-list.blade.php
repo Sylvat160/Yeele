@@ -165,8 +165,6 @@
     </div>
 @endsection
 @section('additional_script')
-<script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
-    <script src="{{ asset('js/participants-list.js') }}"></script>
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('app_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-responsive/js/dataTables.responsive.min.js') }}"></script>
@@ -177,5 +175,6 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    
+    <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
+    <script src="{{ asset('js/participants-list.js') }}"></script>
 @endsection
