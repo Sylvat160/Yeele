@@ -29,14 +29,3 @@ $(function() {
         }
     }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
 });
-
-const container = document.getElementById("additional_fields_container");
-const form = JSON.parse(container.dataset.fields);
-const formRenderOpts = {
-    dataType: "json",
-    formData: form,
-};
-
-console.log($(container).formRender());
-
-// $(container).formRender(formRenderOpts);

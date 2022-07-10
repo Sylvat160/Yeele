@@ -108,61 +108,6 @@
         </div>
         <!-- /.card-body -->
     </div>
-
-    <div class="modal fade" id="editParticipant" aria-hidden="true" style="display: none;">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h4 class="modal-title">Editer un participant</h4>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                        <span aria-hidden="true">×</span>
-                    </button>
-                </div>
-                <form action="#">
-                    <div class="modal-body">
-                        <div class="form-group">
-                            <label for="lastname">
-                                <span>Nom</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="lastname" id="lastname" class="form-control" placeholder="Entrez le nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="firstname">
-                                <span>Prénom</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="text" name="firstname" id="firstname" class="form-control" placeholder="Entrez le nom" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="civility">
-                                <span>Civilité</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <select name="civility" id="civility" class="form-control" required>
-                                @foreach (['Monsieur', 'Madame', 'Mademoiselle'] as $civility)
-                                    <option value="{{ $civility }}">{{ $civility }}</option>
-                                @endforeach
-                            </select>
-                        </div>
-                        <div class="form-group">
-                            <label for="phone">
-                                <span>Téléphone</span>
-                                <span class="text-danger">*</span>
-                            </label>
-                            <input type="number" name="phone" id="phone" class="form-control" required>
-                        </div>
-                        @if ($event->form)
-                            <div id="additional_fields_container" data-fields="{{ $event->form->data }}"></div>
-                        @endif
-                    </div>
-                    <div class="modal-footer">
-                        <button type="submit" class="btn btn-danger modal_form_submit_btn">Ajouter</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
 @endsection
 @section('additional_script')
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
