@@ -20,7 +20,11 @@ class ParticipantController extends Controller
         return view('app.participant-list', compact('event', 'event_menu', 'additional_fields'));
     }
 
-    public function edit($participantId, $event_uid) {
+    public function edit() {
+        
+    }
+
+    public function update($participantId, $event_uid) {
         $event_menu = true;
         $event = Event::find($event_uid);
         $participant = Participant::find($participantId);

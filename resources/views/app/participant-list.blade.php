@@ -93,10 +93,10 @@
                                             @endif
                                         @endif
                                         <td>
-                                            <button class="btn btn-info" class="editParticipantBtn">
+                                            <a href="#" class="btn btn-info" class="editParticipantBtn">
                                                 <i class="fas fa-pen"></i>
                                                 <span>Editer</span>
-                                            </button>
+                                            </a>
                                         </td>
                                     </tr>
                                 @endforeach
