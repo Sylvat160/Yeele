@@ -74,6 +74,7 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
 
     Route::get('/current_event/{event_uid}/bulkmailing', [BulkMailController::class, 'index'])->name('app.bulkmailing_index');
     Route::post('send_bulkmail', [BulkMailController::class, 'send'])->name('bulkmail.send');
+    Route::get('participant-edit/{participant_uid}/{event_uid}', [ParticipantController::class, 'edit'])->name('participant.edit');
 });
 
 //PARTICIPANT REGISTRATION ROUTES

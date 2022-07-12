@@ -93,7 +93,7 @@
                                             @endif
                                         @endif
                                         <td>
-                                            <a href="#" class="btn btn-info" class="editParticipantBtn">
+                                            <a href="{{ route('participant.edit', [$participant->id, $participant->event->uid]) }}" class="btn btn-info" class="editParticipantBtn">
                                                 <i class="fas fa-pen"></i>
                                                 <span>Editer</span>
                                             </a>

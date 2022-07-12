@@ -158,7 +158,7 @@
                 @endif
 
                 @if ($event->form)
-                    <div id="additional_fields_container" data-fields="{{ $event->form->data }}"></div>
+                    <div id="additional_fields_container" data-fields="{{ $event->form->data }}" data-participant-additional-data="{{ $participant->additional_data }}"></div>
                 @endif
 
                 @if (now() < new DateTime($event->signup_date_time))
@@ -168,6 +168,12 @@
                             style="width: fit-content;">
                             Envoyer la modification
                         </button>
+                    </div>
+                    <div class="mt-4 text-center">
+                        <a href="{{ route('event_participants.list', $event->uid) }}" class="flex justify-center items-center text-red-500 focus:text-red-600 font-medium text-sm">
+                            <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
+                            <span class="text-indent-2">Repartir en arrière</span>
+                        </a>
                     </div>
                 @endif
             </form>
@@ -179,6 +185,7 @@
     <script src="{{ asset('app_assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
     <script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
     <script src="{{ asset('js/show_formbuilder_field.js') }}"></script>
+    <script src="{{ asset('js/participant.edit.js') }}"></script>
 </body>
 
 </html>
