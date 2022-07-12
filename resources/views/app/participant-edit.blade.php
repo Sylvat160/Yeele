@@ -175,6 +175,7 @@
                             <span class="text-indent-2">Repartir en arrière</span>
                         </a>
                     </div>
+                    inp
                 @endif
             </form>
         </div>
