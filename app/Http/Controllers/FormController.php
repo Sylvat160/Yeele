@@ -139,7 +139,7 @@ class FormController extends Controller
                  $base64 = 'data:' . $fileType . $extension . ';base64,' . base64_encode($data);
                  $additionalFileInputs[$key] = $base64;
                 } else {
-                  $additionalOtherInputs[$key] = $value;
+                  $additionalOtherInputs[$key] = $value ?? '';
                 }
               }
 

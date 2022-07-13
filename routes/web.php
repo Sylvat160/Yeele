@@ -81,7 +81,7 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::get('participant-edit/{participant_uid}/{event_uid}', [ParticipantController::class, 'edit'])->name('participant.edit');
     Route::post('participant-update', [ParticipantController::class, 'update'])->name('participant.update');
 });
-
+ 
 //PARTICIPANT REGISTRATION ROUTES
 
 Route::get('fiche_inscription/{event_uid}', [FormController::class, 'index'])->name('show_event_form');
