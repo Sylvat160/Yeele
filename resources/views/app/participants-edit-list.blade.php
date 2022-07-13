@@ -56,6 +56,7 @@
                                             aria-label="{{ $field }}: activate to sort column ascending">
                                             {{ $field }}</th>
                                     @endforeach
+                                    <td>Options</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -91,6 +92,12 @@
                                                 @endfor
                                             @endif
                                         @endif
+                                        <td>
+                                            <a href="{{ route('participant.edit', [$participant->id, $participant->event->uid]) }}" class="btn btn-info" class="editParticipantBtn">
+                                                <i class="fas fa-pen"></i>
+                                                <span>Editer</span>
+                                            </a>
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -114,5 +121,37 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
     <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
-    <script src="{{ asset('js/participants-list.js') }}"></script>
+    <script>
+        $(function() {
+    $("#usersData").DataTable({
+        "responsive": false,
+        "lengthChange": false,
+        "autoWidth": false,
+        "paging": true,
+        "buttons": [],
+        "language": {
+            "searchPlaceholder": "Rechercher ...",
+            "lengthMenu": "Afficher _MENU_ enregistrements par page",
+            "zeroRecords": "Aucune participant trouvé",
+            "info": "Showing page _PAGE_ of _PAGES_",
+            "infoEmpty": "",
+            "infoFiltered": "(Filtré à partir de la liste _MAX_.)",
+            "lengthMenu": "Montrer _MENU_ enrégistrement(s).",
+            "loadingRecords": "Chargement...",
+            "processing": "En cours...",
+            "search": "_INPUT_",
+            "placeholder": "Rechercher",
+            "info": "_TOTAL_ enrégistrement(s)",
+            "infoEmpty": "0 enregistrement",
+            "zeroRecords": "Aucune participant trouvé",
+            "paginate": {
+                "first": "Premier",
+                "last": "Dernier",
+                "next": "Suivant",
+                "previous": "Précédent"
+            },
+        }
+    }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
+});
+    </script>
 @endsection

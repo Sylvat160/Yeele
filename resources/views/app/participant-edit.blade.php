@@ -34,9 +34,10 @@
                 </div>
                 {{Session::forget('error')}}
             @endif
-            <form class="px-4 py-8" action="#" method="POST">
+            <form class="px-4 py-8" action="{{ route('participant.update') }}" method="POST">
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
+                <input type="hidden" name="participant_id" value="{{ $participant->id }}" required>
                 <div class="mb-3">
                     <label for="civility" class="block mb-2 text-sm font-semibold text-gray-900">
                         <span>Civilité</span>
@@ -170,12 +171,11 @@
                         </button>
                     </div>
                     <div class="mt-4 text-center">
-                        <a href="{{ route('event_participants.list', $event->uid) }}" class="flex justify-center items-center text-red-500 focus:text-red-600 font-medium text-sm">
+                        <a href="{{ route('participants-edit-list', $event->uid) }}" class="flex justify-center items-center text-red-500 focus:text-red-600 font-medium text-sm">
                             <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18"></path></svg>
                             <span class="text-indent-2">Repartir en arrière</span>
                         </a>
                     </div>
-                    inp
                 @endif
             </form>
         </div>

@@ -22,6 +22,12 @@
     </a>
     <ul class="nav nav-treeview">
                 <li class="nav-item">
+            <a href="{{ route('participants-edit-list', $event_uid) }}" class="nav-link" data-event_menu_path="participants-edit-list">
+                <i class="fa-solid fa-users"></i>
+                <span>Editer les participants</span>
+            </a>
+        </li>
+                <li class="nav-item">
             <a href="{{ route('event_price.index', $event_uid) }}" class="nav-link" data-event_menu_path="event_price">
                 <i class="fa-solid fa-money-bill"></i>
                 <span>Tarifs</span>

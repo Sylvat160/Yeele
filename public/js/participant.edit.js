@@ -4,7 +4,7 @@ const partAddData = JSON.parse(
 
 const fieldsKeys = Object.keys(partAddData)
 
-fieldsKeys.forEach(key => {
+for(let key of fieldsKeys) {
     const field = document.getElementById(key)
     if(field instanceof HTMLSelectElement) {
         document
@@ -26,4 +26,4 @@ fieldsKeys.forEach(key => {
         .getElementById(key)
         .innerHTML = partAddData[key]
     }
-});
+}
