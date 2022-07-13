@@ -51,7 +51,10 @@ Route::middleware('auth')->group(function() {
 Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function() {
     Route::get('/', [AuthController::class, 'home'])->name('app.home');
     Route::get('modification-info', [AuthController::class, 'showEditPage'])->name('app.edit-user-info-page');
-    Route::get('update-info', [AuthController::class, 'editData'])->name('app.edit-info');
+    Route::post('update-fullname', [AuthController::class, 'updateFullname'])->name('app.user-update-fullname');
+    Route::post('update-email_phone', [AuthController::class, 'updateEmailPhone'])->name('app.user-update-email_phone');
+    Route::post('update-org_gender', [AuthController::class, 'updateOrgGender'])->name('app.user-update-org_gender');
+    Route::post('update-password', [AuthController::class, 'updatePassword'])->name('app.user-update-password');
     Route::resource('event', EventController::class);
     Route::resource('command', CommandController::class)->except('show', 'destroy');
     Route::get('current_event/{event_uid}/event_price', [EventPriceController::class, 'index'])->name('event_price.index');

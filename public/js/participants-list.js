@@ -29,3 +29,10 @@ $(function() {
         }
     }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
 });
+
+$('tbody tr').each(function() {
+    if($(this).children().length < $('thead th').length) {
+        const diff = $('thead th').length - $(this).children().length
+        for(let i = 0; i < diff; i++) $(this).append('<td>Aucun</td>')
+    }
+})

@@ -28,7 +28,7 @@ class AuthController extends Controller
             ],
             [
                 'required' => "Ce champ est obligatoire.",
-                'email' => "Ce champ doit être un adresse email."
+                'email' => "Ce champ doit être une adresse email."
             ]
             );
 
@@ -144,9 +144,110 @@ class AuthController extends Controller
     public function showEditPage() {
         return view('app.edit-user-info');
     }
+    
+    /**
+     * Update user firstname and lastname
+     *
+     * @param Request request
+     *
+     * @return void
+     */
+    public function updateFullname(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'user_uid' => 'required',
+            'firstname' => 'required',
+            'lastname' => 'required'
+        ], ['required' => "Ce champ est obligatoire."]);
 
-    public function editData(Request $request) {
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
 
+        $user = User::find($request->user_uid);
+        $user->update($request->only(['firstname', 'lastname']));
+
+        return redirect()->back()->with('success', "Votre nom et votre prénom ont été mis à jour.");
+    }
+    
+    /**
+     * Update user email and phone number
+     *
+     * @param Request request
+     *
+     * @return void
+     */
+    public function updateEmailPhone(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'user_uid' => 'required',
+            'email' => 'required|email',
+            'phone' => 'required'
+        ], 
+        [
+            'required' => "Ce champ est obligatoire.",
+            'email' => "Ce champ doit être une adresse email.",
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $user = User::find($request->user_uid);
+        $user->update($request->only(['email', 'phone']));
+
+        return redirect()->back()->with('success', "Votre adresse email et votre numéro de téléphone ont été mis à jour.");
+    }
+    
+    /**
+     * Update user organization and gender
+     *
+     * @param Request request
+     *
+     * @return void
+     */
+    public function updateOrgGender(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'user_uid' => 'required',
+            'organization' => 'required',
+            'gender' => 'required'
+        ], ['required' => "Ce champ est obligatoire."]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $user = User::find($request->user_uid);
+        $user->update($request->only(['organization', 'gender']));
+
+        return redirect()->back()->with('success', "Le nom de votre organisme et votre genre ont été mis à jour.");
+    }
+    
+    /**
+     * Update user password
+     *
+     * @param Request request
+     *
+     * @return void
+     */
+    public function updatePassword(Request $request) {
+        $validator = Validator::make($request->all(), [
+            'user_uid' => 'required',
+            'password' => 'required|min:8',
+            'confirm_password' => 'required|same:password'
+        ], 
+        [
+            'required' => "Ce champ est obligatoire.",
+            'min' => "La longueur minimale du mot de passe est de 8 lettres.",
+            'same' => "Les mots de passe doivent être les mêmes."
+        ]);
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $user = User::find($request->user_uid);
+        $user->update(['password' => Hash::make($request->password)]);
+
+        return redirect()->back()->with('success', "Votre mot de passe a été modifié.");
     }
 
     public function logout(Request $request) {

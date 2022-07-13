@@ -309,7 +309,7 @@ Nouvel évènement
                                         @endforeach
                                     </select>
                                     @error('type_id')
-                                        {{$message}}
+                                        <span class="text-danger">{{$message}}</span>
                                     @enderror
                                 </div>
                                 <div class="form-group">
