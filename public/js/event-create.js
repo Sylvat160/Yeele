@@ -3,7 +3,7 @@ import State from './state.js'
 //Init country state
 const countriesState = new State([]);
 
-//Fetch and update fill countries state
+//Fetch and fill countries state
 fetch(`${window.location.origin}/countries.json`).then((response) => {
     response.json().then((responseData) => {
         const data = Object.values(responseData)
@@ -22,7 +22,7 @@ window.addEventListener("countriesFilled", function () {
     }
 });
 
-//Listen to color input change and update its lable
+//Listen to color input change and update its label
 $('input[type="color"]').each(function() {
   $(this).on('input', function() {
     this.parentElement.setAttribute('style', `background-color: ${this.value}`)
