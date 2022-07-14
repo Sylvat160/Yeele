@@ -64,9 +64,10 @@ class CommandController extends Controller
                 $currentCommand = auth()->user()->custom['currentCommand'];
                 if(isset($currentCommand) && $currentCommand->plan_id === 2) {
                     if($this->new_command($request->except('_token'))) {
-                        return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajouté.");
+                        return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajoutée.");
                     }
                 } else {
+                    if(isset($currentCommand)) $currentCommand->update(['active' => false]);
                     $startDateTime = new Carbon();
                     $endDateTime = new Carbon($startDateTime);
                     $endDateTime->addMonths($request->duration);
@@ -81,14 +82,13 @@ class CommandController extends Controller
                         ]
                     );
 
-                    $currentCommand->update(['active' => false]);
                     Command::create($data);
                     return redirect()->route('app.home')->with('success', "Vous venez de passer à la formule Gold.");
                 }
             
             default:
                 if($this->new_command($request->except('_token'))) {
-                    return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajouté.");
+                    return redirect()->route('app.home')->with('success', "Une nouvelle commande a été ajoutée.");
                 }
                 break;
         }

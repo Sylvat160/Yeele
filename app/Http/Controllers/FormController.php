@@ -111,9 +111,18 @@ class FormController extends Controller
             * Filter dynamics fields data from the request
             */
 
-            $filteredAdditionalData = array_filter($request->except('_token'), function($field) use ($data) {
-                if(!in_array($field, $data)) return $field;
+            $dataKeys = array_keys($data);
+            $allRequestDataKeys = array_keys($request->except('_token'));
+
+            $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys, $request) {
+                if(!in_array($key, $dataKeys)) return $key;
             });
+
+            $filteredAdditionalData = [];
+
+            foreach ($filteredAdditionalDataKey as $key) {
+                $filteredAdditionalData[$key] = $request->input($key);
+            }            
 
             /*
             * Init the process of separating different kind of data
