@@ -102,6 +102,7 @@
         <!-- /.card-body -->
     </div>
 @endsection
+
 @section('additional_script')
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
 <script src="{{ asset('app_assets/plugins/datatables-bs4/js/dataTables.bootstrap4.min.js') }}"></script>
