@@ -16,7 +16,7 @@ class ParticipantController extends Controller
         $participants = $event->participants;
         $additional_fields = [];
         if($participants->count()) {
-            $additional_fields = array_keys(json_decode($participants->first()->additional_data, true));
+            $additional_fields = array_keys(json_decode($participants->last()->additional_data, true));
         }
         return view('app.participant-list', compact('event', 'event_menu', 'additional_fields'));
     }
@@ -27,7 +27,7 @@ class ParticipantController extends Controller
         $participants = $event->participants;
         $additional_fields = [];
         if($participants->count()) {
-            $additional_fields = array_keys(json_decode($participants->first()->additional_data, true));
+            $additional_fields = array_keys(json_decode($participants->last()->additional_data, true));
         }
         return view('app.participants-edit-list', compact('event_menu', 'event', 'participants', 'additional_fields'));
     }
@@ -75,9 +75,18 @@ class ParticipantController extends Controller
         * Filter dynamics fields data from the request
         */
 
-        $filteredAdditionalData = array_filter($request->except('_token', 'participant_id', 'event_uid'), function($field) use ($data) {
-            if(!in_array($field, $data)) return $field;
-        });
+        $dataKeys = array_keys($data);
+            $allRequestDataKeys = array_keys($request->except('_token', 'event_uid', 'participant_id'));
+
+            $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys, $request) {
+                if(!in_array($key, $dataKeys)) return $key;
+            });
+
+            $filteredAdditionalData = [];
+
+            foreach ($filteredAdditionalDataKey as $key) {
+                $filteredAdditionalData[$key] = $request->input($key);
+            }  
 
         /*
         * Init the process of separating different kind of data
@@ -121,5 +130,114 @@ class ParticipantController extends Controller
         $participant->update($data);
 
         return redirect()->route("participants-edit-list", $request->event_uid)->with("success", "Les données du participant ont été modifiées.");
+    }
+    
+    //Participant update page
+    
+    public function participantUpdatePage($participant_id, $event_uid) {
+        $participant = Participant::find($participant_id);
+        $event = Event::find($event_uid);
+        return view('forms.participant-update', compact('participant', 'event'));
+    }
+    
+    //Participant updates
+    
+    public function participantUpdate(Request $request) {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'event_uid' => 'required',
+                'firstname' => 'required',
+                'lastname' => 'required',
+                'email' => 'required',
+                'phone' => 'required',
+                'civility' => 'required',
+            ],
+            [
+                'required' => "Ce champ est obligatoire.",
+                'email' => "Vous devez renseigner une adresse mail.",
+                'email.unique' => "Il existe déjà un participant avec cette adresse email.",
+                'phone.unique' => "Il existe déjà un participant avec cet numéro de téléphone."
+            ]
+            );
+
+        if($validator->fails()) {
+            return redirect()->back()->withErrors($validator);
+        }
+
+        $data = $request->all([
+            'lastname', 
+            'firstname', 
+            'email', 
+            'phone', 
+            'civility', 
+            'price', 
+            'payment_method', 
+            'field_uid']);
+
+        /*
+        * Filter dynamics fields data from the request
+        */
+
+        $dataKeys = array_keys($data);
+            $allRequestDataKeys = array_keys($request->except('_token', 'event_uid', 'participant_id'));
+
+            $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys, $request) {
+                if(!in_array($key, $dataKeys)) return $key;
+            });
+
+            $filteredAdditionalData = [];
+
+            foreach ($filteredAdditionalDataKey as $key) {
+                $filteredAdditionalData[$key] = $request->input($key);
+            }  
+
+        /*
+        * Init the process of separating different kind of data
+        * Loop over filtered data
+        * And get base64 from file inputs data
+        * Fill created arrays
+        */
+
+        $additionalFileInputs = [];
+        $additionalOtherInputs = [];
+
+        foreach ($filteredAdditionalData as $key => $value) {
+            if($file = $request->file($key)) {
+             $filename = time();
+             $extension = $file->getClientOriginalExtension();
+             $fullname = "$filename.$extension";
+             $pathname = $file->move('participants_files', $fullname)->getPathname();
+             $data = file_get_contents($pathname);
+             $fileType = "image/";
+             if(!in_array($extension, ['png', 'jpeg', 'jpg', 'svg'])) {
+               $fileType = "application/";
+             }
+             $base64 = 'data:' . $fileType . $extension . ';base64,' . base64_encode($data);
+             $additionalFileInputs[$key] = $base64;
+            } else {
+              $additionalOtherInputs[$key] = $value;
+            }
+          }
+
+        /*
+        * Merge all the dynamics fields processed data
+        * Get its JSON format processed data
+        * And create participant
+        */
+
+        $additionalData = array_merge($additionalFileInputs, $additionalOtherInputs);
+
+        $data["additional_data"] = json_encode($additionalData);
+
+        $participant = Participant::find($request->participant_id);
+        $participant->update($data);
+
+        return redirect()->route("participant-data-updated", $request->event_uid);
+    }
+    
+    public function participantDataUpdated($event_uid) {
+        $event = Event::find($event_uid);
+        return view('app.participant-data-updated', ['eventName' => $event->name]);
     }
 }
