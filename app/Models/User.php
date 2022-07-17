@@ -63,6 +63,9 @@ class User extends Authenticatable implements MustVerifyEmail
     {
         parent::boot();
 
+        /**
+         * Add Uuid to creationg user
+         */
         static::creating(function($user) {
             if(!$user->uid) $user->uid = Str::uuid();
         });
