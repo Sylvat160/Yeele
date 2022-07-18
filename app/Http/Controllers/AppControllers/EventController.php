@@ -111,6 +111,11 @@ class EventController extends Controller
     {
         $event = Event::find($uid);
         $data = $request->except('_token', '_method'); 
+        if($file = $request->file('image')) {
+            $storagePath = $file->store('public/events');
+            $imagePath = str_replace('public/', '', $storagePath); 
+            $data['image'] = $imagePath;
+        }
         if(!isset($request->counter_active)) $data['counter_active'] = 0;
         $event->update($data);
         return redirect()->route('event.show', $event->uid)->with('success', "Votre évènement a été modifié avec succès!");
