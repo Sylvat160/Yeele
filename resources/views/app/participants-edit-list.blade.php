@@ -83,7 +83,7 @@
                                                                 download="{{ 'file.' . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
                                                         </td>
                                                     @else
-                                                        <td>{{ $value }}</td>
+                                                        <td>{{ $value ? $value : "Aucun" }}</td>
                                                     @endif
                                                 @endforeach
                                             @else
