@@ -25,7 +25,7 @@ class CreateParticipantsTable extends Migration
             $table->string('payment_method')->nullable();
             $table->foreignUuid('field_uid')->nullable()->on('fields')->nullOnDelete();
             $table->longText('additional_data')->nullable();
-            $table->boolean('payment_status')->default(0);
+            $table->boolean('payment_status')->default(false);
             $table->timestamps();
         });
     }

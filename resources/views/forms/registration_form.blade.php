@@ -123,7 +123,7 @@
                             <option class="hidden">Selectionner un tarif</option>
                             @if ($event->eventPrices->count() > 1)
                                 @foreach ($event->eventPrices as $price)
-                                <option value="{{ $price->value }}" @if($price->value === $participant->price) selected @endif>{{ $price->label }} ({{ $price->value . ' FCFA' }}
+                                <option value="{{ $price->value }}">{{ $price->label }} ({{ $price->value . ' FCFA' }}
                                     FCFA)</option>
                                 @endforeach
                             @else
@@ -142,7 +142,7 @@
                             @if ($event->event_payment_methods->count() > 1)
                                 <option class="hidden">Selectionner un mode de paiement</option>
                                 @foreach ($event->event_payment_methods as $method)
-                                    <option value="{{ $method->name }}"  @if($method === $participant->payment_method) selected @endif>{{ $method->name }}</option>
+                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
                                 @endforeach
                             @else
                             <option value="{{ $event->event_payment_methods->first()->name }}" selected>{{ $event->event_payment_methods->first()->name }}</option>
