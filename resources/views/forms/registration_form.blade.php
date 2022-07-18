@@ -121,10 +121,14 @@
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                             required>
                             <option class="hidden">Selectionner un tarif</option>
-                            @foreach ($event->eventPrices as $price)
-                                <option value="{{ $price->value }}">{{ $price->label }} ({{ $price->value }}
+                            @if ($event->eventPrices->count() > 1)
+                                @foreach ($event->eventPrices as $price)
+                                <option value="{{ $price->value }}" @if($price->value === $participant->price) selected @endif>{{ $price->label }} ({{ $price->value . ' FCFA' }}
                                     FCFA)</option>
-                            @endforeach
+                                @endforeach
+                            @else
+                                <option value="{{ $event->eventPrices->first()->value }}" selected>{{ $event->eventPrices->first()->value . ' FCFA' }}</option>
+                            @endif
                         </select>
                     </div>
                     <div class="mb-3">
@@ -135,10 +139,14 @@
                         <select name="payment_method" id="payment_method"
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                             required>
-                            <option class="hidden">Selectionner un mode de paiement</option>
-                            @foreach ($event->event_payment_methods as $method)
-                                <option value="{{ $method->name }}">{{ $method->name }}</option>
-                            @endforeach
+                            @if ($event->event_payment_methods->count() > 1)
+                                <option class="hidden">Selectionner un mode de paiement</option>
+                                @foreach ($event->event_payment_methods as $method)
+                                    <option value="{{ $method->name }}"  @if($method === $participant->payment_method) selected @endif>{{ $method->name }}</option>
+                                @endforeach
+                            @else
+                            <option value="{{ $event->event_payment_methods->first()->name }}" selected>{{ $event->event_payment_methods->first()->name }}</option>
+                            @endif
                         </select>
                     </div>
                 @endif
@@ -154,7 +162,7 @@
                             required>
                             <option class="hidden">Choisissez une valeur du champ libre</option>
                             @foreach ($event->fields as $field)
-                                <option value="{{ $field->uid }}">{{ $field->name }} : {{ $field->value }}
+                                <option value="{{ $field->uid }}" @if($field->uid === $participant->field_uid) selected @endif>{{ $field->name }} : {{ $field->value }}
                                 </option>
                             @endforeach
                         </select>
