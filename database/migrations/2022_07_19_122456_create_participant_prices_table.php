@@ -15,8 +15,8 @@ class CreateParticipantPricesTable extends Migration
     {
         Schema::create('participant_prices', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('participant_id')->references('id')->on('participants')->cascadeOnDelete();
-            $table->foreignUuid('event_price_uid')->references('uid')->on('event_prices')->cascadeOnDelete();
+            $table->foreignId('participant_id')->on('participants')->cascadeOnDelete();
+            $table->foreignUuid('event_price_uid')->on('event_prices')->cascadeOnDelete();
             $table->integer('quantity')->default(1);
             $table->timestamps();
         });
