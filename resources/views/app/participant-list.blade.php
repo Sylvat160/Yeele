@@ -68,6 +68,7 @@
                                     <tr class="odd">
                                         <td>{{ $participant->lastname }}</td>
                                         <td>{{ $participant->firstname }}</td>
+                                        <td>{{ $participant->created_at->format("d/M/Y") }}</td>
                                         <td>{{ $participant->civility }}</td>
                                         <td>{{ $participant->email }}</td>
                                         <td>{{ $participant->phone }}</td>
@@ -96,9 +97,6 @@
                                                 @endfor
                                             @endif
                                         @endif
-                                        @if ($event->eventPrices->count())
-                                            <td>{{  }}</td>
-                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -122,6 +120,5 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
     <script src="{{ asset('js/participants-list.js') }}"></script>
 @endsection

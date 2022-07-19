@@ -149,12 +149,14 @@
                     </div>
                 </div>
             </div>
-            @if(now() < new DateTime($event->signup_date_time))
+            @if(now() < new DateTime($event->signup_end_date_time))
             <div class="my-4">
                 <a href="{{ route('form', $event->uid) }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto" style="width: fit-content;">
                     Je m'inscris
                 </a>
             </div>
+            @else
+                <p class="my-4 text-red-700 uppercase text-center">Date d'inscription expiré</p>
             @endif
         </div>
     </div>

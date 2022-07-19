@@ -56,7 +56,8 @@
                                             aria-label="{{ $field }}: activate to sort column ascending">
                                             {{ $field }}</th>
                                     @endforeach
-                                    <th colspan="2">Options</th>
+                                    <th>Edition</th>
+                                    <th>Suppression</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -155,6 +156,7 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
+    <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
     <script>
         $(function() {
     $("#usersData").DataTable({
