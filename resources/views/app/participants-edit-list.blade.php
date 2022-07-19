@@ -56,7 +56,7 @@
                                             aria-label="{{ $field }}: activate to sort column ascending">
                                             {{ $field }}</th>
                                     @endforeach
-                                    <td>Options</td>
+                                    <th colspan="2">Options</th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -94,9 +94,13 @@
                                         @endif
                                         <td>
                                             <a href="{{ route('participant.edit', [$participant->id, $participant->event->uid]) }}" class="btn btn-info" class="editParticipantBtn">
-                                                <i class="fas fa-pen"></i>
                                                 <span>Editer</span>
                                             </a>
+                                        </td>
+                                        <td>
+                                            <button class="btn btn-primary participant-delete" data-participant='{"id": {{ $participant->id }}, "fullname": "{{ "$participant->firstname $participant->lastname" }}"}'>
+                                                <span>Supprimer</span>
+                                            </button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -108,6 +112,37 @@
         </div>
         <!-- /.card-body -->
     </div>
+
+    <div class="modal fade" id="modal_destroy" aria-hidden="true" style="display: none;">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Suppression d'un participant</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">×</span>
+                    </button>
+                </div>
+                <form action="{{ route('participant.remove') }}" method="post" id="destroy_modal_form">
+                    <input type="hidden" name="participant_id" id="to_remove_participant_id" required>
+                    <div class="modal-body">
+                        @csrf
+                        <div class="text-danger">
+                            <h1>Attention!</h1>
+                            <p>Vous êtes sur le point de supprimer <strong id="to_remove_participant_fullname"></strong>. Cette action
+                                est irréversible. Êtes vous sûr de vouloir continuer?</p>
+                        </div>
+                    </div>
+                    <div class="modal-footer justify-content-between">
+                        <button type="button" class="btn btn-default" data-dismiss="modal">Non</button>
+                        <button type="submit" class="btn btn-danger modal_form_submit_btn">Oui</button>
+                    </div>
+            </div>
+            </form>
+            <!-- /.modal-content -->
+        </div>
+        <!-- /.modal-dialog -->
+    </div>
+
 @endsection
 @section('additional_script')
 <script src="{{ asset('app_assets/plugins/datatables/jquery.dataTables.min.js') }}"></script>
@@ -120,7 +155,6 @@
     <script src="{{ asset('app_assets/plugins/pdfmake/pdfmake.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/pdfmake/vfs_fonts.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/datatables-buttons/js/buttons.html5.min.js') }}"></script>
-    <script src="https://formbuilder.online/assets/js/form-builder.min.js"></script>
     <script>
         $(function() {
     $("#usersData").DataTable({
@@ -153,5 +187,14 @@
         }
     }).buttons().container().appendTo('#data_wrapper .col-md-6:eq(0)');
 });
+
+$('.participant-delete').each(function() {
+    $(this).click(function() {
+        const data = JSON.parse($(this).attr('data-participant'))
+        $('#to_remove_participant_id').attr('value', data.id)
+        $('#to_remove_participant_fullname').html(data.fullname)
+        $('#modal_destroy').modal()
+    })
+})
     </script>
 @endsection

@@ -235,9 +235,14 @@ class ParticipantController extends Controller
 
         return redirect()->route("participant-data-updated", $request->event_uid);
     }
-    
+
     public function participantDataUpdated($event_uid) {
         $event = Event::find($event_uid);
         return view('app.participant-data-updated', ['eventName' => $event->name]);
+    }
+
+    public function destroy(Request $request) {
+        Participant::destroy($request->participant_id);
+        return redirect()->back()->with('success', "Le participant a été supprimé avec succès!");
     }
 }
