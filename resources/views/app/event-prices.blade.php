@@ -26,6 +26,18 @@
                             tarifs</label>
                     </div>
                 </div>
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input
+                         type="checkbox" 
+                         class="custom-control-input" 
+                         value="{{ $event->prices_quantity_active }}" 
+                         id="quantity" data-route="{{ route('updateQuantityStatus') }}" 
+                         @if ((bool) $event->prices_quantity_active) checked @endif
+                         @if(((bool) $event->multiple_prices_active) === false) disabled @endif>
+                        <label class="custom-control-label" for="quantity">Activer/Désactiver l'entrée du nombre par tarif</label>
+                    </div>
+                </div>
             </div>
         </div>
     </div>
@@ -220,7 +232,12 @@
 @endsection
 @section('additional_script')
     <script>
-        $('#multi_select').click(function() {
+
+        update('#multi_select', true)
+        update('#quantity')
+
+        function update(element, isMs = false) {
+            $(element).click(function() {
             const formData = new FormData
             formData.append('event_uid', $('#event_uid').attr('value'))
             fetch($(this).attr('data-route'), {
@@ -238,13 +255,21 @@
                             if (data.status) {
                                 $(this).attr('value', 1)
                                 $(this).attr('checked', true)
+                                if(isMs) {
+                                    $('#quantity').attr('disabled', false)
+                                }
                             } else {
                                 $(this).attr('value', 0)
                                 $(this).attr('checked', false)
+                                if(isMs) {
+                                    $('#quantity').attr('disabled', true)
+                                    $('#quantity').attr('checked') ? $('#quantity')[0].removeAttribute('checked') : null
+                                }
                             }
                         })
                 })
         })
+        }
 
         @if (Session::get('add_price_error'))
             $('#modal_add').modal()
