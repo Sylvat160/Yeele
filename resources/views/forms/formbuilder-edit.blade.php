@@ -16,7 +16,7 @@
 <div class="card">
     <input type="hidden" name="form_uid" value="{{ $form->uid }}" required>
     <div class="card-body">
-        <div id="formbuilder_container" data-fields="{{ json_decode($form->data) }}"></div>
+        <div id="formbuilder_container" data-fields="{{ $form->data }}"></div>
     </div>
 </div>
 
