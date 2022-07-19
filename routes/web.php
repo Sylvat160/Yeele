@@ -75,12 +75,17 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
         return redirect()->route('event.show', $event_uid)->with('success', "Le formulaire a été modifié.");
     });
 
-    Route::get('/current_event/{event_uid}/bulkmailing', [BulkMailController::class, 'index'])->name('app.bulkmailing_index');
+    Route::get('current_event/{event_uid}/bulkmailing', [BulkMailController::class, 'index'])->name('app.bulkmailing_index');
     Route::post('send_bulkmail', [BulkMailController::class, 'send'])->name('bulkmail.send');
     Route::get('current_event/{event_uid}/participants-edit-list', [ParticipantController::class, 'editList'])->name('participants-edit-list');
     Route::get('participant-edit/{participant_uid}/{event_uid}', [ParticipantController::class, 'edit'])->name('participant.edit');
     Route::post('participant-delete', [ParticipantController::class, 'destroy'])->name('participant.remove');
     Route::post('participant-update', [ParticipantController::class, 'update'])->name('participant.update');
+
+    //PRICE SETTINGS ROUTES
+
+    Route::post('update_multi_select_status', [App\Http\Controllers\AppControllers\PriceSettingController::class, 'updateMultiSelectStatus'])->name('updateMultiSelectStatus');
+    Route::post('update_quantity_status', [App\Http\Controllers\AppControllers\PriceSettingController::class, 'updateQuantityStatus'])->name('updateQuantityStatus');
 });
  
 //PARTICIPANT REGISTRATION ROUTES

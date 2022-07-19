@@ -9,55 +9,80 @@
 @section('main')
     @include('extras.success_message')
 
-    <div class="card">
-        <div class="card-header">
-            <h3 class="card-title">Liste des tarifs</h3>
-            <div class="card-tools">
-                <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un tarif</button>
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <i class="fa-solid fa-gear"></i>
+                <span class="font-weight-bold">Paramétrage des tarifs</span>
+            </div>
+            <div class="card-body">
+                <input type="hidden" id="event_uid" value="{{ $event->uid }}">
+                <div class="form-group">
+                    <div class="custom-control custom-switch">
+                        <input type="checkbox" class="custom-control-input" value="{{ $event->multiple_prices_active }}"
+                            id="multi_select" data-route="{{ route('updateMultiSelectStatus') }}"
+                            @if ((bool) $event->multiple_prices_active) checked @endif>
+                        <label class="custom-control-label" for="multi_select">Activer/Désactiver la sélection multiple des
+                            tarifs</label>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="card-body table-responsive p-0">
-            <table class="table table-hover text-nowrap">
-                <thead>
-                    <tr>
-                        <th>Libellé</th>
-                        <th>Prix</th>
-                        <th>Modification</th>
-                        <th>Suppression</th>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse($event->eventPrices as $eventPrice)
+    </div>
+    <div class="col-md-8 mx-auto">
+        <div class="card">
+            <div class="card-header">
+                <div class="card-title">
+                    <i class="fa-solid fa-list"></i>
+                    <span class="font-weight-bold">Liste des tarifs</span>
+                </div>
+                <div class="card-tools">
+                    <button class="btn btn-primary" data-toggle="modal" data-target="#modal_add">Ajouter un tarif</button>
+                </div>
+            </div>
+            <div class="card-body table-responsive p-0">
+                <table class="table table-hover text-nowrap">
+                    <thead>
                         <tr>
-                            <td>{{ $eventPrice->label }}</td>
-                            <td>{{ $eventPrice->value }} FCFA</td>
-                            <td>
-                                <button class="btn btn-info btn_edit"
-                                    data-route="{{ route('event_price.update', $eventPrice->uid) }}"
-                                    data-price_label="{{ $eventPrice->label }}"
-                                    data-price_value="{{ $eventPrice->value }}">
-                                    <i class="fa-solid fa-pen-to-square"></i>
-                                    <span>Modifier</span>
-                                </button>
-                            </td>
-                            <td>
-                                <button class="btn btn-danger btn_destroy"
-                                    data-route="{{ route('event_price.destroy', $eventPrice->uid) }}"
-                                    data-price_label="{{ $eventPrice->label }}">
-                                    <i class="fa-solid fa-trash-can"></i>
-                                    <span>Supprimer</span>
-                                </button>
-                            </td>
+                            <th>Libellé</th>
+                            <th>Prix</th>
+                            <th>Modification</th>
+                            <th>Suppression</th>
                         </tr>
-                    @empty
-                        <tr>
-                            <td colspan="4" class="text-center">
-                                Vous n'avez aucun tarif disponible pour cet évènement.
-                            </td>
-                        </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse($event->eventPrices as $eventPrice)
+                            <tr>
+                                <td>{{ $eventPrice->label }}</td>
+                                <td>{{ $eventPrice->value }} FCFA</td>
+                                <td>
+                                    <button class="btn btn-info btn_edit"
+                                        data-route="{{ route('event_price.update', $eventPrice->uid) }}"
+                                        data-price_label="{{ $eventPrice->label }}"
+                                        data-price_value="{{ $eventPrice->value }}">
+                                        <i class="fa-solid fa-pen-to-square"></i>
+                                        <span>Modifier</span>
+                                    </button>
+                                </td>
+                                <td>
+                                    <button class="btn btn-danger btn_destroy"
+                                        data-route="{{ route('event_price.destroy', $eventPrice->uid) }}"
+                                        data-price_label="{{ $eventPrice->label }}">
+                                        <i class="fa-solid fa-trash-can"></i>
+                                        <span>Supprimer</span>
+                                    </button>
+                                </td>
+                            </tr>
+                        @empty
+                            <tr>
+                                <td colspan="4" class="text-center">
+                                    Vous n'avez aucun tarif disponible pour cet évènement.
+                                </td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
     </div>
 
@@ -81,7 +106,8 @@
                                 <span>Libellé du tarif</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="text" name="label" id="label" class="form-control" placeholder="Ex: Simple, VIP"
+                            <input type="text" name="label" id="label" class="form-control"
+                                placeholder="Ex: Simple, VIP"
                                 @if ($value = old('label')) value="{{ $value }}" @endif required>
                             @error('label')
                                 <span class="text-danger">{{ $message }}</span>
@@ -142,8 +168,8 @@
                                 <span>Valeur du tarif</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="number" name="value" id="edit_value" class="form-control" placeholder="Ex: 15000"
-                                required>
+                            <input type="number" name="value" id="edit_value" class="form-control"
+                                placeholder="Ex: 15000" required>
                             @error('value')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
@@ -194,6 +220,32 @@
 @endsection
 @section('additional_script')
     <script>
+        $('#multi_select').click(function() {
+            const formData = new FormData
+            formData.append('event_uid', $('#event_uid').attr('value'))
+            fetch($(this).attr('data-route'), {
+                    method: 'POST',
+                    headers: {
+                        "X-CSRF-TOKEN": document.querySelector(
+                            'meta[name="csrf-token"]'
+                        ).content,
+                    },
+                    body: formData,
+                })
+                .then(res => {
+                    res.json()
+                        .then(data => {
+                            if (data.status) {
+                                $(this).attr('value', 1)
+                                $(this).attr('checked', true)
+                            } else {
+                                $(this).attr('value', 0)
+                                $(this).attr('checked', false)
+                            }
+                        })
+                })
+        })
+
         @if (Session::get('add_price_error'))
             $('#modal_add').modal()
         @endif
