@@ -32,6 +32,9 @@ class CreateEventsTable extends Migration
             $table->boolean('counter_active')->default(true);
             $table->string('bg_color')->default('#000000')->nullable();
             $table->string('text_color')->default('#000000')->nullable();
+            $table->boolean('multiple_prices_active')->default(false);
+            $table->boolean('prices_quantity_active')->default(false);
+            $table->longText('form_fields_names')->nullable();
             $table->integer('clicks')->default(0);
             $table->timestamps();
         });

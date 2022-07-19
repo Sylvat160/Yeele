@@ -29,7 +29,8 @@ class Event extends Model
         'bg_color',
         'text_color',
         'counter_active',
-        'clicks'
+        'clicks',
+        'form_fields_names'
     ];
 
     protected $hidden = [
