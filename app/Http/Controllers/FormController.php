@@ -201,8 +201,8 @@ class FormController extends Controller
      * @return void
      */
     public function build_form(Request $request) {
-        Form::create($request->all());
-
+        $form = Form::create($request->all(['event_uid', 'data']));
+        $form->event->update(['form_fields_names' => $request->fields_names_list]);
         return json_encode(['event_uid' => $request->event_uid]);
     }
     
@@ -217,7 +217,7 @@ class FormController extends Controller
         $event_menu = true;
         $event = Event::find($event_uid);
         $form = $event->form;
-        if(!isset($event->form)) return redirect()->back()->with('error', "Vous n'avez aucun champ additionnel au formulaire créé.");
+        if(!isset($event->form)) return redirect()->back()->with('warning', "Vous n'avez aucun champ additionnel au formulaire créé.");
         return view('forms.formbuilder-edit', compact('form', 'event_menu', 'event'));
     }
     
@@ -230,7 +230,8 @@ class FormController extends Controller
      */
     public function update_form(Request $request) {
         $form = Form::find($request->form_uid);
-        $form->update($request->all());
+        $form->update($request->all(['data']));
+        $form->event->update(['form_fields_names' => $request->fields_names_list]);
 
         return json_encode(["event_uid" => $form->event_uid]);
     }

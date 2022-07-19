@@ -14,10 +14,8 @@ class ParticipantController extends Controller
         $event_menu = true;
         $event = Event::find($event_uid);
         $participants = $event->participants;
-        $additional_fields = [];
-        if($participants->count()) {
-            $additional_fields = array_keys(json_decode($participants->last()->additional_data, true));
-        }
+        $additional_fields = json_decode($event->form_fields_names, true) ?? [];
+
         return view('app.participant-list', compact('event', 'event_menu', 'additional_fields'));
     }
 
@@ -25,10 +23,8 @@ class ParticipantController extends Controller
         $event_menu = true;
         $event = Event::find($event_uid);
         $participants = $event->participants;
-        $additional_fields = [];
-        if($participants->count()) {
-            $additional_fields = array_keys(json_decode($participants->last()->additional_data, true));
-        }
+        $additional_fields = json_decode($event->form_fields_names, true) ?? [];
+
         return view('app.participants-edit-list', compact('event_menu', 'event', 'participants', 'additional_fields'));
     }
 

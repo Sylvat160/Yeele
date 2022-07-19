@@ -147,9 +147,15 @@ $(formBuilder).formBuilder({
         const form_uid = document.querySelector(
             'input[name="form_uid"]'
         ).value;
+        const parsedData = JSON.parse(data)
+        const fieldsNamesList = parsedData.map(field => {
+            return field.name
+        })
+
         const formData = new FormData();
         formData.append("form_uid", form_uid);
-        formData.append("data", JSON.stringify(data));
+        formData.append("data", data);
+        formData.append("fields_names_list", JSON.stringify(fieldsNamesList))
 
         fetch(`${location.origin}/app/edit_formbuilder`, {
             method: "POST",
