@@ -1,14 +1,11 @@
 const formBuilder = $(document.getElementById("formbuilder_container")).formBuilder({
-    disableFields: ["hidden"],
-
-    disabledSubtypes: {
-        text: ["email"],
-    },
-
+    disableFields: ["hidden", "button", "autocomplete", "checkbox-group", "radio-group", "paragraph"],
+    disabledAttrs: ['className', 'access', 'step', 'multiple', 'description'],
+    disabledActionButtons: ['data'],
     i18n: {
         override: {
             "en-US": {
-                NATIVE_NAME: "français",
+                NATIVE_NAME: "Français",
                 ENGLISH_NAME: "French",
 
                 addOption: "Ajouter une Option",
@@ -32,7 +29,7 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 copy: "Dupliquer",
                 copyButton: "Bouton copier",
                 copyButtonTooltip: "Copier",
-                dateField: "Champ Date",
+                dateField: "Champ de type date",
                 description: "Texte de description",
                 descriptionField: "Description",
                 devMode: "Mode Developpeur",
@@ -47,13 +44,13 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 fieldNonEditable: "Ce champ ne peut pas être édité",
                 fieldRemoveWarning:
                     "Etes-vous sur de vouloir supprimer ce champ ? ",
-                fileUpload: "Upload de fichier",
+                fileUpload: "Champ de type fichier",
                 formUpdated: "Le formulaire a été mis à jour",
                 getStarted:
                     "Glisser-déposer un champ de la liste de droite vers cette zone",
-                header: "En-tête",
-                hide: "Editer",
-                hidden: "Champ de type Hidden",
+                header: "Titre",
+                hide: "Cacher",
+                hidden: "Caché",
 
                 inline: "aligné",
                 inlineDesc: "Afficher les boutons en ligne",
@@ -69,7 +66,7 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 name: "Nom",
                 no: "Non",
                 noFieldsToClear: "Aucun champ à nettoyer",
-                number: "nombre",
+                number: "Champ de type nombre",
                 off: "Off",
                 on: "On",
                 option: "Option",
@@ -104,8 +101,8 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 rows: "Lignes",
                 save: "Enrégistrer",
                 selectOptions: "Options",
-                select: "Selectionner",
-                selectColor: "Couleur de Sélection",
+                select: "Champ de séléction",
+                selectColor: "Couleur de sélection",
 
                 selectionsMessage: "Autorise la sélection multiple",
                 size: "Taille",
@@ -126,8 +123,8 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 "styles.btn.warning": "Attention",
                 submit: "Soumettre",
 
-                subtype: "Type",
-                text: "Champ de Saisie de texte",
+                subtype: "Sous-type",
+                text: "Champ de saisie de texte",
                 textArea: "Zone de texte",
                 toggle: "Activer/désactiver",
                 warning: "Attention!",
