@@ -1,5 +1,5 @@
 const partAddData = JSON.parse(
-    $("#additional_fields_container").attr("data-participant-additional-data")
+    $("form").attr("data-participant-additional-data")
 );
 
 const fieldsKeys = Object.keys(partAddData)

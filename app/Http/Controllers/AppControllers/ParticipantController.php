@@ -134,7 +134,8 @@ class ParticipantController extends Controller
     public function participantUpdatePage($participant_id, $event_uid) {
         $participant = Participant::find($participant_id);
         $event = Event::find($event_uid);
-        return view('forms.participant-update', compact('participant', 'event'));
+        $fields = json_decode($event->form->data, true);
+        return view('forms.participant-update', compact('participant', 'event', 'fields'));
     }
     
     //Participant updates
