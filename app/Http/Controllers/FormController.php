@@ -34,7 +34,8 @@ class FormController extends Controller
      */
     public function create($event_uid) {
         $event = Event::find($event_uid);
-        return view('forms.registration_form', compact('event'));
+        $fields = json_decode($event->form->data, true) ?? [];
+        return view('forms.registration_form', compact('event', 'fields'));
     }
     
     /**

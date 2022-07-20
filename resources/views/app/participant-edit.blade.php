@@ -167,7 +167,120 @@
                 @endif
 
                 @if ($event->form)
-                    <div id="additional_fields_container" data-fields="{{ $event->form->data }}" data-participant-additional-data="{{ $participant->additional_data }}"></div>
+                    @foreach ($fields as $field)
+                        @switch($field['type'])
+
+                            @case('header')
+                            <div class="mb-3">
+                                <{{$field['subtype']}}>{{ str_replace('<br>', '', $field['label']) }}</{{$field['subtype']}}>
+                            </div>
+                            @break
+
+                            @case('select')
+                                <div class="mb-3">
+                                    @isset($field['label'])
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                            <span>{{ str_replace('<br>', '', $field['label']) }}</span>
+                                            @if ($field['required'])
+                                                <span class="text-red-600">*</span>
+                                            @endif
+                                        </label>
+                                    @endisset
+                                    <select name="{{ $field['name'] }}" id="{{ $field['name'] }}"
+                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                    @if($field['required']) required @endif>
+                                        @isset($field['placeholder'])
+                                        <option class="hidden" selected>{{ $field['placeholder'] }}</option>
+                                        @endisset
+                                        @foreach ($field['values'] as $option)
+                                            <option value="{{ $option['value'] }}" @if($option['selected']) selected @endif>{{ $option['label'] }}</option>
+                                        @endforeach
+                                    </select>
+                                </div>
+                            @break
+                            
+                            @case('textarea')
+                                <div class="mb-3">
+                                    @isset($field['label'])
+                                    <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <span>{{ str_replace('<br>', '', $field['label']) }}</span>
+                                        @if ($field['required'])
+                                            <span class="text-red-600">*</span>
+                                        @endif
+                                    </label>
+                                @endisset
+                                <textarea name="{{ $field['name'] }}" id="{{ $field['name'] }}" cols="30" rows="5" @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @if($field['required']) required @endif>@isset($field['value']) {{$field['value']}} @endisset</textarea>
+                                </div>
+                            @break
+
+                            @case('text')
+                            <div class="mb-3">
+                                @isset($field['label'])
+                                <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                    <span>{{ str_replace('<br>', '', $field['label']) }}</span>
+                                    @if ($field['required'])
+                                        <span class="text-red-600">*</span>
+                                    @endif
+                                </label>
+                            @endisset
+                                <input type="{{ $field['subtype'] }}" name="{{ $field['name'] }}" id="{{ $field['name'] }}"
+                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                            @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
+                            </div>
+                            @break
+
+                            @case('number')
+                                <div class="mb-3">
+                                    @isset($field['label'])
+                                    <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <span>{{ str_replace('<br>', '', $field['label']) }}</span>
+                                        @if ($field['required'])
+                                            <span class="text-red-600">*</span>
+                                        @endif
+                                    </label>
+                                @endisset
+                                    <input 
+                                    type="number" 
+                                    @isset($field['min'])
+                                        min="{{ $field['min'] }}"
+                                    @endisset
+                                    @isset($field['max'])
+                                        min="{{ $field['max'] }}"
+                                    @endisset
+                                    name="{{ $field['name'] }}" 
+                                    id="{{ $field['name'] }}" 
+                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                    @isset($field['placeholder']) 
+                                    placeholder="{{ $field['placeholder'] }}" 
+                                    @endisset 
+                                    @isset($field['value']) 
+                                    value="{{ $field['value'] }}" 
+                                    @endisset 
+                                    @if($field['required']) 
+                                    required 
+                                    @endif>
+                                </div>
+                            @break
+                            
+                            @case('date')
+                                <div class="mb-3">
+                                    <div>
+                                        @isset($field['label'])
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                            <span>{{ str_replace('<br>', '', $field['label']) }}</span>
+                                            @if ($field['required'])
+                                                <span class="text-red-600">*</span>
+                                            @endif
+                                        </label>
+                                    @endisset
+                                        <input type="date" name="{{ $field['name'] }}" id="{{ $field['name'] }}"
+                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                    @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
+                                    </div>
+                                </div>
+                            @break
+                        @endswitch
+                    @endforeach
                 @endif
 
                 @if (now() < new DateTime($event->signup_date_time))
@@ -192,8 +305,6 @@
     <script src="{{ asset('js/app.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('app_assets/plugins/jquery-ui/jquery-ui.min.js') }}"></script>
-    <script src="https://formbuilder.online/assets/js/form-render.min.js"></script>
-    <script src="{{ asset('js/show_formbuilder_field.js') }}"></script>
     <script src="{{ asset('js/participant.edit.js') }}"></script>
 </body>
 

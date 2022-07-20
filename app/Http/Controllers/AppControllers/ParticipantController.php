@@ -31,6 +31,7 @@ class ParticipantController extends Controller
     public function edit($participantId, $event_uid) {
         $participant = Participant::find($participantId);
         $event = Event::find($event_uid);
+        
         return view('app.participant-edit', compact('participant', 'event'));
     }
 
