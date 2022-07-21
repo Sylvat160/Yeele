@@ -33,4 +33,24 @@ class Participant extends Model
     public function participantPrices() {
         return $this->hasMany(ParticipantPrices::class);
     }
+
+    public function getCustomAttribute() {
+        $pricesWithoutQuantity = [];
+        $pricesWithQuantity = [];
+        foreach ($this->participantPrices as $price) {
+            array_push($pricesWithoutQuantity, $price->event_price_uid);
+        }
+
+        foreach ($this->participantPrices as $price) {
+            array_push(
+                $pricesWithQuantity,
+                 [$price->event_price_uid => $price->quantity]
+            );
+        }
+
+        return [
+            'pwithoutq' => json_encode($pricesWithoutQuantity),
+            'pwithq' => json_encode($pricesWithQuantity)
+        ];
+    }
 }
