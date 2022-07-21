@@ -17,6 +17,8 @@ var timer_container = document.getElementById('timer_container');
 
 var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
 
+var multiPrice = __webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js");
+
 function checkIfExistAndApplyListener(element, event, callback) {
   if (element) element.addEventListener(event, callback);
 }
@@ -49,6 +51,136 @@ if (timer_container) {
     datetimePlaceholder.innerText = dateTime;
   });
 }
+
+multiPrice();
+
+/***/ }),
+
+/***/ "./resources/js/multiprice.js":
+/*!************************************!*\
+  !*** ./resources/js/multiprice.js ***!
+  \************************************/
+/***/ ((module) => {
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function multiPrice() {
+  var _this = this;
+
+  var $ = function $(selector) {
+    return document.querySelector(selector);
+  };
+
+  var $All = function $All(selector) {
+    return document.querySelectorAll(selector);
+  };
+
+  if ($('#price') == undefined) {
+    this.pricesInput = $('input[name="prices"]');
+    this.prices = [];
+    var selectChangedEvent = new Event('selectChanged');
+    /**
+     * 
+     * @param {String | object} value 
+     */
+
+    var pushPrice = function pushPrice(value) {
+      _this.prices.push(value);
+
+      window.dispatchEvent(selectChangedEvent);
+    };
+    /**
+     * 
+     * @param {string} priceId
+     * @param {boolean} multiple 
+     */
+
+
+    var removePrice = function removePrice(priceId) {
+      var multiple = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : false;
+
+      if (multiple) {
+        var index = _this.prices.findIndex(function (price) {
+          return price[priceId];
+        });
+
+        _this.prices.splice(index, 1);
+
+        window.dispatchEvent(selectChangedEvent);
+      } else {
+        var _index = _this.prices.findIndex(function (price) {
+          return price == priceId;
+        });
+
+        _this.prices.splice(_index, 1);
+
+        window.dispatchEvent(selectChangedEvent);
+      }
+    };
+    /**
+     * Update pricesInput in case of change
+     */
+
+
+    var updatePricesInput = function updatePricesInput() {
+      _this.pricesInput.setAttribute('value', "".concat(JSON.stringify(_this.prices)));
+    };
+
+    window.addEventListener('selectChanged', updatePricesInput);
+    /**
+     * Show dropdown on label click
+     */
+
+    $('label[for="price"]').addEventListener('click', function () {
+      new Dropdown($('#prices'), $('#prices_btn'), {}).show();
+    });
+    $All('.price').forEach(function (price) {
+      price.addEventListener('change', function () {
+        var quantityInput = $("input[data-target-price=\"#".concat(this.getAttribute('id'), "\"]"));
+
+        switch (this.checked) {
+          case true:
+            if (quantityInput) {
+              quantityInput.removeAttribute('disabled');
+              var value = {};
+              value[this.getAttribute('id')] = quantityInput.value;
+              pushPrice(value);
+            } else {
+              pushPrice(this.getAttribute('id'));
+            }
+
+            break;
+
+          case false:
+            if (quantityInput) {
+              removePrice(this.getAttribute('id'), true);
+              quantityInput.value = 1;
+              quantityInput.setAttribute('disabled', 'true');
+            } else removePrice(this.getAttribute('id'));
+
+            break;
+        }
+      });
+    });
+    $All('.quantity_input').forEach(function (quantityInput) {
+      quantityInput.addEventListener('change', function (e) {
+        var priceId = e.target.dataset.targetPrice.replace('#', '');
+
+        var index = _this.prices.findIndex(function (price) {
+          return price == priceId;
+        });
+
+        var newValue = _defineProperty({}, priceId, e.target.value);
+
+        _this.prices.splice(index, 1, newValue);
+
+        window.dispatchEvent(selectChangedEvent);
+      });
+    });
+  }
+}
+
+module.exports = multiPrice;
 
 /***/ }),
 
