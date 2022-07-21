@@ -29,4 +29,8 @@ class Participant extends Model
     public function field() {
         return $this->belongsTo(Field::class);
     }
+
+    public function participantPrices() {
+        return $this->hasMany(ParticipantPrices::class);
+    }
 }

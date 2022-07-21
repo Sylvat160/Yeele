@@ -6,6 +6,7 @@ use App\Jobs\ParticipantRegisteringMailJob;
 use App\Models\Event;
 use App\Models\Form;
 use App\Models\Participant;
+use App\Models\ParticipantPrices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -113,7 +114,7 @@ class FormController extends Controller
             */
 
             $dataKeys = array_keys($data);
-            $allRequestDataKeys = array_keys($request->except('_token'));
+            $allRequestDataKeys = array_keys($request->except('_token', 'prices'));
 
             $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys, $request) {
                 if(!in_array($key, $dataKeys)) return $key;
@@ -165,6 +166,28 @@ class FormController extends Controller
             
             $participant = Participant::create($data);
             $event = Event::find($participant->event_uid);
+            if((bool) $event->multiple_prices_active) {
+                $prices = json_decode($request->prices, true);
+                if((bool) $event->prices_quantity_active) {
+                    foreach ($prices as $price) {
+                        foreach ($price as $price_uid => $quantity) {
+                            ParticipantPrices::create([
+                                'participant_id' => $participant->id,
+                                'event_price_uid' => $price_uid,
+                                'quantity' => $quantity
+                            ]);
+                        }
+                    }
+                } else {
+                    foreach ($prices as $price_uid) {
+                        ParticipantPrices::create([
+                            'participant_id' => $participant->id,
+                            'event_price_uid' => $price_uid
+                        ]);
+                    }
+                }
+            }
+
             dispatch(new ParticipantRegisteringMailJob($participant));
             return redirect()->route('registering_end')->with('event', $event->name);
     }

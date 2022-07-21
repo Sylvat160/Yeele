@@ -75,7 +75,7 @@ class ParticipantController extends Controller
         $dataKeys = array_keys($data);
             $allRequestDataKeys = array_keys($request->except('_token', 'event_uid', 'participant_id'));
 
-            $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys, $request) {
+            $filteredAdditionalDataKey = array_filter($allRequestDataKeys, function($key) use ($dataKeys) {
                 if(!in_array($key, $dataKeys)) return $key;
             });
 

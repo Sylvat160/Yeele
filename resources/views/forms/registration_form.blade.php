@@ -147,7 +147,7 @@
                                         <li class="mb-1 flex justify-between items-center">
                                             <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
                                               <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
-                                              <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}</label>
+                                              <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }} ({{ $price->value . ' FCFA' }})</label>
                                             </div>
                                             @if($event->prices_quantity_active)
                                                 <div>

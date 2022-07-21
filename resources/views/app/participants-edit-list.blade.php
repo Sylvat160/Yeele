@@ -39,7 +39,7 @@
                                     </th>
                                     @if ($event->eventPrices->count())
                                         <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
-                                            colspan="1" aria-label="Tarif: activate to sort column ascending">Tarif</th>
+                                            colspan="1" aria-label="Tarif: activate to sort column ascending">Tarif(s)</th>
                                         <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
                                             colspan="1" aria-label="Mode de paiement: activate to sort column ascending">
                                             Mode de paiement</th>
@@ -69,8 +69,20 @@
                                         <td>{{ $participant->email }}</td>
                                         <td>{{ $participant->phone }}</td>
                                         @if ($event->eventPrices->count())
-                                            <td>{{ $participant->price . ' FCFA' }}</td>
-                                            <td>{{ $participant->payment_method }}</td>
+                                            @if ($event->multiple_prices_active)
+                                                <td>
+                                                    @foreach ($participant->participantPrices as $price)
+                                                    @if ($event->prices_quantity_active)
+                                                        <span>{{ $price->eventPrice->value . ' FCFA' }} ({{$price->quantity}}) </span><br>
+                                                    @else
+                                                        {{ $price->eventPrice->value . ' FCFA' }}
+                                                    @endif
+                                                @endforeach     
+                                                </td>    
+                                            @else
+                                                <td>{{ $participant->price . ' FCFA' }}</td>
+                                                @endif
+                                                <td>{{ $participant->payment_method }}</td>
                                         @endif
                                         @if ($event->fields->count())
                                             <td>{{ $participant->field->name . ':' . $participant->field->value }}</td>

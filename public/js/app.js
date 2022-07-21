@@ -17,7 +17,7 @@ var timer_container = document.getElementById('timer_container');
 
 var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard/dist/clipboard.js");
 
-var multiPrice = __webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js");
+__webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js")();
 
 function checkIfExistAndApplyListener(element, event, callback) {
   if (element) element.addEventListener(event, callback);
@@ -51,8 +51,6 @@ if (timer_container) {
     datetimePlaceholder.innerText = dateTime;
   });
 }
-
-multiPrice();
 
 /***/ }),
 

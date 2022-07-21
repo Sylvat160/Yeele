@@ -6,7 +6,7 @@ const mobile_menu = document.getElementById('mobile_menu')
 const copyBtn = document.querySelector('#copy_btn')
 const timer_container = document.getElementById('timer_container')
 const clipboardJS = require('clipboard')
-const multiPrice = require('./multiprice')
+require('./multiprice')()
 
 function checkIfExistAndApplyListener(element, event, callback) {
     if(element) element.addEventListener(event, callback)
@@ -46,5 +46,3 @@ if(timer_container) {
         datetimePlaceholder.innerText = dateTime
     })
 }
-
-multiPrice()
