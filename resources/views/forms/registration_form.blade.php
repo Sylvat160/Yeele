@@ -25,17 +25,29 @@
             @if ($message = Session::get('error'))
                 <div class="p-4">
                     <div id="alert-2" class="flex p-4 bg-red-100 rounded-lg dark:bg-red-200" role="alert">
-                        <svg class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z" clip-rule="evenodd"></path></svg>
+                        <svg class="flex-shrink-0 w-5 h-5 text-red-700 dark:text-red-800" fill="currentColor"
+                            viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                            <path fill-rule="evenodd"
+                                d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2v-3a1 1 0 00-1-1H9z"
+                                clip-rule="evenodd"></path>
+                        </svg>
                         <div class="ml-3 text-sm font-medium text-red-700 dark:text-red-800">
-                          {{$message}}
+                            {{ $message }}
                         </div>
-                        <button type="button" class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300" data-dismiss-target="#alert-2" aria-label="Close">
-                          <span class="sr-only">Close</span>
-                          <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                        <button type="button"
+                            class="ml-auto -mx-1.5 -my-1.5 bg-red-100 text-red-500 rounded-lg focus:ring-2 focus:ring-red-400 p-1.5 hover:bg-red-200 inline-flex h-8 w-8 dark:bg-red-200 dark:text-red-600 dark:hover:bg-red-300"
+                            data-dismiss-target="#alert-2" aria-label="Close">
+                            <span class="sr-only">Close</span>
+                            <svg class="w-5 h-5" fill="currentColor" viewBox="0 0 20 20"
+                                xmlns="http://www.w3.org/2000/svg">
+                                <path fill-rule="evenodd"
+                                    d="M4.293 4.293a1 1 0 011.414 0L10 8.586l4.293-4.293a1 1 0 111.414 1.414L11.414 10l4.293 4.293a1 1 0 01-1.414 1.414L10 11.414l-4.293 4.293a1 1 0 01-1.414-1.414L8.586 10 4.293 5.707a1 1 0 010-1.414z"
+                                    clip-rule="evenodd"></path>
+                            </svg>
                         </button>
-                      </div>
+                    </div>
                 </div>
-                {{Session::forget('error')}}
+                {{ Session::forget('error') }}
             @endif
             <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST">
                 @csrf
@@ -54,8 +66,8 @@
                         <option value="Mademoiselle">Mademoiselle</option>
                     </select>
                     @error('civility')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                                class="font-medium">{{ $message }}</p>
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        </p>
                     @enderror
                 </div>
                 <div class="mb-3">
@@ -67,7 +79,8 @@
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                         placeholder="ex: Traoré, Diallo" required>
                     @error('lastname')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}
                         </p>
                     @enderror
                 </div>
@@ -80,7 +93,8 @@
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                         placeholder="ex: Samuel, Issouf" required>
                     @error('firstname')
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span class="font-medium">{{ $message }}
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                                class="font-medium">{{ $message }}
                         </p>
                     @enderror
                 </div>
@@ -111,25 +125,50 @@
                     @enderror
                 </div>
 
-                @if($event->eventPrices->count())
-                    <div class="mb-3">
+                @if ($event->eventPrices->count())
+                    <div class=" w-full mb-3">
                         <label for="price" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Tarif</span>
                             <span class="text-red-600">*</span>
                         </label>
-                        <select name="price" id="price"
-                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                            required>
-                            <option class="hidden">Selectionner un tarif</option>
-                            @if ($event->eventPrices->count() > 1)
-                                @foreach ($event->eventPrices as $price)
-                                <option value="{{ $price->value }}">{{ $price->label }} ({{ $price->value . ' FCFA' }}
-                                    FCFA)</option>
-                                @endforeach
-                            @else
-                                <option value="{{ $event->eventPrices->first()->value }}" selected>{{ $event->eventPrices->first()->value . ' FCFA' }}</option>
-                            @endif
-                        </select>
+                        @if ($event->multiple_prices_active)
+                            <button id="prices_btn" data-dropdown-toggle="prices" data-dropdown-placement="bottom"
+                                class="bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 w-full p-2.5"
+                                type="button">Choisissez vos tarifs <svg class="ml-2 w-4 h-4" aria-hidden="true"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg></button>
+                                <div id="prices" class="hidden z-10 bg-white rounded shadow">
+                                    <ul class="w-auto overflow-y-auto p-2 h-fit text-sm text-gray-700" aria-labelledby="dropdownSearchButton">
+                                        @foreach ($event->eventPrices as $price)
+                                        <li>
+                                            <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
+                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300">
+                                              <label for="{{ $price->uid }}" class="ml-2 w-full text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}</label>
+                                            </div>
+                                          </li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                        @else
+                            <select name="price" id="price"
+                                class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                required>
+                                <option class="hidden">Sélectionner un tarif</option>
+                                @if ($event->eventPrices->count() > 1)
+                                    @foreach ($event->eventPrices as $price)
+                                        <option value="{{ $price->value }}">{{ $price->label }}
+                                            ({{ $price->value . ' FCFA' }}
+                                            FCFA)</option>
+                                    @endforeach
+                                @else
+                                    <option value="{{ $event->eventPrices->first()->value }}" selected>
+                                        {{ $event->eventPrices->first()->value . ' FCFA' }}</option>
+                                @endif
+                            </select>
+                        @endif
                     </div>
                     <div class="mb-3">
                         <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
@@ -145,13 +184,14 @@
                                     <option value="{{ $method->name }}">{{ $method->name }}</option>
                                 @endforeach
                             @else
-                            <option value="{{ $event->event_payment_methods->first()->name }}" selected>{{ $event->event_payment_methods->first()->name }}</option>
+                                <option value="{{ $event->event_payment_methods->first()->name }}" selected>
+                                    {{ $event->event_payment_methods->first()->name }}</option>
                             @endif
                         </select>
                     </div>
                 @endif
 
-                @if($event->fields->count())
+                @if ($event->fields->count())
                     <div class="mb-3">
                         <label for="field_uid" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Chosissez dans la liste</span>
@@ -162,7 +202,8 @@
                             required>
                             <option class="hidden">Choisissez une valeur du champ libre</option>
                             @foreach ($event->fields as $field)
-                                <option value="{{ $field->uid }}" @if($field->uid === $participant->field_uid) selected @endif>{{ $field->name }} : {{ $field->value }}
+                                <option value="{{ $field->uid }}" @if ($field->uid === $participant->field_uid) selected @endif>
+                                    {{ $field->name }} : {{ $field->value }}
                                 </option>
                             @endforeach
                         </select>
@@ -172,17 +213,17 @@
                 @if ($event->form)
                     @foreach ($fields as $field)
                         @switch($field['type'])
-
                             @case('header')
-                            <div class="mb-3">
-                                <{{$field['subtype']}}>{{ $field['label'] }}</{{$field['subtype']}}>
-                            </div>
+                                <div class="mb-3">
+                                    <{{ $field['subtype'] }}>{{ $field['label'] }}</{{ $field['subtype'] }}>
+                                </div>
                             @break
 
                             @case('select')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}"
+                                            class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
@@ -190,95 +231,98 @@
                                         </label>
                                     @endisset
                                     <select name="{{ $field['name'] }}" id="{{ $field['name'] }}"
-                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                    @if($field['required']) required @endif>
+                                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                        @if ($field['required']) required @endif>
                                         @isset($field['placeholder'])
-                                        <option class="hidden" selected>{{ $field['placeholder'] }}</option>
+                                            <option class="hidden" value="" selected>{{ $field['placeholder'] }}</option>
                                         @endisset
                                         @foreach ($field['values'] as $option)
-                                            <option value="{{ $option['value'] }}" @if($option['selected']) selected @endif>{{ $option['label'] }}</option>
+                                            <option value="{{ $option['value'] }}">{{ $option['label'] }}</option>
                                         @endforeach
                                     </select>
                                 </div>
                             @break
-                            
+
                             @case('textarea')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                    <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
-                                        <span>{{ $field['label'] }}</span>
-                                        @if ($field['required'])
-                                            <span class="text-red-600">*</span>
-                                        @endif
-                                    </label>
-                                @endisset
-                                <textarea name="{{ $field['name'] }}" id="{{ $field['name'] }}" cols="30" rows="5" @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @if($field['required']) required @endif>@isset($field['value']) {{$field['value']}} @endisset</textarea>
-                                </div>
-                            @break
-
-                            @case('text')
-                            <div class="mb-3">
-                                @isset($field['label'])
-                                <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
-                                    <span>{{ $field['label'] }}</span>
-                                    @if ($field['required'])
-                                        <span class="text-red-600">*</span>
-                                    @endif
-                                </label>
-                            @endisset
-                                <input type="{{ $field['subtype'] }}" name="{{ $field['name'] }}" id="{{ $field['name'] }}"
-                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                            @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
-                            </div>
-                            @break
-
-                            @case('number')
-                                <div class="mb-3">
-                                    @isset($field['label'])
-                                    <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
-                                        <span>{{ $field['label'] }}</span>
-                                        @if ($field['required'])
-                                            <span class="text-red-600">*</span>
-                                        @endif
-                                    </label>
-                                @endisset
-                                    <input 
-                                    type="number" 
-                                    @isset($field['min'])
-                                        min="{{ $field['min'] }}"
-                                    @endisset
-                                    @isset($field['max'])
-                                        min="{{ $field['max'] }}"
-                                    @endisset
-                                    name="{{ $field['name'] }}" 
-                                    id="{{ $field['name'] }}" 
-                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                    @isset($field['placeholder']) 
-                                    placeholder="{{ $field['placeholder'] }}" 
-                                    @endisset 
-                                    @isset($field['value']) 
-                                    value="{{ $field['value'] }}" 
-                                    @endisset 
-                                    @if($field['required']) 
-                                    required 
-                                    @endif>
-                                </div>
-                            @break
-                            
-                            @case('date')
-                                <div class="mb-3">
-                                    <div>
-                                        @isset($field['label'])
-                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}"
+                                            class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
                                             @endif
                                         </label>
                                     @endisset
+                                    <textarea name="{{ $field['name'] }}" id="{{ $field['name'] }}" cols="30" rows="5"
+                                        @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset
+                                        @if ($field['required']) required @endif>
+@isset($field['value'])
+{{ $field['value'] }}
+@endisset
+</textarea>
+                                </div>
+                            @break
+
+                            @case('text')
+                                <div class="mb-3">
+                                    @isset($field['label'])
+                                        <label for="{{ $field['name'] }}"
+                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                            <span>{{ $field['label'] }}</span>
+                                            @if ($field['required'])
+                                                <span class="text-red-600">*</span>
+                                            @endif
+                                        </label>
+                                    @endisset
+                                    <input type="{{ $field['subtype'] }}" name="{{ $field['name'] }}"
+                                        id="{{ $field['name'] }}"
+                                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                        @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset
+                                        @isset($field['value']) value="{{ $field['value'] }}" @endisset
+                                        @if ($field['required']) required @endif>
+                                </div>
+                            @break
+
+                            @case('number')
+                                <div class="mb-3">
+                                    @isset($field['label'])
+                                        <label for="{{ $field['name'] }}"
+                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                            <span>{{ $field['label'] }}</span>
+                                            @if ($field['required'])
+                                                <span class="text-red-600">*</span>
+                                            @endif
+                                        </label>
+                                    @endisset
+                                    <input type="number"
+                                        @isset($field['min']) min="{{ $field['min'] }}" @endisset
+                                        @isset($field['max']) min="{{ $field['max'] }}" @endisset
+                                        name="{{ $field['name'] }}" id="{{ $field['name'] }}"
+                                        class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                        @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset
+                                        @isset($field['value']) value="{{ $field['value'] }}" @endisset
+                                        @if ($field['required']) required @endif>
+                                </div>
+                            @break
+
+                            @case('date')
+                                <div class="mb-3">
+                                    <div>
+                                        @isset($field['label'])
+                                            <label for="{{ $field['name'] }}"
+                                                class="block mb-2 text-sm font-semibold text-gray-900">
+                                                <span>{{ $field['label'] }}</span>
+                                                @if ($field['required'])
+                                                    <span class="text-red-600">*</span>
+                                                @endif
+                                            </label>
+                                        @endisset
                                         <input type="date" name="{{ $field['name'] }}" id="{{ $field['name'] }}"
-                                    class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                    @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
+                                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                            @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset
+                                            @isset($field['value']) value="{{ $field['value'] }}" @endisset
+                                            @if ($field['required']) required @endif>
                                     </div>
                                 </div>
                             @break
@@ -298,6 +342,8 @@
             </form>
         </div>
     </div>
+
+    <script src="{{ asset('js/app.js') }}"></script>
 </body>
 
 </html>

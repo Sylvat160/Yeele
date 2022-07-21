@@ -101,7 +101,7 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 rows: "Lignes",
                 save: "Enrégistrer",
                 selectOptions: "Options",
-                select: "Champ de séléction",
+                select: "Champ de sélection",
                 selectColor: "Couleur de sélection",
 
                 selectionsMessage: "Autorise la sélection multiple",
