@@ -19,6 +19,8 @@ var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard
 
 __webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js")();
 
+__webpack_require__(/*! ./payment */ "./resources/js/payment.js")();
+
 function checkIfExistAndApplyListener(element, event, callback) {
   if (element) element.addEventListener(event, callback);
 }
@@ -179,6 +181,18 @@ function multiPrice() {
 }
 
 module.exports = multiPrice;
+
+/***/ }),
+
+/***/ "./resources/js/payment.js":
+/*!*********************************!*\
+  !*** ./resources/js/payment.js ***!
+  \*********************************/
+/***/ ((module) => {
+
+function payment() {}
+
+module.exports = payment;
 
 /***/ }),
 

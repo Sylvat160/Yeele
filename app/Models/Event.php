@@ -86,4 +86,17 @@ class Event extends Model
     public function form() {
         return $this->hasOne(Form::class);
     }
+
+    public function getCustomAttribute() {
+        $directPaymentMethod = [];
+        foreach ($this->event_payment_methods as $paymentMethod) {
+            if(in_array($paymentMethod->name, ["Carte bancaire", "Mobile Money"])) {
+                array_push($directPaymentMethod, $paymentMethod->name);
+            }
+        }
+
+        $hasDirectPaymentMethod = empty($directPaymentMethod);
+
+        return compact('directPaymentMethod', 'hasDirectPayment');
+    }
 }
