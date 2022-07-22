@@ -25,11 +25,13 @@
                             aria-describedby="example1_info">
                             <thead>
                                 <tr>
-                                    <th class="sorting" tabindex="0" aria-controls="Plan" rowspan="1" colspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="Nom" rowspan="1" colspan="1"
                                         aria-sort="Plan" aria-label="Nom: activate to sort column descending">Nom
                                     </th>
-                                    <th class="sorting" tabindex="0" aria-controls="Duration" rowspan="1"
+                                    <th class="sorting" tabindex="0" aria-controls="Prenom" rowspan="1"
                                         colspan="1" aria-label="Prenom: activate to sort column ascending">Prenom</th>
+                                    <th class="sorting" tabindex="0" aria-controls="Date d'inscription" rowspan="1"
+                                    colspan="1" aria-label="Prenom: activate to sort column ascending">Date d'inscription</th>
                                     <th class="sorting" tabindex="0" aria-controls="Status" rowspan="1" colspan="1"
                                         aria-label="Civilité: activate to sort column ascending">Civilité</th>
                                     <th class="sorting" tabindex="0" aria-controls="Price" rowspan="1" colspan="1"
