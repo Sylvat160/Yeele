@@ -5,7 +5,6 @@ namespace App\Http\Controllers\AppControllers;
 use App\Http\Controllers\Controller;
 use App\Models\Event;
 use App\Models\Field;
-use App\Models\FieldDefaultValue;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
