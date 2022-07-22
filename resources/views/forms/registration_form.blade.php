@@ -195,6 +195,11 @@
                             @endif
                         </select>
                     </div>
+                    @if ($event->custom['hasDirectPayment'])
+                        <div class="mb-3" id="payment_container" data-="">
+                            
+                        </div>
+                    @endif
                 @endif
 
                 @if ($event->fields->count())
