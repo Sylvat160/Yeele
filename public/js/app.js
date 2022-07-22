@@ -75,7 +75,7 @@ function multiPrice() {
 
   if ($('#price') == undefined) {
     this.pricesInput = $('input[name="prices"]');
-    this.prices = [];
+    this.prices = JSON.parse(this.pricesInput.value);
     var selectChangedEvent = new Event('selectChanged');
     /**
      * 

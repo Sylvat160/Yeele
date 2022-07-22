@@ -133,7 +133,11 @@
                                         @foreach ($event->eventPrices as $price)
                                         <li class="mb-1 flex justify-between items-center">
                                             <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
-                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
+                                              @if ($event->prices_quantity_active)
+                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array([$price->uid => $price->quantity], $participant->custom['pwithq']))  @endif>
+                                              @else
+                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array($price->uid, json_decode($participant->custom['pwithoutq'], true))) checked @endif>
+                                              @endif
                                               <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }} ({{ $price->value . ' FCFA' }})</label>
                                             </div>
                                             @if($event->prices_quantity_active)

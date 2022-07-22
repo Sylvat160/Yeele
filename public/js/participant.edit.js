@@ -1,8 +1,8 @@
 const partAddData = JSON.parse(
     $("form").attr("data-participant-additional-data")
 );
-
 const fieldsKeys = Object.keys(partAddData)
+const participantPricesInput = document.querySelector('input[name="prices"]')
 
 for(let key of fieldsKeys) {
     const field = document.getElementById(key)
@@ -16,7 +16,7 @@ for(let key of fieldsKeys) {
             document
             .getElementById(key)
             .setAttribute('value', partAddData[key])
-        } else if(type == "checkbox") {
+        } else if(type === "checkbox") {
             document
             .getElementById(key)
             .setAttribute('checked', true)
