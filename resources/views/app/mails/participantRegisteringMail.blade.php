@@ -265,30 +265,27 @@
 </tr>
 </table>
 <table border="0" cellpadding="0" cellspacing="0" class="button_block" role="presentation" style="mso-table-lspace: 0pt; mso-table-rspace: 0pt;" width="100%">
-<tr>
-<td style="text-align:center;">
-<div align="center">
-</div>
-<div style="width: 75%; margin: 10px auto; font-family: 'Karla', sans-serif">
-    <p style="font-size: 16px; text-align: center;">Avez vous des questions ? Faites-nous savoir afin que nous vous
-        assistons. Nous vous accompagnons gratuitement pour une prise en
-        main de la plateforme YEELE.</p>
-        <p style="font-size: 16px; text-align: center;">En rappel, <span style="font-weight: bold;">YEELE est une plateforme de gestion d'évènement
-            propulsée par </span> <a href="https://www.horinfo.com/">HORINFO Burkina</a></p>
-            <p style="font-size: 16px; text-align: center;">
-                <span>Pour plus d'info, </span>
-            </p>
-            <p style="font-size: 16px; text-align: center;">
-                <span style="font-weight: bold;">WhatsApp: </span>
-                <a href="https://wa.me/message/WNOTNFPLUAQKN1">+226 61 60 15 15</a>
-                <br>
-                <span style="font-weight: bold;">E-mail: </span>
-                <a href="mailto:infos@yeele-event.com">infos@yeele-event.com</a>
-            </p>
-</div>
-</td>
-</tr>
-</table>
+    <tr>
+    <td style="text-align:center;">
+    <div align="center">
+    </div>
+    <div style="width: 75%; margin: 10px auto; font-family: 'Karla', sans-serif">
+        <p style="font-size: 16px; text-align: center;">Pour toute modification des données de votre inscription, cliquez sur ce lien: <a href="{{ $link }}">Modifier ses données</a> ou contactez nous par email: <a href="infos@yeele-event.com">infos@yeele-event.com</a> ou par WhatsApp sur <a href="https://wa.me/message/WNOTNFPLUAQKN1">+226 61 60 15 15</a> pour la modification ou l'annulation.</p>
+            <p style="font-size: 16px; text-align: center;">En rappel, <span style="font-weight: bold;">YEELE est une plateforme de gestion d'évènement
+                propulsée par </span> <a href="https://www.horinfo.com/">HORINFO</a>.</p>
+                <p>Merci,Thanks,Barka, Anitché, Fofo.</p>
+    </div>
+    </td>
+    </tr>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
+    </td>
+    </tr>
+    </tbody>
+    </table>
 </td>
 </tr>
 </tbody>

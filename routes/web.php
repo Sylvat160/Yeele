@@ -94,3 +94,6 @@ Route::get('fiche_inscription/{event_uid}', [FormController::class, 'index'])->n
 Route::get('formulaire/{event_uid}', [FormController::class, 'create'])->name('form');
 Route::post('soumettre', [FormController::class, 'register'])->name('submit_form');
 Route::get('inscription_de_participant_reussi', [FormController::class, 'registering_end'])->name('registering_end');
+Route::get('page_modification/{participant_uid}/{event_uid}', [ParticipantController::class, 'participantUpdatePage'])->name('participant-update-page');
+Route::post('modifier_donnees', [ParticipantController::class, 'participantUpdate'])->name('participant-update-data');
+Route::get('donnees_modifiees/{event_uid}', [ParticipantController::class, 'participantDataUpdated'])->name('participant-data-updated');
