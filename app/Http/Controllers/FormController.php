@@ -22,6 +22,9 @@ class FormController extends Controller
 
     public function index($event_uid) {
         $event = Event::find($event_uid);
+        if (!isset($event)) {
+            return view('app.event_not_found');
+        }
         $event->update(['clicks' => (int) $event->clicks + 1]);
         return view('forms.show_event', compact('event'));
     }
@@ -35,6 +38,9 @@ class FormController extends Controller
      */
     public function create($event_uid) {
         $event = Event::find($event_uid);
+        if (!isset($event)) {
+            return view('app.event_not_found');
+        }
         $fields = json_decode($event->form->data, true) ?? [];
         return view('forms.registration_form', compact('event', 'fields'));
     }
