@@ -141,23 +141,31 @@
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 9l-7 7-7-7"></path>
                                 </svg></button>
-                                <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
-                                    <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700" aria-labelledby="dropdownSearchButton">
-                                        @foreach ($event->eventPrices as $price)
+                            <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
+                                <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700"
+                                    aria-labelledby="dropdownSearchButton">
+                                    @foreach ($event->eventPrices as $price)
                                         <li class="mb-1 flex justify-between items-center">
                                             <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
-                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
-                                              <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }} ({{ $price->value . ' FCFA' }})</label>
+                                                <input id="{{ $price->uid }}" type="checkbox"
+                                                    value="{{ $price->uid }}" data-value="{{ $price->value }}"
+                                                    class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
+                                                <label for="{{ $price->uid }}"
+                                                    class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}
+                                                    ({{ $price->value . ' FCFA' }})</label>
                                             </div>
-                                            @if($event->prices_quantity_active)
+                                            @if ($event->prices_quantity_active)
                                                 <div>
-                                                    <input type="number" min="1" class="w-16 sm:w-20 bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 p-2.5 quantity_input" value="1" data-target-price="#{{ $price->uid }}" disabled>
+                                                    <input type="number" min="1"
+                                                        class="w-16 sm:w-20 bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 p-2.5 quantity_input"
+                                                        value="1" data-target-price="#{{ $price->uid }}"
+                                                        disabled>
                                                 </div>
                                             @endif
                                         </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @else
                             <select name="price" id="price"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
@@ -167,7 +175,8 @@
                                     @foreach ($event->eventPrices as $price)
                                         <option value="{{ $price->value }}">{{ $price->label }}
                                             ({{ $price->value . ' FCFA' }}
-                                            FCFA)</option>
+                                            FCFA)
+                                        </option>
                                     @endforeach
                                 @else
                                     <option value="{{ $event->eventPrices->first()->value }}" selected>
@@ -196,7 +205,8 @@
                         </select>
                     </div>
                     @if ($event->custom['hasDirectPayment'])
-                        <div class="mb-3" id="payment_container" data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
+                        <div class="mb-3" id="payment_container"
+                            data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
                             
                         </div>
                     @endif
@@ -233,8 +243,7 @@
                             @case('select')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                        <label for="{{ $field['name'] }}"
-                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
@@ -257,8 +266,7 @@
                             @case('textarea')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                        <label for="{{ $field['name'] }}"
-                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
@@ -278,8 +286,7 @@
                             @case('text')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                        <label for="{{ $field['name'] }}"
-                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
@@ -298,8 +305,7 @@
                             @case('number')
                                 <div class="mb-3">
                                     @isset($field['label'])
-                                        <label for="{{ $field['name'] }}"
-                                            class="block mb-2 text-sm font-semibold text-gray-900">
+                                        <label for="{{ $field['name'] }}" class="block mb-2 text-sm font-semibold text-gray-900">
                                             <span>{{ $field['label'] }}</span>
                                             @if ($field['required'])
                                                 <span class="text-red-600">*</span>
