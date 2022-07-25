@@ -8,6 +8,18 @@
     <title>Yeele | Formulaire d'inscription</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <style>
+        .payment_sdk {
+            display: block;
+            position: absolute;
+            background-position: center;
+            text-align: center;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+        }
+    </style>
 </head>
 
 <body>
@@ -358,6 +370,9 @@
                 @endif
             </form>
         </div>
+    </div>
+    <div class="payment_sdk">
+
     </div>
 
     <script src="{{ asset('js/app.js') }}"></script>

@@ -19,8 +19,6 @@ var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard
 
 __webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js")();
 
-__webpack_require__(/*! ./payment */ "./resources/js/payment.js")();
-
 function checkIfExistAndApplyListener(element, event, callback) {
   if (element) element.addEventListener(event, callback);
 }
@@ -75,7 +73,7 @@ function multiPrice() {
     return document.querySelectorAll(selector);
   };
 
-  if ($('#price') === undefined) {
+  if ($('input[name="prices"]') != undefined) {
     this.pricesInput = $('input[name="prices"]');
     this.prices = JSON.parse(this.pricesInput.value);
     var selectChangedEvent = new Event('selectChanged');
@@ -181,80 +179,6 @@ function multiPrice() {
 }
 
 module.exports = multiPrice;
-
-/***/ }),
-
-/***/ "./resources/js/payment.js":
-/*!*********************************!*\
-  !*** ./resources/js/payment.js ***!
-  \*********************************/
-/***/ ((module) => {
-
-function payment() {
-  var container = document.getElementById('payment_container');
-
-  if (container !== undefined) {
-    var methodSelect = document.getElementById('payment_method');
-    var paymentMethods = JSON.parse(container.dataset.paymentMethods);
-    methodSelect.addEventListener('change', function () {
-      var selectedOption = this.options[this.selectedIndex].value;
-
-      if (paymentMethods.includes(selectedOption)) {
-        var html = generatePaymentFields(selectedOption);
-        container.innerHTML = html;
-      }
-    });
-  }
-}
-/**
- * Generate payment field depending on selected method
- * @param {String} option 
- */
-
-
-function generatePaymentFields(option) {
-  if (option === "Mobile Money") {
-    var countries = ["Benin", "Burkina Faso", "Cameroun", "Côte d'Ivoire", "Guinée", "Mali", "RDC", "Sénégal", "Togo"];
-    var countriesOptions = getCountriesAsHTMLOptions(countries);
-    var html = "\n                    <div class=\"bg-gray-50 w-full p-2.5 border border-gray-300 rounded-lg\">\n                        <h1 class=\"text-center font-semibold\">Paiement par Mobile Money</h1>\n                        <div class=\"mt-5 mb-3\">\n                            <label for=\"payment_countries\" class=\"block mb-2 text-sm font-semibold text-gray-900\">\n                                <span>Pays</span>\n                                <span class=\"text-red-600\">*</span>\n                            </label>\n                            <select name=\"payment_countries\" id=\"payment_countries\"\n                                class=\"bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5\"\n                                required>\n                                <option value=\"\" class=\"hidden\" selected>Choisissez un pays</option>\n                                ".concat(countriesOptions, "\n                            </select>\n                        </div>\n                    </div>\n                ");
-    return html;
-  } else {
-    var countriesState = {
-      value: '',
-      setValue: function setValue(newValue) {
-        this.value = newValue;
-        window.dispatchEvent(new Event('countriesGot'));
-      }
-    };
-    fetch("".concat(window.location.origin, "/countries.json")).then(function (response) {
-      response.json().then(function (data) {
-        var countries = Object.values(data);
-        var placeholder = '<option value="" class="hidden" selected>Choisissez un pays</option>';
-        var countriesOptions = placeholder + getCountriesAsHTMLOptions(countries);
-        countriesState.setValue(countriesOptions);
-      });
-    });
-    var _html = "\n        <div class=\"bg-gray-50 w-full p-2.5 border border-gray-300 rounded-lg\">\n            <h1 class=\"text-center font-semibold\">Paiement par Carte bancaire</h1>\n            <h2 class=\"text-center font-semibold\">Somme \xE0 payer: 10000 FCFA</h2>\n            <div class=\"mt-5 mb-3\">\n                <label for=\"payment_countries\" class=\"block mb-2 text-sm font-semibold text-gray-900\">\n                    <span>Pays</span>\n                    <span class=\"text-red-600\">*</span>\n                </label>\n                <select name=\"payment_countries\" id=\"payment_countries\"\n                    class=\"bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5\"\n                    required>\n                </select>\n            </div>\n            <div class=\"mb-3\">\n            <label for=\"phone\" class=\"block mb-2 text-sm font-semibold text-gray-900\">\n            <span>T\xE9l\xE9phone</span>\n            <span class=\"text-red-600\">*</span>\n        </label>\n        <input type=\"number\" name=\"phone\" id=\"phone\"\n            class=\"bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5\"\n            placeholder=\"ex: (+226) XXXXXXXX\" required>\n            </div>\n        </div>\n    ";
-    window.addEventListener('countriesGot', function (_) {
-      document.getElementById('payment_countries').innerHTML = countriesState.value;
-    });
-    return _html;
-  }
-}
-/**
- * @param {String[]} countries 
- */
-
-
-function getCountriesAsHTMLOptions(countries) {
-  var countriesOptions = "";
-  countries.forEach(function (country) {
-    return countriesOptions += "<option value=\"".concat(country, "\">").concat(country, "</option>");
-  });
-  return countriesOptions;
-}
-
-module.exports = payment;
 
 /***/ }),
 
