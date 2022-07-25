@@ -2,7 +2,7 @@ function multiPrice() {
     const $ = selector => document.querySelector(selector)
     const $All = selector => document.querySelectorAll(selector)
 
-    if($('#price') == undefined) {
+    if($('#price') === undefined) {
         this.pricesInput = $('input[name="prices"]')
         this.prices = JSON.parse(this.pricesInput.value)
         const selectChangedEvent = new Event('selectChanged')

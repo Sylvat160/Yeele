@@ -196,7 +196,7 @@
                         </select>
                     </div>
                     @if ($event->custom['hasDirectPayment'])
-                        <div class="mb-3" id="payment_container" data-="">
+                        <div class="mb-3" id="payment_container" data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
                             
                         </div>
                     @endif

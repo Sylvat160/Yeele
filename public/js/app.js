@@ -75,7 +75,7 @@ function multiPrice() {
     return document.querySelectorAll(selector);
   };
 
-  if ($('#price') == undefined) {
+  if ($('#price') === undefined) {
     this.pricesInput = $('input[name="prices"]');
     this.prices = JSON.parse(this.pricesInput.value);
     var selectChangedEvent = new Event('selectChanged');
@@ -190,7 +190,32 @@ module.exports = multiPrice;
   \*********************************/
 /***/ ((module) => {
 
-function payment() {}
+function payment() {
+  var container = document.getElementById('payment_container');
+
+  if (container !== undefined) {
+    var methodSelect = document.getElementById('payment_method');
+    var paymentMethods = JSON.parse(container.dataset.paymentMethods);
+    methodSelect.addEventListener('change', function () {
+      var selectedOption = this.options[this.selectedIndex].value;
+
+      if (paymentMethods.includes(selectedOption)) {
+        generatePaymentFields(selectedOption);
+      }
+    });
+  }
+}
+/**
+ * Generate payment field depending on selected method
+ * @param {String} option 
+ */
+
+
+function generatePaymentFields(option) {
+  var html = "";
+
+  if (option === "Mobile Money") {} else {}
+}
 
 module.exports = payment;
 

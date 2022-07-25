@@ -95,7 +95,7 @@ class Event extends Model
             }
         }
 
-        $hasDirectPaymentMethod = empty($directPaymentMethod);
+        $hasDirectPayment = !empty($directPaymentMethod);
 
         return compact('directPaymentMethod', 'hasDirectPayment');
     }
