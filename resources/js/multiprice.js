@@ -5,10 +5,11 @@ function multiPrice() {
     if($('input[name="prices"]') != undefined) {
         this.pricesInput = $('input[name="prices"]')
         this.prices = JSON.parse(this.pricesInput.value)
+        this.pricesValues = []
         const selectChangedEvent = new Event('selectChanged')
         
         /**
-         * 
+         * Add price to selected prices cart
          * @param {String | object} value 
          */
         const pushPrice = (value) => {
@@ -17,7 +18,15 @@ function multiPrice() {
         }
 
         /**
-         * 
+         * Add price value to values
+         * @param {Object} value 
+         */
+        const pushPriceValue = (value) => {
+            this.pricesValues.push(value)
+        }
+
+        /**
+         * Remove price from selected prices cart
          * @param {string} priceId
          * @param {boolean} multiple 
          */
@@ -34,12 +43,20 @@ function multiPrice() {
         }
 
         /**
+         * Remove price value from prices values
+         * @param {string} priceId 
+         */
+        const removePriceValue = (priceId) => {
+            const index = this.pricesValues.findIndex(price => priceId)
+            this.pricesValues.splice(index, 1)
+        }
+
+        /**
          * Update pricesInput in case of change
          */
-        const updatePricesInput = () => {
+        window.addEventListener('selectChanged', () => {
             this.pricesInput.setAttribute('value', `${JSON.stringify(this.prices)}`)
-        }
-        window.addEventListener('selectChanged', updatePricesInput)
+        })
 
         /**
          * Show dropdown on label click
@@ -61,6 +78,9 @@ function multiPrice() {
                         } else {
                             pushPrice(this.getAttribute('id'))
                         }
+                        const priceValue = {}
+                        priceValue[this.getAttribute('id')] = Number(this.dataset.value)
+                        pushPriceValue(priceValue)
                         break;
                 
                     case false:
@@ -69,6 +89,8 @@ function multiPrice() {
                             quantityInput.value = 1
                             quantityInput.setAttribute('disabled', 'true')
                         } else removePrice(this.getAttribute('id'))
+                        removePriceValue(this.getAttribute('id'))
+                        
                         break;
                 }
             })
@@ -80,6 +102,7 @@ function multiPrice() {
                 const index = this.prices.findIndex(price => price == priceId)
                 const newValue = {[priceId]: e.target.value}
                 this.prices.splice(index, 1, newValue)
+                this.pricesValues[priceId] = Number(this.pricesValues[priceId]) * Number(e.target.value)
                 window.dispatchEvent(selectChangedEvent)
             })
         })

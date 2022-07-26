@@ -113,7 +113,9 @@ class FormController extends Controller
                 'civility', 
                 'price', 
                 'payment_method', 
-                'field_uid']);
+                'field_uid',
+                'payment_status'
+            ]);
 
             /*
             * Filter dynamics fields data from the request

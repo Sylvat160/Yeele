@@ -198,6 +198,7 @@
                             </select>
                         @endif
                     </div>
+                    <input type="hidden" name="payment_status" value="0" required>
                     <div class="mb-3">
                         <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
                             <span>Mode de paiement</span>
@@ -207,7 +208,7 @@
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                             required>
                             @if ($event->event_payment_methods->count() > 1)
-                                <option class="hidden">Selectionner un mode de paiement</option>
+                                <option value="" class="hidden">Selectionner un mode de paiement</option>
                                 @foreach ($event->event_payment_methods as $method)
                                     <option value="{{ $method->name }}">{{ $method->name }}</option>
                                 @endforeach
@@ -218,6 +219,13 @@
                         </select>
                     </div>
                     @if ($event->custom['hasDirectPayment'])
+                        @if ($event->event_payment_methods->count() === 1)
+                            <button type="button" id="paymentBtn"
+                            class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
+                            style="width: fit-content;">
+                            Effectuer le paiement
+                        </button>
+                        @endif
                         <div class="mb-3" id="payment_container"
                             data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
 
@@ -236,7 +244,7 @@
                             required>
                             <option class="hidden">Choisissez une valeur du champ libre</option>
                             @foreach ($event->fields as $field)
-                                <option value="{{ $field->uid }}" @if ($field->uid === $participant->field_uid) selected @endif>
+                                <option value="{{ $field->uid }}">
                                     {{ $field->name }} : {{ $field->value }}
                                 </option>
                             @endforeach
@@ -371,7 +379,6 @@
     <div class="payment_sdk">
 
     </div>
-
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
 

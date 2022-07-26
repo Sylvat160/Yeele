@@ -19,6 +19,8 @@ var clipboardJS = __webpack_require__(/*! clipboard */ "./node_modules/clipboard
 
 __webpack_require__(/*! ./multiprice */ "./resources/js/multiprice.js")();
 
+__webpack_require__(/*! ./payment */ "./resources/js/payment.js")();
+
 function checkIfExistAndApplyListener(element, event, callback) {
   if (element) element.addEventListener(event, callback);
 }
@@ -76,9 +78,10 @@ function multiPrice() {
   if ($('input[name="prices"]') != undefined) {
     this.pricesInput = $('input[name="prices"]');
     this.prices = JSON.parse(this.pricesInput.value);
+    this.pricesValues = [];
     var selectChangedEvent = new Event('selectChanged');
     /**
-     * 
+     * Add price to selected prices cart
      * @param {String | object} value 
      */
 
@@ -88,7 +91,16 @@ function multiPrice() {
       window.dispatchEvent(selectChangedEvent);
     };
     /**
-     * 
+     * Add price value to values
+     * @param {Object} value 
+     */
+
+
+    var pushPriceValue = function pushPriceValue(value) {
+      _this.pricesValues.push(value);
+    };
+    /**
+     * Remove price from selected prices cart
      * @param {string} priceId
      * @param {boolean} multiple 
      */
@@ -116,15 +128,26 @@ function multiPrice() {
       }
     };
     /**
+     * Remove price value from prices values
+     * @param {string} priceId 
+     */
+
+
+    var removePriceValue = function removePriceValue(priceId) {
+      var index = _this.pricesValues.findIndex(function (price) {
+        return priceId;
+      });
+
+      _this.pricesValues.splice(index, 1);
+    };
+    /**
      * Update pricesInput in case of change
      */
 
 
-    var updatePricesInput = function updatePricesInput() {
+    window.addEventListener('selectChanged', function () {
       _this.pricesInput.setAttribute('value', "".concat(JSON.stringify(_this.prices)));
-    };
-
-    window.addEventListener('selectChanged', updatePricesInput);
+    });
     /**
      * Show dropdown on label click
      */
@@ -147,6 +170,9 @@ function multiPrice() {
               pushPrice(this.getAttribute('id'));
             }
 
+            var priceValue = {};
+            priceValue[this.getAttribute('id')] = Number(this.dataset.value);
+            pushPriceValue(priceValue);
             break;
 
           case false:
@@ -156,6 +182,7 @@ function multiPrice() {
               quantityInput.setAttribute('disabled', 'true');
             } else removePrice(this.getAttribute('id'));
 
+            removePriceValue(this.getAttribute('id'));
             break;
         }
       });
@@ -172,6 +199,7 @@ function multiPrice() {
 
         _this.prices.splice(index, 1, newValue);
 
+        _this.pricesValues[priceId] = Number(_this.pricesValues[priceId]) * Number(e.target.value);
         window.dispatchEvent(selectChangedEvent);
       });
     });
@@ -179,6 +207,90 @@ function multiPrice() {
 }
 
 module.exports = multiPrice;
+
+/***/ }),
+
+/***/ "./resources/js/payment.js":
+/*!*********************************!*\
+  !*** ./resources/js/payment.js ***!
+  \*********************************/
+/***/ ((module) => {
+
+var payment = function payment() {
+  var paymentContainer = document.getElementById("payment_container");
+
+  if (paymentContainer) {
+    var paymentBtn = document.getElementById('paymentBtn');
+    var paymentMethod = document.getElementById("payment_method");
+    var directPayments = JSON.parse(paymentContainer.dataset.paymentMethods);
+
+    if (paymentBtn) {
+      paymentBtn.addEventListener('click', function () {
+        handleMethodChange.call(paymentMethod, directPayments);
+      });
+    }
+
+    paymentMethod.addEventListener('change', function () {
+      handleMethodChange.call(paymentMethod, directPayments);
+    });
+  }
+};
+
+function handleMethodChange(directPayments) {
+  var selected = this.options[this.selectedIndex];
+  var amount = 0;
+  var price = document.getElementById('price');
+  if (price) amount = price.value;else {
+    window.pricesValues.forEach(function (pv) {
+      amount += Object.values(pv)[0];
+    });
+  }
+
+  if (selected.value !== "") {
+    var value = selected.value;
+
+    if (directPayments.includes(value)) {
+      switch (value) {
+        case "Mobile Money":
+          cinetpayCheckout({
+            transaction_id: Math.floor(Math.random() * 100000000).toString(),
+            currency: 'XOF',
+            channels: "MOBILE_MONEY",
+            description: "Paiement Yeele",
+            amount: amount
+          });
+          break;
+
+        case "Carte bancaire":
+          break;
+      }
+    }
+  }
+}
+
+function cinetpayCheckout(options) {
+  CinetPay.setConfig({
+    apikey: "127698624362c6d628ee1773.76085360",
+    //   YOUR APIKEY
+    site_id: "356030",
+    //YOUR_SITE_ID
+    notify_url: 'http://mondomaine.com/notify/',
+    mode: 'PRODUCTION'
+  });
+  CinetPay.getCheckout(options);
+  CinetPay.waitResponse(function (data) {
+    if (data.status == "REFUSED") {
+      alert("Votre paiement a échoué. Veuillez réessayer!");
+    } else if (data.status == "ACCEPTED") {
+      document.querySelector('input[name="payment_status"]').setAttribute('value', '1');
+    }
+  });
+  CinetPay.onError(function (data) {
+    console.log(data);
+  });
+}
+
+module.exports = payment;
 
 /***/ }),
 
