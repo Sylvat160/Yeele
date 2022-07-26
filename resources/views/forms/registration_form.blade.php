@@ -164,7 +164,8 @@
                                                     class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
                                                 <label for="{{ $price->uid }}"
                                                     class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}
-                                                    ({{ $price->value . ' FCFA' }})</label>
+                                                    ({{ $price->value . ' FCFA' }})
+                                                </label>
                                             </div>
                                             @if ($event->prices_quantity_active)
                                                 <div>
@@ -219,7 +220,7 @@
                     @if ($event->custom['hasDirectPayment'])
                         <div class="mb-3" id="payment_container"
                             data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
-                            
+
                         </div>
                     @endif
                 @endif
@@ -287,11 +288,7 @@
                                     @endisset
                                     <textarea name="{{ $field['name'] }}" id="{{ $field['name'] }}" cols="30" rows="5"
                                         @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset
-                                        @if ($field['required']) required @endif>
-@isset($field['value'])
-{{ $field['value'] }}
-@endisset
-</textarea>
+                                        @if ($field['required']) required @endif>@isset($field['value']) {{ $field['value'] }} @endisset</textarea>
                                 </div>
                             @break
 
