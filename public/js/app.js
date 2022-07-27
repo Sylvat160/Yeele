@@ -405,6 +405,10 @@ function multiPrice() {
 
     window.addEventListener('selectChanged', function () {
       _this.pricesInput.setAttribute('value', "".concat(JSON.stringify(_this.prices)));
+
+      if (_this.prices.length === 0) {
+        $('#payment_method').setAttribute('disabled', true);
+      }
     });
     /**
      * Show dropdown on label click
@@ -419,6 +423,10 @@ function multiPrice() {
 
         switch (this.checked) {
           case true:
+            if ($('#payment_method').getAttribute('disabled')) {
+              $('#payment_method').removeAttribute('disabled');
+            }
+
             if (quantityInput) {
               quantityInput.removeAttribute('disabled');
               var value = {};

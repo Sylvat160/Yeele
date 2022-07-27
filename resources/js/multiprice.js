@@ -56,6 +56,9 @@ function multiPrice() {
          */
         window.addEventListener('selectChanged', () => {
             this.pricesInput.setAttribute('value', `${JSON.stringify(this.prices)}`)
+            if(this.prices.length === 0) {
+                $('#payment_method').setAttribute('disabled', true)
+            }
         })
 
         /**
@@ -70,6 +73,9 @@ function multiPrice() {
                 const quantityInput = $(`input[data-target-price="#${this.getAttribute('id')}"]`)
                 switch (this.checked) {
                     case true:
+                        if($('#payment_method').getAttribute('disabled')) {
+                            $('#payment_method').removeAttribute('disabled')
+                        }
                         if(quantityInput) {
                             quantityInput.removeAttribute('disabled')
                             const value = {}

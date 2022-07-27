@@ -9,17 +9,6 @@
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
     <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
-    <style>
-        .payment_sdk {
-            display: block;
-            position: fixed;
-            background-position: center;
-            text-align: center;
-            left: 50%;
-            top: 50%;
-            transform: translate(-50%, -50%);
-        }
-    </style>
 </head>
 
 <body>
@@ -206,6 +195,7 @@
                         </label>
                         <select name="payment_method" id="payment_method"
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                            disabled="true"
                             required>
                             @if ($event->event_payment_methods->count() > 1)
                                 <option value="" class="hidden">Selectionner un mode de paiement</option>
@@ -375,9 +365,6 @@
                 @endif
             </form>
         </div>
-    </div>
-    <div class="payment_sdk">
-
     </div>
     <script src="{{ asset('js/app.js') }}"></script>
 </body>
