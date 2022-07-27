@@ -1,3 +1,6 @@
+const paypaljs = require('@paypal/paypal-js')
+const loadScript = paypaljs.loadScript
+
 const payment = () => {
     const paymentContainer = document.getElementById("payment_container");
 
@@ -43,14 +46,34 @@ function handleMethodChange(directPayments) {
                     break;
             
                 case "Carte bancaire":
-
+                    paypalCheckout({amount})
                     break;
             }
         }
     }
 }
 
+function paypalCheckout({amount}) {
+    loadScript({"client-id": "AZK6Vfdd6CU5huRp2WAPcM4YvOixdfKxUpfRskfSXfH8sJOhZBoO3VN-OCJW2rmaMqELC30s--b2XeaW"})
+    .then(paypal => {
+        paypal
+        .Buttons({
+            createOrder(data, actions) {
+                return actions.order.create({
+                    purchase_units: [{
+                        amount: {
+                            value: amount
+                        }
+                    }]
+                })
+            }
+        })
+        .render('#payment_container')
+    })
+}
+
 function cinetpayCheckout(options) {
+    document.getElementById('payment_container').innerHTML = ""
     CinetPay.setConfig({
         apikey: "127698624362c6d628ee1773.76085360",//   YOUR APIKEY
         site_id: "356030",//YOUR_SITE_ID

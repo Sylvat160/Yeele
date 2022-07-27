@@ -977,6 +977,13 @@
     "@nodelib/fs.scandir" "2.1.5"
     fastq "^1.6.0"
 
+"@paypal/paypal-js@^5.1.0":
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/@paypal/paypal-js/-/paypal-js-5.1.0.tgz#3b7b71bc83092280cc6911455f48ae35348371cc"
+  integrity sha512-GNkbxef+HS+rZ+Ou3cvDBfzJ2+dpaiX8wbf/f7LFwGXmozWz0VFhG4qZRXoVJRxjHcXmz/TFFQN/q57HwnXdJA==
+  dependencies:
+    promise-polyfill "^8.2.3"
+
 "@popperjs/core@^2.9.3":
   version "2.11.5"
   resolved "https://registry.npmjs.org/@popperjs/core/-/core-2.11.5.tgz"
@@ -4212,6 +4219,11 @@ process@^0.11.10:
   version "0.11.10"
   resolved "https://registry.npmjs.org/process/-/process-0.11.10.tgz"
   integrity sha1-czIwDoQBYb2j5podHZGn1LwW8YI=
+
+promise-polyfill@^8.2.3:
+  version "8.2.3"
+  resolved "https://registry.yarnpkg.com/promise-polyfill/-/promise-polyfill-8.2.3.tgz#2edc7e4b81aff781c88a0d577e5fe9da822107c6"
+  integrity sha512-Og0+jCRQetV84U8wVjMNccfGCnMQ9mGs9Hv78QFe+pSDD3gWTpz0y+1QCuxy5d/vBFuZ3iwP2eycAkvqIMPmWg==
 
 proxy-addr@~2.0.7:
   version "2.0.7"

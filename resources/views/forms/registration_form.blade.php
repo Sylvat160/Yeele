@@ -12,7 +12,7 @@
     <style>
         .payment_sdk {
             display: block;
-            position: absolute;
+            position: fixed;
             background-position: center;
             text-align: center;
             left: 50%;
