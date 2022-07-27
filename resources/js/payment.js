@@ -8,7 +8,7 @@ const payment = () => {
         priceSelect.addEventListener('change', function() {
             if(this.value != "") {
                 document.getElementById('payment_method').removeAttribute('disabled')
-            }
+            } else document.getElementById('payment_method').setAttribute('disabled', true)
         })
     }
 
