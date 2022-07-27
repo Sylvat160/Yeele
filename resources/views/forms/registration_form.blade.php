@@ -50,7 +50,7 @@
                 </div>
                 {{ Session::forget('error') }}
             @endif
-            <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST">
+            <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST" id="registration">
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <div class="mb-3">
@@ -207,6 +207,8 @@
                                     {{ $event->event_payment_methods->first()->name }}</option>
                             @endif
                         </select>
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                            class="font-medium" id="pm_error"></span></p>
                     </div>
                     @if ($event->custom['hasDirectPayment'])
                         @if ($event->event_payment_methods->count() === 1)
