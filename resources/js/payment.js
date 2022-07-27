@@ -3,6 +3,14 @@ const loadScript = paypaljs.loadScript;
 
 const payment = () => {
     const paymentContainer = document.getElementById("payment_container");
+    const priceSelect = document.getElementById('price')
+    if(priceSelect) {
+        priceSelect.addEventListener('change', function() {
+            if(this.value != "") {
+                document.getElementById('payment_method').removeAttribute('disabled')
+            }
+        })
+    }
 
     if (paymentContainer) {
         const paymentBtn = document.getElementById("paymentBtn");
@@ -69,9 +77,11 @@ function handleMethodChange(directPayments) {
 }
 
 function paypalCheckout({ amount }) {
+    const amountToUSD = amount / 645
+    console.log(amountToUSD);
     loadScript({
         "client-id":
-            "AZK6Vfdd6CU5huRp2WAPcM4YvOixdfKxUpfRskfSXfH8sJOhZBoO3VN-OCJW2rmaMqELC30s--b2XeaW",
+            "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z",
     }).then((paypal) => {
         paypal
             .Buttons({
@@ -80,7 +90,7 @@ function paypalCheckout({ amount }) {
                         purchase_units: [
                             {
                                 amount: {
-                                    value: amount,
+                                    value: amountToUSD.toFixed(2),
                                 },
                             },
                         ],
@@ -99,8 +109,8 @@ function paypalCheckout({ amount }) {
 function cinetpayCheckout(options) {
     document.getElementById("payment_container").innerHTML = "";
     CinetPay.setConfig({
-        apikey: "127698624362c6d628ee1773.76085360", //   YOUR APIKEY
-        site_id: "356030", //YOUR_SITE_ID
+        apikey: "127698624362c6d628ee1773.76085360",
+        site_id: "356030",
         notify_url: "http://mondomaine.com/notify/",
         mode: "PRODUCTION",
     });
