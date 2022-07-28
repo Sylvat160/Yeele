@@ -511,12 +511,6 @@ var payment = function payment() {
 
     paymentMethod.addEventListener("change", function () {
       handleMethodChange.call(paymentMethod, directPayments);
-
-      if (document.getElementById('cp-close')) {
-        document.getElementById('cp-close').addEventListener('click', function () {
-          document.head.querySelector('style:last-of-type').innerHTML = "";
-        });
-      }
     });
     document.getElementById("registration").addEventListener("submit", function (e) {
       var paymentStatus = document.querySelector('input[name="payment_status"]');

@@ -33,16 +33,10 @@ $('#payment_method').on('change', function() {
     
         case 4:
             $('#payment_container').html('')
-            if(document.head.querySelector('style:last-of-type')) {
-                document.head.querySelector('style:last-of-type').innerHTML = ""
-            }
             paypalCheckout()
             break;
         
             default:
-                if(document.head.querySelector('style:last-of-type')) {
-                    document.head.querySelector('style:last-of-type').innerHTML = ""
-                }
                 $('#payment_container').html('')
             break;
     }
@@ -97,6 +91,7 @@ function cinetpayCheckout() {
         notify_url: "http://mondomaine.com/notify/",
         mode: "PRODUCTION",
     });
+    
     CinetPay.getCheckout({
         transaction_id: Math.floor(
             Math.random() * 100000000
@@ -106,6 +101,7 @@ function cinetpayCheckout() {
         description: "Paiement Yeele",
         amount: amountState.value,
     });
+
     CinetPay.waitResponse(function (data) {
         if (data.status == "REFUSED") {
             alert("Votre paiement a échoué. Veuillez réessayer!");
@@ -115,6 +111,7 @@ function cinetpayCheckout() {
                 .setAttribute("value", "1");
         }
     });
+
     CinetPay.onError(function (data) {
         console.log(data);
     });

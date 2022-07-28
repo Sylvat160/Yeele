@@ -8,7 +8,7 @@
     <title>Yeele | Formulaire d'inscription</title>
     <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
-    <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+    <script src="{{ asset('js/cinetpay.js') }}"></script>
 </head>
 
 <body>

@@ -2,7 +2,7 @@
 @section('title') Commande en cours @endsection
 @section('bigTitle') Commande en cours @endsection
 @section('additional_head')
-  <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+  <script src="{{ asset('js/cinetpay.js') }}"></script>
 @endsection
 
 @section('main')

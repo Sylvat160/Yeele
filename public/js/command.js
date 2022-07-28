@@ -350,19 +350,10 @@ $('#payment_method').on('change', function () {
 
     case 4:
       $('#payment_container').html('');
-
-      if (document.head.querySelector('style:last-of-type')) {
-        document.head.querySelector('style:last-of-type').innerHTML = "";
-      }
-
       paypalCheckout();
       break;
 
     default:
-      if (document.head.querySelector('style:last-of-type')) {
-        document.head.querySelector('style:last-of-type').innerHTML = "";
-      }
-
       $('#payment_container').html('');
       break;
   }
