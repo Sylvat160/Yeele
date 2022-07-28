@@ -111,6 +111,13 @@
                                                 @endfor
                                             @endif
                                         @endif
+                                        <td>
+                                            @if ((bool) $participant->payment_status)
+                                                <span class="text-success">Payé</span>
+                                            @else
+                                                <span class="text-danger">Non payé</span>
+                                            @endif
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

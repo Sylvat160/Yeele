@@ -77,11 +77,11 @@ function handleMethodChange(directPayments) {
 }
 
 function paypalCheckout({ amount }) {
-    const amountToUSD = amount / 645
-    console.log(amountToUSD);
+    const amountToEUR = amount / 656
     loadScript({
         "client-id":
             "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z",
+            currency: "EUR",
     }).then((paypal) => {
         paypal
             .Buttons({
@@ -90,7 +90,7 @@ function paypalCheckout({ amount }) {
                         purchase_units: [
                             {
                                 amount: {
-                                    value: amountToUSD.toFixed(2),
+                                    value: amountToEUR.toFixed(2),
                                 },
                             },
                         ],
