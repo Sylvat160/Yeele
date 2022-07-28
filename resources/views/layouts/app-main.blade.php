@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/daterangepicker/daterangepicker.css') }}">
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
+    @yield('additional_head')
 </head>
 
 <body class="hold-transition sidebar-mini layout-fixed">

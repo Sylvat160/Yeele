@@ -1,6 +1,9 @@
 @extends('layouts.app-main')
 @section('title') Commande en cours @endsection
 @section('bigTitle') Commande en cours @endsection
+@section('additional_head')
+  <script src="https://cdn.cinetpay.com/seamless/main.js"></script>
+@endsection
 
 @section('main')
 
@@ -71,13 +74,8 @@
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
-            <div class="form-group">
-              <div id="cinetPay" class="mb-3">
-                <button type="button" class="w-100 btn text-light" id="cinetPayBtn" style="height: 45px !important; background: rgb(29, 204, 23)">Paiement mobile</button>
-              </div>
-              <div id="payPal">
-                
-              </div>
+            <div class="form-group" id="payment_container">
+
             </div>
           </div>
 
@@ -101,7 +99,6 @@
         window.dispatchEvent(new Event('command'))
       }
     }
-
   </script>
   <script src="{{ asset('js/command.js') }}" type="module"></script>
 @endsection

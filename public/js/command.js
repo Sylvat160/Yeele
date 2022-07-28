@@ -327,6 +327,13 @@ var loadScript = paypaljs.loadScript;
 var total_amount = $('#total_amount');
 var plan_state = Object.create(state);
 var duration_state = Object.create(state);
+var amountState = {
+  value: 0,
+  setValue: function setValue(newValue) {
+    this.value = newValue;
+  }
+};
+var cinetPayBtnContainer = "\n<button type=\"button\" class=\"w-100 btn text-light\" id=\"cinetPayBtn\" style=\"height: 45px !important; background: rgb(29, 204, 23)\">Paiement mobile</button>\n";
 $('#plan').on('change', function () {
   var price = Number(this.options[this.selectedIndex].dataset.price);
   plan_state.setValue(price);
@@ -335,12 +342,43 @@ $('#duration').on('change', function () {
   var duration = Number(this.options[this.selectedIndex].value);
   duration_state.setValue(duration);
 });
+$('#payment_method').on('change', function () {
+  switch (Number(this.options[this.selectedIndex].value)) {
+    case 2:
+      $('#payment_container').html(cinetPayBtnContainer);
+      break;
+
+    case 4:
+      $('#payment_container').html('');
+
+      if (document.head.querySelector('style:last-of-type')) {
+        document.head.querySelector('style:last-of-type').innerHTML = "";
+      }
+
+      paypalCheckout();
+      break;
+
+    default:
+      if (document.head.querySelector('style:last-of-type')) {
+        document.head.querySelector('style:last-of-type').innerHTML = "";
+      }
+
+      $('#payment_container').html('');
+      break;
+  }
+
+  if ($('#cinetPayBtn')) {
+    $('#cinetPayBtn').on('click', cinetpayCheckout);
+  }
+});
 window.addEventListener('command', function () {
   var new_amount = plan_state.value * duration_state.value;
+  amountState.setValue(new_amount);
   total_amount.val("".concat(new_amount, " FCFA"));
-  console.log(new_amount);
 });
-window.addEventListener('load', function () {
+
+function paypalCheckout() {
+  console.log(amountState.value);
   var amountToEUR = 1000 / 656;
   loadScript({
     "client-id": "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z",
@@ -359,9 +397,35 @@ window.addEventListener('load', function () {
       onApprove: function onApprove(data, actions) {
         document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
       }
-    }).render("#payPal");
+    }).render("#payment_container");
   });
-});
+}
+
+function cinetpayCheckout() {
+  CinetPay.setConfig({
+    apikey: "127698624362c6d628ee1773.76085360",
+    site_id: "356030",
+    notify_url: "http://mondomaine.com/notify/",
+    mode: "PRODUCTION"
+  });
+  CinetPay.getCheckout({
+    transaction_id: Math.floor(Math.random() * 100000000).toString(),
+    currency: "XOF",
+    channels: "MOBILE_MONEY",
+    description: "Paiement Yeele",
+    amount: amountState.value
+  });
+  CinetPay.waitResponse(function (data) {
+    if (data.status == "REFUSED") {
+      alert("Votre paiement a échoué. Veuillez réessayer!");
+    } else if (data.status == "ACCEPTED") {
+      document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
+    }
+  });
+  CinetPay.onError(function (data) {
+    console.log(data);
+  });
+}
 })();
 
 /******/ })()
