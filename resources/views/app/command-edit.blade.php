@@ -71,7 +71,14 @@
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
-
+            <div class="form-group">
+              <div id="cinetPay" class="mb-3">
+                <button type="button" class="w-100 btn text-light" id="cinetPayBtn" style="height: 45px !important; background: rgb(29, 204, 23)">Paiement mobile</button>
+              </div>
+              <div id="payPal">
+                
+              </div>
+            </div>
           </div>
 
           <div class="card-footer text-center">
@@ -88,30 +95,13 @@
 @section('additional_script')
   <script>
     const state = {
-      value: Number({{$plan->price}}),
+      value: Number({{Auth::user()->custom['currentCommand']->plan ? Auth::user()->custom['currentCommand']->plan->price : 0}}),
       setValue(newValue) {
         this.value = newValue
         window.dispatchEvent(new Event('command'))
       }
     }
-    const total_amount = $('#total_amount')
-
-    const plan_state = Object.create(state)
-    const duration_state = Object.create(state)
-
-    $('#plan').on('change', function() {
-      const price = Number(this.options[this.selectedIndex].dataset.price)
-      plan_state.setValue(price)
-    })
-    $('#duration').on('change', function() {
-      const duration = Number(this.options[this.selectedIndex].value)
-      duration_state.setValue(duration)
-    })
-
-    window.addEventListener('command', function() {
-      const new_amount = plan_state.value * duration_state.value
-      total_amount.val(`${new_amount} FCFA`)
-    })
 
   </script>
+  <script src="{{ asset('js/command.js') }}" type="module"></script>
 @endsection

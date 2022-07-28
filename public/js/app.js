@@ -560,17 +560,17 @@ function handleMethodChange(directPayments) {
 
 function paypalCheckout(_ref) {
   var amount = _ref.amount;
-  var amountToUSD = amount / 645;
-  console.log(amountToUSD);
+  var amountToEUR = amount / 656;
   loadScript({
-    "client-id": "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z"
+    "client-id": "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z",
+    currency: "EUR"
   }).then(function (paypal) {
     paypal.Buttons({
       createOrder: function createOrder(data, actions) {
         return actions.order.create({
           purchase_units: [{
             amount: {
-              value: amountToUSD.toFixed(2)
+              value: amountToEUR.toFixed(2)
             }
           }]
         });
