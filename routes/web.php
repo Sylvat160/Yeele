@@ -40,9 +40,9 @@ Route::post('inscription', [AuthController::class, 'register'])->name('app.regis
 
 Route::middleware('auth')->group(function() {
     Route::get('verification_email', [StaticPagesController::class, 'verify'])->name('verification.verify');
-    Route::get('/email/verification/{hash}', [AuthController::class, 'email_verification'])->middleware('signed')->name('verification.verify_email');
-    Route::post('/renvoyer_le_mail', [AuthController::class, 'resend_verification_mail'])->name('email.resend_verification_mail');
-    Route::get('/mail_renvoyé', [AuthController::class, 'resent_mail'])->name('resent_mail');
+    Route::get('email/verification/{hash}', [AuthController::class, 'email_verification'])->middleware('signed')->name('verification.verify_email');
+    Route::post('renvoyer_le_mail', [AuthController::class, 'resend_verification_mail'])->name('email.resend_verification_mail');
+    Route::get('mail_renvoyé', [AuthController::class, 'resent_mail'])->name('resent_mail');
     Route::post('logout', [AuthController::class, 'logout'])->name('app.logout');
 });
 
