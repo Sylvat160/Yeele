@@ -44,7 +44,7 @@
                 <span class="text-danger">*</span>
               </label>
               <select class="custom-select" name="duration" id="duration" required>
-                <option class="d-none" selected>Choisissez la durée de votre commande</option>
+                <option class="d-none" value="" selected>Choisissez la durée de votre commande</option>
                 @for ($i = 1; $i <= 12; $i++)
                   <option value="{{ $i }}">{{ $i . ' mois' }}</option>
                 @endfor
@@ -64,8 +64,8 @@
                 <span>Mode de paiement</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="payment_method_id" id="payment_method" class="form-control" required>
-                <option class="d-none" selected>Choisissez votre mode de paiement</option>
+              <select name="payment_method_id" id="payment_method" class="form-control" required disabled>
+                <option class="d-none" value="" selected>Choisissez votre mode de paiement</option>
                 @foreach ($payment_methods as $method)
                   <option value="{{ $method->id }}">{{ $method->name }}</option>
                 @endforeach
@@ -78,7 +78,7 @@
 
             </div>
           </div>
-
+          <input type="hidden" name="payment_status" value="0" required>
           <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary">Valider la commande</button>
           </div>

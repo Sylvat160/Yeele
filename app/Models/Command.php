@@ -17,7 +17,8 @@ class Command extends Model
         'duration',
         'start_date_time',
         'end_date_time',
-        'payment_method_id'
+        'payment_method_id',
+        'payment_status'
     ];
 
     protected static function boot()

@@ -52,7 +52,9 @@
                                     <td>{{ !is_null($command->payment_method) ?$command->payment_method->name : 'Aucun' }}</td>
                                     <td>
                                         @if (is_null($command->payment))
-                                            @switch($command->payment)
+                                            <span class="text-danger">Non Payé</span>
+                                        @else
+                                            @switch((bool) $command->payment->status)
                                                 @case(true)
                                                 <span class="text-green">Payé</span>
                                                 @break
@@ -60,8 +62,7 @@
                                                 <span class="text-danger">Non Payé</span>
                                                     @break
                                                 @default
-                                                    
-                                            @endswitch
+                                        @endswitch
                                         @endif
                                     </td>
                                     <td>

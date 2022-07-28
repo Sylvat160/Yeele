@@ -4,6 +4,7 @@ namespace App\Http\Controllers\AppControllers;
 
 use App\Http\Controllers\Controller;
 use App\Models\Command;
+use App\Models\Payment;
 use App\Models\PaymentMethod;
 use App\Models\Plan;
 use Carbon\Carbon;
@@ -73,7 +74,7 @@ class CommandController extends Controller
                     $endDateTime->addMonths($request->duration);
 
                     $data = array_merge(
-                        $request->except('_token'),
+                        $request->except('_token', 'payment_status'),
                         [
                             'user_uid' => auth()->user()->uid,
                             'active' => true,
@@ -82,7 +83,12 @@ class CommandController extends Controller
                         ]
                     );
 
-                    Command::create($data);
+                    $command = Command::create($data);
+                    $command = Command::create($data);
+                    Payment::create([
+                        'command_id' => $command->id,
+                        'status' => $request->payment_status
+                    ]);
                     return redirect()->route('app.home')->with('success', "Vous venez de passer à la formule Gold.");
                 }
             
@@ -147,7 +153,7 @@ class CommandController extends Controller
         $endDateTime = new Carbon($startDateTime);
         $endDateTime->addMonths($request->duration);
         $data = array_merge(
-            $request->except('_token', '_method'), 
+            $request->except('_token', '_method', 'payment_status'), 
             [
                 'active' => true,
                 'start_date_time' => $startDateTime,
@@ -156,6 +162,10 @@ class CommandController extends Controller
         );
         
         $command->update($data);
+        Payment::create([
+            'command_id' => $command->id,
+            'status' => $request->payment_status
+        ]);
         return redirect()->route('app.home')->with('success', "Votre commande a été mise à jour.");
     }
 
@@ -181,8 +191,6 @@ class CommandController extends Controller
                 'end_date_time' => $endDateTime
             ]
         );
-
-        $command = Command::create($data);
         return $command ?? false;
     }
 }

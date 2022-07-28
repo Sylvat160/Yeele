@@ -50,6 +50,9 @@ window.addEventListener('command', function() {
   const new_amount = plan_state.value * duration_state.value
   amountState.setValue(new_amount)
   total_amount.val(`${new_amount} FCFA`)
+  if(new_amount !== 0 && $('#payment_method').attr('disabled')) {
+      $('#payment_method')[0].removeAttribute('disabled')
+  }
 })
 
 function paypalCheckout() {
@@ -77,6 +80,7 @@ function paypalCheckout() {
                     document
                         .querySelector('input[name="payment_status"]')
                         .setAttribute("value", "1");
+                        $('#payment_container').html('')
                 },
             })
             .render("#payment_container");
@@ -109,6 +113,7 @@ function cinetpayCheckout() {
             document
                 .querySelector('input[name="payment_status"]')
                 .setAttribute("value", "1");
+                $('#payment_container').html('')
         }
     });
 

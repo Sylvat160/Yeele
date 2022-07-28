@@ -488,13 +488,13 @@ var loadScript = paypaljs.loadScript;
 
 var payment = function payment() {
   var paymentContainer = document.getElementById("payment_container");
-  var priceSelect = document.getElementById('price');
+  var priceSelect = document.getElementById("price");
 
   if (priceSelect) {
-    priceSelect.addEventListener('change', function () {
+    priceSelect.addEventListener("change", function () {
       if (this.value != "") {
-        document.getElementById('payment_method').removeAttribute('disabled');
-      } else document.getElementById('payment_method').setAttribute('disabled', true);
+        document.getElementById("payment_method").removeAttribute("disabled");
+      } else document.getElementById("payment_method").setAttribute("disabled", true);
     });
   }
 
@@ -577,6 +577,7 @@ function paypalCheckout(_ref) {
       },
       onApprove: function onApprove(data, actions) {
         document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
+        document.getElementById("payment_container").innerHTML = "";
       }
     }).render("#payment_container");
   });
@@ -596,6 +597,7 @@ function cinetpayCheckout(options) {
       alert("Votre paiement a échoué. Veuillez réessayer!");
     } else if (data.status == "ACCEPTED") {
       document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
+      document.getElementById("payment_container").innerHTML = "";
     }
   });
   CinetPay.onError(function (data) {

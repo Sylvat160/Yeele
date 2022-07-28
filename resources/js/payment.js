@@ -3,13 +3,15 @@ const loadScript = paypaljs.loadScript;
 
 const payment = () => {
     const paymentContainer = document.getElementById("payment_container");
-    const priceSelect = document.getElementById('price')
-    if(priceSelect) {
-        priceSelect.addEventListener('change', function() {
-            if(this.value != "") {
-                document.getElementById('payment_method').removeAttribute('disabled')
-            } else document.getElementById('payment_method').setAttribute('disabled', true)
-        })
+    const priceSelect = document.getElementById("price");
+    if (priceSelect) {
+        priceSelect.addEventListener("change", function () {
+            if (this.value != "") {
+                document
+                    .getElementById("payment_method")
+                    .removeAttribute("disabled");
+            } else document.getElementById("payment_method").setAttribute("disabled", true);
+        });
     }
 
     if (paymentContainer) {
@@ -77,11 +79,11 @@ function handleMethodChange(directPayments) {
 }
 
 function paypalCheckout({ amount }) {
-    const amountToEUR = amount / 656
+    const amountToEUR = amount / 656;
     loadScript({
         "client-id":
             "AXhjbIUZQQgC4VqCg9oYJ0v6w28uypEPd142He0Qp6fUmtWUKPHMI_AecQGwjazTH2Xj6HW6V0fDv8-z",
-            currency: "EUR",
+        currency: "EUR",
     }).then((paypal) => {
         paypal
             .Buttons({
@@ -100,6 +102,7 @@ function paypalCheckout({ amount }) {
                     document
                         .querySelector('input[name="payment_status"]')
                         .setAttribute("value", "1");
+                    document.getElementById("payment_container").innerHTML = "";
                 },
             })
             .render("#payment_container");
@@ -122,6 +125,8 @@ function cinetpayCheckout(options) {
             document
                 .querySelector('input[name="payment_status"]')
                 .setAttribute("value", "1");
+
+            document.getElementById("payment_container").innerHTML = "";
         }
     });
     CinetPay.onError(function (data) {
