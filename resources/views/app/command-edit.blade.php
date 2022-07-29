@@ -77,8 +77,8 @@
             <div class="form-group" id="payment_container">
 
             </div>
+            <input type="hidden" name="payment_status" value="0" required>
           </div>
-          <input type="hidden" name="payment_status" value="0" required>
           <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary">Valider la commande</button>
           </div>
