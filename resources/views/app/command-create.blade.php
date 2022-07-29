@@ -2,6 +2,10 @@
 @section('title') Nouvelle commande @endsection
 @section('bigTitle') Nouvelle commande @endsection
 
+@section('additional_head')
+  <script src="{{ asset('js/cinetpay.js') }}"></script>
+@endsection
+
 @section('main')
 
 @include('extras.command_status')
@@ -70,7 +74,7 @@
                 <span>Mode de paiement</span>
                 <span class="text-danger">*</span>
               </label>
-              <select name="payment_method_id" id="payment_method" class="form-control">
+              <select name="payment_method_id" id="payment_method" class="form-control" required disabled>
                 <option class="d-none" value="" selected>Choisissez votre mode de paiement</option>
                 @foreach ($payment_methods as $method)
                   <option value="{{ $method->id }}">{{ $method->name }}</option>
@@ -80,8 +84,11 @@
                 <span class="text-danger">{{ $message }}</span>
               @enderror
             </div>
+            <div class="form-group" id="payment_container">
+
+            </div>
           </div>
-  
+          <input type="hidden" name="payment_status" value="0" required>
           <div class="card-footer text-center">
             <button type="submit" class="btn btn-primary">Valider la commande</button>
           </div>
@@ -102,24 +109,6 @@
         window.dispatchEvent(new Event('command'))
       }
     }
-    const total_amount = $('#total_amount')
-
-    const plan_state = Object.create(state)
-    const duration_state = Object.create(state)
-
-    $('#plan').on('change', function() {
-      const price = Number(this.options[this.selectedIndex].dataset.price)
-      plan_state.setValue(price)
-    })
-    $('#duration').on('change', function() {
-      const duration = Number(this.options[this.selectedIndex].value)
-      duration_state.setValue(duration)
-    })
-
-    window.addEventListener('command', function() {
-      const new_amount = plan_state.value * duration_state.value
-      total_amount.val(`${new_amount} FCFA`)
-    })
-
   </script>
+  <script src="{{ asset('js/command.js') }}"></script>
 @endsection
