@@ -334,6 +334,13 @@ var amountState = {
   }
 };
 var cinetPayBtnContainer = "\n<button type=\"button\" class=\"w-100 btn text-light\" id=\"cinetPayBtn\" style=\"height: 45px !important; background: rgb(29, 204, 23)\">Paiement mobile</button>\n";
+var errorMessage = "\n<div class=\"alert alert-dismissible mb-4 p-3 d-flex justify-content-between align-items-center rounded\" style=\"background-color: rgb(254, 59, 59);\">\n    <div>\n      <i class=\"fa-solid fa-circle-xmark\"></i>\n      <span class=\"font-weight-bold\">Vous n'avez pas \xE9ffectu\xE9 de paiement.</span>\n    </div>\n    <div>\n      <button type=\"button\" class=\"close\" data-dismiss=\"alert\" aria-hidden=\"true\">\xD7</button>\n    </div>\n  </div>\n";
+$('form').on('submit', function (e) {
+  if (Number($('input[name="payment_status"]').attr('value')) === 0) {
+    e.preventDefault();
+    $('#error_container').html(errorMessage);
+  }
+});
 $('#plan').on('change', function () {
   var price = Number(this.options[this.selectedIndex].dataset.price);
   plan_state.setValue(price);

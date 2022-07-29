@@ -16,6 +16,25 @@ const cinetPayBtnContainer = `
 <button type="button" class="w-100 btn text-light" id="cinetPayBtn" style="height: 45px !important; background: rgb(29, 204, 23)">Paiement mobile</button>
 `
 
+const errorMessage = `
+<div class="alert alert-dismissible mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: rgb(254, 59, 59);">
+    <div>
+      <i class="fa-solid fa-circle-xmark"></i>
+      <span class="font-weight-bold">Vous n'avez pas éffectué de paiement.</span>
+    </div>
+    <div>
+      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+    </div>
+  </div>
+`
+
+$('form').on('submit', function(e) {
+    if(Number($('input[name="payment_status"]').attr('value')) === 0) {
+        e.preventDefault()
+        $('#error_container').html(errorMessage)
+    }
+})
+
 $('#plan').on('change', function() {
   const price = Number(this.options[this.selectedIndex].dataset.price)
   plan_state.setValue(price)
