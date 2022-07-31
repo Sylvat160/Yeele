@@ -179,7 +179,7 @@
         "buttons": [],
         "language": {
             "searchPlaceholder": "Rechercher ...",
-            "lengthMenu": "Afficher _MENU_ enregistrements par page",
+            "lengthMenu": "Afficher _MENU_ enrégistrements par page",
             "zeroRecords": "Aucune participant trouvé",
             "info": "Showing page _PAGE_ of _PAGES_",
             "infoEmpty": "",
@@ -190,7 +190,7 @@
             "search": "_INPUT_",
             "placeholder": "Rechercher",
             "info": "_TOTAL_ enrégistrement(s)",
-            "infoEmpty": "0 enregistrement",
+            "infoEmpty": "0 enrégistrement",
             "zeroRecords": "Aucune participant trouvé",
             "paginate": {
                 "first": "Premier",
