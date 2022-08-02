@@ -99,7 +99,7 @@ const formBuilder = $(document.getElementById("formbuilder_container")).formBuil
                 rows: "Lignes",
                 roles: "Accès",
                 rows: "Lignes",
-                save: "Enrégistrer",
+                save: "Enregistrer",
                 selectOptions: "Options",
                 select: "Champ de sélection",
                 selectColor: "Couleur de sélection",

@@ -104,7 +104,7 @@ $(formBuilder).formBuilder({
                 rows: "Lignes",
                 roles: "Accès",
                 rows: "Lignes",
-                save: "Enrégistrer",
+                save: "Enregistrer",
                 selectOptions: "Options",
                 select: "Champ de sélection",
                 selectColor: "Couleur de sélection",
