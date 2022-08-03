@@ -207,7 +207,7 @@
         </x-website-container>
     </div>
     <div class="my-12">
-        <h1 class="w-fit mx-auto text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">PRIVACY POLICY</h1>
+        <h1 class="w-fit mx-auto text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">PRIVACY POLICY (ENGLISH)</h1>
         <p class="w-fit mx-auto my-10">Effective date: 2022-04-09</p>
         <x-website-container class="my-10">
             <h1 class="montserrat_bold" style="font-size: 30px;">1. Introduction</h1>

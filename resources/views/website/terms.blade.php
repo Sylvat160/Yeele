@@ -4,8 +4,201 @@
 @endsection
 
 @section('content')
+
     <div class="my-12">
-        <h1 class="w-fit mx-auto text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">TERMS AND CONDITIONS
+        <h1 class="w-fit mx-auto text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">TERMES ET CONDITIONS D'UTILISATION</h1>
+        <p class="w-fit mx-auto my-10">Dernière mise à jour : 09-04-2022</p>
+
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">1. Introduction</h1>
+            <div>
+                <p>Ces conditions d'utilisation ("Conditions", "Conditions d'utilisation") régissent votre utilisation de notre site Web situé à l'adresse www.yeele-event.com (ensemble ou individuellement "Service") exploité par HORINFO. Notre politique de confidentialité régit également votre utilisation de notre service et explique comment nous collectons, protégeons et divulguons les informations résultant de votre utilisation de nos pages Web. Votre accord avec nous comprend les présentes Conditions et notre Politique de confidentialité (« Accords »). Vous reconnaissez avoir lu et compris les accords et acceptez d'être lié par eux. Si vous n'êtes pas d'accord avec (ou ne pouvez pas vous conformer) aux accords, vous ne pouvez pas utiliser le service, mais veuillez nous en informer par e-mail à infos@yeele-event.com afin que nous puissions essayer de trouver une solution. Ces conditions s'appliquent à tous les visiteurs, utilisateurs et autres qui souhaitent accéder ou utiliser le service. </p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">2. Communication</h1>
+            <div>
+                <p>En utilisant notre service, vous acceptez de vous abonner aux newsletters, aux supports marketing ou promotionnels et aux autres informations que nous pouvons envoyer. Cependant, vous pouvez refuser de recevoir tout ou partie de ces communications de notre part en suivant le lien de désabonnement ou en envoyant un e-mail à infos@yeele-event.com.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">3. Achat</h1>
+            <div>
+                <p>Si vous souhaitez acheter un produit ou un service mis à disposition via le Service ("Achat"), il peut vous être demandé de fournir certaines informations relatives à votre Achat, y compris, mais sans s'y limiter, votre numéro de carte de crédit ou de débit, la date d'expiration de votre carte , votre adresse de facturation et vos informations de livraison. Vous déclarez et garantissez que : (i) vous avez le droit légal d'utiliser toute(s) carte(s) ou autre(s) méthode(s) de paiement dans le cadre de tout achat ; et que (ii) les informations que vous nous fournissez sont véridiques, correctes et complètes. Nous pouvons avoir recours à des services tiers dans le but de faciliter le paiement et la réalisation des Achats. En soumettant vos informations, vous nous accordez le droit de fournir les informations à ces tiers sous réserve de notre politique de confidentialité. Nous nous réservons le droit de refuser ou d'annuler votre commande à tout moment pour des raisons telles que la disponibilité du produit ou du service, des erreurs dans la description ou le prix du produit ou du service, une erreur dans votre commande ou d'autres raisons. Nous nous réservons le droit de refuser ou d'annuler votre commande si une fraude ou une transaction non autorisée ou illégale est suspectée.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">4. Concours, tirages au sort et promotions </h1>
+            <div>
+                <p>Tous les concours, tirages au sort ou autres promotions (collectivement, les « Promotions ») mis à disposition via le Service peuvent être régis par des règles distinctes des présentes Conditions d'utilisation. Si vous participez à des promotions, veuillez consulter les règles applicables ainsi que notre politique de confidentialité. Si les règles d'une promotion entrent en conflit avec les présentes conditions d'utilisation, les règles de la promotion s'appliqueront.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">5. Abonnements</h1>
+            <div>
+                <p>Tous les concours, tirages au sort ou autres promotions (collectivement, les « Promotions ») mis à disposition via le Service peuvent être régis par des règles distinctes des présentes Conditions d'utilisation. Si vous participez à des promotions, veuillez consulter les règles applicables ainsi que notre politique de confidentialité. Si les règles d'une promotion entrent en conflit avec les présentes conditions d'utilisation, les règles de la promotion s'appliqueront. </p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">6. Essai gratuit</h1>
+            <div>
+                <p>HORINFO peut, à sa seule discrétion, proposer un abonnement avec un essai gratuit pendant une période limitée ("Essai gratuit"). Vous devrez peut-être saisir vos informations de facturation pour vous inscrire à l'essai gratuit. Si vous saisissez vos informations de facturation lors de votre inscription à l'essai gratuit, vous ne serez pas facturé par HORINFO tant que l'essai gratuit n'aura pas expiré. Le dernier jour de la période d'essai gratuit, à moins que vous n'ayez annulé votre abonnement, les frais d'abonnement applicables vous seront automatiquement facturés pour le type d'abonnement que vous avez sélectionné. À tout moment et sans préavis, HORINFO se réserve le droit de (i) modifier les conditions d'utilisation de l'offre d'essai gratuit, ou (ii) d'annuler cette offre d'essai gratuit.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">7. Modification sans frais</h1>
+            <div>
+                <p>HORINFO, à sa seule discrétion et à tout moment, peut modifier les frais d'abonnement pour les abonnements. Toute modification des frais d'abonnement entrera en vigueur à la fin du cycle de facturation alors en cours. HORINFO vous fournira un préavis raisonnable de toute modification des frais d'abonnement pour vous donner la possibilité de résilier votre abonnement avant que cette modification n'entre en vigueur. Votre utilisation continue du Service après l'entrée en vigueur de la modification des frais d'abonnement constitue votre accord de payer le montant des frais d'abonnement modifiés.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">8. Remboursements</h1>
+            <div>
+                <p>Nous remboursons les contrats dans les 30 jours suivant l'achat initial du contrat.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">9. Contenu</h1>
+            <div>
+                <p>Notre service vous permet de publier, de lier, de stocker, de partager et de mettre à disposition certaines informations, textes, graphiques, vidéos ou autres éléments ("Contenu"). Vous êtes responsable du contenu que vous publiez sur ou via le service, y compris sa légalité, sa fiabilité et sa pertinence. En publiant du contenu sur ou via le service, vous déclarez et garantissez que : (i) le contenu vous appartient (vous le possédez) et/ou vous avez le droit de l'utiliser et le droit de nous accorder les droits et la licence prévus dans les présentes conditions. , et (ii) que la publication de votre Contenu sur ou via le Service ne viole pas les droits à la vie privée, les droits de publicité, les droits d'auteur, les droits contractuels ou tout autre droit de toute personne ou entité. Nous nous réservons le droit de résilier le compte de toute personne ayant enfreint un droit d'auteur. Vous conservez tous vos droits sur tout Contenu que vous soumettez, publiez ou affichez sur ou via le Service et vous êtes responsable de la protection de ces droits. Nous n'assumons aucune responsabilité et n'assumons aucune responsabilité pour le Contenu que vous ou un tiers publiez sur ou via le Service. Cependant, en publiant du contenu à l'aide du service, vous nous accordez le droit et la licence d'utiliser, de modifier, d'exécuter publiquement, d'afficher publiquement, de reproduire et de distribuer ce contenu sur et via le service. Vous acceptez que cette licence nous donne le droit de mettre votre contenu à la disposition d'autres utilisateurs du service, qui peuvent également utiliser votre contenu sous réserve des présentes conditions. HORINFO a le droit mais non l'obligation de surveiller et de modifier tout le contenu fourni par les utilisateurs. De plus, le contenu trouvé sur ou via ce service est la propriété de HORINFO ou utilisé avec sa permission. Vous ne pouvez pas distribuer, modifier, transmettre, réutiliser, télécharger, republier, copier ou utiliser ledit Contenu, en totalité ou en partie, à des fins commerciales ou pour un gain personnel, sans notre autorisation écrite expresse préalable.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">10. Utilisations interdites</h1>
+            <div>
+                <p>Vous ne pouvez utiliser le Service qu'à des fins licites et conformément aux Conditions. Vous acceptez de ne pas utiliser le Service :</p>
+                <div>
+                    <p>0.1. D'une manière qui viole toute loi ou réglementation nationale ou internationale applicable.</p>
+                    <p>0.2. Dans le but d'exploiter, de nuire ou de tenter d'exploiter ou de nuire à des mineurs de quelque manière que ce soit en les exposant à un contenu inapproprié ou autrement.</p>
+                    <p>0.3. Pour transmettre ou obtenir l'envoi de tout matériel publicitaire ou promotionnel, y compris tout « courrier indésirable », « chaîne de lettres », « spam » ou toute autre sollicitation similaire.</p>
+                    <p>0.4. Se faire passer pour ou tenter de se faire passer pour la Société, un employé de la Société, un autre utilisateur ou toute autre personne ou entité.</p>
+                    <p>0,5. D'une manière qui enfreint les droits d'autrui ou qui, de quelque manière que ce soit, est illégale, menaçante, frauduleuse ou nuisible, ou en relation avec un objectif ou une activité illégale, illégale, frauduleuse ou nuisible.</p>
+                    <div>
+                        <p>0,6. S'engager dans toute autre conduite qui restreint ou empêche l'utilisation ou la jouissance du Service par quiconque, ou qui, selon notre détermination, peut nuire ou offenser la Société ou les utilisateurs du Service ou les exposer à une responsabilité. De plus, vous vous engagez à ne pas : </p>
+                        <p>0.1. Utiliser le Service d'une manière qui pourrait désactiver, surcharger, endommager ou altérer le Service ou interférer avec l'utilisation du Service par toute autre partie, y compris sa capacité à s'engager dans des activités en temps réel via le Service.</p>
+                        <p>0.2. Utiliser un robot, une araignée ou tout autre dispositif, processus ou moyen automatique pour accéder au Service à quelque fin que ce soit, y compris la surveillance ou la copie de tout matériel sur le Service.</p>
+                        <p>0.3. Utiliser tout processus manuel pour surveiller ou copier tout matériel sur le Service ou à toute autre fin non autorisée sans notre consentement écrit préalable.</p>
+                        <p>0.4. Utiliser tout appareil, logiciel ou routine qui interfère avec le bon fonctionnement du Service.</p>
+                        <p>0,5. Introduisez des virus, des chevaux de Troie, des vers, des bombes logiques ou tout autre matériel malveillant ou technologiquement nuisible.</p>
+                        <p>0,6. Tenter d'obtenir un accès non autorisé, d'interférer avec, d'endommager ou de perturber toute partie du Service, le serveur sur lequel le Service est stocké, ou tout serveur, ordinateur ou base de données connecté au Service.</p>
+                        <p>0,7. Service d'attaque via une attaque par déni de service ou une attaque par déni de service distribué.</p>
+                        <p>0,8. Entreprenez toute action susceptible d'endommager ou de falsifier l'évaluation de la société.</p>
+                        <p>0,9. Sinon tenter d'interférer avec le bon fonctionnement du Service.</p>
+                    </div>
+                </div>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">11. Analytique</h1>
+            <div>
+                <p>Nous pouvons utiliser des fournisseurs de services tiers pour surveiller et analyser l'utilisation de notre service.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">12. Aucune utilisation par des mineurs </h1>
+            <div>
+                <p>Nous pouvons utiliser des fournisseurs de services tiers pour surveiller et analyser l'utilisation de notre service. Le service est destiné uniquement à l'accès et à l'utilisation par des personnes âgées d'au moins dix-huit (18) ans. En accédant ou en utilisant le Service, vous garantissez et déclarez que vous avez au moins dix-huit (18) ans et que vous avez la pleine autorité, le droit et la capacité de conclure cet accord et de respecter tous les termes et conditions des Conditions. Si vous n'avez pas au moins dix-huit (18) ans, l'accès et l'utilisation du Service vous sont interdits.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">13. Comptes</h1>
+            <div>
+                <p>Lorsque vous créez un compte chez nous, vous garantissez que vous avez plus de 18 ans et que les informations que vous nous fournissez sont exactes, complètes et à jour à tout moment. Des informations inexactes, incomplètes ou obsolètes peuvent entraîner la résiliation immédiate de votre compte sur le Service. Vous êtes responsable du maintien de la confidentialité de votre compte et de votre mot de passe, y compris, mais sans s'y limiter, de la restriction de l'accès à votre ordinateur et/ou compte. Vous acceptez d'accepter la responsabilité de toutes les activités ou actions qui se produisent sous votre compte et/ou mot de passe, que votre mot de passe soit avec notre service ou un service tiers. Vous devez nous informer immédiatement dès que vous avez connaissance d'une violation de la sécurité ou d'une utilisation non autorisée de votre compte. Vous ne pouvez pas utiliser comme nom d'utilisateur le nom d'une autre personne ou entité ou qui n'est pas légalement disponible pour utilisation, un nom ou une marque qui est soumis à des droits d'une autre personne ou entité autre que vous, sans autorisation appropriée. Vous ne pouvez pas utiliser comme nom d'utilisateur un nom offensant, vulgaire ou obscène. Nous nous réservons le droit de refuser le service, de résilier des comptes, de supprimer ou de modifier du contenu ou d'annuler des commandes à notre seule discrétion.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">14. Propriété intellectuelle</h1>
+            <div>
+                <p>Le Service et son contenu original (à l'exclusion du Contenu fourni par les utilisateurs), ses caractéristiques et ses fonctionnalités sont et resteront la propriété exclusive de HORINFO et de ses concédants. Le service est protégé par le droit d'auteur, les marques de commerce et d'autres lois de pays étrangers. Nos marques ne peuvent être utilisées en relation avec un produit ou un service sans le consentement écrit préalable de HORINFO. </p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">15. Politique de droit d'auteur</h1>
+            <div>
+                <p>Nous respectons les droits de propriété intellectuelle d'autrui. Notre politique est de répondre à toute réclamation selon laquelle le Contenu publié sur le Service enfreint le droit d'auteur ou d'autres droits de propriété intellectuelle (« Violation ») de toute personne ou entité. Si vous êtes titulaire d'un droit d'auteur ou autorisé en son nom et que vous pensez que l'œuvre protégée par le droit d'auteur a été copiée d'une manière qui constitue une violation du droit d'auteur, veuillez soumettre votre réclamation par e-mail à infos@yeele-event.com, avec le sujet ligne : « Violation du droit d'auteur » et incluez dans votre réclamation une description détaillée de la violation présumée, comme indiqué ci-dessous, sous « Avis et procédure DMCA pour les réclamations pour violation du droit d'auteur » Vous pouvez être tenu responsable des dommages (y compris les frais et honoraires d'avocat) pour fausses déclarations ou réclamations de mauvaise foi concernant la violation de tout contenu trouvé sur et / ou via le service sur votre droit d'auteur. </p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">16. Avis DMCA et procédure pour les réclamations pour violation du droit d'auteur</h1>
+            <div>
+                <p>Vous pouvez soumettre une notification conformément au Digital Millennium Copyright Act (DMCA) en fournissant par écrit à notre agent des droits d'auteur les informations suivantes (voir 17 U.S.C 512(c)(3) pour plus de détails) :</p>
+                <div>
+                    <p>0.1. une signature électronique ou physique de la personne autorisée à agir au nom du titulaire du droit d'auteur ;</p>
+                    <p>0.2. une description de l'œuvre protégée par le droit d'auteur qui, selon vous, a été enfreinte, y compris l'URL (c'est-à-dire l'adresse de la page Web) de l'emplacement où l'œuvre protégée par le droit d'auteur existe ou une copie de l'œuvre protégée par le droit d'auteur;</p>
+                    <p>0.3. l'identification de l'URL ou de tout autre emplacement spécifique sur le Service où se trouve le matériel que vous prétendez enfreindre;</p>
+                    <p>0.4. votre adresse, numéro de téléphone et adresse e-mail ;</p>
+                    <p>0,5. une déclaration de votre part indiquant que vous pensez de bonne foi que l'utilisation contestée n'est pas autorisée par le titulaire du droit d'auteur, son agent ou la loi;</p>
+                    <p>0,6. une déclaration de votre part, faite sous peine de parjure, que les informations ci-dessus dans votre avis sont exactes et que vous êtes le titulaire du droit d'auteur ou autorisé à agir au nom du titulaire du droit d'auteur. Vous pouvez contacter notre agent des droits d'auteur par e-mail à infos@yeele-event.com.</p>
+                </div>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">17. Rapports d'erreurs et commentaires</h1>
+            <div>
+                <p>Vous pouvez nous fournir directement à infos@yeele-event.com ou via des sites et outils tiers des informations et des commentaires concernant des erreurs, des suggestions d'améliorations, des idées, des problèmes, des réclamations et d'autres questions liées à notre service ("Commentaires"). . Vous reconnaissez et acceptez que : (i) vous ne conservez, n'acquérez ni ne revendiquez aucun droit de propriété intellectuelle ou autre droit, titre ou intérêt dans ou sur les commentaires ; (ii) la Société peut avoir des idées de développement similaires aux Commentaires ; (iii) les commentaires ne contiennent pas d'informations confidentielles ou d'informations exclusives provenant de vous ou d'un tiers ; et (iv) la Société n'est soumise à aucune obligation de confidentialité en ce qui concerne les Commentaires. Dans le cas où le transfert de propriété des commentaires n'est pas possible en raison des lois impératives applicables, vous accordez à la société et à ses sociétés affiliées un droit d'utilisation exclusif, transférable, irrévocable, gratuit, sous-licenciable, illimité et perpétuel ( y compris copier, modifier, créer des œuvres dérivées, publier, distribuer et commercialiser) Commentaires de quelque manière que ce soit et à quelque fin que ce soit.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">18. Liens vers d'autres sites Web </h1>
+            <div>
+                <p>Notre service peut contenir des liens vers des sites Web ou des services tiers qui ne sont ni détenus ni contrôlés par HORINFO. HORINFO n'a aucun contrôle et n'assume aucune responsabilité quant au contenu, aux politiques de confidentialité ou aux pratiques des sites Web ou des services de tiers. Nous ne garantissons pas les offres de ces entités/individus ou de leurs sites Web. Par exemple, les conditions d'utilisation décrites ont été créées à l'aide de PolicyMaker.io, une application Web gratuite permettant de générer des documents juridiques de haute qualité. Le générateur de conditions générales de PolicyMaker est un outil gratuit et facile à utiliser pour créer un excellent modèle de conditions d'utilisation standard pour un site Web, un blog, une boutique de commerce électronique ou une application. VOUS RECONNAISSEZ ET ACCEPTEZ QUE LA SOCIÉTÉ NE SERA PAS RESPONSABLE, DIRECTEMENT OU INDIRECTEMENT, DE TOUT DOMMAGE OU PERTE CAUSÉ OU PRÉSUMÉ CAUSÉ PAR OU EN RELATION AVEC L'UTILISATION OU LA CONFIANCE À UN TEL CONTENU, BIENS OU SERVICES DISPONIBLES SUR OU PAR L'INTERMÉDIAIRE DE TOUT CES SITES WEB OU SERVICES TIERS. NOUS VOUS CONSEILLONS FORTEMENT DE LIRE LES CONDITIONS D'UTILISATION ET LES POLITIQUES DE CONFIDENTIALITÉ DE TOUT SITE WEB OU SERVICE TIERS QUE VOUS VISITEZ.</p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">19. Exclusion de garantie </h1>
+            <div>
+                <p>CES SERVICES SONT FOURNIS PAR LA SOCIÉTÉ SUR UNE BASE « EN L'ÉTAT » ET « SELON LA DISPONIBILITÉ ». LA SOCIÉTÉ NE FAIT AUCUNE DÉCLARATION OU GARANTIE D'AUCUNE SORTE, EXPRESSE OU IMPLICITE, QUANT AU FONCTIONNEMENT DE LEURS SERVICES, OU DES INFORMATIONS, DU CONTENU OU DES DOCUMENTS INCLUS DANS CEUX-CI. VOUS ACCEPTEZ EXPRESSÉMENT QUE VOTRE UTILISATION DE CES SERVICES, DE LEUR CONTENU ET DE TOUT SERVICE OU ÉLÉMENT OBTENU DE NOUS EST À VOS PROPRES RISQUES. NI LA SOCIÉTÉ NI AUCUNE PERSONNE ASSOCIÉE À LA SOCIÉTÉ N'OFFRE DE GARANTIE OU DE DÉCLARATION QUANT À L'EXHAUSTIVITÉ, LA SÉCURITÉ, LA FIABILITÉ, LA QUALITÉ, L'EXACTITUDE OU LA DISPONIBILITÉ DES SERVICES. SANS LIMITER CE QUI PRÉCÈDE, NI LA SOCIÉTÉ NI PERSONNE ASSOCIÉE À LA SOCIÉTÉ NE REPRÉSENTENT OU NE GARANTISSENT QUE LES SERVICES, LEUR CONTENU, OU TOUT SERVICE OU ÉLÉMENT OBTENU PAR LE BIAIS DES SERVICES SERONT EXACTS, FIABLES, SANS ERREUR OU ININTERROMPUS, QUE LES DÉFAUTS SERONT CORRIGÉS, QUE LES SERVICES OU LE SERVEUR QUI LE REND DISPONIBLE SONT EXEMPTS DE VIRUS OU D'AUTRES ÉLÉMENTS NUISIBLES OU QUE LES SERVICES OU TOUT SERVICE OU ÉLÉMENT OBTENU VIA LES SERVICES RÉPONDRONT AUTREMENT À VOS BESOINS OU ATTENTES. LA SOCIÉTÉ DÉCLINE PAR LA PRÉSENTE TOUTE GARANTIE DE QUELQUE NATURE QUE CE SOIT, QU'ELLE SOIT EXPRESSE OU IMPLICITE, LÉGALE OU AUTRE, Y COMPRIS, MAIS SANS S'Y LIMITER, TOUTE GARANTIE DE QUALITÉ MARCHANDE, DE NON-CONTREFAÇON ET D'ADÉQUATION À UN USAGE PARTICULIER. CE QUI PRÉCÈDE N'AFFECTE PAS LES GARANTIES QUI NE PEUVENT ÊTRE EXCLUES OU LIMITÉES EN VERTU DE LA LOI APPLICABLE. </p>
+            </div>
+        </x-website-container>
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">20. Limitation de responsabilité</h1>
+            <div>
+                <p>SAUF SI LA LOI L'INTERDIT, VOUS NOUS TENIREZ AINSI QUE NOS DIRIGEANTS, ADMINISTRATEURS, EMPLOYÉS ET AGENTS NON RESPONSABLES DE TOUT DOMMAGE INDIRECT, PUNITIF, SPÉCIAL, ACCESSOIRE OU CONSÉCUTIF, QUELLE QU'EN SOIT LA SURVENUE (Y COMPRIS LES FRAIS D'AVOCAT ET TOUS LES COÛTS ET DÉPENSES LIÉS À LITIGE ET ARBITRAGE, OU EN PROCÈS OU EN APPEL, LE CAS ÉCHÉANT, QU'UN LITIGE OU UN ARBITRAGE SOIT INSTITUÉ OU NON), QUE CE SOIT DANS UNE ACTION DE CONTRAT, DE NÉGLIGENCE OU AUTRE ACTION DÉLICTUELLE, OU DÉCOULANT DE OU EN RELATION AVEC CET ACCORD, Y COMPRIS SANS LIMITATION, TOUTE RÉCLAMATION POUR BLESSURE PERSONNELLE OU DOMMAGE MATÉRIEL, RÉSULTANT DE CET ACCORD ET DE TOUTE VIOLATION PAR VOUS DE TOUTES LOIS, STATUTS, RÈGLES OU RÈGLEMENTS FÉDÉRAUX, D'ÉTAT OU LOCAUX, MÊME SI LA SOCIÉTÉ A ÉTÉ PRÉALABLEMENT INFORMÉE DE LA POSSIBILITÉ DE TELS DOMMAGES. SAUF INTERDIT PAR LA LOI, SI UNE RESPONSABILITÉ EST TROUVÉE DE LA PART DE LA SOCIÉTÉ, ELLE SERA LIMITÉE AU MONTANT PAYÉ POUR LES PRODUITS ET/OU SERVICES, ET EN AUCUN CAS IL N'Y AURA DE DOMMAGES CONSÉCUTIFS OU PUNITIFS. CERTAINS ÉTATS N'AUTORISENT PAS L'EXCLUSION OU LA LIMITATION DES DOMMAGES PUNITIFS, ACCESSOIRES OU CONSÉCUTIFS</p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">21. Résiliation</h1>
+            <div>
+                <p>Nous pouvons résilier ou suspendre votre compte et interdire l'accès au Service immédiatement, sans préavis ni responsabilité, à notre seule discrétion, pour quelque raison que ce soit et sans limitation, y compris, mais sans s'y limiter, une violation des Conditions. Si vous souhaitez résilier votre compte, vous pouvez simplement cesser d'utiliser le Service. Toutes les dispositions des Conditions qui, de par leur nature, devraient survivre à la résiliation survivront à la résiliation, y compris, sans s'y limiter, les dispositions relatives à la propriété, les exclusions de garantie, l'indemnisation et les limitations de responsabilité.</p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">22. Droit applicable</h1>
+            <div>
+                <p>Ces conditions sont régies et interprétées conformément aux lois du BURKINA FASO, dont la loi applicable s'applique à l'accord sans égard à ses dispositions en matière de conflit de lois. Notre incapacité à faire respecter un droit ou une disposition des présentes Conditions ne sera pas considérée comme une renonciation à ces droits. Si une disposition des présentes Conditions est jugée invalide ou inapplicable par un tribunal, les autres dispositions des présentes Conditions resteront en vigueur. Ces conditions constituent l'intégralité de l'accord entre nous concernant notre service et annulent et remplacent tout accord antérieur que nous aurions pu avoir entre nous concernant le service.</p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">23. Modification du service</h1>
+            <div>
+                <p>Nous nous réservons le droit de retirer ou de modifier notre Service, et tout service ou matériel que nous fournissons via le Service, à notre seule discrétion et sans préavis. Nous ne serons pas responsables si, pour une raison quelconque, tout ou partie du Service est indisponible à tout moment ou pour toute période. De temps à autre, nous pouvons restreindre l'accès à certaines parties du Service, ou à l'ensemble du Service, aux utilisateurs, y compris les utilisateurs enregistrés.</p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">24. Modification des conditions</h1>
+            <div>
+                <p>Nous pouvons modifier les conditions à tout moment en publiant les conditions modifiées sur ce site. Il est de votre responsabilité de revoir périodiquement ces Conditions. Votre utilisation continue de la Plateforme après la publication des Conditions révisées signifie que vous acceptez et acceptez les modifications. Vous êtes tenu de vérifier fréquemment cette page afin d'être au courant de tout changement, car ils vous engagent. En continuant à accéder ou à utiliser notre service après l'entrée en vigueur de toute révision, vous acceptez d'être lié par les conditions révisées. Si vous n'acceptez pas les nouvelles conditions, vous n'êtes plus autorisé à utiliser le Service. </p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">25. Renonciation et divisibilité </h1>
+            <div>
+                <p>Aucune renonciation par la Société à toute modalité ou condition énoncée dans les Conditions ne sera considérée comme une renonciation supplémentaire ou continue de cette modalité ou condition ou une renonciation à toute autre modalité ou condition, et tout manquement de la Société à faire valoir un droit ou une disposition en vertu des Conditions sera ne constitue pas une renonciation à ce droit ou à cette disposition. Si une disposition des Conditions est jugée par un tribunal ou un autre tribunal compétent comme invalide, illégale ou inapplicable pour quelque raison que ce soit, cette disposition sera éliminée ou limitée dans la mesure minimale de sorte que les autres dispositions des Conditions resteront pleinement en vigueur. et effet.</p>
+            </div>
+        </x-website-container>        
+        <x-website-container class="my-10">
+            <h1 class="montserrat_bold" style="font-size: 30px;">25. Accusé de réception </h1>
+            <div>
+                <p>EN UTILISANT LE SERVICE OU D'AUTRES SERVICES FOURNIS PAR NOUS, VOUS RECONNAISSEZ AVOIR LU CES CONDITIONS D'UTILISATION ET ACCEPTEZ D'ÊTRE LIÉ PAR CES CONDITIONS. 27. Contactez-nous Merci d'envoyer vos retours, commentaires, demandes d'assistance technique par email : <a href="mailto:infos@yeele-event.com">infos@yeele-event.com</a>.</p>
+            </div>
+        </x-website-container>   
+        <div>
+            <small>Ces conditions d'utilisation ont été créées pour www.yeele-event.com par PolicyMaker.io le 2022-04-09.</small>    
+        </div>     
+
+    </div>
+    <div class="my-12">
+        <h1 class="w-fit mx-auto text-4xl sm:text-6xl md:text-5xl lg:text-6xl montserrat_bold big_title">TERMS AND CONDITIONS (ENGLISH)
         </h1>
         <p class="w-fit mx-auto my-10">Last updated: 2022-04-09</p>
 
