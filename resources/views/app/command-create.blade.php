@@ -8,18 +8,20 @@
 
 @section('main')
 
-@include('extras.command_status')
-<div id="error_container">
-  <div class="alert alert-dismissible mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: rgb(254, 59, 59);">
+@if(Auth::user()->custom['currentCommand'] && !Auth::user()->custom['currentCommand']->payment_method_id)
+  <div class="mb-4 p-3 d-flex justify-content-between align-items-center rounded" style="background-color: #ebbd35;">
     <div>
-      <i class="fa-solid fa-circle-xmark"></i>
-      <span class="font-weight-bold">Vous n'avez pas éffectuer de paiement.</span>
+      <i class="fa-solid fa-circle-exclamation"></i>
+      <span class="font-weight-bold">Vous avez déjà une commande qui n'est pas encore à bout. Veuillez poursuivre!</span>
     </div>
     <div>
-      <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+      <a href="{{ route('command.edit', Auth::user()->custom['currentCommand']->uid) }}" style="color: #000 !important;">
+        <span>Poursuivre</span>
+        <i class="fa-solid fa-arrow-right"></i>
+      </a>
     </div>
   </div>
-</div>
+@endif
 
 @if (isset(Auth::user()->custom['currentCommand']) && Auth::user()->custom['currentCommand']->payment_method_id) 
   <div class="mb-4 p-3 rounded" style="background-color: #ebbd35;">
