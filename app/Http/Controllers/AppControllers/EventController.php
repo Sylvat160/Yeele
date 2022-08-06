@@ -69,7 +69,7 @@ class EventController extends Controller
 
         $newEvent = Event::create($data);
         
-        return redirect()->route('app.home')->with('success', "L'évènement \"$newEvent->name\" a été ajouté!");
+        return redirect()->route('event.index')->with('success', "L'évènement \"$newEvent->name\" a été ajouté!");
         
     }
 

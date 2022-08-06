@@ -29,11 +29,6 @@
         <i class="fa-solid fa-circle-exclamation"></i>
         <span class="font-weight-bold">Si vous commander une formule Gold, elle remplacera automatiquement votre commande actuelle.</span>
       </div>
-      <div>
-        <i class="fa-solid fa-circle-exclamation"></i>
-        <span class="font-weight-bold">Si vous commander une formule Gold, elle remplacera automatiquement votre commande actuelle.</span>
-      </div>
-      </div>
   </div>
 @endif
 
@@ -102,7 +97,11 @@
             <input type="hidden" name="payment_status" value="0" required>
           </div>
           <div class="card-footer text-center">
+            @if(Auth::user()->custom['currentCommand'] && !Auth::user()->custom['currentCommand']->payment_method_id)
+            <button type="button" class="btn btn-primary" disabled>Valider la commande</button>
+            @else
             <button type="submit" class="btn btn-primary">Valider la commande</button>
+            @endif
           </div>
           
         </form>

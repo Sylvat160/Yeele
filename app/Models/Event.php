@@ -12,7 +12,7 @@ class Event extends Model
 
     protected $fillable = [
         'uid',
-        'category_uid',
+        'category_id',
         'user_uid',
         'name',
         'description',
