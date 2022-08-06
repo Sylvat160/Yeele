@@ -1,6 +1,6 @@
 @extends('layouts.app-main')
-@section('title') Nouvelle commande @endsection
-@section('bigTitle') Nouvelle commande @endsection
+@section('title') Modification des status de paiement @endsection
+@section('bigTitle') Modification des status de paiement @endsection
 
 @section('main')
     
