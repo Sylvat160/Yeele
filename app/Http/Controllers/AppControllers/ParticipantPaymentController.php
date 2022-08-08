@@ -13,4 +13,8 @@ class ParticipantPaymentController extends Controller
             "participants" => Participant::where('event_uid', $eventId)->get()
         ]);
     }
+
+    public function update(Request $request) {
+        
+    }
 }

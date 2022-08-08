@@ -156,7 +156,7 @@
                 </a>
             </div>
             @else
-                <p class="my-4 text-red-700 uppercase text-center">Date d'inscription expiré</p>
+                <p class="my-4 text-red-700 uppercase text-center">Date d'inscription expirée</p>
             @endif
         </div>
     </div>

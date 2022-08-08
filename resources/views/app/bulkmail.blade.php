@@ -75,7 +75,7 @@
         <input type="hidden" name="participants" id="checkedemails" value="[]" required>
         <div class="card card-primary card-outline">
             <div class="card-header">
-                <h3 class="card-title">Ecriver votre mail</h3>
+                <h3 class="card-title">Ecrivez votre mail</h3>
             </div>
             <!-- /.card-header -->
             <div class="card-body">
