@@ -24,11 +24,11 @@ npm install
 
 ## Après installation
 
-### Renommer le fichier .env.exemple en .env
+<p>Renommer le fichier <strong>.env.exemple<.strong> en <strong>.env</strong></p>
 
 ### Générer une clé pour l'application avec la commande:
 
 ```
 php artisan key:generate
 ```
-### créer une base de donnée et passer le nom comme valeur à la variable d'environnement DB_DATABASE.
+<p>Créer une base de donnée et passer le nom comme valeur à la variable d'environnement <strong>DB_DATABASE</strong>.</p>
