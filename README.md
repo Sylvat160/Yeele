@@ -36,5 +36,5 @@ php artisan key:generate
 ### Migrer les différentes tables et générer les données initiales:
 
 ```
-php artisan migrate:fesh --seed
+php artisan migrate:fresh --seed
 ```
