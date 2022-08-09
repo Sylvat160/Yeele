@@ -17,7 +17,7 @@ git clone https://github.com/HORINFO-BF/Yeele.git
 composer install
 
 # Node modules dependances installation
-yarn upgrade
+yarn install
 #ou
 npm install
 ```
@@ -32,3 +32,9 @@ npm install
 php artisan key:generate
 ```
 <p>Créer une base de donnée et passer le nom comme valeur à la variable d'environnement <strong>DB_DATABASE</strong>.</p>
+
+### Migrer les différentes tables et générer les données initiales:
+
+```
+php artisan migrate:fesh --seed
+```
