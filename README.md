@@ -17,7 +17,7 @@ git clone https://github.com/HORINFO-BF/Yeele.git
 composer install
 
 # Node modules dependances installation
-yarn install
+yarn
 #ou
 npm install
 ```
