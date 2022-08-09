@@ -24,7 +24,7 @@ npm install
 
 ## Après installation
 
-<p>Renommer le fichier <strong>.env.exemple<.strong> en <strong>.env</strong></p>
+<p>Renommer le fichier <strong>.env.exemple</strong> en <strong>.env</strong></p>
 
 ### Générer une clé pour l'application avec la commande:
 
