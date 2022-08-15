@@ -116,7 +116,7 @@
                         </label>
                         @if ($event->multiple_prices_active)
                             @if($event->prices_quantity_active)
-                            <input type="hidden" name="prices" value="{{$participant->custom['pwithq']}}" required>  
+                            <input type="hidden" name="prices" value="{{$participant->custom['pwithq']}}" required>
                             @else
                             <input type="hidden" name="prices" value="{{$participant->custom['pwithoutq']}}" required>
                             @endif
@@ -235,7 +235,7 @@
                                     </select>
                                 </div>
                             @break
-                            
+
                             @case('textarea')
                                 <div class="mb-3">
                                     @isset($field['label'])
@@ -276,29 +276,29 @@
                                         @endif
                                     </label>
                                 @endisset
-                                    <input 
-                                    type="number" 
+                                    <input
+                                    type="number"
                                     @isset($field['min'])
                                         min="{{ $field['min'] }}"
                                     @endisset
                                     @isset($field['max'])
                                         min="{{ $field['max'] }}"
                                     @endisset
-                                    name="{{ $field['name'] }}" 
-                                    id="{{ $field['name'] }}" 
+                                    name="{{ $field['name'] }}"
+                                    id="{{ $field['name'] }}"
                                     class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                    @isset($field['placeholder']) 
-                                    placeholder="{{ $field['placeholder'] }}" 
-                                    @endisset 
-                                    @isset($field['value']) 
-                                    value="{{ $field['value'] }}" 
-                                    @endisset 
-                                    @if($field['required']) 
-                                    required 
+                                    @isset($field['placeholder'])
+                                    placeholder="{{ $field['placeholder'] }}"
+                                    @endisset
+                                    @isset($field['value'])
+                                    value="{{ $field['value'] }}"
+                                    @endisset
+                                    @if($field['required'])
+                                    required
                                     @endif>
                                 </div>
                             @break
-                            
+
                             @case('date')
                                 <div class="mb-3">
                                     <div>
@@ -313,6 +313,23 @@
                                         <input type="date" name="{{ $field['name'] }}" id="{{ $field['name'] }}"
                                     class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                                     @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
+                                    </div>
+                                </div>
+                            @break
+                            @case('file')
+                                <div class="mb-3">
+                                    <div>
+                                        @isset($field['label'])
+                                            <label for="{{ $field['name'] }}"
+                                                class="block mb-2 text-sm font-semibold text-gray-900">
+                                                <span>{{ $field['label'] }}</span>
+                                                @if ($field['required'])
+                                                    <span class="text-red-600">*</span>
+                                                @endif
+                                            </label>
+                                        @endisset
+                                        <label class="block mb-2 text-sm font-medium text-gray-900 dark:text-gray-300" for="{{ $field['name'] }}">@isset($field['placeholder']) {{ $field['placeholder'] }} @endisset</label>
+                                        <input class="block w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 cursor-pointer dark:text-gray-400 focus:outline-none dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400" id="{{ $field['name'] }}" name="{{ $field['name'] }}" type="file" @if ($field['required']) required @endif>
                                     </div>
                                 </div>
                             @break
