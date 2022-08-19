@@ -61,7 +61,7 @@
                                     @if ($event->eventPrices->count())
                                         <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
                                         colspan="1"
-                                        aria-label="Status de paiement: activate to sort column ascending">Status de paiement</th>                    
+                                        aria-label="Status de paiement: activate to sort column ascending">Status de paiement</th>
                                     @endif
                                 </tr>
                             </thead>
@@ -83,8 +83,8 @@
                                                     @else
                                                         {{ $price->eventPrice->value . ' FCFA' }}
                                                     @endif
-                                                @endforeach     
-                                                </td>    
+                                                @endforeach
+                                                </td>
                                             @else
                                                 <td>{{ $participant->price . ' FCFA' }}</td>
                                                 @endif

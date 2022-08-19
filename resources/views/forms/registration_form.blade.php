@@ -50,7 +50,7 @@
                 </div>
                 {{ Session::forget('error') }}
             @endif
-            <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST" id="registration">
+            <form class="px-4 py-8" action="{{ route('submit_form') }}" method="POST" id="registration" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <div class="mb-3">

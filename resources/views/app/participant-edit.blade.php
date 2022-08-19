@@ -34,7 +34,7 @@
                 </div>
                 {{Session::forget('error')}}
             @endif
-            <form class="px-4 py-8" action="{{ route('participant.update') }}" method="POST" data-participant-additional-data="{{ $participant->additional_data }}">
+            <form class="px-4 py-8" action="{{ route('participant.update') }}" method="POST" data-participant-additional-data="{{ $participant->additional_data }}" enctype="multipart/form-data">
                 @csrf
                 <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                 <input type="hidden" name="participant_id" value="{{ $participant->id }}" required>

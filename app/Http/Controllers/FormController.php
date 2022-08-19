@@ -148,6 +148,7 @@ class FormController extends Controller
 
             foreach ($filteredAdditionalData as $key => $value) {
                 if($file = $request->file($key)) {
+                    dd($file);
                  $filename = time();
                  $extension = $file->getClientOriginalExtension();
                  $fullname = "$filename.$extension";
