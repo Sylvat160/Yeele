@@ -99,7 +99,7 @@
                                                     @if (stristr($value, 'data:'))
                                                         <td>
                                                             <a href="{{ $value }}"
-                                                                download="{{ 'file.' . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                                download="{{ $participant->firstname . "_$participant->lastname" . "." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
                                                         </td>
                                                     @else
                                                         <td>{{ $value ? $value : "Aucun" }}</td>
@@ -111,13 +111,15 @@
                                                 @endfor
                                             @endif
                                         @endif
+                                        @if ($event->eventPrices->count())
                                         <td>
                                             @if ((bool) $participant->payment_status)
-                                                <span class="text-success">Payé</span>
+                                            <span class="text-success">Payé</span>
                                             @else
                                                 <span class="text-danger">Non payé</span>
                                             @endif
                                         </td>
+                                        @endif
                                     </tr>
                                 @endforeach
                             </tbody>

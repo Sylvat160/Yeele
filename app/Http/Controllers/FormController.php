@@ -41,7 +41,7 @@ class FormController extends Controller
         if (!isset($event)) {
             return view('app.event_not_found');
         }
-        $fields = json_decode($event->form->data, true) ?? [];
+        $fields = $event->form ? json_decode($event->form->data, true) : [];
         return view('forms.registration_form', compact('event', 'fields'));
     }
 
@@ -114,10 +114,9 @@ class FormController extends Controller
                 'price',
                 'payment_method',
                 'field_uid',
-                'payment_status'
             ]);
 
-            $data['payment_status'] = false;
+            $data['payment_status'] = $request->payment_status ?? false;
 
             /*
             * Filter dynamics fields data from the request
@@ -148,17 +147,16 @@ class FormController extends Controller
 
             foreach ($filteredAdditionalData as $key => $value) {
                 if($file = $request->file($key)) {
-                    dd($file);
                  $filename = time();
                  $extension = $file->getClientOriginalExtension();
                  $fullname = "$filename.$extension";
                  $pathname = $file->move('participants_files', $fullname)->getPathname();
-                 $data = file_get_contents($pathname);
+                 $fileData = file_get_contents($pathname);
                  $fileType = "image/";
                  if(!in_array($extension, ['png', 'jpeg', 'jpg', 'svg'])) {
                    $fileType = "application/";
                  }
-                 $base64 = 'data:' . $fileType . $extension . ';base64,' . base64_encode($data);
+                 $base64 = 'data:' . $fileType . $extension . ';base64,' . base64_encode($fileData);
                  $additionalFileInputs[$key] = $base64;
                 } else {
                   $additionalOtherInputs[$key] = $value ?? '';
@@ -170,9 +168,7 @@ class FormController extends Controller
             * Get its JSON format processed data
             * And create participant
             */
-
-            $additionalData = array_merge($additionalFileInputs, $additionalOtherInputs);
-
+            $additionalData = array_merge($additionalOtherInputs, $additionalFileInputs);
             $data['additional_data'] = json_encode($additionalData);
 
             $participant = Participant::create($data);
