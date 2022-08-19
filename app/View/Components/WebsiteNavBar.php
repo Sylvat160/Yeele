@@ -8,29 +8,9 @@ use Illuminate\View\Component;
 class WebsiteNavBar extends Component
 {
     public $links;
-    
+
     public function __construct()
     {
-        $this->links = array_map(function($link) {
-            if($link['path'] === Request::fullUrl()) {
-                $link['active'] = true;
-            }
-
-            return $link;
-        }, [
-            'Accueil' => [
-                'path' => route('website.home'),
-            ],
-            'Fonctionnalités' => [
-                'path' => route('website.features'),
-            ],
-            'Tarifs' => [
-                'path' => route('website.prices'),
-            ],
-            'Contact' => [
-                'path' => route('website.contact'),
-            ],
-        ]);
     }
 
     /**
