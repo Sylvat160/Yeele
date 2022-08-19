@@ -14,9 +14,9 @@ class FormController extends Controller
 {
     /**
      * Show the event
-     * 
+     *
      * @param string $event_uid
-     * 
+     *
      * @return \Illuminate\Contracts\View\View
      */
 
@@ -28,7 +28,7 @@ class FormController extends Controller
         $event->update(['clicks' => (int) $event->clicks + 1]);
         return view('forms.show_event', compact('event'));
     }
-        
+
     /**
      * Show the participant registering form
      *
@@ -44,7 +44,7 @@ class FormController extends Controller
         $fields = json_decode($event->form->data, true) ?? [];
         return view('forms.registration_form', compact('event', 'fields'));
     }
-    
+
     /**
      * Register a participant
      *
@@ -82,7 +82,7 @@ class FormController extends Controller
                 return redirect()->back()->with('error', "il existe dejà un participant inscrit l'email entré.");
             } else if($participantWithPhoneExist) {
                 return redirect()->back()->with('error', "il existe dejà un participant inscrit le numéro de téléphone entré.");
-            }                            
+            }
 
             $event = Event::find($request->event_uid);
             $currentCommand = $event->user->custom['currentCommand'];
@@ -92,30 +92,32 @@ class FormController extends Controller
             } else if(isset($currentCommand)) {
                 $planISilver = $currentCommand->plan_id === 1;
                 if($planISilver && $event->participants->count() >= 20) {
-                    return 
+                    return
                     redirect()
                     ->back()
                     ->with('error', "Le nombre total d'inscriptions (soit 20) est atteint. Veuillez contacter le gestionnaire de l'évènement.");
                 }
             } else if($event->participants->count() >= 4) {
-                return 
+                return
                 redirect()
                 ->back()
                 ->with('error', "Le nombre total d'inscriptions est atteint. Veuillez contacter le gestionnaire de l'évènement.");
             }
 
             $data = $request->all([
-                'event_uid', 
-                'lastname', 
-                'firstname', 
-                'email', 
-                'phone', 
-                'civility', 
-                'price', 
-                'payment_method', 
+                'event_uid',
+                'lastname',
+                'firstname',
+                'email',
+                'phone',
+                'civility',
+                'price',
+                'payment_method',
                 'field_uid',
                 'payment_status'
             ]);
+
+            $data['payment_status'] = false;
 
             /*
             * Filter dynamics fields data from the request
@@ -132,7 +134,7 @@ class FormController extends Controller
 
             foreach ($filteredAdditionalDataKey as $key) {
                 $filteredAdditionalData[$key] = $request->input($key);
-            }            
+            }
 
             /*
             * Init the process of separating different kind of data
@@ -171,7 +173,7 @@ class FormController extends Controller
             $additionalData = array_merge($additionalFileInputs, $additionalOtherInputs);
 
             $data['additional_data'] = json_encode($additionalData);
-            
+
             $participant = Participant::create($data);
             $event = Event::find($participant->event_uid);
             if((bool) $event->multiple_prices_active) {
@@ -199,7 +201,7 @@ class FormController extends Controller
             dispatch(new ParticipantRegisteringMailJob($participant));
             return redirect()->route('registering_end')->with('event', $event->name);
     }
-    
+
     /**
      * Page to whice participant is redirected after registering.
      *
@@ -208,7 +210,7 @@ class FormController extends Controller
     public function registering_end() {
         return view('forms.registering_end');
     }
-    
+
     /**
      * Show the dynamic creating form.
      *
@@ -224,7 +226,7 @@ class FormController extends Controller
         }
         return view('forms.formbuilder', compact('event', 'event_menu'));
     }
-    
+
     /**
      * Create dynamic field.
      *
@@ -237,7 +239,7 @@ class FormController extends Controller
         $form->event->update(['form_fields_names' => $request->fields_names_list]);
         return json_encode(['event_uid' => $request->event_uid]);
     }
-    
+
     /**
      * Show the dynamic fields edit form.
      *
@@ -252,7 +254,7 @@ class FormController extends Controller
         if(!isset($event->form)) return redirect()->back()->with('warning', "Vous n'avez aucun champ additionnel au formulaire créé.");
         return view('forms.formbuilder-edit', compact('form', 'event_menu', 'event'));
     }
-    
+
     /**
      * Update the dynamic fields.
      *

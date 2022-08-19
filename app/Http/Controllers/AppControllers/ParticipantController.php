@@ -59,13 +59,13 @@ class ParticipantController extends Controller
         }
 
         $data = $request->all([
-            'lastname', 
-            'firstname', 
-            'email', 
-            'phone', 
-            'civility', 
-            'price', 
-            'payment_method', 
+            'lastname',
+            'firstname',
+            'email',
+            'phone',
+            'civility',
+            'price',
+            'payment_method',
             'field_uid']);
 
         /*
@@ -83,7 +83,7 @@ class ParticipantController extends Controller
 
             foreach ($filteredAdditionalDataKey as $key) {
                 $filteredAdditionalData[$key] = $request->input($key);
-            }  
+            }
 
         /*
         * Init the process of separating different kind of data
@@ -128,18 +128,18 @@ class ParticipantController extends Controller
 
         return redirect()->route("participants-edit-list", $request->event_uid)->with("success", "Les données du participant ont été modifiées.");
     }
-    
+
     //Participant update page
-    
+
     public function participantUpdatePage($participant_id, $event_uid) {
         $participant = Participant::find($participant_id);
         $event = Event::find($event_uid);
         $fields = json_decode($event->form->data, true);
         return view('forms.participant-update', compact('participant', 'event', 'fields'));
     }
-    
+
     //Participant updates
-    
+
     public function participantUpdate(Request $request) {
         $validator = Validator::make(
             $request->all(),
@@ -164,13 +164,13 @@ class ParticipantController extends Controller
         }
 
         $data = $request->all([
-            'lastname', 
-            'firstname', 
-            'email', 
-            'phone', 
-            'civility', 
-            'price', 
-            'payment_method', 
+            'lastname',
+            'firstname',
+            'email',
+            'phone',
+            'civility',
+            'price',
+            'payment_method',
             'field_uid']);
 
         /*
@@ -188,7 +188,7 @@ class ParticipantController extends Controller
 
             foreach ($filteredAdditionalDataKey as $key) {
                 $filteredAdditionalData[$key] = $request->input($key);
-            }  
+            }
 
         /*
         * Init the process of separating different kind of data

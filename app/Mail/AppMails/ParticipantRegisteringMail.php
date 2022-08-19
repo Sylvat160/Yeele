@@ -31,13 +31,15 @@ class ParticipantRegisteringMail extends Mailable
      */
     public function build()
     {
+        $link = route('participant-update-page', [$this->participant->id, $this->participant->event->uid]);
         return $this
-        ->subject("Incription à l'évènement \"" . $this->participant->event->name . "\" réussi.")
+        ->subject("Inscription à l'évènement \"" . $this->participant->event->name . "\" réussie.")
         ->from(env('MAIL_FROM_ADDRESS'), "Yeele")
         ->view(
             'app.mails.participantRegisteringMail',
             [
-                'participant' => $this->participant
+                'participant' => $this->participant,
+                'link' => $link
             ]
         );
     }
