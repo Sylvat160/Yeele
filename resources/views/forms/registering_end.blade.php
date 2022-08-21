@@ -10,6 +10,7 @@
     <link rel="stylesheet" href="{{ asset('css/app.css') }}">
 </head>
 <body>
+    
     <div class="w-full min-h-screen py-4 sm:py-0 bg-gray-100 flex flex-col justify-center items-center">
         <div class="pt-4 pb-8">
             <img src="{{ asset('logo.png') }}" alt="Yeele" class="w-32 mx-auto">
