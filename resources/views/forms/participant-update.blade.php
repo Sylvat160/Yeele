@@ -315,6 +315,7 @@
                                     @isset($field['placeholder']) placeholder="{{ $field['placeholder'] }}" @endisset @isset($field['value']) value="{{ $field['value'] }}"  @endisset @if($field['required']) required @endif>
                                     </div>
                                 </div>
+                                
                             @break
                             @case('file')
                                 <div class="mb-3">
