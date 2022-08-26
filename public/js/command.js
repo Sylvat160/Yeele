@@ -15,7 +15,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */   "version": () => (/* binding */ version)
 /* harmony export */ });
 /*!
- * paypal-js v5.1.0 (2022-06-30T20:02:38.442Z)
+ * paypal-js v5.1.1 (2022-08-03T17:21:59.218Z)
  * Copyright 2020-present, PayPal, Inc. All rights reserved.
  *
  * Licensed under the Apache License, Version 2.0 (the "License");
@@ -252,7 +252,7 @@ function validateArguments(options, PromisePonyfill) {
 }
 
 // replaced with the package.json version at build time
-var version = "5.1.0";
+var version = "5.1.1";
 
 
 

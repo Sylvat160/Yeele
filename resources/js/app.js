@@ -8,6 +8,7 @@ const timer_container = document.getElementById('timer_container')
 const clipboardJS = require('clipboard')
 require('./multiprice')()
 require('./payment')()
+require('./additional-validator')()
 
 function checkIfExistAndApplyListener(element, event, callback) {
     if(element) element.addEventListener(event, callback)

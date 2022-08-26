@@ -369,6 +369,29 @@
                                     </div>
                                 </div>
                             @break
+                            @case('checkbox-group')
+                                <div class="mb-3">
+                                    <div class="is-checkbox-group" @if($field['required']) data-is-required="true" @endif>
+                                            <input type="hidden" name="{{ $field['name'] }}">
+                                        @isset($field['label'])
+                                            <label for="{{ $field['name'] }}"
+                                                class="block mb-2 text-sm font-semibold text-gray-900">
+                                                <span>{{ $field['label'] }}</span>
+                                                @if ($field['required'])
+                                                    <span class="text-red-600">*</span>
+                                                @endif
+                                            </label>
+                                        @endisset
+                                        @foreach ($field['values'] as $value)
+                                            <div class="flex items-center mb-4">
+                                                <input id="{{ $value['label'] }}" type="checkbox" value="{{ $value['value'] }}" class="w-4 h-4 text-red-600 bg-gray-100 rounded border-gray-300 focus:ring-red-500" @if($value['selected'] === true) checked @endif>
+                                                <label for="{{ $value['label'] }}" class="ml-2 text-sm font-medium text-gray-900 dark:text-gray-300">{{ $value['label'] }}</label>
+                                            </div>
+                                        @endforeach
+                                        <p class="mt-2 text-sm text-red-600 dark:text-red-500 font-medium checkbox-group-error"></p>
+                                    </div>
+                                </div>
+                            @break
                         @endswitch
                     @endforeach
                 @endif

@@ -6,7 +6,7 @@ $(formBuilder).formBuilder({
     defaultFields: data,
     disableFields: ["hidden", "button", "autocomplete", "paragraph"],
     disabledAttrs: ['className', 'access', 'step', 'multiple', 'description'],
-    disabledActionButtons: ['data'],
+    disabledActionButtons: [''],
     i18n: {
         override: {
             "en-US": {
