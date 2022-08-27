@@ -279,6 +279,7 @@ function checkboxValidator() {
     var checkboxState = Object.create(state);
     var inputs = Array.from(container.querySelectorAll('input[type="checkbox"]'));
     var originalInput = container.querySelector('input[type="hidden"]');
+    var originalInputName = originalInput.getAttribute('name');
     var checkedInputs = inputs.filter(function (input) {
       if (input.checked) return input;
     });
@@ -286,14 +287,25 @@ function checkboxValidator() {
       if (ci.checked) return ci.value;
     });
     checkboxState.setState(values, newEventName);
-    originalInput.name = "".concat(originalInput.name, "[\"").concat(checkboxState.value, "\"]");
+    originalInput.name = "".concat(originalInputName).concat(JSON.stringify(checkboxState.value));
     inputs.forEach(function (input) {
       input.addEventListener('change', function () {
+        var _this = this;
+
         var copy = checkboxState.value;
+
+        if (copy.includes(this.value)) {
+          var index = copy.findIndex(function (value) {
+            return value === _this.value;
+          });
+          copy.splice(index, 1);
+        } else copy.push(this.value);
+
+        checkboxState.setState(copy, newEventName);
       });
     });
     window.addEventListener(newEventName, function () {
-      console.log("Hello world");
+      originalInput.name = "".concat(originalInputName).concat(JSON.stringify(checkboxState.value));
     });
 
     if (container.dataset.isRequired) {

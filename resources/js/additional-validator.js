@@ -12,6 +12,7 @@ function checkboxValidator() {
         const checkboxState = Object.create(state)
         const inputs = Array.from(container.querySelectorAll('input[type="checkbox"]'))
         const originalInput = container.querySelector('input[type="hidden"]')
+        const originalInputName = originalInput.getAttribute('name')
         const checkedInputs = inputs.filter(input => {
             if(input.checked) return input
         })
@@ -19,15 +20,20 @@ function checkboxValidator() {
             if(ci.checked) return ci.value
         }))
         checkboxState.setState(values, newEventName)
-        originalInput.name = `${originalInput.name}["${checkboxState.value}"]`
+        originalInput.name = `${originalInputName}${JSON.stringify(checkboxState.value)}`
         inputs.forEach(input => {
             input.addEventListener('change', function() {
                 const copy = checkboxState.value
-                
+                if(copy.includes(this.value)) {
+                    const index = copy.findIndex(value => value === this.value)
+                    copy.splice(index, 1)  
+                } else copy.push(this.value)
+
+                checkboxState.setState(copy, newEventName)
             })
         })
         window.addEventListener(newEventName, function() {
-            console.log("Hello world");
+            originalInput.name = `${originalInputName}${JSON.stringify(checkboxState.value)}`
         })
 
         if(container.dataset.isRequired) {
