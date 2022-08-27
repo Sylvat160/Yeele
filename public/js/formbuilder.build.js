@@ -1,5 +1,5 @@
 const formBuilder = $(document.getElementById("formbuilder_container")).formBuilder({
-    disableFields: ["hidden", "button", "autocomplete", "paragraph"],
+    disableFields: ["hidden", "button", "autocomplete", "paragraph", "radio-group"],
     disabledAttrs: ['className', 'access', 'step', 'multiple', 'description'],
     disabledActionButtons: ['data'],
     i18n: {

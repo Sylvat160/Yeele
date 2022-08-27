@@ -4,9 +4,9 @@ const data = JSON.parse(formBuilder.dataset.fields)
 
 $(formBuilder).formBuilder({
     defaultFields: data,
-    disableFields: ["hidden", "button", "autocomplete", "paragraph"],
+    disableFields: ["hidden", "button", "autocomplete", "paragraph", "radio-group"],
     disabledAttrs: ['className', 'access', 'step', 'multiple', 'description'],
-    disabledActionButtons: [''],
+    disabledActionButtons: ['data'],
     i18n: {
         override: {
             "en-US": {
