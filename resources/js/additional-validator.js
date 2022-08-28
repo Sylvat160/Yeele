@@ -12,7 +12,6 @@ function checkboxValidator() {
         const checkboxState = Object.create(state)
         const inputs = Array.from(container.querySelectorAll('input[type="checkbox"]'))
         const originalInput = container.querySelector('input[type="hidden"]')
-        const originalInputName = originalInput.getAttribute('name')
         const checkedInputs = inputs.filter(input => {
             if(input.checked) return input
         })
@@ -20,7 +19,7 @@ function checkboxValidator() {
             if(ci.checked) return ci.value
         }))
         checkboxState.setState(values, newEventName)
-        originalInput.name = `${originalInputName}${JSON.stringify(checkboxState.value)}`
+        originalInput.setAttribute('value', JSON.stringify(checkboxState.value))
         inputs.forEach(input => {
             input.addEventListener('change', function() {
                 const copy = checkboxState.value
@@ -33,17 +32,16 @@ function checkboxValidator() {
             })
         })
         window.addEventListener(newEventName, function() {
-            originalInput.name = `${originalInputName}${JSON.stringify(checkboxState.value)}`
+            originalInput.setAttribute('value', JSON.stringify(checkboxState.value))
         })
 
         if(container.dataset.isRequired) {
             document.getElementById('registration').addEventListener('submit', function(e) {
-                if(state.value.length === 0) {
+                if(checkboxState.value.length === 0) {
                     e.preventDefault()
                     container.querySelector('.checkbox-group-error').innerHTML = "Vous devez avoir au moins un choix."
                 }
             })
-            
         }
     })
 }
