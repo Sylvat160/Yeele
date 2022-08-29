@@ -132,7 +132,12 @@ class FormController extends Controller
             $filteredAdditionalData = [];
 
             foreach ($filteredAdditionalDataKey as $key) {
-                $filteredAdditionalData[$key] = $request->input($key);
+                if(stristr($request->input($key), '[')) {
+                    $filteredAdditionalData[$key] = json_decode($request->input($key), true);
+                }
+                else {
+                    $filteredAdditionalData[$key] = $request->input($key);
+                }
             }
 
             /*
