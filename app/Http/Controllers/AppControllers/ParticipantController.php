@@ -96,7 +96,6 @@ class ParticipantController extends Controller
         * And get base64 from file inputs data
         * Fill created arrays
         */
-
         $additionalFileInputs = [];
         $additionalOtherInputs = [];
 
