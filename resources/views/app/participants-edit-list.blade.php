@@ -90,10 +90,16 @@
                                         @if (count($additional_fields) != 0)
                                             @if (count(json_decode($participant->additional_data, true)) !== 0)
                                                 @foreach (array_values(json_decode($participant->additional_data, true)) as $value)
-                                                    @if (stristr($value, 'data:'))
+                                                    @if (is_string($value) AND stristr($value, 'data:'))
+                                                    <td>
+                                                        <a href="{{ $value }}"
+                                                            download="{{ $participant->firstname . "_$participant->lastname" . "." . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                    </td>
+                                                    @elseif (is_array($value))
                                                         <td>
-                                                            <a href="{{ $value }}"
-                                                                download="{{ 'file.' . explode('/', explode(';base64,', $value)[0])[1] }}">Télécharger</a>
+                                                            @foreach ($value as $v)
+                                                                {{$v}},
+                                                            @endforeach
                                                         </td>
                                                     @else
                                                         <td>{{ $value ? $value : "Aucun" }}</td>

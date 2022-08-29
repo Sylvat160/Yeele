@@ -254,7 +254,13 @@
             @foreach (json_decode($participant->additional_data, true) as $key => $value)
                 <tr style="padding: 5px auto;">
                     <td style="font-weight: bold;">{{ $key }}</td>
-                    <td>{{ $value }}</td>
+                    <td>
+                        @if (is_array($value))
+                            @foreach ($value as $v)
+                                {{$v}},
+                            @endforeach
+                        @endif
+                    </td>
                 </tr>
             @endforeach
         </tbody>
