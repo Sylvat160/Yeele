@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Jobs\ParticipantRegisteringMailJob;
+use App\Models\ElectronicSignature;
 use App\Models\Event;
 use App\Models\Form;
 use App\Models\Participant;
@@ -270,5 +271,22 @@ class FormController extends Controller
         $form->event->update(['form_fields_names' => $request->fields_names_list]);
 
         return json_encode(["event_uid" => $form->event_uid]);
+    }
+
+
+    public function electronic_signature_index() {
+        return view('forms.electronic_signature_form');
+    }
+
+    public function electronic_signature_submit(Request $request) {
+        $data = $request->except('_token');
+        $dataToJSON = json_encode($data);
+        ElectronicSignature::create(['data' => $dataToJSON]);
+
+        return redirect()->route('signature_form_sent');
+    }
+
+    public function electronic_signature_done() {
+        return view('forms.electronic_signature_done');
     }
 }

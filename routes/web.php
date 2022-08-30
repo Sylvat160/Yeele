@@ -97,3 +97,10 @@ Route::get('inscription_de_participant_reussi', [FormController::class, 'registe
 Route::get('page_modification/{participant_uid}/{event_uid}', [ParticipantController::class, 'participantUpdatePage'])->name('participant-update-page');
 Route::post('modifier_donnees', [ParticipantController::class, 'participantUpdate'])->name('participant-update-data');
 Route::get('donnees_modifiees/{event_uid}', [ParticipantController::class, 'participantDataUpdated'])->name('participant-data-updated');
+
+
+//SIGNATURE ELECTRONIQUE
+
+Route::get('formulaire_signature_electronique', [FormController::class, 'electronic_signature_index']);
+Route::post('soumission_du_questionnaire', [FormController::class, 'electronic_signature_submit'])->name('signature_form_submit');
+Route::get('formulaire_signature_electronique_envoyé', [FormController::class, 'electronic_signature_done'])->name('signature_form_sent');
