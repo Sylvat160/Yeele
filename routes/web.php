@@ -101,6 +101,7 @@ Route::get('donnees_modifiees/{event_uid}', [ParticipantController::class, 'part
 
 //SIGNATURE ELECTRONIQUE
 
-Route::get('formulaire_signature_electronique', [FormController::class, 'electronic_signature_index']);
+Route::get('signature_electronique', [FormController::class, 'electronic_signature_desc'])->name('electronic_signature_post');
+Route::get('formulaire_signature_electronique', [FormController::class, 'electronic_signature_index'])->name('electronic_signature_form');
 Route::post('soumission_du_questionnaire', [FormController::class, 'electronic_signature_submit'])->name('signature_form_submit');
 Route::get('formulaire_signature_electronique_envoyé', [FormController::class, 'electronic_signature_done'])->name('signature_form_sent');

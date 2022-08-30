@@ -273,6 +273,9 @@ class FormController extends Controller
         return json_encode(["event_uid" => $form->event_uid]);
     }
 
+    public function electronic_signature_desc() {
+        return view('forms.electronic_signature_post');
+    }
 
     public function electronic_signature_index() {
         return view('forms.electronic_signature_form');
