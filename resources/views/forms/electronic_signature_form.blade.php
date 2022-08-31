@@ -24,6 +24,29 @@
                 @csrf
 
                 <div class="mb-5">
+                    <h3 class="font-semibold">Savez-vous ce qu'est une signature électronique? </h3>
+                    <div class="flex items-center my-4">
+                        <input id="yes_i_know" type="radio" value="OUI, je sais" name="knownledge_about" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="yes_i_know" class="ml-2 text-sm font-medium text-gray-900">OUI, je sais</label>
+                    </div>
+                    <div class="flex items-center my-4">
+                        <input id="no_i_dont_know" type="radio" value="NON, je ne sais pas" name="knownledge_about" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="no_i_dont_know" class="ml-2 text-sm font-medium text-gray-900">NON, je ne sais pas</label>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h3 class="font-semibold">Avez-vous déjà signé électroniquement? </h3>
+                    <div class="flex items-center my-4">
+                        <input id="yes_i_do" type="radio" value="OUI" name="have_you_ever_signed" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="yes_i_do" class="ml-2 text-sm font-medium text-gray-900">OUI</label>
+                    </div>
+                    <div class="flex items-center my-4">
+                        <input id="no_i_never_signed_before" type="radio" value="NON" name="have_you_ever_signed" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="no_i_never_signed_before" class="ml-2 text-sm font-medium text-gray-900">NON, je sais pas</label>
+                    </div>
+                </div>
+                
+                <div class="mb-5">
                     <h3 class="font-semibold">1. L'intérêt de la signature électronique pour vous, c’est avant tout (2 réponses maximum) : </h3>
                     <div class="flex items-center my-4">
                         <input id="simplicity" name="interest[]" type="checkbox" value="la simplicité" class="w-4 h-4 text-red-600 bg-gray-100 rounded border-gray-300 focus:ring-red-500">
