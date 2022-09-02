@@ -36,7 +36,6 @@ class Event extends Model
     ];
 
     protected $hidden = [
-        'uid',
         'user_uid',
         'category_uid',
         'country_id'

@@ -21,7 +21,6 @@
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
 <body>
-    
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
@@ -37,7 +36,7 @@
                                 aria-describedby="example1_info">
                                 <thead>
                                     <tr>
-                                        @for ($i = 0; $i < 22; $i++)
+                                        @for ($i = 1; $i < 23; $i++)
                                             <th class="sorting" tabindex="0" aria-controls="question" rowspan="1" colspan="1"
                                             aria-sort="Plan" aria-label="Question: activate to sort column descending">Question {{$i}}
                                             </th>
@@ -47,8 +46,25 @@
                                 <tbody>
                                     @foreach ($electronicSignatures as $data)
                                         <tr>
-                                            <td>{{ $data['knownledge_about'] ?? "Aucun" }}</td>
-                                            <td>{{ $data['usage'] ?? "Aucun" }}</td>
+                                            @foreach ($keys as $key)
+                                                @if($key === "question_14")
+                                                    <td>
+                                                        @foreach ($tbKeys as $tbk)
+                                                            <div style="background: #ddd;">{{ $data[$tbk] }}</div><br>
+                                                        @endforeach
+                                                    </td>
+                                                @else
+                                                    @if (is_array($data[$key]))
+                                                        <td>
+                                                            @foreach ($data[$key] as $v)
+                                                                <div style="background: #ddd;">{{$v}}</div><br>
+                                                            @endforeach
+                                                        </td>
+                                                    @else
+                                                    <td>{{ $data[$key] }}</td>
+                                                    @endif
+                                                @endif
+                                            @endforeach
                                         </tr>
                                     @endforeach
                                 </tbody>

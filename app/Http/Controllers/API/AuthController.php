@@ -32,12 +32,11 @@ class AuthController extends Controller
         }
 
         if(!Auth::attempt($request->only('email', 'password'))) {
-            return response()->json(['error' => "L'authentification a échoué."], 401);
+            return response()->json(['error' => "Adresse email ou mot de passe incorrect."], 401);
         }
 
         $token = $request->user()->createToken('YEELE_ACCESS_TOKEN');
 
         return response()->json(['token' => $token->plainTextToken]);
-
     }
 }
