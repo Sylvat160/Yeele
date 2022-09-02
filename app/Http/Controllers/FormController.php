@@ -292,4 +292,41 @@ class FormController extends Controller
     public function electronic_signature_done() {
         return view('forms.electronic_signature_done');
     }
+
+    public function electronic_signature_data() {
+        $allData = ElectronicSignature::all();
+        $electronicSignatures = [];
+        $keys = [
+            "knownledge_about",
+            "usage",
+            "have_you_ever_signed",
+            "we_signed_with",
+            "type_of_partners",
+            "interest",
+            "intro_date",
+            "signature_value",
+            "having_signature",
+            "usage_type",
+            "usage_reason",
+            "documents_size",
+            "remote_and_covid_impact",
+            "simple_signature_exemple",
+            "advanced_signature_exemple",
+            "certificated_signature_exemple",
+            "qualified_signature_exemple",
+            "obstacles",
+            "recipient_call",
+            "signature_is_interface_with_ged",
+            "alternatives",
+            "workers_number",
+            "activity_field",
+            "work_service",
+            "exact_function"
+        ];
+        foreach ($allData as $data) {
+            array_push($electronicSignatures, json_decode($data, true));
+        }
+
+        return view('app.electronic_signature_data', compact('electronicSignatures'));
+    }
 }
