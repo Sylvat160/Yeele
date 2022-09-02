@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -29,7 +29,7 @@
                         <input id="yes_i_know" type="radio" value="OUI, je sais" name="knownledge_about" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
                         <label for="yes_i_know" class="ml-2 text-sm font-medium text-gray-900">OUI, je sais</label>
                     </div>
-                    <div class="flex items-center my-4">
+                    <div class="flex items-center mb-4">
                         <input id="no_i_dont_know" type="radio" value="NON, je ne sais pas" name="knownledge_about" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
                         <label for="no_i_dont_know" class="ml-2 text-sm font-medium text-gray-900">NON, je ne sais pas</label>
                     </div>
@@ -40,12 +40,33 @@
                         <input id="yes_i_do" type="radio" value="OUI" name="have_you_ever_signed" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
                         <label for="yes_i_do" class="ml-2 text-sm font-medium text-gray-900">OUI</label>
                     </div>
-                    <div class="flex items-center my-4">
+                    <div class="flex items-center mb-4">
                         <input id="no_i_never_signed_before" type="radio" value="NON" name="have_you_ever_signed" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
                         <label for="no_i_never_signed_before" class="ml-2 text-sm font-medium text-gray-900">NON, je sais pas</label>
                     </div>
                 </div>
-                
+                <div class="mb-5">
+                    <h3 class="font-semibold">Si oui était-ce avec des partenaires locaux ou internationaux ? </h3>
+                    <div class="flex items-center my-4">
+                        <input id="local_partners" type="radio" value="Des parténaires locaux" name="we_signed_with" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="yes_i_do" class="ml-2 text-sm font-medium text-gray-900">Des parténaires locaux</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="international_partners" type="radio" value="Des parténaires internationaux" name="we_signed_with" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="no_i_never_signed_before" class="ml-2 text-sm font-medium text-gray-900">Des parténaires internationaux</label>
+                    </div>
+                </div>
+                <div class="mb-5">
+                    <h3 class="font-semibold">Si oui était-ce avec des organismes privés ou des bailleurs de fonds? </h3>
+                    <div class="flex items-center my-4">
+                        <input id="private_orgs" type="radio" value="Des organismes privés" name="type_of_partners" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="private_orgs" class="ml-2 text-sm font-medium text-gray-900">Des organismes privés</label>
+                    </div>
+                    <div class="flex items-center mb-4">
+                        <input id="passive_orgs" type="radio" value="Des bailleurs de fonds" name="type_of_partners" class="w-4 h-4 text-red-500 bg-gray-100 border-gray-300 focus:ring-red-500 focus:ring-2">
+                        <label for="passive_orgs" class="ml-2 text-sm font-medium text-gray-900">Des bailleurs de fonds</label>
+                    </div>
+                </div>
                 <div class="mb-5">
                     <h3 class="font-semibold">1. L'intérêt de la signature électronique pour vous, c’est avant tout (2 réponses maximum) : </h3>
                     <div class="flex items-center my-4">
