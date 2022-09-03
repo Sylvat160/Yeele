@@ -10,6 +10,7 @@ use App\Models\Participant;
 use App\Models\ParticipantPrices;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
 class FormController extends Controller
 {
@@ -178,6 +179,16 @@ class FormController extends Controller
             $data['additional_data'] = json_encode($additionalData);
 
             $participant = Participant::create($data);
+            $participantQrCodeData = [
+                'id' => $participant->id,
+                'event_id' => $participant->event_uid,
+                'firstname' => $participant->firstname,
+                'lastname' => $participant->lastname
+            ];
+            $qrCodeData = json_encode($participantQrCodeData);
+            $qrParticipantFullname = $participant->firstname . "_" . $participant->lastname;
+            $qrCodeName = $qrParticipantFullname . time() . ".png";
+            QrCode::size(200)->generate($qrCodeData, "participants_qr_codes/$qrCodeName", 'image/png');
             $event = Event::find($participant->event_uid);
             if((bool) $event->multiple_prices_active) {
                 $prices = json_decode($request->prices, true);
@@ -202,7 +213,10 @@ class FormController extends Controller
             }
 
             dispatch(new ParticipantRegisteringMailJob($participant));
-            return redirect()->route('registering_end')->with('event', $event->name);
+            return redirect()->route('registering_end')->with([
+                'event', $event->name,
+                ''
+            ]);
     }
 
     /**
