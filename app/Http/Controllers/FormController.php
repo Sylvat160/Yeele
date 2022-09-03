@@ -215,7 +215,7 @@ class FormController extends Controller
             dispatch(new ParticipantRegisteringMailJob($participant));
             return redirect()->route('registering_end')->with([
                 'event', $event->name,
-                ''
+                'qrCodeLink' => $qrCodeName
             ]);
     }
 

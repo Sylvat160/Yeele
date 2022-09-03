@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="fr">
 
 <head>
     <meta charset="UTF-8">
@@ -24,6 +24,9 @@
             </div>
             <div class="my-4 px-4">
                 <p class="text-md text-center">Votre inscription de participation à l'évènement <strong>{{ Session::get('event') }}</strong> a été un succès. Un mail contenant vos information vous a été envoyé.</p>
+                <p class="text-center">
+                    <a href="{{ asset("participants_qr_codes/$qrCodeLink") }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto">Télécharger le code QR</a>
+                </p>
             </div>
             <div class="mt-4 py-2  border-t">
                 <p class="text-sm text-center text-gray-500">&copy; Copyright - Horinfo - Tous les drois réservés.</p>
