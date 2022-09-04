@@ -20,6 +20,7 @@
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
+ {{-- CHANGE TABLE --}}
 <body>
     <div class="container mt-5">
         <div class="card">
