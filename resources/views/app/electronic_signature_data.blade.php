@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -20,14 +21,15 @@
     <link rel="stylesheet" href="{{ asset('app_assets/plugins/summernote/summernote-bs4.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/custom.css') }}">
 </head>
- {{-- CHANGE TABLE --}}
+{{-- CHANGE TABLE --}}
+
 <body>
     <div class="container mt-5">
         <div class="card">
             <div class="card-header">
                 <h3 class="card-title mt-1">Liste des réponses</h3>
             </div>
-    
+
             <!-- /.card-header -->
             <div class="card-body" style="overflow-x: scroll;">
                 <div id="data_wrapper" class="dataTables_wrapper dt-bootstrap4">
@@ -37,9 +39,74 @@
                                 aria-describedby="example1_info">
                                 <thead>
                                     <tr>
-                                        @for ($i = 1; $i < 23; $i++)
-                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1" colspan="1"
-                                            aria-sort="Plan" aria-label="Question: activate to sort column descending">Question {{$i}}
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ $i }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ "6.$i" }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 7; $i <= 10; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ $i }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 1; $i <= 13; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ "11.$i" }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 12; $i <= 13; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ $i }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 1; $i <= 4; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ "14.$i" }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 1; $i <= 11; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ "15.$i" }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 16; $i <= 17; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question" rowspan="1"
+                                                colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ $i }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 1; $i <= 5; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question"
+                                                rowspan="1" colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ "18.$i" }}
+                                            </th>
+                                        @endfor
+                                        @for ($i = 19; $i <= 22; $i++)
+                                            <th class="sorting" tabindex="0" aria-controls="question"
+                                                rowspan="1" colspan="1" aria-sort="Plan"
+                                                aria-label="Question: activate to sort column descending">Question
+                                                {{ $i }}
                                             </th>
                                         @endfor
                                     </tr>
@@ -48,22 +115,72 @@
                                     @foreach ($electronicSignatures as $data)
                                         <tr>
                                             @foreach ($keys as $key)
-                                                @if($key === "question_14")
-                                                    <td>
-                                                        @foreach ($tbKeys as $tbk)
-                                                            <div style="background: #ddd;">{{ $data[$tbk] }}</div><br>
-                                                        @endforeach
-                                                    </td>
+                                                @if (is_array($data[$key]))
+                                                    @switch($key)
+                                                        @case('interest')
+                                                            @if (count($data[$key]) === 6)
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                                @foreach (array_fill(0, (6 - count($data[$key]) - 1), 'Aucun') as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @endif
+                                                        @break
+
+                                                        @case('usage_reason')
+                                                            @if (count($data[$key]) === 13)
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                                @foreach (array_fill(0, (13 - count($data[$key])), 'Aucun') as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @endif
+                                                        @break
+
+                                                        @case('obstacles')
+                                                            @if (count($data[$key]) === 11)
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                                @foreach (array_fill(0, (11 - count($data[$key])), 'Aucun') as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @endif
+                                                        @break
+
+                                                        @case('alternatives')
+                                                            @if (count($data[$key]) === 5)
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @else
+                                                                @foreach ($data[$key] as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                                @foreach (array_fill(0, (5 - count($data[$key])), 'Aucun') as $v)
+                                                                    <td>{{ $v }}</td>
+                                                                @endforeach
+                                                            @endif
+                                                        @break
+
+                                                        @default
+                                                    @endswitch
                                                 @else
-                                                    @if (is_array($data[$key]))
-                                                        <td>
-                                                            @foreach ($data[$key] as $v)
-                                                                <div style="background: #ddd;">{{$v}}</div><br>
-                                                            @endforeach
-                                                        </td>
-                                                    @else
-                                                    <td>{{ $data[$key] }}</td>
-                                                    @endif
+                                                    <td>{{ $data[$key] ? $data[$key] : 'Aucun' }}</td>
                                                 @endif
                                             @endforeach
                                         </tr>
@@ -104,4 +221,5 @@
     <script src="{{ asset('js/participants-list.js') }}"></script>
     </script>
 </body>
+
 </html>

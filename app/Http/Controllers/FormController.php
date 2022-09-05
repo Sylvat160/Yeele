@@ -321,10 +321,13 @@ class FormController extends Controller
             "signature_value",
             "having_signature",
             "usage_type",
-            "question_14",
             "usage_reason",
             "documents_size",
             "remote_and_covid_impact",
+            "simple_signature_exemple",
+            "advanced_signature_exemple",
+            "certificated_signature_exemple",
+            "qualified_signature_exemple",
             "obstacles",
             "recipient_call",
             "signature_is_interface_with_ged",
@@ -335,16 +338,10 @@ class FormController extends Controller
             "exact_function"
         ];
 
-        $tbKeys = [
-            "simple_signature_exemple",
-            "advanced_signature_exemple",
-            "certificated_signature_exemple",
-            "qualified_signature_exemple",
-        ];
         foreach ($allData as $es) {
             array_push($electronicSignatures, json_decode($es->data, true));
         }
-
-        return view('app.electronic_signature_data', compact('electronicSignatures', 'keys', 'tbKeys'));
+        // dd($electronicSignatures);
+        return view('app.electronic_signature_data', compact('electronicSignatures', 'keys'));
     }
 }
