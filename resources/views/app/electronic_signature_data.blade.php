@@ -115,73 +115,94 @@
                                     @foreach ($electronicSignatures as $data)
                                         <tr>
                                             @foreach ($keys as $key)
-                                                @if (is_array($data[$key]))
                                                     @switch($key)
                                                         @case('interest')
-                                                            @if (count($data[$key]) === 6)
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                            @if(isset($data['interest']))
+                                                                @if (count($data[$key]) === 6)
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                    @foreach (array_fill(0, (6 - count($data[$key]) - 1), 'Aucun') as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @endif
                                                             @else
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
-                                                                @foreach (array_fill(0, (6 - count($data[$key]) - 1), 'Aucun') as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                                @for($i = 1; $i <= 6; $i++)
+                                                                        <td>Aucun</td>
+                                                                @endfor
                                                             @endif
                                                         @break
 
                                                         @case('usage_reason')
-                                                            @if (count($data[$key]) === 13)
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                            @if(isset($data['usage_reason']))
+                                                                @if (count($data[$key]) === 13)
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                    @foreach (array_fill(0, (13 - count($data[$key])), 'Aucun') as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @endif
                                                             @else
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
-                                                                @foreach (array_fill(0, (13 - count($data[$key])), 'Aucun') as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                                @for($i = 1; $i <= 13; $i++)
+                                                                    <td>Aucun</td>
+                                                                @endfor
                                                             @endif
                                                         @break
 
                                                         @case('obstacles')
-                                                            @if (count($data[$key]) === 11)
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                            @if(isset($data['obstacles']))
+                                                                @if (count($data[$key]) === 11)
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @else
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                    @foreach (array_fill(0, (11 - count($data[$key])), 'Aucun') as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @endif
                                                             @else
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
-                                                                @foreach (array_fill(0, (11 - count($data[$key])), 'Aucun') as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                                @for($i = 1; $i <= 11; $i++)
+                                                                    <td>Aucun</td>
+                                                                @endfor
                                                             @endif
                                                         @break
 
                                                         @case('alternatives')
-                                                            @if (count($data[$key]) === 5)
+                                                            @if(isset($data['alternatives']))
+                                                                @if (count($data[$key]) === 5)
                                                                 @foreach ($data[$key] as $v)
                                                                     <td>{{ $v }}</td>
                                                                 @endforeach
+                                                                @else
+                                                                    @foreach ($data[$key] as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                    @foreach (array_fill(0, (5 - count($data[$key])), 'Aucun') as $v)
+                                                                        <td>{{ $v }}</td>
+                                                                    @endforeach
+                                                                @endif
                                                             @else
-                                                                @foreach ($data[$key] as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
-                                                                @foreach (array_fill(0, (5 - count($data[$key])), 'Aucun') as $v)
-                                                                    <td>{{ $v }}</td>
-                                                                @endforeach
+                                                                @for($i = 1; $i <= 5; $i++)
+                                                                    <td>Aucun</td>
+                                                                @endfor
                                                             @endif
                                                         @break
 
                                                         @default
+                                                         <td>{{ isset($data[$key]) ? $data[$key] : 'Aucun' }}</td>
                                                     @endswitch
-                                                @else
-                                                    <td>{{ $data[$key] ? $data[$key] : 'Aucun' }}</td>
-                                                @endif
                                             @endforeach
                                         </tr>
                                     @endforeach

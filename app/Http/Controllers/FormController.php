@@ -341,7 +341,6 @@ class FormController extends Controller
         foreach ($allData as $es) {
             array_push($electronicSignatures, json_decode($es->data, true));
         }
-        // dd($electronicSignatures);
         return view('app.electronic_signature_data', compact('electronicSignatures', 'keys'));
     }
 }
