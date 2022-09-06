@@ -91,7 +91,7 @@
                                                 <td>{{ $participant->payment_method }}</td>
                                         @endif
                                         @if ($event->fields->count())
-                                            <td>{{ $participant->field->name . ':' . $participant->field->value }}</td>
+                                            <td>{{ isset($participant->field) ? $participant->field->name . ':' . $participant->field->value : "Aucun" }}</td>
                                         @endif
                                         @if (count($additional_fields) != 0)
                                             @if (count(json_decode($participant->additional_data, true)) !== 0)
