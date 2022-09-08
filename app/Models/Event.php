@@ -38,7 +38,8 @@ class Event extends Model
     protected $hidden = [
         'user_uid',
         'category_uid',
-        'country_id'
+        'country_id',
+        'map_html'
     ];
     
     public $incrementing = false;
