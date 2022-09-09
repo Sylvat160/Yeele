@@ -178,8 +178,9 @@
                                 @foreach ($event->event_payment_methods as $method)
                                     <option value="{{ $method->name }}"  @if($method === $participant->payment_method) selected @endif>{{ $method->name }}</option>
                                 @endforeach
-                            @else
-                            <option value="{{ $event->event_payment_methods->first()->name }}" selected>{{ $event->event_payment_methods->first()->name }}</option>
+                            @elseif($event->event_payment_methods->count() === 1)
+                                <option value="{{ $event->event_payment_methods->first()->name }}" selected>
+                                    {{ $event->event_payment_methods->first()->name }}</option>
                             @endif
                         </select>
                     </div>
