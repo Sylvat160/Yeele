@@ -8,4 +8,5 @@ Route::post('auth', [App\Http\Controllers\API\AuthController::class, 'authentica
 Route::middleware('auth:sanctum')->group(function() {
     Route::get('/events', [HomeController::class, 'events']);
     Route::get('/event_participants/{eventId}', [HomeController::class, 'eventParticipants']);
+    ROute::get('/set_attendance/{eventId}/{participantId}', [HomeController::class, 'setAttendance']);
 });
