@@ -19,7 +19,8 @@ class Participant extends Model
         'payment_method',
         'field_uid',
         'additional_data',
-        'payment_status'
+        'payment_status',
+        'attendance'
     ];
 
     public function event() {
