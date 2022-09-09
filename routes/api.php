@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\Route;
 Route::post('auth', [App\Http\Controllers\API\AuthController::class, 'authenticate']);
 
 Route::middleware('auth:sanctum')->group(function() {
-    Route::get('/events', [HomeController::class, 'events']);
-    Route::get('/event_participants/{eventId}', [HomeController::class, 'eventParticipants']);
-    ROute::get('/set_attendance/{eventId}/{participantId}', [HomeController::class, 'setAttendance']);
+    Route::get('events', [HomeController::class, 'events']);
+    Route::get('event_participants/{eventId}', [HomeController::class, 'eventParticipants']);
+    Route::post('set_attendance', [HomeController::class, 'setAttendance']);
 });
