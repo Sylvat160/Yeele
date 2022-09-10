@@ -32,6 +32,9 @@ class HomeController extends Controller
       'uuid' => "L'identifiant de l'évènement est incorrect.",
       'integer' => "L'identifiant du participant est incorrect."
     ]);
+
+    //Check if validation fails and return error messages
+
     if($validator->fails()) {
       $errors = ['validationErrors' => $validator->getMessageBag()];
       return response()->json($errors, 401);
@@ -41,9 +44,13 @@ class HomeController extends Controller
       ["event_uid", "=", $request->event_id]
     ])->first();
 
+    //Check if no participant and return error
+
     if(!$participant) {
-      return response()->json(["error" => "Ce participant n'existe pas."]);
+      return response()->json(["error" => "Ce participant n'existe pas."], 401);
     }
+
+    //Update the participant attendance
 
     $participant->update(['attendance' => true]);
 
