@@ -20,7 +20,8 @@ class Participant extends Model
         'field_uid',
         'additional_data',
         'payment_status',
-        'attendance'
+        'attendance',
+        'link_count',
     ];
 
     public function event() {

@@ -27,6 +27,7 @@ class CreateParticipantsTable extends Migration
             $table->longText('additional_data')->nullable();
             $table->boolean('payment_status')->default(false);
             $table->boolean('attendance')->default(false);
+            $table->integer('link_count')->default(0);
             $table->timestamps();
         });
     }
