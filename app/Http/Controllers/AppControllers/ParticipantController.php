@@ -248,4 +248,27 @@ class ParticipantController extends Controller
         Participant::destroy($request->participant_id);
         return redirect()->back()->with('success', "Le participant a été supprimé avec succès!");
     }
+
+    public function checkLinkCount($eventId, $participantEmail) {
+        $participant = Participant::where([
+            ["email", "=", $participantEmail],
+            ["event_uid", "=", $eventId],
+        ])->first();
+
+        if(!$participant) {
+            return redirect()->route('participant_link_checking')->with("error", "Il n'existe pas de participant avec ces identifiants.");
+        }
+
+        $linkCount = (int) $participant->link_count;
+
+        if($linkCount >= 3) {
+            return redirect()->route('participant_link_checking')->with('error', "Le lien de participant est expiré!");
+        }
+
+        $linkCount++;
+
+        $participant->update(['link_count' => $linkCount]);
+
+        // return redirect to zoom meeting
+    }
 }

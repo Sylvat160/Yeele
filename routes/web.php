@@ -97,7 +97,10 @@ Route::get('inscription_de_participant_reussi', [FormController::class, 'registe
 Route::get('page_modification/{participant_uid}/{event_uid}', [ParticipantController::class, 'participantUpdatePage'])->name('participant-update-page');
 Route::post('modifier_donnees', [ParticipantController::class, 'participantUpdate'])->name('participant-update-data');
 Route::get('donnees_modifiees/{event_uid}', [ParticipantController::class, 'participantDataUpdated'])->name('participant-data-updated');
-
+Route::get('verification_lien/{eventId}/{participantEmail}', [ParticipantController::class, 'checkLinkCount'])->name('participant_link_checking');
+Route::get('/probleme_durant_verification', function() {
+    return view('app.link_check_fail');
+})->name('forbidden_page');
 
 //SIGNATURE ELECTRONIQUE
 
@@ -106,5 +109,3 @@ Route::get('formulaire_signature_electronique', [FormController::class, 'electro
 Route::post('soumission_du_questionnaire', [FormController::class, 'electronic_signature_submit'])->name('signature_form_submit');
 Route::get('formulaire_signature_electronique_envoyé', [FormController::class, 'electronic_signature_done'])->name('signature_form_sent');
 Route::get('donnees_questionnaire_signature_collectees', [FormController::class, 'electronic_signature_data']);
-
-Route::get('qrcode', [ParticipantController::class, 'qrcode']);
