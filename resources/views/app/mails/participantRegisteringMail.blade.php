@@ -259,6 +259,9 @@
                             @foreach ($value as $v)
                                 {{$v}},
                             @endforeach
+
+                        @else
+                            {{$value}}
                         @endif
                     </td>
                 </tr>
