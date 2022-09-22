@@ -114,7 +114,7 @@
                             <span>Tarif</span>
                             <span class="text-red-600">*</span>
                         </label>
-                        @if ($event->multiple_prices_active)
+                        @if ($event->multiple_prices_active && !$event->custom['hasDirectPayment'])
                             @if($event->prices_quantity_active)
                             <input type="hidden" name="prices" value="{{$participant->custom['pwithq']}}" required>
                             @else
@@ -127,18 +127,19 @@
                                     xmlns="http://www.w3.org/2000/svg">
                                     <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
                                         d="M19 9l-7 7-7-7"></path>
-                                </svg></button>
-                                <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
-                                    <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700" aria-labelledby="dropdownSearchButton">
-                                        @foreach ($event->eventPrices as $price)
+                                </svg>
+                            </button>
+                            <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
+                                <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700" aria-labelledby="dropdownSearchButton">
+                                    @foreach ($event->eventPrices as $price)
                                         <li class="mb-1 flex justify-between items-center">
                                             <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
-                                              @if ($event->prices_quantity_active)
-                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array([$price->uid => $price->quantity], $participant->custom['pwithq']))  @endif>
-                                              @else
-                                              <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array($price->uid, json_decode($participant->custom['pwithoutq'], true))) checked @endif>
-                                              @endif
-                                              <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }} ({{ $price->value . ' FCFA' }})</label>
+                                                @if ($event->prices_quantity_active)
+                                                <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array([$price->uid => $price->quantity], $participant->custom['pwithq']))  @endif>
+                                                @else
+                                                <input id="{{ $price->uid }}" type="checkbox" value="{{ $price->uid }}" data-value="{{ $price->value }}" class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price" @if(in_array($price->uid, json_decode($participant->custom['pwithoutq'], true))) checked @endif>
+                                                @endif
+                                                <label for="{{ $price->uid }}" class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }} ({{ $price->value . ' FCFA' }})</label>
                                             </div>
                                             @if($event->prices_quantity_active)
                                                 <div>
@@ -146,9 +147,9 @@
                                                 </div>
                                             @endif
                                         </li>
-                                        @endforeach
-                                    </ul>
-                                </div>
+                                    @endforeach
+                                </ul>
+                            </div>
                         @else
                         <select name="price" id="price"
                             class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
