@@ -114,7 +114,7 @@
                             <span>Tarif</span>
                             <span class="text-red-600">*</span>
                         </label>
-                        @if ($event->multiple_prices_active)
+                        @if ($event->multiple_prices_active && !$event->custom['hasDirectPayment'])
                             @if($event->prices_quantity_active)
                             <input type="hidden" name="prices" value="{{$participant->custom['pwithq']}}" required>
                             @else
@@ -165,25 +165,27 @@
                         </select>
                         @endif
                     </div>
-                    <div class="mb-3">
-                        <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
-                            <span>Mode de paiement</span>
-                            <span class="text-red-600">*</span>
-                        </label>
-                        <select name="payment_method" id="payment_method"
-                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                            required>
-                            @if ($event->event_payment_methods->count() > 1)
-                                <option class="hidden">Selectionner un mode de paiement</option>
-                                @foreach ($event->event_payment_methods as $method)
-                                    <option value="{{ $method->name }}"  @if($method === $participant->payment_method) selected @endif>{{ $method->name }}</option>
-                                @endforeach
-                            @elseif($event->event_payment_methods->count() === 1)
-                                <option value="{{ $event->event_payment_methods->first()->name }}" selected>
-                                    {{ $event->event_payment_methods->first()->name }}</option>
-                            @endif
-                        </select>
-                    </div>
+                    @if ()
+                        <div class="mb-3">
+                            <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
+                                <span>Mode de paiement</span>
+                                <span class="text-red-600">*</span>
+                            </label>
+                            <select name="payment_method" id="payment_method"
+                                class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                required>
+                                @if ($event->event_payment_methods->count() > 1)
+                                    <option class="hidden">Selectionner un mode de paiement</option>
+                                    @foreach ($event->event_payment_methods as $method)
+                                        <option value="{{ $method->name }}"  @if($method->name === $participant->payment_method) selected @endif>{{ $method->name }}</option>
+                                    @endforeach
+                                @elseif($event->event_payment_methods->count() === 1)
+                                    <option value="{{ $event->event_payment_methods->first()->name }}" selected>
+                                        {{ $event->event_payment_methods->first()->name }}</option>
+                                @endif
+                            </select>
+                        </div>
+                    @endif
                 @endif
 
                 @if($event->fields->count())
