@@ -643,6 +643,7 @@ function paypalCheckout(_ref) {
       onApprove: function onApprove(data, actions) {
         document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
         document.getElementById("payment_container").innerHTML = "";
+        document.getElementById("registration").dispatchEvent('submit');
       }
     }).render("#payment_container");
   });
@@ -663,6 +664,7 @@ function cinetpayCheckout(options) {
     } else if (data.status == "ACCEPTED") {
       document.querySelector('input[name="payment_status"]').setAttribute("value", "1");
       document.getElementById("payment_container").innerHTML = "";
+      document.getElementById("registration").dispatchEvent('submit');
     }
   });
   CinetPay.onError(function (data) {
