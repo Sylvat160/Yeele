@@ -126,105 +126,6 @@
                     @enderror
                 </div>
 
-                @if ($event->eventPrices->count())
-                    <div class=" w-full mb-3">
-                        <label for="price" class="block mb-2 text-sm font-semibold text-gray-900">
-                            <span>Tarif</span>
-                            <span class="text-red-600">*</span>
-                        </label>
-                        @if ($event->multiple_prices_active)
-                            <input type="hidden" name="prices" value="[]" required>
-                            <button id="prices_btn" data-dropdown-toggle="prices" data-dropdown-placement="bottom"
-                                class="bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 w-full p-2.5"
-                                type="button">Choisissez vos tarifs <svg class="ml-2 w-4 h-4" aria-hidden="true"
-                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
-                                        d="M19 9l-7 7-7-7"></path>
-                                </svg></button>
-                            <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
-                                <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700"
-                                    aria-labelledby="dropdownSearchButton">
-                                    @foreach ($event->eventPrices as $price)
-                                        <li class="mb-1 flex justify-between items-center">
-                                            <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
-                                                <input id="{{ $price->uid }}" type="checkbox"
-                                                    value="{{ $price->uid }}" data-value="{{ $price->value }}"
-                                                    class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
-                                                <label for="{{ $price->uid }}"
-                                                    class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}
-                                                    ({{ $price->value . ' FCFA' }})
-                                                </label>
-                                            </div>
-                                            @if ($event->prices_quantity_active)
-                                                <div>
-                                                    <input type="number" min="1"
-                                                        class="w-16 sm:w-20 bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 p-2.5 quantity_input"
-                                                        value="1" data-target-price="#{{ $price->uid }}"
-                                                        disabled>
-                                                </div>
-                                            @endif
-                                        </li>
-                                    @endforeach
-                                </ul>
-                            </div>
-                        @else
-                            <select name="price" id="price"
-                                class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                                required>
-                                <option class="hidden">Sélectionner un tarif</option>
-                                @if ($event->eventPrices->count() > 1)
-                                    @foreach ($event->eventPrices as $price)
-                                        <option value="{{ $price->value }}">{{ $price->label }}
-                                            ({{ $price->value . ' FCFA' }}
-                                            FCFA)
-                                        </option>
-                                    @endforeach
-                                @else
-                                    <option value="{{ $event->eventPrices->first()->value }}" selected>
-                                        {{ $event->eventPrices->first()->value . ' FCFA' }}</option>
-                                @endif
-                            </select>
-                        @endif
-                    </div>
-                    <input type="hidden" name="payment_status" value="0" required>
-                    <div class="mb-3">
-                        <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
-                            <span>Mode de paiement</span>
-                            <span class="text-red-600">*</span>
-                        </label>
-                        <select name="payment_method" id="payment_method"
-                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                            disabled="true"
-                            required>
-                            @if ($event->event_payment_methods->count() > 1)
-                                <option value="" class="hidden">Selectionner un mode de paiement</option>
-                                @foreach ($event->event_payment_methods as $method)
-                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
-                                @endforeach
-                            @elseif($event->event_payment_methods->count() === 1)
-                                <option value="{{ $event->event_payment_methods->first()->name }}" selected>
-                                    {{ $event->event_payment_methods->first()->name }}</option>
-                            @endif
-                        </select>
-                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
-                            class="font-medium" id="pm_error"></span></p>
-                    </div>
-                    @if ($event->custom['hasDirectPayment'])
-                        @if ($event->event_payment_methods->count() === 1)
-                            <button type="button" id="paymentBtn"
-                            class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
-                            style="width: fit-content;">
-                            Effectuer le paiement
-                        </button>
-                        @endif
-                        <div class="mb-3" id="payment_container"
-                            data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
-
-                        </div>
-                    @endif
-                @endif
-
                 @if ($event->fields->count())
                     <div class="mb-3">
                         <label for="field_uid" class="block mb-2 text-sm font-semibold text-gray-900">
@@ -394,6 +295,105 @@
                             @break
                         @endswitch
                     @endforeach
+                @endif
+
+                @if ($event->eventPrices->count())
+                    <div class=" w-full mb-3">
+                        <label for="price" class="block mb-2 text-sm font-semibold text-gray-900">
+                            <span>Tarif</span>
+                            <span class="text-red-600">*</span>
+                        </label>
+                        @if ($event->multiple_prices_active)
+                            <input type="hidden" name="prices" value="[]" required>
+                            <button id="prices_btn" data-dropdown-toggle="prices" data-dropdown-placement="bottom"
+                                class="bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 w-full p-2.5"
+                                type="button">Choisissez vos tarifs <svg class="ml-2 w-4 h-4" aria-hidden="true"
+                                    fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                                    xmlns="http://www.w3.org/2000/svg">
+                                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                        d="M19 9l-7 7-7-7"></path>
+                                </svg></button>
+                            <div id="prices" class="hidden sm:w-96 z-10 bg-white rounded shadow">
+                                <ul class="overflow-y-auto p-2 w-full h-fit text-sm text-gray-700"
+                                    aria-labelledby="dropdownSearchButton">
+                                    @foreach ($event->eventPrices as $price)
+                                        <li class="mb-1 flex justify-between items-center">
+                                            <div class="w-full flex items-center p-2 rounded hover:bg-gray-100">
+                                                <input id="{{ $price->uid }}" type="checkbox"
+                                                    value="{{ $price->uid }}" data-value="{{ $price->value }}"
+                                                    class="w-4 h-4 checked:bg-red-500 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-red-300 price">
+                                                <label for="{{ $price->uid }}"
+                                                    class="ml-2 w-fit text-sm font-medium text-gray-900 rounded dark:text-gray-300">{{ $price->label }}
+                                                    ({{ $price->value . ' FCFA' }})
+                                                </label>
+                                            </div>
+                                            @if ($event->prices_quantity_active)
+                                                <div>
+                                                    <input type="number" min="1"
+                                                        class="w-16 sm:w-20 bg-gray-50 inline-flex items-center justify-between outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 p-2.5 quantity_input"
+                                                        value="1" data-target-price="#{{ $price->uid }}"
+                                                        disabled>
+                                                </div>
+                                            @endif
+                                        </li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @else
+                            <select name="price" id="price"
+                                class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                                required>
+                                <option class="hidden">Sélectionner un tarif</option>
+                                @if ($event->eventPrices->count() > 1)
+                                    @foreach ($event->eventPrices as $price)
+                                        <option value="{{ $price->value }}">{{ $price->label }}
+                                            ({{ $price->value . ' FCFA' }}
+                                            FCFA)
+                                        </option>
+                                    @endforeach
+                                @else
+                                    <option value="{{ $event->eventPrices->first()->value }}" selected>
+                                        {{ $event->eventPrices->first()->value . ' FCFA' }}</option>
+                                @endif
+                            </select>
+                        @endif
+                    </div>
+                    <input type="hidden" name="payment_status" value="0" required>
+                    <div class="mb-3">
+                        <label for="payment_method" class="block mb-2 text-sm font-semibold text-gray-900">
+                            <span>Mode de paiement</span>
+                            <span class="text-red-600">*</span>
+                        </label>
+                        <select name="payment_method" id="payment_method"
+                            class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
+                            disabled="true"
+                            required>
+                            @if ($event->event_payment_methods->count() > 1)
+                                <option value="" class="hidden">Selectionner un mode de paiement</option>
+                                @foreach ($event->event_payment_methods as $method)
+                                    <option value="{{ $method->name }}">{{ $method->name }}</option>
+                                @endforeach
+                            @elseif($event->event_payment_methods->count() === 1)
+                                <option value="{{ $event->event_payment_methods->first()->name }}" selected>
+                                    {{ $event->event_payment_methods->first()->name }}</option>
+                            @endif
+                        </select>
+                        <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
+                            class="font-medium" id="pm_error"></span></p>
+                    </div>
+                    @if ($event->custom['hasDirectPayment'])
+                        @if ($event->event_payment_methods->count() === 1)
+                            <button type="button" id="paymentBtn"
+                            class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto"
+                            style="width: fit-content;">
+                            Effectuer le paiement
+                        </button>
+                        @endif
+                        <div class="mb-3" id="payment_container"
+                            data-payment-methods="{{ json_encode($event->custom['directPaymentMethod']) }}">
+
+                        </div>
+                    @endif
                 @endif
 
                 @if (now() < new DateTime($event->signup_date_time))
