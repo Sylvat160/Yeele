@@ -105,7 +105,7 @@ function paypalCheckout({ amount }) {
                     document.getElementById("payment_container").innerHTML = "";
                     document
                     .getElementById("registration")
-                    .dispatchEvent('submit')
+                    .submit()
                 },
             })
             .render("#payment_container");
@@ -132,7 +132,7 @@ function cinetpayCheckout(options) {
             document.getElementById("payment_container").innerHTML = "";
             document
             .getElementById("registration")
-            .dispatchEvent('submit')
+            .submit()
         }
     });
     CinetPay.onError(function (data) {
