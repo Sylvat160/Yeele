@@ -2,13 +2,18 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Participant;
 use App\Models\Plan;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
 {
     public function home() {
-        return view('website.home');
+        $total = (string) Participant::all()->count();
+        $firstChar = substr($total, 0, 1);
+        $number = $firstChar . implode('', array_fill(0, strlen($total) - 1, 0));
+        if(strlen($number) < 4) $number = "1000";
+        return view('website.home', compact('number'));
     }
 
     public function features() {
