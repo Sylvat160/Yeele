@@ -187,7 +187,7 @@ class FormController extends Controller
             ];
             $qrCodeData = json_encode($participantQrCodeData);
             $qrParticipantFullname = $participant->firstname . "_" . $participant->lastname;
-            $qrCodeName = $qrParticipantFullname . time() . ".png";
+            $qrCodeName = str_replace(['/', '\\'], '', $qrParticipantFullname . time() . ".png");
             QrCode::size(200)->generate($qrCodeData, "participants_qr_codes/$qrCodeName", 'image/png');
             $event = Event::find($participant->event_uid);
             if((bool) $event->multiple_prices_active) {
