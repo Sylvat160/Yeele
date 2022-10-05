@@ -15,7 +15,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 class FormController extends Controller
 {
     /**
-     * Show the event
+     * Show an event.
      *
      * @param string $event_uid
      *
@@ -32,7 +32,7 @@ class FormController extends Controller
     }
 
     /**
-     * Show the participant registering form
+     * Show the participant registration form.
      *
      * @param string event_uid
      *
@@ -48,7 +48,7 @@ class FormController extends Controller
     }
 
     /**
-     * Register a participant
+     * Register a participant.
      *
      * @param Request request
      *
