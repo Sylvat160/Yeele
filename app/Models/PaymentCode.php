@@ -8,4 +8,9 @@ use Illuminate\Database\Eloquent\Model;
 class PaymentCode extends Model
 {
     use HasFactory;
+    protected $guarded = ['uid'];
+
+    public function event_payment_method() {
+        return $this->belongsTo(EventPaymentMethod::class);
+    }
 }
