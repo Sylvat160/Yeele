@@ -83,9 +83,7 @@
                 <span class="text-danger">*</span>
               </label>
               <select name="payment_method_id" id="payment_method" class="form-control" required disabled>
-                <option class="d-none" value="" selected>Choisissez votre mode de paiement</option>
                 <option value="2">Mobile Money</option>
-                <option value="4">Carte bancaire</option>
               </select>
               @error('payment_method_id')
                 <span class="text-danger">{{ $message }}</span>

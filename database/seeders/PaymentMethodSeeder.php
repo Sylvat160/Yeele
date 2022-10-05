@@ -18,7 +18,10 @@ class PaymentMethodSeeder extends Seeder
                 "Sur place",
                 "Mobile Money",
                 "Virement bancaire",
-                "Carte bancaire"
+                "Carte bancaire",
+                "Western Union",
+                "Kia",
+                "Moneygram"
             ]
              as $method
              ) {
