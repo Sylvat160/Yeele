@@ -28,7 +28,7 @@ class EventPaymentMethod extends Model
         return $this->belongsTo(Event::class, 'event_uid');
     }
 
-    public function payment_codes() {
-        return $this->hasMany(PaymentCode::class);
+    public function payment_accounts() {
+        return $this->hasMany(PaymentAccount::class);
     }
 }

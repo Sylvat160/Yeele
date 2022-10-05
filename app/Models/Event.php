@@ -87,8 +87,8 @@ class Event extends Model
         return $this->hasOne(Form::class);
     }
 
-    public function payment_codes() {
-        return $this->event_payment_methods->payment_codes;
+    public function payment_accounts() {
+        return $this->event_payment_methods->payment_accounts;
     }
 
     public function getCustomAttribute() {
