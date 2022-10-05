@@ -1,11 +1,10 @@
 <?php
 
-use App\Models\PaymentMethod;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateEventPaymentMethodsTable extends Migration
+class CreatePaymentCodesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -14,10 +13,10 @@ class CreateEventPaymentMethodsTable extends Migration
      */
     public function up()
     {
-        Schema::create('event_payment_methods', function (Blueprint $table) {
-            $table->uuid('uid')->primary();
-            $table->string('name');
-            $table->foreignUuid('event_uid')->on('events')->cascadeOnDelete();
+        Schema::create('payment_codes', function (Blueprint $table) {
+            $table->uuid('uid');
+            $table->foreignUuid('event_payment_method_uid')->references('uid')->on('event_payment_methods')->cascadeOnDelete();
+            $table->string('code');
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ class CreateEventPaymentMethodsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('event_payment_methods');
+        Schema::dropIfExists('payment_codes');
     }
 }
