@@ -16,7 +16,9 @@ class CreatePaymentCodesTable extends Migration
         Schema::create('payment_codes', function (Blueprint $table) {
             $table->uuid('uid');
             $table->foreignUuid('event_payment_method_uid')->references('uid')->on('event_payment_methods')->cascadeOnDelete();
-            $table->string('code');
+            $table->string('receiver_firstname');
+            $table->string('receiver_lastname');
+            $table->integer('receiver_phone');
             $table->timestamps();
         });
     }

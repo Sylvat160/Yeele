@@ -36,8 +36,6 @@ class CreateEventsTable extends Migration
             $table->boolean('prices_quantity_active')->default(false);
             $table->longText('form_fields_names')->nullable();
             $table->integer('clicks')->default(0);
-            $table->string('receiver_firstname')->nullable();
-            $table->string('receiver_lastname')->nullable();
             $table->timestamps();
         });
     }
