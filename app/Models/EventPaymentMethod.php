@@ -29,6 +29,6 @@ class EventPaymentMethod extends Model
     }
 
     public function payment_accounts() {
-        return $this->hasMany(PaymentAccount::class);
+        return $this->hasOne(PaymentAccount::class);
     }
 }

@@ -88,7 +88,10 @@ class Event extends Model
     }
 
     public function payment_accounts() {
-        return $this->event_payment_methods->payment_accounts;
+        $accounts = [];
+        foreach($this->event_payment_methods as $method)
+            if($method->payment_accounts) array_push($accounts, $method->payment_accounts);
+        return $accounts;
     }
 
     public function getCustomAttribute() {
@@ -99,8 +102,27 @@ class Event extends Model
             }
         }
 
-        $hasDirectPayment = !empty($directPaymentMethod);
 
-        return compact('directPaymentMethod', 'hasDirectPayment');
+
+        $hasDirectPayment = !empty($directPaymentMethod);
+        $paymentAccounts = $this->payment_accounts();
+        $payMethWithoutPayAcc = $this->payMethWithoutPayAcc();
+
+        return compact('directPaymentMethod', 'hasDirectPayment', 'paymentAccounts', 'payMethWithoutPayAcc');
     }
+
+    public function payMethWithoutPayAcc() {
+        $payments = [];
+        $curPayMethWithPayAcc = [];
+
+        foreach($this->payment_accounts() as $payAcc) 
+            array_push($curPayMethWithPayAcc, $payAcc->event_payment_method);
+        
+        foreach($this->event_payment_methods as $meth)
+            if(!in_array($meth->name, $curPayMethWithPayAcc)) {
+                array_push($payments, $meth);
+            }
+            return $payments;
+    }
+
 }

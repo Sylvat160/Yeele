@@ -39,6 +39,12 @@
                 <i class="fa-solid fa-credit-card"></i>
                 <span>Modes de paiement</span>
             </a>
+        </li><li class="nav-item">
+            <a href="{{ route('payment_account_create', $event_uid) }}" class="nav-link"
+                data-event_menu_path="event_payment_method">
+                <i class="fa-solid fa-credit-card"></i>
+                <span>Comptes de paiements</span>
+            </a>
         </li>
         @if ($hasDynamicForm && Auth::user()->custom['currentCommand']->plan_id === 2)
             <li class="nav-item">

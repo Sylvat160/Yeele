@@ -9,6 +9,7 @@ use App\Http\Controllers\AppControllers\EventPaymentMethodController;
 use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\FieldController;
 use App\Http\Controllers\AppControllers\ParticipantController;
+use App\Http\Controllers\AppControllers\PaymentAccountController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\FormController;
 use App\Http\Controllers\StaticPagesController;
@@ -86,6 +87,11 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
 
     Route::post('update_multi_select_status', [App\Http\Controllers\AppControllers\PriceSettingController::class, 'updateMultiSelectStatus'])->name('updateMultiSelectStatus');
     Route::post('update_quantity_status', [App\Http\Controllers\AppControllers\PriceSettingController::class, 'updateQuantityStatus'])->name('updateQuantityStatus');
+
+    //PAYMENT ACCOUNT SETTINGS
+
+    Route::get('current_event/{event_uid}/comptes_paiement', [PaymentAccountController::class, 'create'])->name('payment_account_create');
+    Route::resource('payment_account', PaymentAccountController::class)->except(['index', 'create', 'show', 'edit']);
 });
  
 //PARTICIPANT REGISTRATION ROUTES
