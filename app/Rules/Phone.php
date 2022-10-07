@@ -3,10 +3,17 @@
 namespace App\Rules;
 
 use Illuminate\Contracts\Validation\Rule;
-use Illuminate\Support\Str;
+use Illuminate\Contracts\Validation\ValidatorAwareRule;
 
-class Phone implements Rule
+class Phone implements Rule, ValidatorAwareRule
 {
+    /**
+     * The validator instance.
+     *
+     * @var \Illuminate\Validation\Validator
+     */
+    protected $validator;
+
     /**
      * Create a new rule instance.
      *
@@ -27,7 +34,7 @@ class Phone implements Rule
     public function passes($attribute, $value)
     {
         $value = str_replace('+', '00', $value);
-        if(count($value) > 13) {
+        if(strlen($value) > 13) {
             return false;
         }
 
@@ -43,4 +50,18 @@ class Phone implements Rule
     {
         return 'Le numéro de téléphone passé n\'est pas valide.';
     }
+
+    /**
+     * Set the current validator.
+     *
+     * @param  \Illuminate\Validation\Validator  $validator
+     * @return $this
+     */
+    public function setValidator($validator)
+    {
+        $this->validator = $validator;
+ 
+        return $this;
+    }
+
 }
