@@ -116,7 +116,7 @@ class Event extends Model
         $curPayMethWithPayAcc = [];
 
         foreach($this->payment_accounts() as $payAcc) 
-            array_push($curPayMethWithPayAcc, $payAcc->event_payment_method);
+            array_push($curPayMethWithPayAcc, $payAcc->event_payment_method->name);
         
         foreach($this->event_payment_methods as $meth)
             if(!in_array($meth->name, $curPayMethWithPayAcc)) {

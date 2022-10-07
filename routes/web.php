@@ -91,7 +91,7 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     //PAYMENT ACCOUNT SETTINGS
 
     Route::get('current_event/{event_uid}/comptes_paiement', [PaymentAccountController::class, 'create'])->name('payment_account_create');
-    Route::resource('payment_account', PaymentAccountController::class)->except(['index', 'create', 'show', 'edit']);
+    Route::resource('payment_account', PaymentAccountController::class)->except(['index', 'create', 'show', 'edit', 'update']);
 });
  
 //PARTICIPANT REGISTRATION ROUTES

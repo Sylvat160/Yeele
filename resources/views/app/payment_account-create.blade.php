@@ -40,7 +40,7 @@
                                     <td>
                                         <button class="btn btn-danger btn_destroy"
                                             data-route="{{ route('payment_account.destroy', $account->uid) }}"
-                                            data-account="{{ json_encode($account) }}">
+                                            data-method="{{ $account->event_payment_method->name }}">
                                             <i class="fa-solid fa-trash-can"></i>
                                             <span>Supprimer</span>
                                         </button>
@@ -138,7 +138,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title">Suppression du mode de paiement</h4>
+                    <h4 class="modal-title">Suppression du compte paiement</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                         <span aria-hidden="true">×</span>
                     </button>
@@ -149,7 +149,7 @@
                         @method('DELETE')
                         <div class="text-danger">
                             <h1>Attention!</h1>
-                            <p>Vous êtes sur le point de supprimer <strong id="destroy_price_label"></strong>. Cette action
+                            <p>Vous êtes sur le point de supprimer le compte du mode de paiement <strong id="destroy_label"></strong>? Cette action
                                 est irréversible. Êtes vous sûr de vouloir continuer?</p>
                         </div>
                     </div>
@@ -170,23 +170,12 @@
             $('#modal_add').modal()
         @endif
 
-        $('.btn_edit').each(function() {
-            $(this).on('click', function() {
-                const label = this.dataset.payment_method
-                const route = this.dataset.route
-
-                $(`option[value="${label}"]`).attr('selected', "true")
-                $('#edit_modal_form').attr('action', route)
-                $('#modal_edit').modal()
-            })
-        })
-
         $('.btn_destroy').each(function() {
             $(this).on('click', function() {
-                const label = this.dataset.payment_method
+                const method = this.dataset.method
                 const route = this.dataset.route
 
-                $('#destroy_price_label').html(`"${label}"`)
+                $('#destroy_label').html(`"${method}"`)
                 $('#destroy_modal_form').attr('action', route)
                 $('#modal_destroy').modal()
             })
