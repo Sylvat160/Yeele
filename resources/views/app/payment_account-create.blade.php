@@ -73,7 +73,6 @@
                 </div>
                 <form action="{{ route('payment_account.store') }}" method="post" id="add_modal_form">
                     @csrf
-                    <input type="hidden" name="event_uid" value="{{ $event->uid }}" required>
                     <div class="modal-body">
                         <div class="form-group">
                             <label for="event_payment_method">
@@ -116,7 +115,7 @@
                                 <span>Numéro du bénéficiaire</span>
                                 <span class="text-danger">*</span>
                             </label>
-                            <input type="number" id="phone" name="firstname" class="form-control" placeholder="(+226)XXXXXXXX" required>
+                            <input type="number" id="phone" name="phone" class="form-control" placeholder="(+226)XXXXXXXX" required>
                             @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
