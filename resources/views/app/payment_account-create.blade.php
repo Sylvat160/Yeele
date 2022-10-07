@@ -49,7 +49,7 @@
                             @empty
                                 <tr>
                                     <td colspan="4" class="text-center">
-                                        Vous n'avez aucun mode de paiement disponible pour cet évènement.
+                                        Vous n'avez aucun compte de paiement disponible pour cet évènement.
                                     </td>
                                 </tr>
                             @endforelse

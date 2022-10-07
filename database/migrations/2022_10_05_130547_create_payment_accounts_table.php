@@ -18,7 +18,7 @@ class CreatePaymentAccountsTable extends Migration
             $table->foreignUuid('event_payment_method_uid')->references('uid')->on('event_payment_methods')->cascadeOnDelete();
             $table->string('receiver_firstname');
             $table->string('receiver_lastname');
-            $table->integer('receiver_phone');
+            $table->bigInteger('receiver_phone');
             $table->timestamps();
         });
     }

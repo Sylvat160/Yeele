@@ -113,7 +113,7 @@ class Event extends Model
 
     public function payMethWithoutPayAcc() {
         $payments = [];
-        $curPayMethWithPayAcc = [];
+        $curPayMethWithPayAcc = ["Mobile Money", "Carte bancaire"];
 
         foreach($this->payment_accounts() as $payAcc) 
             array_push($curPayMethWithPayAcc, $payAcc->event_payment_method->name);
