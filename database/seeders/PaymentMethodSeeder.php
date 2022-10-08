@@ -21,7 +21,7 @@ class PaymentMethodSeeder extends Seeder
                 "Carte bancaire",
                 "Transfert Western Union",
                 "Transfert Kia",
-                "Tansfert Moneygram"
+                "Tansfert MoneyGram"
             ]
              as $method
              ) {

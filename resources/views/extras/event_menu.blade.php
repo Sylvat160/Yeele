@@ -41,7 +41,7 @@
             </a>
         </li><li class="nav-item">
             <a href="{{ route('payment_account_create', $event_uid) }}" class="nav-link"
-                data-event_menu_path="event_payment_method">
+                data-event_menu_path="comptes_paiement">
                 <i class="fa-solid fa-credit-card"></i>
                 <span>Comptes de paiements</span>
             </a>

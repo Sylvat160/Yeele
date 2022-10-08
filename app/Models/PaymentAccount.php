@@ -9,7 +9,7 @@ use Illuminate\Support\Str;
 class PaymentAccount extends Model
 {
     use HasFactory;
-    
+
     protected $guarded = ['uid'];
 
     public $incrementing = false;
@@ -27,7 +27,7 @@ class PaymentAccount extends Model
             if(!$user->uid) $user->uid = Str::uuid();
         });
     }
-
+    
     public function event_payment_method() {
         return $this->belongsTo(EventPaymentMethod::class);
     }
