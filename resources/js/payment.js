@@ -3,20 +3,44 @@ const loadScript = paypaljs.loadScript;
 
 const payment = () => {
     const paymentContainer = document.getElementById("payment_container");
+    const paymentBtn = document.getElementById("paymentBtn");
+    const paymentMethod = document.getElementById("payment_method");
     const priceSelect = document.getElementById("price");
+    const registrationForm = document.getElementById("registration");
+
     if (priceSelect) {
         priceSelect.addEventListener("change", function () {
-            if (this.value != "") {
-                document
-                    .getElementById("payment_method")
-                    .removeAttribute("disabled");
-            } else document.getElementById("payment_method").setAttribute("disabled", true);
+            const fields = [];
+            const civility = document.getElementById('civility')
+            
+            //Get empty inputs
+
+            Array.from(registrationForm.querySelectorAll("input")).forEach(
+                (input) => {
+                    if (!input.value) fields.push(input);
+                }
+            );
+
+            //Get empty selects
+
+            Array.from(registrationForm.querySelectorAll("select")).forEach(
+                (select) => {
+                    if (!select.value) fields.push(select);
+                }
+            );
+
+            if (this.value != "" && fields.length === 0) {
+                paymentMethod.removeAttribute("disabled");
+            } else {
+                document.getElementById("payment_method").setAttribute("disabled", true);
+                if(fields.includes(civility)) {
+                    civility.focus()
+                } else fields.shift().focus()
+            }
         });
     }
 
     if (paymentContainer) {
-        const paymentBtn = document.getElementById("paymentBtn");
-        const paymentMethod = document.getElementById("payment_method");
         const directPayments = JSON.parse(
             paymentContainer.dataset.paymentMethods
         );
@@ -28,19 +52,19 @@ const payment = () => {
         paymentMethod.addEventListener("change", function () {
             handleMethodChange.call(paymentMethod, directPayments);
         });
-
-        document
-            .getElementById("registration")
-            .addEventListener("submit", function (e) {
-                const paymentStatus = document.querySelector(
-                    'input[name="payment_status"]'
-                );
-                if (Number(paymentStatus.value) === 0) {
-                    e.preventDefault();
-                    document.getElementById("pm_error").innerText =
-                        "Vous n'avez pas éffectuer le paiement.";
-                }
-            });
+        registrationForm.addEventListener("submit", function (e) {
+            const paymentStatus = document.querySelector(
+                'input[name="payment_status"]'
+            );
+            if (
+                directPayments.includes(paymentMethod.value) &&
+                Number(paymentStatus.value) === 0
+            ) {
+                e.preventDefault();
+                document.getElementById("pm_error").innerText =
+                    "Vous n'avez pas éffectué le paiement.";
+            }
+        });
     }
 };
 
@@ -73,6 +97,12 @@ function handleMethodChange(directPayments) {
                 case "Carte bancaire":
                     paypalCheckout({ amount });
                     break;
+
+                case "Régularisation":
+                    document
+                        .querySelector('input[name="payment_status"]')
+                        .setAttribute("value", "1");
+                    break;
             }
         }
     }
@@ -103,9 +133,7 @@ function paypalCheckout({ amount }) {
                         .querySelector('input[name="payment_status"]')
                         .setAttribute("value", "1");
                     document.getElementById("payment_container").innerHTML = "";
-                    document
-                    .getElementById("registration")
-                    .submit()
+                    document.getElementById("registration").submit();
                 },
             })
             .render("#payment_container");
@@ -130,13 +158,11 @@ function cinetpayCheckout(options) {
                 .setAttribute("value", "1");
 
             document.getElementById("payment_container").innerHTML = "";
-            document
-            .getElementById("registration")
-            .submit()
+            document.getElementById("registration").submit();
         }
     });
     CinetPay.onError(function (data) {
-        console.log(data);
+        console.error(data);
     });
 }
 

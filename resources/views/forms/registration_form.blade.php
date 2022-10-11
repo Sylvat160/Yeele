@@ -61,7 +61,7 @@
                     <select name="civility" id="civility"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                         required>
-                        <option class="hidden" selected>Selectionner votre civilité</option>
+                        <option class="hidden" value="" selected>Selectionner votre civilité</option>
                         <option value="Monsieur">Monsieur</option>
                         <option value="Madame">Madame</option>
                         <option value="Mademoiselle">Mademoiselle</option>
