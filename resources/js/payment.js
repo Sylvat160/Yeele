@@ -10,6 +10,7 @@ const payment = () => {
 
     if (priceSelect) {
         priceSelect.addEventListener("change", function () {
+            const html = this.innerHTML
             const fields = [];
             const civility = document.getElementById('civility')
             
@@ -32,6 +33,7 @@ const payment = () => {
             if (this.value != "" && fields.length === 0) {
                 paymentMethod.removeAttribute("disabled");
             } else {
+                this.innerHTML = html
                 document.getElementById("payment_method").setAttribute("disabled", true);
                 if(fields.includes(civility)) {
                     civility.focus()

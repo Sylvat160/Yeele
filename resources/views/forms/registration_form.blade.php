@@ -343,7 +343,7 @@
                             <select name="price" id="price"
                                 class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
                                 required>
-                                <option class="hidden">Sélectionner un tarif</option>
+                                <option class="hidden" id="pricePlaceholder">Sélectionner un tarif</option>
                                 @if ($event->eventPrices->count() > 1)
                                     @foreach ($event->eventPrices as $price)
                                         <option value="{{ $price->value }}">{{ $price->label }}

@@ -560,6 +560,7 @@ var payment = function payment() {
 
   if (priceSelect) {
     priceSelect.addEventListener("change", function () {
+      var html = this.innerHTML;
       var fields = [];
       var civility = document.getElementById('civility'); //Get empty inputs
 
@@ -574,6 +575,7 @@ var payment = function payment() {
       if (this.value != "" && fields.length === 0) {
         paymentMethod.removeAttribute("disabled");
       } else {
+        this.innerHTML = html;
         document.getElementById("payment_method").setAttribute("disabled", true);
 
         if (fields.includes(civility)) {
