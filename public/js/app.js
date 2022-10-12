@@ -569,7 +569,7 @@ var payment = function payment() {
       }); //Get empty selects
 
       Array.from(registrationForm.querySelectorAll("select")).forEach(function (select) {
-        if (!select.value) fields.push(select);
+        if (select.getAttribute('id') !== "payment_method" && !select.value) fields.push(select);
       });
 
       if (this.value != "" && fields.length === 0) {

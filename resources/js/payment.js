@@ -26,7 +26,7 @@ const payment = () => {
 
             Array.from(registrationForm.querySelectorAll("select")).forEach(
                 (select) => {
-                    if (!select.value) fields.push(select);
+                    if (select.getAttribute('id') !== "payment_method" && !select.value) fields.push(select);
                 }
             );
 
