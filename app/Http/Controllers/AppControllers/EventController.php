@@ -42,7 +42,7 @@ class EventController extends Controller
      */
     public function store(EventRequest $request)
     {
-        $currentCommandIsGold = auth()->user()->custom['currentCommand']->plan_id === 2;
+        $currentCommandIsGold = auth()->user()->custom['currentCommand'] && auth()->user()->custom['currentCommand']->plan_id === 2;
         if($currentCommandIsGold && !isset($request->chosen_form)) {
             return redirect()->back()->with('error', "La sélection du type de formulaire est obligatoire.")->withInput($request->except('_token'));
         }
