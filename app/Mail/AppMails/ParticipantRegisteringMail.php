@@ -32,6 +32,7 @@ class ParticipantRegisteringMail extends Mailable
     public function build()
     {
         $link = route('participant-update-page', [$this->participant->id, $this->participant->event->uid]);
+        $file = view('app.pdf', compact(['participant' => $this->participant]))->render();
         return $this
         ->subject("Inscription à l'évènement \"" . $this->participant->event->name . "\" réussie.")
         ->from(env('MAIL_FROM_ADDRESS'), "Yeele")
@@ -41,6 +42,9 @@ class ParticipantRegisteringMail extends Mailable
                 'participant' => $this->participant,
                 'link' => $link
             ]
-        );
+        )
+        ->attachData($file, 'inscription.pdf', [
+            'mime' => 'application/pdf',
+        ]);
     }
 }

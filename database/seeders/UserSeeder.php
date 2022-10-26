@@ -20,15 +20,15 @@ class UserSeeder extends Seeder
     {
         $user = User::create([
             'role_id' => 2,
-            'firstname' => "Aboubakary",
-            'lastname' => "Cissé",
+            'firstname' => "sylvain",
+            'lastname' => "TAGNABOU",
             'gender' => "Masculin",
-            'email' => "aboubakarycisse410@gmail.com",
-            'phone' => 66292862,
+            'email' => "sylvaintagnabou@gmail.com",
+            'phone' => 55831383,
             'organization' => "Selft",
             'is_authorized' => true,
             'email_verified_at' => now(),
-            'password' => Hash::make('aboubakary')
+            'password' => Hash::make('123456789')
         ]);
 
         $command_start_date_time = new Carbon();

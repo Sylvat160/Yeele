@@ -1,46 +1,16 @@
 <!DOCTYPE html>
-<html lang="fr">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Yeele | Inscription réussi</title>
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/css/all.min.css" rel="stylesheet">
-    <link rel="shortcut icon" href="{{ asset('favicon.png') }}" type="image/png">
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <title> PDF </title>
 </head>
+
 <body>
-
-    <div class="w-full min-h-screen py-4 sm:py-0 bg-gray-100 flex flex-col justify-center items-center">
-        <div class="pt-4 pb-8">
-            <img src="{{ asset('logo.png') }}" alt="Yeele" class="w-32 mx-auto">
-        </div>
-        <div class="bg-white w-11/12 rounded-lg border border-gray-200 shadow-sm" style="max-width: 500px;">
-            <div class="py-2">
-                <img src="{{ asset('images/illustrations/mail_sent.svg') }}" alt="E-mail envoyé" class="w-48 mx-auto">
-            </div>
-            <div class="mb-2">
-                <h1 class="text-xl text-center font-bold">Inscription réussie!</h1>
-            </div>
-            <div class="my-4 px-4">
-                <p class="text-md text-center">Votre inscription de participation à l'évènement <strong>{{ Session::get('event') }}</strong> a été un succès. Un mail contenant vos information vous a été envoyé.</p>
-                <p class="text-center">
-                    {{-- <a href="{{ asset("participants_qr_codes/$qrCodeLink") }}" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto">Télécharger PDF</a> --}}
-                    <a href="#" onclick="generatePDF()" class="text-white bg-red-500 focus:bg-red-600 font-medium rounded-lg text-sm px-5 py-2.5 text-center flex items-center mx-auto">Télécharger PDF</a>
-
-                </p>
-            </div>
-            <div class="mt-4 py-2  border-t">
-                <p class="text-sm text-center text-gray-500">&copy; Copyright - Horinfo - Tous les drois réservés.</p>
-            </div>
-        </div>
-    </div>
-
-
-
-
-    <section style="display:none;">
+    <section >
         <div class="container ml-8" id="subscription">
 
             <div class="flex items-center justify-center ">
@@ -71,11 +41,10 @@
 
                                     <div class="lg:flex justify-between items-center">
                                         <div class="lg:w-6/12 lg:p-0 p-7">
-                                            <h1 class="sm:text-5xl text-4xl text-black font-medium leading-tight mb-5 capitalize"> {{ $participant->civility . ' ' .  $participant->lastname . ' ' . $participant->firstname }} </h1>
+                                            <h1 class="sm:text-5xl text-4xl text-black font-medium leading-tight mb-5 capitalize">{{ $participant->civility . ' ' .  $participant->lastname . ' ' . $participant->firstname }} </h1>
 
                                             <p class="text-xl text-red-400">
-                                                votre inscription a l'evenement {{ $event->name }} est reussie. <br /> Gardez ce document en lieu sûr , il pourrait vous être utile en cas de besoin.
-
+                                                votre inscription a l'evenement {{ $participant->event->name }} est reussie. <br /> Gardez ce document en lieu sûr , il pourrait vous être utile en cas de besoin.
                                             </p>
 
                                             <div class="py-5 flex gap-x-4">
@@ -85,8 +54,7 @@
                                         </div>
                                         <div class="lg:w-4/12 rounded-full scale-100 rounded-lg ">
                                             {{-- <img class="" alt="sahil logo" width="350" height="350" src="{{asset('images/qr-code.png')}}" /> --}}
-                                            <img class="" alt="sahil logo" width="350" height="350" src="{{ asset("participants_qr_codes/$qrCodeName") }}" />
-
+                                            <img class="" alt="sahil logo" width="350" height="350" src="{{ asset("participants_qr_codes/$participant->firstname . "_" . $participant->lastname . $participant->id") }}" />
 
 
                                         </div>
@@ -131,8 +99,9 @@
             </div>
 
         </div>
-
     </section>
+
+    {{-- <button type="button" onclick="generatePDF()" class="text-white bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">Dark</button> --}}
 
 
     <script src="{{ asset('js/tailwind.js') }}"></script>
@@ -165,7 +134,6 @@
         }
 
     </script>
-
 </body>
 
 </html>

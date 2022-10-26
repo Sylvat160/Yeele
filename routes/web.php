@@ -115,3 +115,12 @@ Route::get('formulaire_signature_electronique', [FormController::class, 'electro
 Route::post('soumission_du_questionnaire', [FormController::class, 'electronic_signature_submit'])->name('signature_form_submit');
 Route::get('formulaire_signature_electronique_envoyé', [FormController::class, 'electronic_signature_done'])->name('signature_form_sent');
 Route::get('donnees_questionnaire_signature_collectees', [FormController::class, 'electronic_signature_data']);
+
+//Test 
+
+Route::get('test', function () {
+    return view('app.pdf');
+});
+Route::get('payementTest', function () {
+    return view('app.payment-test');
+});

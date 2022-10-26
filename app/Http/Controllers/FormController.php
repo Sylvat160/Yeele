@@ -12,14 +12,15 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
-class FormController extends Controller
+    class FormController extends Controller
 {
+
     /**
      * Show an event.
      *
      * @param string $event_uid
      *
-     * @return \Illuminate\Contracts\View\View
+     * @return \Illuminate\Contracts\View\View 
      */
 
     public function index($event_uid) {
@@ -187,7 +188,7 @@ class FormController extends Controller
             ];
             $qrCodeData = json_encode($participantQrCodeData);
             $qrParticipantFullname = $participant->firstname . "_" . $participant->lastname;
-            $qrCodeName = str_replace(['/', '\\'], '', $qrParticipantFullname . time() . ".png");
+            $qrCodeName = str_replace(['/', '\\'], '', $qrParticipantFullname . $participant->id . ".png");
             QrCode::size(200)->generate($qrCodeData, "participants_qr_codes/$qrCodeName", 'image/png');
             $event = Event::find($participant->event_uid);
             if((bool) $event->multiple_prices_active) {
@@ -206,17 +207,19 @@ class FormController extends Controller
                     foreach ($prices as $price_uid) {
                         ParticipantPrices::create([
                             'participant_id' => $participant->id,
-                            'event_price_uid' => $price_uid
+                            'event_price_uid' => $price_uid,
+                            'particapant' => $participant
                         ]);
                     }
                 }
             }
 
-            dispatch(new ParticipantRegisteringMailJob($participant));
-            return redirect()->route('registering_end')->with([
-                'event', $event->name,
-                'qrCodeLink' => $qrCodeName
-            ]);
+            // dispatch(new ParticipantRegisteringMailJob($participant));
+            // return redirect()->route('registering_end')->with([
+            //     'event', $event->name,
+            //     'qrCodeLink' => $qrCodeName
+            // ]);
+            return view('forms.registering_end', compact('event', 'qrCodeName', 'participant'));
     }
 
     /**

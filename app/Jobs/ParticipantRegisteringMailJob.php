@@ -34,6 +34,8 @@ class ParticipantRegisteringMailJob implements ShouldQueue
      */
     public function handle()
     {
-        Mail::to($this->participant->email)->send(new ParticipantRegisteringMail($this->participant));
+        Mail::to($this->participant->email)->send(
+            new ParticipantRegisteringMail($this->participant)
+        );
     }
 }
