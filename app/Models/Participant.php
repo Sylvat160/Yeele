@@ -22,21 +22,26 @@ class Participant extends Model
         'payment_status',
         'attendance',
         'link_count',
+        'payment_reference',
     ];
 
-    public function event() {
+    public function event()
+    {
         return $this->belongsTo(Event::class, 'event_uid');
     }
 
-    public function field() {
+    public function field()
+    {
         return $this->belongsTo(Field::class);
     }
 
-    public function participantPrices() {
+    public function participantPrices()
+    {
         return $this->hasMany(ParticipantPrices::class);
     }
 
-    public function getCustomAttribute() {
+    public function getCustomAttribute()
+    {
         $pricesWithoutQuantity = [];
         $pricesWithQuantity = [];
         foreach ($this->participantPrices as $price) {
@@ -44,15 +49,14 @@ class Participant extends Model
         }
 
         foreach ($this->participantPrices as $price) {
-            array_push(
-                $pricesWithQuantity,
-                 [$price->event_price_uid => $price->quantity]
-            );
+            array_push($pricesWithQuantity, [
+                $price->event_price_uid => $price->quantity,
+            ]);
         }
 
         return [
             'pwithoutq' => json_encode($pricesWithoutQuantity),
-            'pwithq' => json_encode($pricesWithQuantity)
+            'pwithq' => json_encode($pricesWithQuantity),
         ];
     }
 }

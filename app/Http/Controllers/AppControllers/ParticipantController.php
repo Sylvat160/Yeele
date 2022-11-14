@@ -35,14 +35,40 @@ class ParticipantController extends Controller
             compact('event_menu', 'event', 'participants', 'additional_fields')
         );
     }
+    public function paymentEditList($event_uid)
+    {
+        $event_menu = true;
+        $event = Event::find($event_uid);
+        $participants = $event->participants;
+        $additional_fields = json_decode($event->form_fields_names, true) ?? [];
+
+        return view(
+            'app.participant_payment_edit_list',
+            compact('event_menu', 'event', 'participants', 'additional_fields')
+        );
+    }
 
     public function edit($participantId, $event_uid)
     {
         $participant = Participant::find($participantId);
         $event = Event::find($event_uid);
-        $fields = json_decode($event->form->data, true);
+        $fields = $event->form_fields_names
+            ? json_decode($event->form_fields_names, true)
+            : [];
         return view(
             'app.participant-edit',
+            compact('participant', 'event', 'fields')
+        );
+    }
+    public function participantEditPayment($participantId, $event_uid)
+    {
+        $participant = Participant::find($participantId);
+        $event = Event::find($event_uid);
+        $fields = $event->form_fields_names
+            ? json_decode($event->form_fields_names, true)
+            : [];
+        return view(
+            'app.participant_payment_edit',
             compact('participant', 'event', 'fields')
         );
     }
@@ -170,6 +196,39 @@ class ParticipantController extends Controller
             ->with('success', 'Les données du participant ont été modifiées.');
     }
 
+    // public function paymentUpdate(Request $request)
+    // {
+    //     $validator = Validator::make(
+    //         $request->all(),
+    //         [
+    //             'references' => 'required',
+    //             'lastname' => 'required',
+    //             'firstname' => 'required',
+    //             'lastname' => 'required',
+    //             'email' => 'required',
+    //             'phone' => 'required',
+    //             'civility' => 'required',
+    //         ],
+    //         [
+    //             'required' => 'Ce champ est obligatoire.',
+    //             'email' => 'Vous devez renseigner une adresse mail.',
+    //             'email.unique' =>
+    //                 'Il existe déjà un participant avec cette adresse email.',
+    //             'phone.unique' =>
+    //                 'Il existe déjà un participant avec cet numéro de téléphone.',
+    //         ]
+    //     );
+
+    //     if ($validator->fails()) {
+    //         return redirect()
+    //             ->back()
+    //             ->withErrors($validator);
+    //     }
+
+    //     $participant = Participant::find($request->participant_id);
+
+    // }
+
     //Participant update page
 
     public function participantUpdatePage($participant_id, $event_uid)
@@ -185,6 +244,39 @@ class ParticipantController extends Controller
 
     //Participant updates
 
+    public function paymentUpdate(Request $request)
+    {
+        $validator = Validator::make(
+            $request->all(),
+            [
+                'references' => 'required',
+                
+            ],
+            [
+                'required' => 'Ce champ est obligatoire.',
+                
+            ]
+        );
+
+        if ($validator->fails()) {
+            return redirect()
+                ->back()
+                ->withErrors($validator);
+        }
+
+        $participant = Participant::find($request->participant_id);
+        $participant->update([
+            'payment_reference' => $request->references,
+            'payment_status ' => true,
+        ]);
+
+        return redirect()
+            ->route('participants-payment-edit-list', $request->event_uid)
+            ->with(
+                'success',
+                'Le paiement de ce participant a bien été pris en compte.'
+            );
+    }
     public function participantUpdate(Request $request)
     {
         $validator = Validator::make(
@@ -356,5 +448,4 @@ class ParticipantController extends Controller
 
         // return redirect to zoom meeting
     }
-    
 }

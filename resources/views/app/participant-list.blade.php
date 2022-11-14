@@ -119,7 +119,7 @@
                                         @endif
                                         @if ($event->eventPrices->count())
                                         <td>
-                                            @if ((bool) $participant->payment_status)
+                                            @if ((bool) $participant->payment_status || (bool) $participant->payment_reference)
                                             <span class="text-success">Payé</span>
                                             @else
                                                 <span class="text-danger">Non payé</span>

@@ -83,6 +83,13 @@ Route::prefix('app')->middleware(['auth', 'client', 'verified'])->group(function
     Route::post('participant-delete', [ParticipantController::class, 'destroy'])->name('participant.remove');
     Route::post('participant-update', [ParticipantController::class, 'update'])->name('participant.update');
 
+    // EDIT PARTICIPANT PAYMENTS ROUTES
+    Route::get('current_event/{event_uid}/participants-payment-edit-list', [ParticipantController::class, 'paymentEditList'])->name('participants-payment-edit-list');
+    Route::get('participant-payment-edit/{participant_uid}/{event_uid}', [ParticipantController::class, 'participantEditPayment'])->name('participant.payment.edit');
+    Route::post('participant-payment-update', [ParticipantController::class, 'paymentUpdate'])->name('participant.payment.update');
+
+
+
     //PRICE SETTINGS ROUTES
 
     Route::post('update_multi_select_status', [App\Http\Controllers\AppControllers\PriceSettingController::class, 'updateMultiSelectStatus'])->name('updateMultiSelectStatus');
