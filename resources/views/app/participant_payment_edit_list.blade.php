@@ -49,7 +49,7 @@
                         </thead>
                         <tbody>
                             @foreach ($event->participants as $participant)
-                            
+
 
                             <tr class="odd">
                                 <td>{{ $participant->lastname }}</td>
@@ -101,17 +101,17 @@
                                     @endif
                                     <td>
                                         @if((bool) $participant->payment_status || (bool) $participant->payment_reference)
-                                            <a style="background:red;" href="#" class="btn btn-info" class="editParticipantBtn">
-                                                <span>Déjà payé</span>
-                                            </a>
+                                        <a style="background:green;" href="#" class="btn btn-info" class="editParticipantBtn">
+                                            <span>Déjà payé</span>
+                                        </a>
 
                                         @else
-                                            <a href="{{ route('participant.payment.edit', [$participant->id, $participant->event->uid]) }}" class="btn btn-info" class="editParticipantBtn">
-                                                <span>Editer</span>
-                                            </a>
+                                        <a href="{{ route('participant.payment.edit', [$participant->id, $participant->event->uid]) }}" class="btn btn-info" class="editParticipantBtn">
+                                            <span>Editer</span>
+                                        </a>
                                         @endif
                                     </td>
-                                    
+
                             </tr>
                             @endforeach
                         </tbody>
@@ -182,4 +182,3 @@
 
 </script>
 @endsection
-
