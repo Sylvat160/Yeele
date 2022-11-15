@@ -28,6 +28,11 @@ class ParticipantController extends Controller
         $event_menu = true;
         $event = Event::find($event_uid);
         $participants = $event->participants;
+        // $participants = array_filter($event->participants->toArray(), function ($participant) {
+        //     if ($participant["payment_status"] === 0) {
+        //         return $participant;
+        //     }
+        // });
         $additional_fields = json_decode($event->form_fields_names, true) ?? [];
 
         return view(
@@ -196,40 +201,6 @@ class ParticipantController extends Controller
             ->with('success', 'Les données du participant ont été modifiées.');
     }
 
-    // public function paymentUpdate(Request $request)
-    // {
-    //     $validator = Validator::make(
-    //         $request->all(),
-    //         [
-    //             'references' => 'required',
-    //             'lastname' => 'required',
-    //             'firstname' => 'required',
-    //             'lastname' => 'required',
-    //             'email' => 'required',
-    //             'phone' => 'required',
-    //             'civility' => 'required',
-    //         ],
-    //         [
-    //             'required' => 'Ce champ est obligatoire.',
-    //             'email' => 'Vous devez renseigner une adresse mail.',
-    //             'email.unique' =>
-    //                 'Il existe déjà un participant avec cette adresse email.',
-    //             'phone.unique' =>
-    //                 'Il existe déjà un participant avec cet numéro de téléphone.',
-    //         ]
-    //     );
-
-    //     if ($validator->fails()) {
-    //         return redirect()
-    //             ->back()
-    //             ->withErrors($validator);
-    //     }
-
-    //     $participant = Participant::find($request->participant_id);
-
-    // }
-
-    //Participant update page
 
     public function participantUpdatePage($participant_id, $event_uid)
     {
