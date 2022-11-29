@@ -2,20 +2,22 @@
 
 namespace App\Http\Controllers\AppControllers;
 
+use DateTime;
+use App\Models\User;
+use App\Models\Event;
+use App\Models\Command;
+use App\Models\Participant;
 use Illuminate\Support\Str;
-use Illuminate\Support\Facades\Auth;
-use Illuminate\Support\Facades\Hash;
-use Illuminate\Support\Facades\Password;
-use Illuminate\Support\Facades\Validator;
-use Illuminate\Auth\Events\Registered;
-use Illuminate\Foundation\Auth\EmailVerificationRequest;
+use Illuminate\Http\Request;
 use App\Events\PasswordResetEvent;
 use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 use App\Http\Requests\RegisterRequest;
-use App\Models\User;
-use App\Models\Command;
-use DateTime;
-use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+use Illuminate\Support\Facades\Password;
+use Illuminate\Support\Facades\Validator;
+use Illuminate\Foundation\Auth\EmailVerificationRequest;
 
 class AuthController extends Controller
 {
@@ -257,6 +259,9 @@ class AuthController extends Controller
     }
 
     public function home() {
-        return view('app.home');
+        $events = Event::all()->count();
+        $users = User::where('role_id', '2')->get()->count();
+        $participants = Participant::all()->count();
+        return view('app.home' , compact('events', 'users' , 'participants'));
     }
 }

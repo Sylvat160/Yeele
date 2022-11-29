@@ -2,13 +2,14 @@
 
 namespace App\Http\Controllers\AppControllers;
 
-use App\Http\Controllers\Controller;
+use Carbon\Carbon;
+use App\Models\Type;
+use App\Models\User;
+use App\Models\Event;
+use App\Models\Category;
 use Illuminate\Http\Request;
 use App\Http\Requests\EventRequest;
-use Carbon\Carbon;
-use App\Models\Category;
-use App\Models\Event;
-use App\Models\Type;
+use App\Http\Controllers\Controller;
 
 class EventController extends Controller
 {
@@ -83,8 +84,13 @@ class EventController extends Controller
     {
         $event_menu = true;
         $event = Event::find($uid);
-        return view('app.event-show', compact('event', 'event_menu'));
+        $paymentMethods = $event->event_payment_methods;
+        $payment_total = $event->participants->sum('price');
+
+
+        return view('app.event-show', compact('event', 'event_menu' , 'payment_total' , 'paymentMethods'));
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -145,4 +151,6 @@ class EventController extends Controller
         $newDateTime = new Carbon($modified_datetime);
         return $newDateTime;
     }
+
+    
 }

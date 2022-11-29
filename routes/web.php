@@ -1,18 +1,21 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\FormController;
+use App\Http\Controllers\ContactController;
+use App\Http\Controllers\StaticPagesController;
 use App\Http\Controllers\AppControllers\AuthController;
-use App\Http\Controllers\AppControllers\BulkMailController;
-use App\Http\Controllers\AppControllers\CommandController;
+use App\Http\Controllers\AppControllers\AdminController;
 use App\Http\Controllers\AppControllers\EventController;
-use App\Http\Controllers\AppControllers\EventPaymentMethodController;
-use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\FieldController;
+use App\Http\Controllers\AppControllers\CommandController;
+use App\Http\Controllers\AppControllers\BulkMailController;
+use App\Http\Controllers\AppControllers\EventPriceController;
 use App\Http\Controllers\AppControllers\ParticipantController;
 use App\Http\Controllers\AppControllers\PaymentAccountController;
-use App\Http\Controllers\ContactController;
-use App\Http\Controllers\FormController;
-use App\Http\Controllers\StaticPagesController;
+use App\Http\Controllers\AppControllers\EventPaymentMethodController;
+use App\Http\Middleware\Admin;
+use App\Models\Event;
 
 //WEBSITE
 
@@ -45,6 +48,26 @@ Route::middleware('auth')->group(function() {
     Route::post('renvoyer_le_mail', [AuthController::class, 'resend_verification_mail'])->name('email.resend_verification_mail');
     Route::get('mail_renvoyé', [AuthController::class, 'resent_mail'])->name('resent_mail');
     Route::post('logout', [AuthController::class, 'logout'])->name('app.logout');
+});
+
+//ADMIN PANEL
+Route::prefix('admin')->middleware(['auth', 'admin'  , 'verified'])->group(function(){
+    Route::get('/evenement/en_cours', [AdminController::class , 'currentEvents'])->name('events-current');
+    Route::get('/evenement/termines', [AdminController::class , 'endEvents'])->name('events-end');
+    Route::get('/evenement/a_venir', [AdminController::class , 'upcomingEvents'])->name('events-upcoming');
+    Route::get('/utilisateurs', [AdminController::class, 'index'])->name('users_list');
+    Route::get('/evenements', [AdminController::class, 'events'])->name('all.events');
+    Route::get('/utilisateur/{id}', [AdminController::class, 'userDetails'])->name('user.details');
+    Route::get('/commandes/{id}', [AdminController::class, 'userOrders'])->name('user.orders');
+    Route::get('/evenement/{id}', [AdminController::class, 'userEvents'])->name('user.events');
+    // Route::get('evenements/{event}/participants', [EventController::class, 'participants'])->name('admin.events.participants');
+    // Route::get('evenements/{event}/participants/{participant}/supprimer', [EventController::class, 'destroy_participant'])->name('admin.events.participants.destroy');
+    // Route::get('evenements/{event}/participants/{participant}/modifier', [EventController::class, 'edit_participant'])->name('admin.events.participants.edit');
+    // Route::post('evenements/{event}/participants/{participant}/modifier', [EventController::class, 'update_participant'])->name('admin.events.participants.update');
+    // Route::get('evenements/{event}/participants/{participant}/payer', [EventController::class, 'pay_participant'])->name('admin.events.participants.pay');
+    // Route::get('evenements/{event}/participants/{participant}/payer/{payment_method}', [EventController::class, 'pay_participant_with'])->name('admin.events.participants.pay_with');
+    // Route::get('evenements/{event}/participants/{participant}/payer/{payment_method}/annuler', [EventController::class, 'cancel_payment'])->name('admin.events.participants.cancel_payment');
+    // Route::get('evenements/{event}/participants/{participant}/payer/{payment_method}/valider', [EventController::class, 'validate_payment'])->name('admin.events.participants.validate_payment');
 });
 
 //SIGNED AND AUTHORIZED CLIENTS ROUTES
@@ -131,3 +154,4 @@ Route::get('test', function () {
 Route::get('payementTest', function () {
     return view('app.payment-test');
 });
+

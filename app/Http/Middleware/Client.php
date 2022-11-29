@@ -17,7 +17,7 @@ class Client
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows("client")) return $next($request);
+        if(Gate::allows("client") || Gate::allows("admin")) return $next($request);
         else abort(403);
     }
 }

@@ -10,9 +10,11 @@
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('website.home') }}" class="nav-link">Accueil</a>
         </li>
+        @can('client')
         <li class="nav-item d-none d-sm-inline-block">
             <a href="{{ route('website.contact') }}" class="nav-link">Contact</a>
         </li>
+        @endcan
     </ul>
     <ul class="navbar-nav ml-auto">
         <!-- Navbar Search -->
