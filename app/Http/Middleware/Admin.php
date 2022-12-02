@@ -17,7 +17,7 @@ class Admin
      */
     public function handle(Request $request, Closure $next)
     {
-        if(Gate::allows("admin")) return $next($request);
+        if(Gate::allows("admin") || Gate::allows('superviseur')) return $next($request);
         else abort(403);
     }
 }

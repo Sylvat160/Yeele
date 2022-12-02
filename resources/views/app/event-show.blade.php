@@ -43,7 +43,7 @@
 </div>
 
 <div class="row">
-    @if($event->eventPrices)
+    @if($event->eventPrices->count() > 0)
     <div class="col-md-6 col-12">
         <!-- small box -->
         <div class="small-box bg-primary">

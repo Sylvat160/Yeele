@@ -35,6 +35,9 @@ class AuthServiceProvider extends ServiceProvider
         Gate::define('client', function(User $user) {
             return $user->role->name === "Client";
         });
+        Gate::define('superviseur', function(User $user) {
+            return $user->role->name === "Superviseur";
+        });
 
         VerifyEmail::toMailUsing(function ($notifiable, $url) {
             return (new MailMessage)

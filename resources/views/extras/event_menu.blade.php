@@ -14,7 +14,7 @@
             </li>
         </ul>
     </li>
-
+    @cannot('superviseur')
     <li class="nav-item">
         <a href="#" class="nav-link">
             <i class="fa-solid fa-gear"></i>
@@ -52,7 +52,7 @@
                     <span>Comptes de paiements</span>
                 </a>
             </li>
-            @if ($hasDynamicForm && Auth::user()->custom['currentCommand']->plan_id === 2)
+            @if ($hasDynamicForm && Auth::user()->custom['currentCommand']->plan_id === 2 || Auth::user()->role_id === 1)
             <li class="nav-item">
                 <a href="{{ route('event.new_form', $event_uid) }}" class="nav-link d-flex align-items-center" data-event_menu_path="creation_formulaire">
                     <img src="{{ asset('images/icons/form.svg') }}" width="23" alt="Formulaire">
@@ -81,6 +81,7 @@
 
         </ul>
     </li>
+    @endcannot
     <li class="nav-item">
         <a href="{{ route('show_event_form', $event_uid) }}" target="_blank" class="nav-link">
             <i class="fa-solid fa-eye"></i>

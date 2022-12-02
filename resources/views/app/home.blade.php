@@ -9,7 +9,7 @@
 {{-- SUCCESS MESSAGE --}}
 @include('extras.success_message')
 {{-- END SUCCESS MESSAGE --}}
-@can('admin')
+@cannot('client')
 <div class="row">
     <div class="col-md-4 col-12">
         <!-- small box -->
@@ -106,7 +106,7 @@
     </div>
     <!-- ./col -->
 </div>
-@endcan
+@endcannot
 
 
 {{-- Stats-End --}}
