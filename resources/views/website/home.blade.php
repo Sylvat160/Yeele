@@ -4,6 +4,13 @@
 @endsection
 
 @section('additionnalStyle')
+    <link rel="stylesheet" href="{{ asset('app_assets/plugins/fontawesome/css/all.min.css') }}">
+    {{-- <link rel="stylesheet" href="{{asset('css/bootstrap.min.css')}}"  > --}}
+     <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="{{asset('css/carousssel.css')}}">
+
+
     <style>
         .hero_block {
             background: url(../images/backgrounds/hero_bg.png) no-repeat;
@@ -16,6 +23,8 @@
                 background: none;
             }
         }
+
+        
 
     </style>
 @endsection
@@ -39,6 +48,104 @@
                 class="w-52 h-52 sm:w-96 sm:h-96 md:w-80 md:h-80 lg:w-96 lg:h-96 lg:ml-12 rounded-full hero">
         </div>
     </x-website-container>
+    
+    <section class="event-bg">
+        <h1 class="mx-12 my-10 text-gray-700 text-3xl text-center sm:text-5xl montserrat_bold text-center" style="font-family: 'Dancing Script', cursive, sans-serif;">
+
+            Evenements en cours
+        </h1>
+        <div class="container mx-auto w-full overflow-hidden relative">
+            <div class="w-full h-full absolute">
+                <div class="w-1/4 h-full absolute z-50 left-0" style="background: linear-gradient(to right, #edf2f7 0%, rgba(255, 255, 255, 0) 100%);"></div>
+                <div class="w-1/4 h-full absolute z-50 right-0" style="background: linear-gradient(to left, #edf2f7 0%, rgba(255, 255, 255, 0) 100%);"></div>
+            </div>
+
+            <div class="carousel-items flex items-center justify-center " style="width: fit-content; animation: carouselAnim 30s infinite alternate linear;">
+
+                @forelse($currentEvent as $event)
+                    
+                <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3 rounded-lg shadow-lg" style="width: 270px;">
+                    {{-- <svg class="fill-current text-teal-400 hover:text-teal-500 cursor-pointer h-12 w-12 absolute top-0 right-0 mt-2 -mr-5" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
+                        <path d="M11.5 0C17.847 0 23 5.153 23 11.5S17.847 23 11.5 23 0 17.847 0 11.5 5.153 0 11.5 0zm0 1C17.295 1 22 5.705 22 11.5S17.295 22 11.5 22 1 17.295 1 11.5 5.705 1 11.5 1zm.5 10h6v1h-6v6h-1v-6H5v-1h6V5h1v6z" /></svg> --}}
+                    <!-- <button class="absolute top-0 right-0 bg-teal-400 rounded-full px-1 py-0 font-bold text-lg">+</button> -->
+                    <span class="text-black font-bold text-xl mb-3"> {{$event->name}} </span>
+                    <img class="h-16 w-16 rounded-full shadow-2xl" src="https://pbs.twimg.com/profile_images/830533062807191552/TbkWKnnv_400x400.jpg" alt="Img">
+                    <p class="mt-3 text-gray-600 text-center"> {{ $event->description }} </p>
+                    <button class="mt-4 mb-2 bg-red-400 rounded-full px-12 py-1 text-gray-100 font-semibold hover:bg-red-600 focus:outline-none"> <a href="{{route('show_event_form',$event->uid)}}"> Details </a> </button>
+
+
+                </div>
+                @empty
+                    
+                <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3 rounded-lg shadow-lg" style="width: 270px;">
+                    <!-- <button class="absolute top-0 right-0 bg-teal-400 rounded-full px-1 py-0 font-bold text-lg">+</button> -->
+                    <span class="text-black font-bold text-xl mb-3">Evenements</span>
+                    <img src="{{ asset('images/illustrations/empty.svg') }}" width="100" alt="Aucun évènement enregistré">
+                    <p class="mt-3 text-gray-600 text-center"> Aucun evenement </p>
+                </div>
+                @endforelse
+
+                
+
+                
+                
+
+                
+            </div>
+
+        </div>
+
+
+    </section>
+
+    <section >
+        <h1 class="mx-12 my-10 text-gray-700 text-3xl  sm:text-5xl montserrat_bold text-center" style="font-family: 'Dancing Script', cursive, sans-serif;">
+
+            Evenements a venir
+        </h1>
+        <div class="container mx-auto w-full overflow-hidden relative">
+            <div class="w-full h-full absolute">
+                <div class="w-1/4 h-full absolute z-50 left-0" style="background: linear-gradient(to right, #edf2f7 0%, rgba(255, 255, 255, 0) 100%);"></div>
+                <div class="w-1/4 h-full absolute z-50 right-0" style="background: linear-gradient(to left, #edf2f7 0%, rgba(255, 255, 255, 0) 100%);"></div>
+            </div>
+
+            <div class="carousel-items flex items-center justify-center" style="width: fit-content; animation: carouselAnim 20s infinite alternate linear;">
+
+                @forelse($comingupEvent as $event)
+
+                <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3 rounded-lg shadow-lg" style="width: 270px;">
+                    <!-- <button class="absolute top-0 right-0 bg-teal-400 rounded-full px-1 py-0 font-bold text-lg">+</button> -->
+                    <span class="text-teal-400 font-bold text-xl mb-3"> {{$event->name}} </span>
+                    <img class="h-16 w-16 rounded-full shadow-2xl" src="https://pbs.twimg.com/profile_images/830533062807191552/TbkWKnnv_400x400.jpg" alt="Img">
+                    <p class="mt-3 text-gray-600 text-center"> {{ $event->description }} </p>
+                    <button class="mt-4 mb-2 bg-red-400 rounded-full px-12 py-1 text-gray-100 font-semibold hover:bg-red-600 focus:outline-none"> <a href="{{route('show_event_form',$event->uid)}}"> Details </a> </button>
+
+                </div>
+                @empty
+
+                <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3 rounded-lg shadow-lg" style="width: 270px;">
+                    <!-- <button class="absolute top-0 right-0 bg-teal-400 rounded-full px-1 py-0 font-bold text-lg">+</button> -->
+                    <span class="text-black font-bold text-xl mb-3">Evenements</span>
+                    <img src="{{ asset('images/illustrations/empty.svg') }}" width="100"  alt="Aucun évènement enregistré">
+
+                    <p class="mt-3 text-gray-600 text-center"> Aucun evenement </p>
+                    
+                </div>
+                @endforelse
+
+
+
+
+
+
+
+            </div>
+
+        </div>
+
+
+    </section>
+
     <main class="mt-4 md:mt-12 py-6">
         <div class="mt-6 py-4 bg-gray-100">
             <x-website-container class="flex justify-around md:justify-center items-center">
@@ -54,7 +161,7 @@
         </div>
         <x-website-container class="my-12">
             <div class="w-11/12 py-12 m-auto">
-                <h1 class="text-3xl text-center sm:text-5xl montserrat_bold">Gérer facilement
+                <h1 class="text-3xl text-center sm:text-5xl montserrat_bold">Gérer facilement 
                     les inscriptions de vos différents <span class="text-green-500 montserrat_bold">énèvenements</span>.
                 </h1>
             </div>
@@ -140,3 +247,9 @@
         </div>
     </main>
 @endsection
+@section('additionalScript')
+<script src="{{asset('js/tailwind.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+
+
+@endsection
+

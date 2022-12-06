@@ -92,7 +92,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
 
             if($validator->fails()) {
                 return redirect()->back()->withErrors($validator);
-            } else if(isset($currentCommand)) {
+            } else if(isset($currentCommand) && $event->user->role_id === 2) {
                 $planISilver = $currentCommand->plan_id === 1;
                 if($planISilver && $event->participants->count() >= 20) {
                     return
@@ -100,7 +100,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
                     ->back()
                     ->with('error', "Le nombre total d'inscriptions (soit 20) est atteint. Veuillez contacter le gestionnaire de l'évènement.");
                 }
-            } else if($event->participants->count() >= 4) {
+            } else if($event->participants->count() >= 4 && $event->user->role_id === 2) {
                 return
                 redirect()
                 ->back()

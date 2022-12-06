@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Participant;
 use App\Models\Plan;
+use App\Models\Event;
+use App\Models\Participant;
 use Illuminate\Http\Request;
 
 class StaticPagesController extends Controller
@@ -13,7 +14,9 @@ class StaticPagesController extends Controller
         $firstChar = substr($total, 0, 1);
         $number = $firstChar . implode('', array_fill(0, strlen($total) - 1, 0));
         if(strlen($number) < 4) $number = "1000";
-        return view('website.home', compact('number'));
+        $comingupEvent = Event::where('start_date_time', '>', now())->orderBy('start_date_time', 'asc')->get();
+        $currentEvent = Event::where('start_date_time', '<', now())->where('end_date_time', '>', now())->orderBy('start_date_time', 'asc')->get();
+        return view('website.home', compact('number' , 'comingupEvent', 'currentEvent'));
     }
 
     public function features() {

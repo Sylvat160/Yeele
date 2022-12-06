@@ -74,7 +74,7 @@
 
     @endif
 </div>
-{{-- @dd($event->participants->where('civility', 'Mademoiselle')) --}}
+
 <div class="row">
     @foreach($paymentMethods as $paymentMethod)
     <div class="col-md-6 col-12">
