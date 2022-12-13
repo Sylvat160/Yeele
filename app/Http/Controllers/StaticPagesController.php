@@ -16,6 +16,7 @@ class StaticPagesController extends Controller
         if(strlen($number) < 4) $number = "1000";
         $comingupEvent = Event::where('start_date_time', '>', now())->orderBy('start_date_time', 'asc')->get();
         $currentEvent = Event::where('start_date_time', '<', now())->where('end_date_time', '>', now())->orderBy('start_date_time', 'asc')->get();
+        
         return view('website.home', compact('number' , 'comingupEvent', 'currentEvent'));
     }
 

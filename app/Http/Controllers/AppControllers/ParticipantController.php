@@ -234,11 +234,14 @@ class ParticipantController extends Controller
                 ->back()
                 ->withErrors($validator);
         }
-
+        $data = [
+            'payment_reference' => $request->references,
+            'payment_status' => true];
+        // dd($data);
         $participant = Participant::find($request->participant_id);
         $participant->update([
             'payment_reference' => $request->references,
-            'payment_status ' => true,
+            'payment_status' =>  true,
         ]);
 
         return redirect()

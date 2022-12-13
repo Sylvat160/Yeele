@@ -87,8 +87,12 @@ class EventController extends Controller
         $paymentMethods = $event->event_payment_methods;
         $payment_total = $event->participants->sum('price');
 
+        $madePayments = $event->participants->filter(function($participant) {
+            return $participant->payment_status === 1 || $participant->payment_reference !== null;
+        })->sum('price');
 
-        return view('app.event-show', compact('event', 'event_menu' , 'payment_total' , 'paymentMethods'));
+
+        return view('app.event-show', compact('event', 'event_menu' , 'payment_total' , 'paymentMethods', 'madePayments'));
     }
 
 

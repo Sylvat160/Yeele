@@ -48,8 +48,13 @@
         <!-- small box -->
         <div class="small-box bg-primary">
             <div class="inner">
-                <h3> {{ $payment_total }} </h3>
+                <h3> {{ number_format($madePayments,0,'.',' ') }} </h3>
+
+
+
                 <p>Paiements total pour cet evenement </p>
+                <p> {{ number_format($payment_total , 0 , '.' ,' ') }} </p>
+
 
             </div>
             <div class="icon">
@@ -81,11 +86,11 @@
         <!-- small box -->
         <div class="small-box bg-info">
             <div class="inner">
-                <h3>{{  $event->participants->where('payment_method', $paymentMethod->name)->sum('price')  }}</h3>
-
+            
+                <h3>{{ number_format($event->participants->where('payment_method', $paymentMethod->name)->where('payment_status', 1 )->sum('price'),0,'.',' ') }} </h3>
+                
                 <p>{{ $paymentMethod->name }}</p>
-
-
+                <p></p>
             </div>
             <div class="icon">
                 <i class="ion ion-person-add"></i>

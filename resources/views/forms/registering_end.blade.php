@@ -85,10 +85,7 @@
                                         </div>
                                         <div class="lg:w-4/12 rounded-full scale-100 rounded-lg ">
                                             {{-- <img class="" alt="sahil logo" width="350" height="350" src="{{asset('images/qr-code.png')}}" /> --}}
-                                            <img class="" alt="sahil logo" width="350" height="350" src="{{ asset("participants_qr_codes/$qrCodeName") }}" />
-
-
-
+                                             {!! QrCode::size(200)->generate($qrCodeData); !!}
                                         </div>
                                     </div>
 
@@ -120,7 +117,7 @@
                         </div>
 
                         <p class="float-right relative bottom-10 right-10 font-serif">
-                            Participant n°: {{ $participant->id }}
+                            Participant n°: {{ $participant->id . '' . substr($participant->event_uid, 0, 7) }}
                         </p>
 
                     </div>

@@ -219,7 +219,7 @@ use SimpleSoftwareIO\QrCode\Facades\QrCode;
             //     'event', $event->name,
             //     'qrCodeLink' => $qrCodeName
             // ]);
-            return view('forms.registering_end', compact('event', 'qrCodeName', 'participant'));
+            return view('forms.registering_end', compact('event', 'qrCodeName', 'qrCodeData', 'participant'));
     }
 
     /**

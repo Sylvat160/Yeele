@@ -674,6 +674,14 @@ function paypalCheckout(_ref) {
 }
 
 function cinetpayCheckout(options) {
+  var RegEx = /^[a-zA-Z0-9._-]+@[a-z0-9._-]{2,}\.[a-z]{2,4}$/;
+  var email = document.getElementById('email').value;
+
+  if (!email.match(RegEx)) {
+    alert("Votre adresse email n'est pas valide.");
+    return;
+  }
+
   document.getElementById("payment_container").innerHTML = "";
   CinetPay.setConfig({
     apikey: "127698624362c6d628ee1773.76085360",

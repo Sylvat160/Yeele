@@ -63,14 +63,14 @@
             <div class="carousel-items flex items-center justify-center " style="width: fit-content; animation: carouselAnim 30s infinite alternate linear;">
 
                 @forelse($currentEvent as $event)
-                    
+                
                 <div class="carousel-focus flex items-center flex-col relative bg-white mx-5 my-10 px-4 py-3 rounded-lg shadow-lg" style="width: 270px;">
                     {{-- <svg class="fill-current text-teal-400 hover:text-teal-500 cursor-pointer h-12 w-12 absolute top-0 right-0 mt-2 -mr-5" xmlns="http://www.w3.org/2000/svg" fill-rule="evenodd" clip-rule="evenodd">
                         <path d="M11.5 0C17.847 0 23 5.153 23 11.5S17.847 23 11.5 23 0 17.847 0 11.5 5.153 0 11.5 0zm0 1C17.295 1 22 5.705 22 11.5S17.295 22 11.5 22 1 17.295 1 11.5 5.705 1 11.5 1zm.5 10h6v1h-6v6h-1v-6H5v-1h6V5h1v6z" /></svg> --}}
                     <!-- <button class="absolute top-0 right-0 bg-teal-400 rounded-full px-1 py-0 font-bold text-lg">+</button> -->
                     <span class="text-black font-bold text-xl mb-3"> {{$event->name}} </span>
                     <img class="h-16 w-16 rounded-full shadow-2xl" src="https://pbs.twimg.com/profile_images/830533062807191552/TbkWKnnv_400x400.jpg" alt="Img">
-                    <p class="mt-3 text-gray-600 text-center"> {{ $event->description }} </p>
+                    <p class="mt-3 text-gray-600 text-center"> {{ $event->category?->name}} </p>
                     <button class="mt-4 mb-2 bg-red-400 rounded-full px-12 py-1 text-gray-100 font-semibold hover:bg-red-600 focus:outline-none"> <a href="{{route('show_event_form',$event->uid)}}"> Details </a> </button>
 
 
@@ -248,7 +248,7 @@
     </main>
 @endsection
 @section('additionalScript')
-<script src="{{asset('js/tailwind.js')}}" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+<script src="{{asset('js/tailwind.js')}}" ></script>
 
 
 @endsection
