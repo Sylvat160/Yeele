@@ -156,8 +156,8 @@
                     </label>
                     <select name="payment_method" id="payment_method" class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5" required>
                         @if ($event->event_payment_methods->count() > 1)
-                        <option class="hidden">Selectionner un mode de paiement</option>
                         @foreach ($event->event_payment_methods as $method)
+                        <option class="hidden">Selectionner un mode de paiement</option>
                         <option value="{{ $method->name }}" @if($method===$participant->payment_method) selected @endif>{{ $method->name }}</option>
                         @endforeach
                         @elseif($event->event_payment_methods->count() === 1)

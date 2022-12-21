@@ -90,10 +90,10 @@
                 <h3>{{ number_format($event->participants->where('payment_method', $paymentMethod->name)->where('payment_status', 1 )->sum('price'),0,'.',' ') }} </h3>
                 
                 <p>{{ $paymentMethod->name }}</p>
-                <p></p>
+                <p>{{ number_format($event->participants->where('payment_method', $paymentMethod->name)->sum('price'), 0, ',', ' ') }}</p>
             </div>
             <div class="icon">
-                <i class="ion ion-person-add"></i>
+                
             </div>
         </div>
     </div>

@@ -43,6 +43,15 @@
                                     <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
                                         colspan="1" aria-label="Téléphone: activate to sort column ascending">Téléphone
                                     </th>
+                                    <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
+                                        colspan="1" aria-label="Tarif: activate to sort column ascending">Tarif
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
+                                        colspan="1" aria-label="Mode de paiment: activate to sort column ascending">Mode de paiement
+                                    </th>
+                                    <th class="sorting" tabindex="0" aria-controls="Payment_method" rowspan="1"
+                                        colspan="1" aria-label="Status: activate to sort column ascending">Status
+                                    </th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -60,6 +69,21 @@
                                         <td>{{ $participant->firstname }}</td>
                                         <td>{{ $participant->email }}</td>
                                         <td>{{ $participant->phone }}</td>
+                                        <td>{{ $participant->price . ' CFA' }}</td>
+                                        <td>{{ $participant->payment_method }}</td>
+                                        <td>
+                                        @if((bool) $participant->payment_status || (bool) $participant->payment_reference)
+                                        <a style="background:green;" href="#" class="btn btn-info" class="editParticipantBtn">
+                                            <span> Payé </span>
+                                        </a>
+
+                                        @else
+                                        <a href="#" style="background:#F05252;" class="btn btn-info" class="editParticipantBtn">
+                                            <span> Impayé </span>
+                                        </a>
+                                        @endif
+
+                                        </td>
                                     </tr>
                                 @endforeach
                             </tbody>

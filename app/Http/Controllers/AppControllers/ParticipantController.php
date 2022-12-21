@@ -201,7 +201,6 @@ class ParticipantController extends Controller
             ->with('success', 'Les données du participant ont été modifiées.');
     }
 
-
     public function participantUpdatePage($participant_id, $event_uid)
     {
         $participant = Participant::find($participant_id);
@@ -221,11 +220,9 @@ class ParticipantController extends Controller
             $request->all(),
             [
                 'references' => 'required',
-                
             ],
             [
                 'required' => 'Ce champ est obligatoire.',
-                
             ]
         );
 
@@ -236,12 +233,14 @@ class ParticipantController extends Controller
         }
         $data = [
             'payment_reference' => $request->references,
-            'payment_status' => true];
+            'payment_status' => true,
+        ];
         // dd($data);
         $participant = Participant::find($request->participant_id);
         $participant->update([
             'payment_reference' => $request->references,
-            'payment_status' =>  true,
+            'payment_method' => $request->payment_method,
+            'payment_status' => true,
         ]);
 
         return redirect()
