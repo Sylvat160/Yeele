@@ -7,7 +7,7 @@
 Cloner le projet grace à la commande.
 
 ```git
-git clone https://github.com/HORINFO-BF/Yeele.git
+git clone https://github.com/Sylvat160/Yeele.git
 ```
 
 ## Installation des différentes dépendances
