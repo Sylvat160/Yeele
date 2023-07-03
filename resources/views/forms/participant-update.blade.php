@@ -117,7 +117,7 @@
                     </label>
                     <input type="number" name="phone" id="phone"
                         class="bg-gray-50 outline-none transition-colors border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-1 focus:ring-red-500 focus:border-red-500 block w-full p-2.5"
-                        placeholder="ex: (+226) XXXXXXXX" value="{{ $participant->phone }}" required>
+                        placeholder="ex: (226) XXXXXXXX" value="{{ $participant->phone }}" required>
                     @error('phone')
                         <p class="mt-2 text-sm text-red-600 dark:text-red-500"><span
                                 class="font-medium">{{ $message }}</p>
