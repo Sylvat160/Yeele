@@ -77,7 +77,7 @@
                                 <span class="text-danger">*</span>
                             </label>
                             <input type="tel" name="phone" id="phone" class="form-control"
-                                placeholder="Ex: (+226) XX-XX-XX-XX" value="{{ Auth::user()->phone }}" required>
+                                placeholder="Ex: (226) XX-XX-XX-XX" value="{{ Auth::user()->phone }}" required>
                             @error('phone')
                                 <span class="text-danger">{{ $message }}</span>
                             @enderror
